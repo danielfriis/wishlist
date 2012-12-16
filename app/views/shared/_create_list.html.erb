@@ -1,3 +1,4 @@
+<div class="white-box">
 <%= form_for(@list) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
@@ -5,3 +6,4 @@
     <%= f.submit "Create list", class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>

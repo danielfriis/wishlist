@@ -12,7 +12,7 @@
 
   <body>
       <%= render 'layouts/jumbotron' if current_page?('/') && !signed_in? %>
-      <div class="span12 spacer"></div>
+      <div class="container spacer"></div>
       <div class="container">
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>"><%= value %></div>

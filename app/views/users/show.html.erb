@@ -6,9 +6,7 @@
         <%= @user.name %>
       </h1>
   </div>
-  <aside class="span4">
-    <h3>Gift ideas</h3>
-  </aside>
+
   <div class="span8">
     <% if @user.lists.any? %>
       <h3>Lists (<%= @user.lists.count %>)</h3>
@@ -16,6 +14,11 @@
         <%= render @lists %>
       </ol>
     <% end %>
+
   </div>
+
+  <aside class="span4">
+    <h3>Gift ideas</h3>
+  </aside>
 
 </div>
