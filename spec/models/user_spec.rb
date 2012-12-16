@@ -27,6 +27,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:lists) }
 
   it { should be_valid }
 
@@ -114,5 +115,24 @@ describe User do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+  describe "list associations" do
+
+    before { @user.save }
+    let!(:older_list) do 
+      FactoryGirl.create(:list, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_list) do
+      FactoryGirl.create(:list, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should destroy associated lists" do
+      lists = @user.lists.dup
+      @user.destroy
+      lists.should_not be_empty
+      lists.each do |list|
+        List.find_by_id(list.id).should be_nil
+      end
+    end
   end
 end

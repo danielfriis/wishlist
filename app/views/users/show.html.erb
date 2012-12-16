@@ -1,11 +1,21 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
+  <div class="span12">
+      <%= gravatar_for @user %>
       <h1>
-        <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-    </section>
+  </div>
+  <aside class="span4">
+    <h3>Gift ideas</h3>
   </aside>
+  <div class="span8">
+    <% if @user.lists.any? %>
+      <h3>Lists (<%= @user.lists.count %>)</h3>
+      <ol class="lists">
+        <%= render @lists %>
+      </ol>
+    <% end %>
+  </div>
+
 </div>
