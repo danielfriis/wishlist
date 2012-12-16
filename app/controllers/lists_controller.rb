@@ -5,9 +5,9 @@ class ListsController < ApplicationController
     @list = current_user.lists.build(params[:list])
     if @list.save
       flash[:success] = "List created!"
-      redirect_to root_url
+      redirect_to current_user
     else
-      render 'static_pages/home'
+      redirect_to current_user
     end
   end
 

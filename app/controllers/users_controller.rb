@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @lists = @user.lists
+    @list = current_user.lists.build if signed_in?
   end
 
   def new
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to wishlistt!"
       redirect_to @user
     else
       render 'new'
