@@ -14,7 +14,7 @@
         <%= render @lists %>
       </ol>
     <% end %>
-    <%= render 'shared/create_list' %>
+    <%= render 'shared/create_list' if @list %>
   </div>
   
   <aside class="span4">

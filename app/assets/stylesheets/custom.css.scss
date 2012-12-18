@@ -1,4 +1,37 @@
+$btnPrimaryBackground: #5493a4;
+
+// Default 940px grid
+// -------------------------
+$gridColumns: 12;
+$gridColumnWidth: 60px;
+$gridGutterWidth: 20px;
+$gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1));
+
+$gridColumnWidth1200: 60px;
+$gridGutterWidth1200: 20px;
+$gridColumnWidth768: 60px;
+$gridGutterWidth768: 20px;
+
+// Fluid grid
+// -------------------------
+$fluidGridColumnWidth: 6.382978723%;
+$fluidGridGutterWidth: 2.127659574%;
+
 @import "bootstrap";
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 40px;
+  min-height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  background: rgb(245, 245, 245) url(bg.png);
+}
+
+@import "bootstrap-responsive";
+
 
 /* mixins, variables, etc. */
 
@@ -12,15 +45,6 @@ $grayMediumLight: #eaeaea;
 
 /* universal */
 
-html {
-  overflow-y: scroll;
-}
-
-body {
-  padding-top: 40px;
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: rgb(245, 245, 245);
-}
 
 section {
   overflow: auto;
@@ -35,6 +59,10 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+}
+
+.front_image {
+  margin-left: 80px;
 }
 
 .spacer {
@@ -73,23 +101,49 @@ textarea {
 }
 
 .bs-docs-social {
-  padding: 15px 0;
+  padding: 0;
   text-align: center;
   background-color: white;
   border-top: 1px solid #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  .container {
+    padding: 12px 0;
+  }
 }
 
 .white-box {
-  background-color: white;
-  box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
   padding: 10px 30px;
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #fff;
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.49), inset 0 1px 0 #fff;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.49), inset 0 1px 0 #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.49), inset 0 1px 0 #fff;
   margin-top: 10px;
     span {
       margin-left: 10px;
   }
+  .input-append {
+    margin: 5px 0;
+  }
 }
 
+.ribbon-stitches-top {
+   margin-top:2px;
+   border-top: 1px dashed rgba(0, 0, 0, 0.2);
+   -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+   -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+   box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.5);
+   }
+.ribbon-stitches-bottom {
+   margin-bottom:2px;
+   border-top: 1px dashed rgba(0, 0, 0, 0.2);
+   -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+   -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+   box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
+   }
 
 /* typography */
 
@@ -120,7 +174,10 @@ h1, h2, h3, h4, h5, h6 {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  width: 100%;
+  height: 80px;
+
+  margin-top: 40px;
   padding-top: 5px;
   background-color: white;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -210,6 +267,10 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+ }
+
+ .new_list {
+  margin: 0;
  }
 
  /* lists */

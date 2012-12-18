@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_filter :signed_in_user
+  before_filter :correct_user,   only: :destroy
 
   def create
     @list = current_user.lists.build(params[:list])
@@ -12,5 +13,14 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    @list.destroy
+    redirect_to current_user
   end
+
+  private
+
+    def correct_user
+      @list = current_user.lists.find_by_id(params[:id])
+      redirect_to current_user if @list.nil?
+    end
 end

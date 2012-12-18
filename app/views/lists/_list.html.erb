@@ -3,4 +3,9 @@
   <span class="timestamp">
     Created <%= time_ago_in_words(list.created_at) %> ago.
   </span>
+    <% if current_user?(list.user) %>
+    <%= link_to "delete", list, method: :delete,
+                                data: { confirm: "You sure?" },
+                                title: list.name %>
+  <% end %>
 </li>

@@ -24,9 +24,21 @@ describe "List pages" do
 
     describe "with valid information" do
 
-      before { fill_in 'list_name', with: "Lorem ipsum" }
+      before { fill_in 'list[name]', with: "Lorem ipsum" }
       it "should create a list" do
         expect { click_button "Create list" }.to change(List, :count).by(1)
+      end
+    end
+  end
+
+  describe "list destruction" do
+    before { FactoryGirl.create(:list, user: user) }
+
+    describe "as correct user" do
+      before { visit user_path(user) }
+
+      it "should delete a list" do
+        expect { click_link "delete" }.to change(List, :count).by(-1)
       end
     end
   end
