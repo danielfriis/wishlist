@@ -1,12 +1,12 @@
-<a href="<%= user_path(current_user) %>">
-  <%= gravatar_for current_user, size: 52 %>
+<a href="<%= user_path(@user) %>">
+  <%= gravatar_for @user %>
 </a>
 <h1>
-  <%= current_user.name %>
+  <%= @user.name %>
 </h1>
 <span>
-  <%= link_to "view my profile", current_user %>
+  <i class="icon-map-marker"></i> Copenhagen, DK
 </span>
 <span>
-  <%= pluralize(current_user.lists.count, "list") %>
+  <%= pluralize(@user.lists.count, "list") %>
 </span>

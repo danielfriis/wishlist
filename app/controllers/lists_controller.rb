@@ -1,6 +1,13 @@
 class ListsController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: :destroy
+
+  def show
+    @user = User.find(params[:user_id])
+    @list = @user.lists.find(params[:id])
+    @item = current_user.items.build if signed_in?
+    @items = @list.items
+  end
 
   def create
     @list = current_user.lists.build(params[:list])

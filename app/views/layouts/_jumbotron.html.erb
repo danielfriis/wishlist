@@ -1,16 +1,12 @@
 <div class="center jumbotron">
-  <h1>Welcome to wishlistt</h1>
-  <h2>
-    Wishlist allows you to quickly organize and share your wishlist.
-  </h2>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  <h1 class="logo">Wishlistt.</h1>
+  <h2>Organize and share your wishlist.</h2>
+  <div class="spacer"></div>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-success btn-large btn-primary" %>
 </div>
 <div class="bs-docs-social">
-	<div class="ribbon-stitches-top"></div>
-
   <div class="container">
-    <i class="icon-thumbs-up"></i> facebook - twitter - more
+  	<%= render 'layouts/facebook_like' %>
+  	<%= render 'layouts/twitter_follow' %>
   </div>
-<div class="ribbon-stitches-bottom"></div>
-
 </div>

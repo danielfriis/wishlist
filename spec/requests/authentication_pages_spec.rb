@@ -43,6 +43,8 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      let(:list) { FactoryGirl.create(:list, user: user) }
+      let(:item) { FactoryGirl.create(:item, list: list) }
 
       describe "when attempting to visit a protected page" do
         before do
@@ -60,7 +62,7 @@ describe "Authentication" do
         end
       end
 
-      describe "in the Users controller" do
+      describe "in the users controller" do
 
         describe "visiting the edit page" do
           before { visit edit_user_path(user) }
@@ -76,12 +78,25 @@ describe "Authentication" do
       describe "in the Lists controller" do
 
         describe "submitting to the create action" do
-          before { post lists_path }
+          before { post user_lists_path(user) }
           specify { response.should redirect_to(signin_path) }
         end
 
         describe "submitting to the destroy action" do
-          before { delete list_path(FactoryGirl.create(:list)) }
+          before { delete user_list_path(user, list) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
+
+      describe "in the Items controller" do
+
+        describe "submitting to the create action" do
+          before { post items_path(user) }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete item_path(item) }
           specify { response.should redirect_to(signin_path) }
         end
       end

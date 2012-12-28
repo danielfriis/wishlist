@@ -1,0 +1,23 @@
+<% if signed_in? %>
+
+  <div id="addWish" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addWishLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="addWishLabel">Add wish</h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for(@item) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+  	  <div class="field">
+        <%= f.hidden_field :list_id, value: @list.id %>
+  	    <%= f.text_field :title, placeholder: "Title..." %>
+  	    <%= f.text_field :link, placeholder: "Link..." %>
+  	  </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <%= f.submit "Add", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

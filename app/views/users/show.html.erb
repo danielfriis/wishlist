@@ -1,15 +1,18 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <div class="span12">
-      <%= gravatar_for @user %>
-      <h1>
-        <%= @user.name %>
-      </h1>
+  <div class="span12 user_info">
+      <%= render 'shared/user_info' %>
   </div>
 
   <div class="span8">
+    <h3>Lists (<%= @user.lists.count %>)</h3>
+  </div>
+  <aside class="span4">
+    <h3>Recent activity</h3>
+  </aside>
+  <div class="span8">
     <% if @user.lists.any? %>
-      <h3>Lists (<%= @user.lists.count %>)</h3>
+      
       <ol class="lists">
         <%= render @lists %>
       </ol>
@@ -17,8 +20,6 @@
     <%= render 'shared/create_list' if @list %>
   </div>
   
-  <aside class="span4">
-    <h3>Gift ideas</h3>
-  </aside>
+
 
 </div>

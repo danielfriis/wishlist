@@ -1,8 +1,8 @@
-<div class="white-box">
-<%= form_for(@list) do |f| %>
+<div class="white-box create-list">
+<%= form_for([current_user, @list]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="input-append">
-    <%= f.text_field :name, placeholder: "Create new list...", id:"appendedInputButton", class: "span4" %>
+    <%= f.text_field :name, placeholder: "Create new list...", id:"appendedInputButton" %>
     <%= f.submit "Create list", class: "btn" %>
   </div>
 <% end %>

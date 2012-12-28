@@ -1,0 +1,25 @@
+<% provide(:title, @list.name) %>
+<div class="row">
+  <div class="span12 user_info">
+    <%= render 'shared/user_info' %>
+  </div>
+  <div class="span8">
+    <h3 class="inline-block"><%= @list.name %> (<%= @list.items.count %>)</h3>
+    <% if signed_in? %>
+      <div class="pull-right">
+        <a href="#addWish" role="button" class="btn" data-toggle="modal"><i class="icon-plus"></i> Add wish</a>
+      </div>
+  <% end %>
+  </div>
+  <aside class="span4">
+    <h3>Recent activity</h3>
+  </aside>
+  <div class="span8">
+    <% if @list.items.any? %>
+      <ol class="lists white-box">
+        <%= render @items %>
+      </ol>
+    <% end %>
+  </div>
+  <%= render 'shared/item_form' %>
+</div>

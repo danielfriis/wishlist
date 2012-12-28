@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: lists
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'spec_helper'
 
 describe List do
@@ -10,6 +21,7 @@ describe List do
   it { should respond_to(:name) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:items) }
   its(:user) { should == user }
 
   it { should be_valid }
@@ -34,5 +46,25 @@ describe List do
   describe "with name that is too long" do
     before { @list.name = "a" * 61 }
     it { should_not be_valid }
+  end
+
+  describe "item associations" do
+
+    before { @list.save }
+    let!(:older_item) do 
+      FactoryGirl.create(:item, list: @list, created_at: 1.day.ago)
+    end
+    let!(:newer_item) do
+      FactoryGirl.create(:item, list: @list, created_at: 1.hour.ago)
+    end
+
+    it "should destroy associated items" do
+      items = @list.items.dup
+      @list.destroy
+      items.should_not be_empty
+      items.each do |item|
+        Item.find_by_id(item.id).should be_nil
+      end
+    end
   end
 end

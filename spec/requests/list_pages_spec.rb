@@ -23,7 +23,6 @@ describe "List pages" do
     end
 
     describe "with valid information" do
-
       before { fill_in 'list[name]', with: "Lorem ipsum" }
       it "should create a list" do
         expect { click_button "Create list" }.to change(List, :count).by(1)

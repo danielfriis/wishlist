@@ -6,8 +6,8 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:m1) { FactoryGirl.create(:list, user: user, name: "Foo") }
-    let!(:m2) { FactoryGirl.create(:list, user: user, name: "Bar") }
+    let!(:l1) { FactoryGirl.create(:list, user: user, name: "Foo") }
+    let!(:l2) { FactoryGirl.create(:list, user: user, name: "Bar") }
 
     before { visit user_path(user) }
 
@@ -15,10 +15,21 @@ describe "User pages" do
     it { should have_selector('title', text: user.name) }
 
     describe "lists" do
-      it { should have_content(m1.name) }
-      it { should have_content(m2.name) }
+      it { should have_content(l1.name) }
+      it { should have_content(l2.name) }
       it { should have_content(user.lists.count) }
     end
+  end
+
+  describe "lists page" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:l1) { FactoryGirl.create(:list, user: user, name: "Foo") }
+    let!(:i1) { FactoryGirl.create(:item, list: l1, title: "Shirt") }
+
+    before { visit user_list_path(user, l1) }
+
+    it { should have_content(i1.title) }
+    it { should have_content(l1.items.count) }
   end
 
   describe "signup page" do

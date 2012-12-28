@@ -1,9 +1,10 @@
+<%= render 'layouts/facebook' %>
 <% if signed_in? %>
 
   <div class="row">
     <aside class="span4">
       <section>
-        <%= render 'shared/user_info' %>
+        Content goes here
       </section>
     </aside>
   </div>
@@ -11,22 +12,22 @@
 <% else %>
 
   <div class="row">
-      <div class="span4">
-          <%= image_tag("front_find.png", class: "front_image") %>
+      <div class="span4 center">
+          <%= image_tag("front_find.png") %>
           <h2>Find</h2>
-   	        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+   	        <p>With Wishlistt is easier than ever to find and add your wishes to your wishlist. Just get our "Wishlistt it" bookmarlet and your good to go!</p>
             <p><a class="btn" href="#">View details »</a></p>
       </div>
-      <div class="span4">
-          <%= image_tag("front_organize.png", class: "front_image") %>
+      <div class="span4 center">
+          <%= image_tag("front_organize.png") %>
           <h2>Organize</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+           <p>When you save a wish to Wishlistt its easy to drag and drop your wishes around to showcase your priorities.</p>
            <p><a class="btn" href="#">View details »</a></p>
       </div>
-      <div class="span4">
-          <%= image_tag("front_share.png", class: "front_image") %>
+      <div class="span4 center">
+          <%= image_tag("front_share.png") %>
           <h2>Share</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p>Your wishlists are ready to be shared with friends and family by mail or the social networks.</p>
           <p><a class="btn" href="#">View details »</a></p>
       </div>
 

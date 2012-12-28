@@ -1,7 +1,9 @@
 Wishlist::Application.routes.draw do
-  resources :users
+  resources :users do
+    resources :lists, only: [:show, :create, :destroy]
+  end
+  resources :items, only: [:show, :new, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :lists, only: [:create, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
