@@ -6,10 +6,11 @@
       <h3 id="addWishLabel">Add wish</h3>
     </div>
     <div class="modal-body">
-      <%= form_for(@item) do |f| %>
+      <%= form_for(@item, html: { multipart: true }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
   	  <div class="field">
         <%= f.hidden_field :list_id, value: @list.id %>
+        <%= f.file_field :image %>
   	    <%= f.text_field :title, placeholder: "Title..." %>
   	    <%= f.text_field :link, placeholder: "Link..." %>
   	  </div>

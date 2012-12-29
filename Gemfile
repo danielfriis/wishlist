@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.9'
 gem 'bootstrap-sass', '~> 2.2.1.1'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'mini_magick'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

@@ -306,14 +306,24 @@ input {
     &:first-child {
       border: 0;
     }
+    div {
+      display: block;
+    }
+    .thumb {
+      float: left;
+    }
   }
 }
+
 .content {
   display: block;
 }
 .timestamp {
   color: $grayLight;
+  font-size: 11px;
+  display: block;
 }
+
 .gravatar {
   float: left;
   margin-right: 10px;

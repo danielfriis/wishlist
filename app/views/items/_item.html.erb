@@ -1,8 +1,21 @@
 <li>
-  <span class="content">
-  	<%= item.title %>, <%= item.link %>
-  </span>
-  <span class="timestamp">
-    Created <%= time_ago_in_words(item.created_at) %> ago.
-  </span>
+	<div class="clearfix">
+		<a class="thumb" href="#">
+			<%= image_tag item.image_url(:thumb).to_s %>
+		</a>
+		<div class="clearfix">
+		  <span class="content">
+		  	<%= item.title %>, <%= item.link %>
+		  </span>
+		  <span class="timestamp">
+		    Created <%= time_ago_in_words(item.created_at) %> ago.		  
+		    <% if current_user?(item.list.user) %>
+		    <%= link_to "delete", item, method: :delete,
+		                                data: { confirm: "You sure?" },
+		                                title: item.title %>
+		  <% end %>
+		  </span>
+
+		</div>
+	</div>
 </li>
