@@ -12,10 +12,11 @@
 #
 
 class Item < ActiveRecord::Base
-  attr_accessible :link, :list_id, :title, :image
+  attr_accessible :link, :list_id, :title, :image, :remote_image_url
   belongs_to :list
   mount_uploader :image, ImageUploader
 
   validates :title, presence: true, length: { maximum: 140 }
   validates :list_id, presence: true
+  validates :image, presence: true
 end

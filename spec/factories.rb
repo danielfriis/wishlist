@@ -1,3 +1,4 @@
+
 FactoryGirl.define do
 
   sequence(:email) { |n| "User#{n}@example.com"}
@@ -15,6 +16,7 @@ FactoryGirl.define do
   end
 
   factory :item do
+    image { fixture_file_upload(Rails.root.join('spec', 'support', 'test_images' , 'google.png'), 'image/png') }
     title "Shirt"
     link "www.example.com"
     list

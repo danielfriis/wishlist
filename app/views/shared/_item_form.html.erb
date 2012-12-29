@@ -7,12 +7,9 @@
     </div>
     <div class="modal-body">
       <%= form_for(@item, html: { multipart: true }) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
   	  <div class="field">
         <%= f.hidden_field :list_id, value: @list.id %>
-        <%= f.file_field :image %>
-  	    <%= f.text_field :title, placeholder: "Title..." %>
-  	    <%= f.text_field :link, placeholder: "Link..." %>
+        <%= render 'items/fields', f: f %>
   	  </div>
     </div>
     <div class="modal-footer">

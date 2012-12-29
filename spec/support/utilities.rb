@@ -1,4 +1,5 @@
 include ApplicationHelper
+include ActionDispatch::TestProcess
 
 def sign_in(user)
   visit signin_path

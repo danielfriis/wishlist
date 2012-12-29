@@ -3,8 +3,10 @@
 <div class="row">
   <div class="span6 offset3 white-box">
   	<h1>New wish</h1>
-    <%= form_for(@item) do |f| %>
+    <%= form_for(@item, html: { multipart: true }) do |f| %>
       <%= render 'fields', f: f %>
+      <%= f.label :list_id %>
+			<%= f.collection_select :list_id, List.all, :id, :name %>
       <%= f.submit "Add wish", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

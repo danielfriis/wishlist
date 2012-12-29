@@ -28,6 +28,7 @@ describe Item do
   it { should respond_to(:list_id) }
   it { should respond_to(:list) }
   it { should respond_to(:image) }
+  it { should respond_to(:remote_image_url) }
   its(:list) { should == list }
 
   it { should be_valid }
@@ -35,6 +36,11 @@ describe Item do
   describe "when list_id not present" do
   	before { @item.list_id = nil }
   	it { should_not be_valid }
+  end
+
+  describe "when image not present" do
+    before { @item.image = "" }
+    it { should_not be_valid }
   end
 
   describe "with blank title" do
