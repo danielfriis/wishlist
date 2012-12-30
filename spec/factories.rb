@@ -1,4 +1,4 @@
-
+include ActionDispatch::TestProcess
 FactoryGirl.define do
 
   sequence(:email) { |n| "User#{n}@example.com"}
