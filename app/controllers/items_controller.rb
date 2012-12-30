@@ -16,12 +16,14 @@ class ItemsController < ApplicationController
 
 	def create
 		@item = current_user.items.build(params[:item])
-    if @item.save
-      flash[:success] = "Item created!"
-      redirect_to :back
-    else
-      render 'new'
-    end
+	    if @item.save
+	    	head :bad_request
+	      # flash[:success] = "Item created!"
+	      # redirect_to :back
+	    else
+	    	head :created
+	      # render 'new'
+	    end
 	end
 
 	def destroy
