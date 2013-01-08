@@ -1,0 +1,25 @@
+<% provide(:title, @item.title) %>
+<div class="row">
+
+  <div class="span8">
+    <h3><%= @item.title %></h3>
+  </div>
+
+  <aside class="span4">
+    <h3>Additional info</h3>
+  </aside>
+
+  <div class="span8">
+    <div class="white-box">
+      <%= image_tag @item.image_url.to_s %>
+    </div>
+  </div>
+  <aside class="span4">
+      <div class="white-box">
+      <%= @item.link %><br />
+      <%= @item.list.name %><br />
+      <%= @item.list.user.name %><br />
+    </div>
+  </aside>
+
+</div>

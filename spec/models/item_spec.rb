@@ -20,6 +20,7 @@ describe Item do
 
   before do
     @item = list.items.build(title: "Lorem ipsum")
+    @item.image = fixture_file_upload('/test_images/google.png', 'image/png')
   end
 
   subject { @item }
@@ -39,7 +40,7 @@ describe Item do
   end
 
   describe "when image not present" do
-    before { @item.image = "" }
+    before { @item.image = " " }
     it { should_not be_valid }
   end
 

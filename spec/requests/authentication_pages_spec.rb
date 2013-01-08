@@ -64,6 +64,11 @@ describe "Authentication" do
 
       describe "in the users controller" do
 
+        describe "visiting the index page" do
+          before { visit users_path }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+
         describe "visiting the edit page" do
           before { visit edit_user_path(user) }
           it { should have_selector('title', text: 'Sign in') }

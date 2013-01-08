@@ -5,6 +5,7 @@ describe "List pages" do
   subject { page }
 
   let(:user) { FactoryGirl.create(:user) }
+
   before { sign_in user }
 
   describe "list creation" do

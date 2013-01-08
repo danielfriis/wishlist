@@ -18,5 +18,5 @@ class Item < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 140 }
   validates :list_id, presence: true
-  validates :image, presence: true
+  validates_presence_of :image
 end

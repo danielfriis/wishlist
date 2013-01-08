@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 	before_filter :correct_user,   only: :destroy
 
 	def show
+		@item = Item.find(params[:id])
 	end
 
 	def new
@@ -17,12 +18,10 @@ class ItemsController < ApplicationController
 	def create
 		@item = current_user.items.build(params[:item])
 	    if @item.save
-	    	head :bad_request
-	      # flash[:success] = "Item created!"
-	      # redirect_to :back
+	      flash[:success] = "Item created!"
+	      redirect_to @item
 	    else
-	    	head :created
-	      # render 'new'
+	      render 'new'
 	    end
 	end
 

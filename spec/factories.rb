@@ -1,25 +1,24 @@
 include ActionDispatch::TestProcess
+
 FactoryGirl.define do
 
-  sequence(:email) { |n| "User#{n}@example.com"}
 
   factory :user do
-    name     "Michael Hartl"
-    email
+    sequence(:name)  { |n| "Person #{n}" }
+    sequence(:email) { |n| "person_#{n}@example.com"}  
     password "foobar"
     password_confirmation "foobar"
   end
 
   factory :list do
-    name "Lorem ipsum"
+    name "My sample list"
     user
   end
 
   factory :item do
-    image { fixture_file_upload(Rails.root.join('spec', 'support', 'test_images' , 'google.png'), 'image/png') }
-    title "Shirt"
+    image { fixture_file_upload(Rails.root.join('spec', 'support', 'test_images', 'google.png'), 'image/png') }
+    title "My sample item"
     link "www.example.com"
     list
   end
-
 end

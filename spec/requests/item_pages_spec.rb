@@ -10,15 +10,14 @@ describe "Item pages" do
 
   describe "item creation" do
     before do 
-      visit user_list_path(user, list)
-      click_link "Add wish"
+      visit new_item_path(user)
     end
 
     describe "with invalid information" do
 
       it "should not create an item" do
         expect { click_button "Add" }.not_to change(Item, :count)
-        current_path.should eq(new_item_url)
+        current_path.should == "/items"
       end
 
       # describe "error messages" do
@@ -29,9 +28,16 @@ describe "Item pages" do
 
     describe "with valid information" do
 
-      before { fill_in 'item_title', with: "Lorem ipsum" }
+      before do
+        attach_file 'item_image', Rails.root.join('spec', 'support', 'test_images', 'google.png')
+        fill_in "item_title", with: "Lorem ipsum"
+      end
+
       it "should create a item" do
-        expect { click_button "Add" }.to change(Item, :count).by(1)
+        # expect { click_button "Add" }.to change(Item, :count).by(1)
+        click_button "Add"
+        current_path.should == "/items/1"
+        page.should have_content("Item created")
       end
     end
   end
