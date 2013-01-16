@@ -9,13 +9,19 @@
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
 #  remember_token  :string(255)
+#  age             :integer
+#  gender          :integer
+#  location        :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  mount_uploader :avatar, AvatarUploader
+
+  attr_accessible :name, :email, :avatar, :password, :password_confirmation
   has_secure_password
   has_many :lists, dependent: :destroy
   has_many :items, through: :lists
+  has_many :authorizations
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -27,6 +33,17 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def self.create_with_omniauth!(auth)
+    create! do |user|
+      user.name = auth['info']['name']
+      user.email = auth['info']['email']
+      user.remote_avatar_url = auth['info']['image'].split("=")[0] << "=large"
+      user.location = auth['info']['location']
+      user.password = "foobar"
+      user.password_confirmation = "foobar"
+    end
+  end
 
   private
 

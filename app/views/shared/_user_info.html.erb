@@ -1,11 +1,11 @@
 <a href="<%= user_path(@user) %>">
-  <%= gravatar_for @user %>
+  <%= image_tag @user.avatar_url(:large), alt: @user.name, class: "gravatar img-rounded" %>
 </a>
 <h1>
   <%= @user.name %>
 </h1>
 <span>
-  <i class="icon-map-marker"></i> Copenhagen, DK
+  <i class="icon-map-marker"></i> <%= @user.location %>
 </span>
 <span>
   <%= pluralize(@user.lists.count, "list") %>

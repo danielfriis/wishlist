@@ -9,6 +9,9 @@ Wishlist::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  match 'auth/:provider/callback', to: 'sessions#create_with_oauth'
+  match 'auth/failure', to: redirect('/')
+
   root to: 'static_pages#home'
 
   match '/help',    to: 'static_pages#help'

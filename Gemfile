@@ -8,6 +8,7 @@ gem 'carrierwave'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem "fog", "~> 1.3.1"
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

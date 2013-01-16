@@ -44,6 +44,12 @@ $grayMediumLight: #eaeaea;
 
 /* universal */
 
+.btn {
+  border:0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
 
 section {
   overflow: auto;
@@ -104,6 +110,26 @@ textarea {
     font-weight: normal;
     color: $grayLighter;
   }
+}
+
+/* social */
+
+.btn-facebook, .btn-facebook:hover {
+  color: white;
+  text-shadow: none;
+  background: -webkit-linear-gradient(top, #536A97, #3D5382);
+  background: -moz-linear-gradient(top, #536A97, #3D5382);
+  background: -o-linear-gradient(top, #536A97, #3D5382);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#536a97',endColorstr='#4f77a7');
+  background-image: -ms-linear-gradient(#536A97, #3D5382);
+}
+
+.btn-facebook:hover {
+  background: -webkit-linear-gradient(top, #536A97, #536A97);
+  background: -moz-linear-gradient(top, #536A97, #536A97);
+  background: -o-linear-gradient(top, #536A97, #536A97);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#536a97',endColorstr='#536A97');
+  background-image: -ms-linear-gradient(#536A97, #536A97);
 }
 
 .bs-docs-social {
