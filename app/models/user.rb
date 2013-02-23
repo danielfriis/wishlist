@@ -12,6 +12,7 @@
 #  age             :integer
 #  gender          :integer
 #  location        :string(255)
+#  avatar          :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -20,7 +21,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :avatar, :password, :password_confirmation
   has_secure_password
   has_many :lists, dependent: :destroy
-  has_many :items, through: :lists
+  has_many :wishes, through: :lists
+  has_many :items, through: :wishes
   has_many :authorizations
 
   before_save { |user| user.email = email.downcase }

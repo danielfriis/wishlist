@@ -5,7 +5,6 @@ class ListsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @list = @user.lists.find(params[:id])
-    @item = current_user.items.build if signed_in?
     @items = @list.items
   end
 

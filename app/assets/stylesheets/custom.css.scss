@@ -115,6 +115,7 @@ textarea {
 /* social */
 
 .btn-facebook, .btn-facebook:hover {
+  font-weight: normal;
   color: white;
   text-shadow: none;
   background: -webkit-linear-gradient(top, #536A97, #3D5382);
@@ -122,6 +123,11 @@ textarea {
   background: -o-linear-gradient(top, #536A97, #3D5382);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#536a97',endColorstr='#4f77a7');
   background-image: -ms-linear-gradient(#536A97, #3D5382);
+
+  i {
+    vertical-align: baseline;
+    margin: 0 13px 0 0;
+  }
 }
 
 .btn-facebook:hover {

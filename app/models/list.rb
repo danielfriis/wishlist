@@ -11,8 +11,12 @@
 
 class List < ActiveRecord::Base
   attr_accessible :name
+
   belongs_to :user
-  has_many :items, dependent: :destroy
+  has_many :wishes
+  has_many :items, through: :wishes
+
+  accepts_nested_attributes_for :wishes, :items
   
   validates :name, presence: true, length: { maximum: 60 }
   validates :user_id, presence: true

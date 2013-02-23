@@ -12,6 +12,7 @@
 #  age             :integer
 #  gender          :integer
 #  location        :string(255)
+#  avatar          :string(255)
 #
 
 require 'spec_helper'

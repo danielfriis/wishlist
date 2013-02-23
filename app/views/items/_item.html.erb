@@ -1,6 +1,6 @@
 <li>
 	<div class="clearfix">
-		<a class="thumb" href="<%= item_path(item)%>">
+		<a class="thumb" href="<%= item_path(item) %>">
 			<%= image_tag item.image_url(:thumb).to_s %>
 		</a>
 		<div class="clearfix">
@@ -9,11 +9,11 @@
 		  </span>
 		  <span class="timestamp">
 		    Created <%= time_ago_in_words(item.created_at) %> ago.		  
-		    <% if current_user?(item.list.user) %>
+		    <% if current_user?(item.lists.last.user) %>
 		    <%= link_to "delete", item, method: :delete,
 		                                data: { confirm: "You sure?" },
 		                                title: item.title %>
-		  <% end %>
+		  	<% end %>
 		  </span>
 
 		</div>

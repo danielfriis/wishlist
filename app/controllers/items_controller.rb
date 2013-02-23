@@ -2,8 +2,6 @@ class ItemsController < ApplicationController
 	before_filter :signed_in_user, only: [:new, :create, :destroy]
 	before_filter :correct_user,   only: :destroy
 
-	respond_to :html, :js
-
 	def show
 		@item = Item.find(params[:id])
 	end
@@ -18,10 +16,12 @@ class ItemsController < ApplicationController
 	end
 
 	def create
-		@item = current_user.items.build(params[:item])
+    @list = current_user.lists.find(params[:list_id])
+		@item = Item.create!(params[:item])
+		@item.wishes.build(list_id: @list.id)
 	    if @item.save
 	      flash[:success] = "Item created!"
-	      respond_with @item
+	      redirect_to @item
 	    else
 	      render 'new'
 	    end

@@ -6,10 +6,10 @@
       <h3 id="addWishLabel">Add wish</h3>
     </div>
     <div class="modal-body">
-      <%= form_for(@item, html: { multipart: true }) do |f| %>
+      <%= form_for(@list.items.build, html: { multipart: true }) do |f| %>
   	  <div class="field">
-        <%= f.hidden_field :list_id, value: @list.id %>
         <%= render 'items/fields', f: f %>
+        <%= hidden_field_tag :list_id, @list.id %>
   	  </div>
     </div>
     <div class="modal-footer">

@@ -4,6 +4,13 @@
 <div class="row">
   <div class="span6 offset3 white-box">
     <h1>Sign in</h1>
+    <hr>
+    <span class="spacer center">
+      <a href="auth/facebook" class="btn btn-facebook btn-large">
+         <i class="icon-facebook icon-large"></i><span>Sign in with Facebook</span>
+      </a>
+    </span>
+    <hr>
     <%= form_for(:session, url: sessions_path) do |f| %>
 
       <%= f.label :email %>
@@ -12,8 +19,10 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
 
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Sign in", class: "btn btn-large btn-block btn-success" %>
     <% end %>
+
+    <hr>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
