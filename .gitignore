@@ -15,6 +15,3 @@ doc/
 .project
 .DS_Store
 .idea
-
-# Ignore environment variables
-/config/app_environment_variables.rb
