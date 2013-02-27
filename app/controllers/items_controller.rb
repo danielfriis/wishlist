@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
 	before_filter :signed_in_user, only: [:new, :create, :destroy]
 	before_filter :correct_user,   only: :destroy
 
+	respond_to :json
+
 	def show
 		@item = Item.find(params[:id])
 	end
