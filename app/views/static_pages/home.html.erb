@@ -1,11 +1,7 @@
 <% if signed_in? %>
 
   <div class="row">
-    <aside class="span4">
-      <section>
-        Content goes here
-      </section>
-    </aside>
+    <%= render @items %>
   </div>
 
 <% else %>

@@ -1,3 +1,17 @@
+<% if current_page?(root_url) %>
+
+<div class="span4">
+	<div class="white-box">
+		<a href="<%= item_path(item) %>">
+			<%= image_tag item.image_url(:medium).to_s %>
+		</a>
+		<%= item.title %>
+		<%= item.wishes.count %>
+	</div>
+</div>
+
+<% else %>
+
 <li>
 	<div class="clearfix">
 		<a class="thumb" href="<%= item_path(item) %>">
@@ -19,3 +33,5 @@
 		</div>
 	</div>
 </li>
+
+<% end %>

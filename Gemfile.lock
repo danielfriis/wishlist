@@ -141,6 +141,8 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-cors (0.2.7)
+      rack
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -232,6 +234,7 @@ DEPENDENCIES
   mini_magick
   omniauth-facebook
   pg (= 0.12.2)
+  rack-cors
   rails (= 3.2.11)
   rb-fsevent (= 0.9.1)
   rspec-rails (= 2.11.0)

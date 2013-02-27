@@ -18,14 +18,9 @@ $fluidGridGutterWidth: 2.127659574%;
 @import "bootstrap";
 @import "font-awesome";
 
-html {
-  overflow-y: scroll;
-}
 
 body {
   padding-top: 40px;
-  min-height: 100%;
-  font-family: Helvetica, Arial, sans-serif;
   background: rgb(245, 245, 245) url(bg.png);
 }
 
@@ -43,13 +38,6 @@ $grayMediumLight: #eaeaea;
 }
 
 /* universal */
-
-.btn {
-  border:0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
 
 section {
   overflow: auto;
@@ -154,7 +142,7 @@ textarea {
 }
 
 .white-box {
-  padding: 10px 30px;
+  padding: 10px;
   background: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -339,8 +327,12 @@ input {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    &:last-child {
+      padding: 10px 0 0 0;
+    }
     &:first-child {
       border: 0;
+      padding: 0 0 10px 0;
     }
     div {
       display: block;
