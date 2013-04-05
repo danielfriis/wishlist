@@ -11,13 +11,15 @@
 
   <div class="span8">
     <div class="white-box">
-      <%= image_tag @item.image_url.to_s %>
+      <div class="image-container">
+        <%= image_tag @item.image_url.to_s %>
+      </div>
     </div>
   </div>
   <aside class="span4">
       <div class="white-box">
       <%= @item.link %><br />
-      <%= @item.lists.first.name %>
+      <%= @item.lists.first.user.name %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.
 
     </div>
   </aside>

@@ -6,6 +6,7 @@ class ListsController < ApplicationController
     @user = User.find(params[:user_id])
     @list = @user.lists.find(params[:id])
     @items = @list.items
+    @lists = @user.lists
   end
 
   def create

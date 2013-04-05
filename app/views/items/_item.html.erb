@@ -2,25 +2,31 @@
 
 <div class="span4">
 	<div class="white-box">
-		<a href="<%= item_path(item) %>">
-			<%= image_tag item.image_url(:medium).to_s %>
-		</a>
-		<%= item.title %>
-		<%= item.wishes.count %>
+		<div class="image-container">
+			<a href="<%= item_path(item) %>">
+				<%= image_tag item.image_url(:medium).to_s %>
+			</a>
+		</div>
+		<h3><%= item.title %></h3>
+		<%= item.wishes.count %> wishes this perticular item
+
 	</div>
 </div>
 
 <% else %>
 
 <li>
-	<div class="clearfix">
-		<a class="thumb" href="<%= item_path(item) %>">
-			<%= image_tag item.image_url(:thumb).to_s %>
-		</a>
-		<div class="clearfix">
+		<div class="inline-block">
+			<a class="thumb" href="<%= item_path(item) %>">
+				<%= image_tag item.image_url(:thumb).to_s %>
+			</a>
+		</div>
+		<div class="inline-block">
 		  <span class="content">
-		  	<%= item.title %>, <%= item.link %>
+		  	<h4><%= item.title %></h4>
+		  	<p><%= item.link %></p>
 		  </span>
+
 		  <span class="timestamp">
 		    Created <%= time_ago_in_words(item.created_at) %> ago.		  
 		    <% if current_user?(item.lists.last.user) %>
@@ -29,9 +35,7 @@
 		                                title: item.title %>
 		  	<% end %>
 		  </span>
-
-		</div>
-	</div>
+		 </div>
 </li>
 
 <% end %>
