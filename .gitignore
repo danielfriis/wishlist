@@ -18,4 +18,4 @@ doc/
 
 # Ignore environment variables
 
-/config/app_environment_variables.rb
+/config/local_env.yml
