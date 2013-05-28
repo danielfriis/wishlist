@@ -9,4 +9,12 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+
+  def avatar(user, size)
+  	if user.avatar_url("#{size}").nil?
+  		"#{root_url}/assets/default_#{size.to_s}.jpg"
+  	else
+  		user.avatar_url("#{size}")
+  	end
+  end
 end

@@ -1,5 +1,5 @@
 <a href="<%= user_path(@user) %>">
-  <%= image_tag @user.avatar_url(:large), alt: @user.name, class: "gravatar img-rounded" %>
+  <%= image_tag avatar(@user, :large), alt: @user.name, class: "gravatar img-rounded" %>
 </a>
 <h1>
   <%= @user.name %>
