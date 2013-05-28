@@ -10,6 +10,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem "fog", "~> 1.3.1"
 gem 'omniauth-facebook'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

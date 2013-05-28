@@ -234,6 +234,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   mini_magick
   newrelic_rpm
+  nokogiri
   omniauth-facebook
   pg (= 0.12.2)
   rack-cors

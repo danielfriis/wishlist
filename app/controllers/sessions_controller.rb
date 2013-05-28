@@ -18,11 +18,11 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     @auth = Authorization.find_with_omniauth(auth)
     if @auth.nil?
-    #   # Create a new user or add an auth to existing user, depending on
-    #   # whether there is already a user signed in.
+     # Create a new user or add an auth to existing user, depending on
+     # whether there is already a user signed in.
       @auth = Authorization.create_with_omniauth(auth, current_user)
     end
-    # # Log the authorizing user in.
+    # Log the authorizing user in.
     sign_in @auth.user
     redirect_to root_url, notice: "Welcome, #{current_user.name}."
   end

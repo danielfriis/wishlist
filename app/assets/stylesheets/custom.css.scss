@@ -176,13 +176,7 @@ textarea {
     span {
       margin-left: 10px;
   }
-  // .input-append {
-  //   margin: 0;
-  //   width: 532px;
-  //   #appendedInputButton {
-  //     border: 0;
-  //   }
-  // }
+
   .image-container {
     background-color: #f9f9f9;
     text-align: center;
@@ -316,6 +310,7 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
+  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   @include box_sizing;
@@ -340,6 +335,21 @@ input {
 
  .new_list {
   margin: 0;
+ }
+
+ #new_list > .input-append { 
+
+  margin-bottom: 0;
+
+  #appendedInputButton {
+    border: 0;
+    padding: 10px;
+    width: 212px;
+    }
+  .btn {
+    width: 90px;
+    padding: 10px;
+  }
  }
 
  /* lists */

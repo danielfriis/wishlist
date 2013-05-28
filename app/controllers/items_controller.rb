@@ -32,6 +32,14 @@ class ItemsController < ApplicationController
 		redirect_to :back
 	end
 
+	def linkpreview
+  	url = params[:url]
+  	preview = LinkPreviewParser.parse(url) # returns a Hash
+	  respond_to do |format|
+		  format.json { render :json => preview }
+	  end	
+  end
+
   private
 
     def correct_user
