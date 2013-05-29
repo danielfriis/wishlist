@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      @user.lists.create!(name: "General")
       sign_in @user
       flash[:success] = "Welcome to Wishlistt!"
       redirect_to @user

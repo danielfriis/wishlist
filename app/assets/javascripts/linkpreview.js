@@ -8,26 +8,30 @@
 
 
 
-$(document).ready(function() {
-  $("#urlb").on('click', function() {
-    var link = $("#url");
-    setTimeout(function() {
-      var text = $(link).val();
-      // send url to service for parsing
-      $.ajax('/linkpreview', {
-        type: 'POST',
-        dataType:'json',
-        data: { url: text },
-        success: function(data, textStatus, jqXHR) {
-          $("#item_title").val(data['title']);
-          $("#item_link").val(data['url']);
-          $("#item_remote_image_url").val(data['img']);
-        },
-        error: function() { alert("error"); }
-      }); 
-    }, 100);
-  });
-});
+// $(document).ready(function() {
+//   $("#urlb").on('click', function() {
+//     var link = $("#url");
+//     setTimeout(function() {
+//       var text = $(link).val();
+//       // send url to service for parsing
+//       $.ajax('/linkpreview', {
+//         type: 'POST',
+//         dataType:'json',
+//         data: { url: text },
+//         success: function(data, textStatus, jqXHR) {
+//           $("#item_title").val(data['title']);
+//           $("#item_link").val(data['url']);
+//           $("#item_remote_image_url").val(data['img']);
+//           $("#item_fields").show()
+//           $("#item_fields_submit").show()
+//           $("#linkpreview").hide()
+//           $("#urlb").hide()
+//         },
+//         error: function() { alert("error"); }
+//       }); 
+//     }, 100);
+//   });
+// });
 
 
 // alert("Sejt");

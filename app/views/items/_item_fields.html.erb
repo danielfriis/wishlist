@@ -1,0 +1,9 @@
+<%= form_for(@item, remote: true, html: { multipart: true }) do |f| %>
+	<div class="modal-body">
+			<%= render 'fields', f: f %>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		<%= f.submit "Wish", class: "btn btn-primary" %>
+	</div>
+<% end %>

@@ -22,6 +22,9 @@ class Authorization < ActiveRecord::Base
 
 	def self.create_with_omniauth(auth, user)
 	  user ||= User.create_with_omniauth!(auth)
+	  if user.lists.empty? 
+	  	user.lists.create!(name: "General")
+	  end
 	  Authorization.create(:user_id => user.id, :uid => auth['uid'], :provider => auth['provider'])
 	end
 end

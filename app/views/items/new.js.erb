@@ -1,0 +1,16 @@
+var link = $("#url");
+
+  var text = $(link).val();
+  // send url to service for parsing
+  $.ajax('/linkpreview', {
+    type: 'POST',
+    dataType:'json',
+    data: { url: text },
+    success: function(data, textStatus, jqXHR) {
+    	$("#linkpreview").hide().after('<%= j render("item_fields") %>');
+      $("#item_title").val(data['title']);
+      $("#item_link").val(data['url']);
+      $("#item_remote_image_url").val(data['img']);
+    },
+    error: function() { alert("error"); }
+}); 

@@ -6,6 +6,8 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
+            <li><a href="#make_wish" role="button" data-toggle="modal">Make a wish</a>
+            </li>
             <li><%= link_to "Profile", current_user %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -28,4 +30,25 @@
       </nav>
     </div>
   </div>
+
+
 </header>
+
+<div id="make_wish" class="modal hide fade" tabindex="1" role="dialog" aria-labelledby="make_wish" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="make_wish">Make a wish</h3>
+  </div>
+  <div id="linkpreview">
+    <div class="modal-body">
+        <form>
+          <label for="url">Retrieve item</label>
+          <input id="url" type="text" placeholder="http://">
+        </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <%= link_to "Get info", new_item_path, id: "urlb", class: "btn btn-primary", remote: true %>
+    </div>
+  </div>
+</div>

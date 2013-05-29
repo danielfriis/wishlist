@@ -11,3 +11,6 @@
 
 <%= f.label :link %>
 <%= f.text_field :link %>
+
+<%= f.label :list_id %>
+<%= select_tag :list_id, options_for_select(@user.lists.all.collect{ |u| [u.name, u.id] }) %>

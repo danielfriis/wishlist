@@ -4,14 +4,13 @@
   <div class="span6 offset3 white-box">
   	<h1>New wish</h1>
   	<form>
+      <label for="url">Retrieve item</label>
   		<input id="url" type="text">
-  		<a href="#" id="urlb" class="btn">Send for pokker</a>
+  		<a href="#" id="urlb" class="btn">Get info</a>
   	</form>
 
     <%= form_for(@item, html: { multipart: true }) do |f| %>
       <%= render 'fields', f: f %>
-      <%= f.label "List" %>
-			<%= select_tag 'list_id', options_for_select(@user.lists.all.collect{ |u| [u.name, u.id] }) %>
       <%= f.submit "Add wish", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

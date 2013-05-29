@@ -3,29 +3,26 @@
   <div class="span12 user_info">
     <%= render 'shared/user_info' %>
   </div>
-  <div class="span8">
-    <h3 class="inline-block">Wishes in <%= @list.name %> (<%= @list.items.count %>)</h3>
-    <% if signed_in? %>
-      <div class="pull-right addwish">
-        <a href="#addWish" role="button" class="btn" data-toggle="modal"><i class="icon-plus"></i> Add wish</a>
-      </div>
-  <% end %>
-  </div>
-  <aside class="pull-right span4">
-    <h3>Lists</h3>
-    <div class="clearfix"></div>
-    <% if @user.lists.any? %>
-      <ul class="nav nav-tabs nav-stacked">
-        <%= render @lists %>
-      </ul>
-    <% end %>
-  </aside>
-  <div class="span8">
+
+  <div class="span9">
+    <h2>Wishes in <%= @list.name %> (<%= @list.items.count %>)</h2>
     <% if @list.items.any? %>
       <ol class="lists white-box">
         <%= render @items %>
       </ol>
     <% end %>
   </div>
-  <%= render 'shared/item_form' %>
+
+  <aside class="pull-right span3">
+    <h3>Lists (<%= @user.lists.count %>)</h3>
+
+    <div class="clearfix"></div>
+
+    <% if @user.lists.any? %>
+      <ol class="nav nav-tabs nav-stacked">
+        <%= render @lists %>
+      </ol>
+    <% end %>
+  </aside>
+
 </div>

@@ -1,15 +1,19 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-
   <div class="span12 user_info">
-      <%= render 'shared/user_info' %>
+    <%= render 'shared/user_info' %>
   </div>
 
-  <div class="span8">
-    <h3>All Wishes</h3>
+  <div class="span9">
+    <h2>All Wishes</h2>
+    <% if @user.items.any? %>
+      <ol class="lists white-box">
+        <%= render @items %>
+      </ol>
+    <% end %>
   </div>
 
-  <aside class="pull-right span4">
+  <aside class="pull-right span3">
     <h3>Lists (<%= @user.lists.count %>)</h3>
 
     <div class="clearfix"></div>
@@ -19,16 +23,7 @@
         <%= render @lists %>
       </ol>
     <% end %>
-
-    <%= render 'shared/create_list' if @list %>
+    <%= render 'shared/create_list' if @list && current_user?(@user) %>
   </aside>
-
-  <div class="span8">
-    <% if @user.items.any? %>
-      <ol class="lists white-box">
-        <%= render @items %>
-      </ol>
-    <% end %>
-  </div>
 
 </div>
