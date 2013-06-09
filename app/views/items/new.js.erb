@@ -1,10 +1,10 @@
 var link = $("#url");
 var text = $(link).val();
-var loading = $('<span class="loading"></span>')
+var loading = $('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
 // send url to service for parsing
 
-$("#urlb").addClass("disabled").attr("href", "#")
-$(".modal-body form").hide().after(loading)
+$("#urlb").addClass("disabled").attr("href", "#");
+$(".modal-body form").hide().after(loading);
 
 $.ajax('/linkpreview', {
   type: 'POST',

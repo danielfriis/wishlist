@@ -14,7 +14,7 @@
 				<%= image_tag item.image_url(:medium).to_s %>
 			</a>
 		</div>
-		<h3><%= item.title %></h3>
+		<h3><%= truncate(item.title, length: 53) %></h3>
 		<%= item.wishes.count %> wishes this item
 
 	</div>

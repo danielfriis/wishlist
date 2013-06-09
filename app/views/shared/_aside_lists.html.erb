@@ -1,10 +1,8 @@
-    <h3>Lists (<%= @user.lists.count %>)</h3>
-
-    <div class="clearfix"></div>
-
-    <% if @user.lists.any? %>
-      <ol class="nav nav-tabs nav-stacked">
-        <%= render @lists %>
-        <%= render 'shared/create_list' if current_page?(user_path(@user)) %>
-      </ol>
-    <% end %>
+<div class="user_lists">
+  <h3>Lists (<%= @user.lists.count %>)</h3>
+  <% if @user.lists.any? %>
+    <ul class="unstyled">
+      <%= render @lists %>
+    </ul>
+  <% end %>
+</div>
