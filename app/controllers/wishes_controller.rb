@@ -15,7 +15,7 @@ class WishesController < ApplicationController
 
   def destroy
     @wish.destroy
-    redirect_to current_user
+    redirect_to :back
   end
 
   private
