@@ -1,7 +1,7 @@
-<li class="white-box">
+<li>
   <span class="content"><%= link_to list.name, user_list_path(@user, list) %></span>
   <span class="timestamp">
-    Created <%= time_ago_in_words(list.created_at) %> ago.
+    Updated <%= time_ago_in_words(list.updated_at) %> ago.
         <% if current_user?(list.user) %>
 		    <%= link_to "Delete", [current_user, list], method: :delete,
 		                                data: { confirm: "You sure?" },

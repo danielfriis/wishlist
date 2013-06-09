@@ -1,4 +1,4 @@
-<div class="white-box create-list">
+<li class="white-box create-list">
 <%= form_for([current_user, @list]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="input-append">
@@ -6,4 +6,4 @@
     <%= f.submit "+", class: "btn" %>
   </div>
 <% end %>
-</div>
+</li>

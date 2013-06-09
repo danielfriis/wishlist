@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
 	    	flash[:success] = "Item created!"
 	    	format.html {redirect_to(@item) }
 	    	format.js { render :js => "window.location.href = ('#{item_path(@item)}');" }
-	      
 	      # redirect_to @item
 	    else
 	      render 'new'

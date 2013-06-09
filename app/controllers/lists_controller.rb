@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @list = @user.lists.find(params[:id])
-    @items = @list.items
+    @wishes = @list.wishes
     @lists = @user.lists
   end
 

@@ -5,25 +5,18 @@
   </div>
 
   <div class="span9">
-    <h2>All Wishes</h2>
-    <% if @user.items.any? %>
+    <% if @user.wishes.any? %>
       <ol class="lists white-box">
-        <%= render @items %>
+        <%= render @wishes %>
       </ol>
+    <% else %>
+      <%= render 'shared/list_wo_wish' %>
     <% end %>
   </div>
 
   <aside class="pull-right span3">
-    <h3>Lists (<%= @user.lists.count %>)</h3>
-
-    <div class="clearfix"></div>
-
-    <% if @user.lists.any? %>
-      <ol class="nav nav-tabs nav-stacked">
-        <%= render @lists %>
-      </ol>
-    <% end %>
-    <%= render 'shared/create_list' if @list && current_user?(@user) %>
+    <%= render 'shared/aside_share' %>
+    <%= render 'shared/aside_lists' %>
   </aside>
 
 </div>

@@ -51,6 +51,14 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
 
+// .btn {
+//   border-bottom: 2px solid #a2a2a2;
+//   &:active {
+//     border-bottom: 1px solid #bbbbbb;
+//     margin-top: 1px;
+//   }
+// }
+
 
 /* mixins, variables, etc. */
 
@@ -228,6 +236,51 @@ footer {
 
 .item {
   margin-bottom: 10px;
+  min-height: 354px;
+  display: block;
+  position: relative;
+  &:hover {
+      .mark {
+        opacity: 1;
+      }
+      .btn {
+        opacity: 1;
+        z-index: 10;
+      }
+    }
+
+  .item-link {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+  }
+  .mark {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+  }
+  .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    margin-left: -64px;
+    margin-top: -45px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+  }
 }
 
 .nav > .white-box {
@@ -248,26 +301,21 @@ footer {
 
 /* sidebar */
 
-aside {
-  section {
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
+.share {
+  i {
+    font-size: 2em;
+    line-height: 1.2em;
+    display: inline-block;
+    color: #777777;
+  }
+  .icon-facebook-sign:hover {
+    color: #4c66a4;
+  }
+  .icon-link:hover {
+    color: #3c8fc9;
+  }
+  .icon-envelope:hover {
+    color: orange;
   }
 }
 
@@ -276,6 +324,7 @@ aside {
       display: block;
       margin-bottom: 3px;
       line-height: 1;
+      color: #777777;
     }
       h1 {
       font-size: 2em;
@@ -347,7 +396,7 @@ input {
  }
 
 
-#make_wish > form {
+#make_wish > form, #new_wish > form {
   margin-bottom: 0;
 }
 
@@ -359,24 +408,62 @@ input {
   margin: 10px 0 0 0;
 
   li {
+    position: relative;
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+
     &:last-child {
       padding: 10px 0 0 0;
+
+      .btn-group, .timestamp {
+        bottom: 0px;
+      }
     }
     &:first-child {
       border: 0;
       padding: 0 0 10px 0;
     }
+
+    &:hover {
+      .btn-group {
+        display: inline-block;
+      }
+    }
+
+    .btn-group {
+      right: 0;
+      display: none;
+    }
+
+    .btn-group, .timestamp {
+        position: absolute;
+        bottom: 10px;
+      }
+    
+
     .inline-block {
       vertical-align: top;
     }
   }
 }
 
+.no-wish {
+  padding: 10%;
+  p {
+    color: #777777;
+  }
+}
+
 .content {
   display: block;
+  h4, p {
+    width: 540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
+
 .timestamp {
   color: $grayLight;
   font-size: 11px;

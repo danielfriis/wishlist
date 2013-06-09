@@ -8,5 +8,9 @@
   <i class="icon-map-marker"></i> <%= @user.location %>
 </span>
 <span>
-  <%= pluralize(@user.wishes.count, "wish") %>
+  <% if current_page?(user_path(@user)) %>
+  	<h3>All wishes (<%= @user.wishes.count %>)</h3>
+  <% else %>
+  	<h3><%= @list.name %> (<%= @list.items.count %>)</h3>
+  <% end %>
 </span>

@@ -16,7 +16,7 @@ $.ajax('/linkpreview', {
     $("#item_link").val(data['url']);
     $("#item_remote_image_url").val(data['img']);
     $("#commit").on('click', function() {
-      $(this).addClass("disabled").attr("href", "#")
+      $(this).addClass("disabled").attr("href", "#");
     })
   },
   error: function() { alert("Something went wrong. Please try again."); 

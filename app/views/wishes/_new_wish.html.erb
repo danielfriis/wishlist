@@ -1,0 +1,19 @@
+<div id="<%= @item.id %>_new_wish" class="modal hide fade" tabindex="1" role="dialog" aria-labelledby="new_wish" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="wishlistt_it">Wishlistt it</h3>
+  </div>
+  <div id="new_wish">
+    <%= form_for(@item.wishes.build(item_id: @item.id)) do |f| %>
+    <div class="modal-body">
+        <%= f.hidden_field :item_id %>
+        <%= f.label :list_id %>
+        <%= select_tag :list_id, options_for_select(current_user.lists.all.collect{ |u| [u.name, u.id] }) %>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <%= f.submit "Add wish", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>
