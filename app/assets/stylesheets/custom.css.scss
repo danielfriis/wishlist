@@ -15,7 +15,7 @@ $gridGutterWidth768: 20px;
 $fluidGridColumnWidth: 6.382978723%;
 $fluidGridGutterWidth: 2.127659574%;
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700);
 
 $sansFontFamily: 'Open Sans', Helvetica, sans-serif;
 $btnPrimaryBackground: #1693A5;
@@ -157,6 +157,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  font-weight: 600;
 }
 
 h1 {
