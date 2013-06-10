@@ -13,18 +13,20 @@
     <h3 id="signUpLabel">Sign up</h3>
   </div>
   <div class="modal-body">
-  		Sign up to wishlistt and start organizing your desires!
-  		<br />
-  		<br />
+
       <div class="center">
+        Sign up to wishlistt and start organizing your desires!
+        <br />
+        <br />
         <a href="auth/facebook" class="btn btn-facebook btn-large">
-          <i class="icon-facebook icon-large"></i><span>Sign up with Facebook</span>
+          <i class="icon-facebook"></i>  Sign up with Facebook
         </a>
           <br />
     	  or <%= link_to "sign up with email", signup_path, class: "" %>
+        <hr>
+        Already got an account? <%= link_to "Sign in now", signin_path %>
+        <br />
+        <br />
       </div>
-
-      <br />
-      <br />
   </div>
 </div>

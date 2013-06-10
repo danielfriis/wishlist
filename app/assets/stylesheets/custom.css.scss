@@ -115,7 +115,7 @@ textarea {
   h1 {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    right: 80px;
   }
   h1 {
     font-size: 5em;
@@ -509,6 +509,7 @@ aside {
 /* social */
 
 .btn-facebook, .btn-facebook:hover {
+  position: relative;
   font-weight: normal;
   color: white;
   text-shadow: none;
@@ -517,11 +518,6 @@ aside {
   background: -o-linear-gradient(top, #536A97, #3D5382);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#536a97',endColorstr='#4f77a7');
   background-image: -ms-linear-gradient(#536A97, #3D5382);
-
-  i {
-    vertical-align: baseline;
-    margin: 0 13px 0 0;
-  }
 }
 
 .btn-facebook:hover {
