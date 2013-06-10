@@ -4,11 +4,11 @@
       <%= link_to "Wishlistt", root_path, class: "brand logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Inspiration", root_path %></li>
           <% if signed_in? %>
             <li><a href="#make_wish" role="button" data-toggle="modal">Make a wish</a>
             </li>
-            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "My Wishlistt", current_user %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.name %> <%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar img-rounded" %> <b class="caret"></b>

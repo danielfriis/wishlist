@@ -1,30 +1,4 @@
-<% if signed_in? %>
-
+<%= render 'layouts/jumbotron' if current_page?('/') && !signed_in? %>
   <div class="row">
     <%= render @items %>
   </div>
-
-<% else %>
-
-  <div class="row">
-      <div class="span4 center">
-          <%= image_tag("front_find.png") %>
-          <h2>Find</h2>
-   	        <p>With Wishlistt is easier than ever to find and add your wishes to your wishlist. Just get our "Wishlistt it" bookmarlet and your good to go!</p>
-            <p><a class="btn" href="#">View details »</a></p>
-      </div>
-      <div class="span4 center">
-          <%= image_tag("front_organize.png") %>
-          <h2>Organize</h2>
-           <p>When you save a wish to Wishlistt its easy to drag and drop your wishes around to showcase your priorities.</p>
-           <p><a class="btn" href="#">View details »</a></p>
-      </div>
-      <div class="span4 center">
-          <%= image_tag("front_share.png") %>
-          <h2>Share</h2>
-          <p>Your wishlists are ready to be shared with friends and family by mail or the social networks.</p>
-          <p><a class="btn" href="#">View details »</a></p>
-      </div>
-
-  </div>
-<% end %>
