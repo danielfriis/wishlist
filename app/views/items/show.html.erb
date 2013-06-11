@@ -1,13 +1,13 @@
 <% provide(:title, @item.title) %>
 <div class="row">
-
   <div class="span12">
     <h1><%= @item.title %></h1>
   </div>
-
   <div class="span8">
-    <div class="white-box">
+    <div class="white-box item-big">
       <div class="image-container">
+        <%= render 'shared/wishlistt_it', item: @item %>
+        <em class="mark"></em>
         <%= image_tag @item.image_url.to_s %>
       </div>
     </div>

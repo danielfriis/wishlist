@@ -6,27 +6,3 @@
   </span>
   <h1 class="logo">Wishlistt.</h1>
 </div>
-
-<div id="signUp" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signUpLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="signUpLabel">Sign up</h3>
-  </div>
-  <div class="modal-body">
-
-      <div class="center">
-        Sign up to wishlistt and start organizing your desires!
-        <br />
-        <br />
-        <a href="auth/facebook" class="btn btn-facebook btn-large">
-          <i class="icon-facebook"></i>  Sign up with Facebook
-        </a>
-          <br />
-    	  or <%= link_to "sign up with email", signup_path, class: "" %>
-        <hr>
-        Already got an account? <%= link_to "Sign in now", signin_path %>
-        <br />
-        <br />
-      </div>
-  </div>
-</div>

@@ -10,7 +10,7 @@ class WishesController < ApplicationController
   def create
     @item = Item.find_by_id(params[:item_id])
     @wish = Wish.create!(item_id: params[:wish][:item_id], list_id: params[:list_id])
-    redirect_to root_url
+    redirect_to :back
   end
 
   def destroy

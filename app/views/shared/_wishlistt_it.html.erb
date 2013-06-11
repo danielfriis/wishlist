@@ -1,0 +1,10 @@
+<% if signed_in? && current_user.items.find_by_id(item.id) %>
+	<%= form_for(current_user.wishes.find_by_item_id(item.id),
+       html: { method: :delete }) do |f| %>
+	  <%= f.submit "Wishlistt'd", class: "btn btn-large" %>
+	<% end %>
+<% elsif !signed_in? %>
+	<a href="#signUp" role="button" class="btn btn-large btn-primary" data-toggle="modal">Wishlistt it</a>
+<% else %>
+	<%= link_to "Wishlistt it", new_wish_path(item_id: item.id), id: "new_wish_link", class: "btn btn-primary btn-large", remote: true %>
+<% end %>

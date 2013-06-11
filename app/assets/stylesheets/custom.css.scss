@@ -114,14 +114,13 @@ textarea {
   height: 120px;
   h1 {
     position: absolute;
+    font-size: 5em;
+    font-weight: 400;
+    letter-spacing: 0em;
     bottom: 20px;
     right: 80px;
   }
-  h1 {
-    font-size: 5em;
-    letter-spacing: -1px;
-    // margin-bottom: 30px;
-  }
+
   h2 {
     font-size: 1.3em;
     letter-spacing: -1px;
@@ -233,6 +232,9 @@ footer {
 .item {
   margin-bottom: 20px;
   height: 354px;
+} 
+
+.item, .item-big {
   display: block;
   position: relative;
   overflow: hidden;
@@ -277,6 +279,12 @@ footer {
     -moz-transition: opacity 0.2s;
     -webkit-transition: opacity 0.2s;
     -o-transition: opacity 0.2s;
+  }
+}
+
+.image-container {
+  form {
+    margin: 0;
   }
 }
 
@@ -412,11 +420,7 @@ input {
   margin-bottom: 0;
 }
 
-.item .image-container {
-  form {
-    margin: 0;
-  }
-}
+
 
 
  /* lists */
