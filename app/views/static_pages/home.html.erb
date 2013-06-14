@@ -1,4 +1,6 @@
 <%= render 'layouts/jumbotron' if current_page?('/') && !signed_in? %>
-  <div class="row">
-    <%= render @items %>
-  </div>
+<div class="row items_home">
+  <%= render @items %>
+</div>
+
+<%= will_paginate @items %>

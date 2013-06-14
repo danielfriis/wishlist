@@ -7,7 +7,7 @@
     <%= form_for(@item.wishes.build(item_id: @item.id)) do |f| %>
     <div class="modal-body">
         <%= f.hidden_field :item_id %>
-        <%= f.label :list_id %>
+        <%= f.label :list_id, "Select the list you want to put you wish on" %>
         <%= select_tag :list_id, options_for_select(current_user.lists.all.collect{ |u| [u.name, u.id] }) %>
     </div>
     <div class="modal-footer">
