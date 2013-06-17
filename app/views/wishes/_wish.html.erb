@@ -1,4 +1,4 @@
-<li>
+<li id="item_id_<%= wish.id %>">
 		<div class="inline-block">
 			<a class="thumb" href="<%= item_path(wish.item) %>">
 				<%= image_tag wish.item.image_url(:thumb).to_s %>
@@ -15,7 +15,8 @@
 		    <% if current_user?(wish.list.user) %>
 		    <%= link_to "Remove", wish, method: :delete,
 		                                data: { confirm: "You sure?" },
-		                                title: wish.item.title %>
+		                                title: wish.item.title,
+		                                remote: true %>
 		  	<% end %>
 		  </span>
 		</div>

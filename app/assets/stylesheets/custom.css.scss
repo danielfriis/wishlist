@@ -101,24 +101,11 @@ textarea {
 }
 
 .jumbotron {
-  position: relative;
-  // padding: 60px 0;
-  // color: #35424a;
-  // text-align: center;
-  // text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  // background: #35424a;
-  // background: #ADD8C7;
-  // -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
-  //    -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
-  //         box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
-  height: 120px;
+  display: block;
   h1 {
-    position: absolute;
     font-size: 5em;
     font-weight: 400;
     letter-spacing: 0em;
-    bottom: 20px;
-    right: 80px;
   }
 
   h2 {
@@ -346,16 +333,17 @@ footer {
 }
 
 .user_lists {
-  ul {
-    li {
-    padding: 5px 0;
-    border-bottom: 1px solid #e8e8e8;
-    &:last-child {
-      border: 0;
-      }
+  li {
+  padding: 5px 0;
+  border-bottom: 1px solid #e8e8e8;
+  &:last-child {
+    border-bottom: 0;
     }
   }
 }
+
+
+
 
 .create-list .input-append { 
 
@@ -428,7 +416,7 @@ input {
 
  /* lists */
 
-.lists {
+.wish_list {
   list-style: none;
   margin: 10px 0 0 0;
 
@@ -472,6 +460,14 @@ input {
   }
 }
 
+.wish_list img {
+  width: 95px;
+}
+
+.wish_list h4 {
+  margin-top: 3px;
+}
+
 .inline-block {
   li {
     display: inline-block;
@@ -488,8 +484,7 @@ input {
 .content {
   display: block;
   h4, p {
-    width: 540px;
-    overflow: hidden;
+    max-width: 540px;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
