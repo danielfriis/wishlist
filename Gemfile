@@ -11,6 +11,7 @@ gem "fog", "~> 1.3.1"
 gem 'omniauth-facebook'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'nokogiri'
+gem 'impressionist'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

@@ -5,7 +5,7 @@
   <%= @user.name %>
 </h1>
 <span>
-  <i class="icon-map-marker"></i> <%= @user.location %>
+  <i class="icon-map-marker"></i> <%= @user.location %> <i class="icon-user"></i> <%= @user.gender %>
 </span>
 <span>
   <% if current_page?(user_path(@user)) %>

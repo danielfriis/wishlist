@@ -10,9 +10,9 @@
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  age             :integer
-#  gender          :integer
 #  location        :string(255)
 #  avatar          :string(255)
+#  gender          :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
       user.name = auth['info']['name']
       user.email = auth['info']['email']
       user.remote_avatar_url = auth['info']['image'].split("=")[0] << "=large"
+      user.gender = auth['extra']['raw_info']['gender'].titleize
       user.location = auth['info']['location']
       user.password = "foobar"
       user.password_confirmation = "foobar"

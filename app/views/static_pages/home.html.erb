@@ -1,4 +1,13 @@
 <%= render 'layouts/jumbotron' if current_page?('/') && !signed_in? %>
+<div class="row">
+	<div class="span12">
+		<ul class="nav nav-pills pull-left">
+		  <li><%= sortable "recent" %></li>
+		  <li><%= sortable "popular" %></li>
+		</ul>
+
+	</div>
+</div>
 <div class="row items_home">
   <%= render @items %>
 </div>

@@ -18,6 +18,7 @@ $fluidGridGutterWidth: 2.127659574%;
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700);
 
 $sansFontFamily: 'Open Sans', Helvetica, sans-serif;
+$linkColor: #1693A5;
 $btnPrimaryBackground: #1693A5;
 $btnPrimaryBackgroundHighlight: #1693A5;
 
@@ -139,6 +140,8 @@ textarea {
 }
 
 
+
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -186,6 +189,14 @@ h3 {
     text-decoration: none;
   }
 }
+
+/* feed */
+
+a.active, a.active:hover, a.active:focus {
+  color: white;
+  background-color: #1693a5 !important; 
+}
+
 
 /* footer */
 
@@ -348,6 +359,7 @@ footer {
 .create-list .input-append { 
 
   margin-bottom: 0;
+  width: 100%;
 
   #appendedInputButton {
     border: 0;

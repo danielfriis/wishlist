@@ -18,4 +18,15 @@ module ApplicationHelper
   	end
   end
 
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    if column == params[:sort]
+      css_class = "active"
+    elsif params[:sort] == nil && column == "recent"
+      css_class = "active"
+    end
+    # css_class = column == params[:sort] ? "active" : nil
+    link_to title, {:sort => column}, {:class => css_class}
+  end
+
 end

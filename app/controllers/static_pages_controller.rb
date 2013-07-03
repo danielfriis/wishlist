@@ -1,7 +1,16 @@
 class StaticPagesController < ApplicationController
 
+
   def home
-  	@items = Item.order("created_at desc").page(params[:page]).per_page(12)
+
+    if params[:sort] == "recent"
+      @items = Item.recent.page(params[:page]).per_page(9)
+    elsif params[:sort] == "popular"
+      @items = Item.popular.page(params[:page]).per_page(9)
+    else
+      @items = Item.recent.page(params[:page]).per_page(9)
+    end
+
   	respond_to do |format|
       format.html
       format.js
@@ -16,5 +25,8 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
   
 end
+
+

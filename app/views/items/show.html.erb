@@ -15,8 +15,9 @@
   <aside class="span4">
     <%= link_to "Buy", @item.link, class: "btn btn-large btn-block"%>
     <h3>Additional info</h3>
-    <% if @item.lists.any? %>
-      <p><%= @item.lists.first.user.name %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.</p>
+    <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %>
+    <% if @item.lists.any? && @item.lists.last.user %>
+      <p><%= @item.lists.last.user.name %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.</p>
     <% else %>
       <p>Be the first to wish this item!</p>
     <% end %>

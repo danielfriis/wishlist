@@ -97,7 +97,11 @@ GEM
     hashie (1.2.0)
     hike (1.2.1)
     httpauth (0.2.0)
+    httpclient (2.3.3)
     i18n (0.6.1)
+    impressionist (1.3.1)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.5)
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -231,6 +235,7 @@ DEPENDENCIES
   font-awesome-sass-rails
   guard-rspec (= 1.2.1)
   guard-spork (= 1.2.0)
+  impressionist
   jquery-rails (= 2.0.2)
   mini_magick
   newrelic_rpm
