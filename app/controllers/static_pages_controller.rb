@@ -11,10 +11,6 @@ class StaticPagesController < ApplicationController
       @items = Item.recent.page(params[:page]).per_page(9)
     end
 
-  	respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def help
