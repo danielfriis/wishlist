@@ -67,7 +67,6 @@ module Wishlist
     config.assets.version = '1.0'
 
     # Asset precompiling
-
     config.assets.initialize_on_precompile = false
 
     # Loads environment variables in development mode

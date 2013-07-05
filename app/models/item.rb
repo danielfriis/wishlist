@@ -29,7 +29,7 @@ class Item < ActiveRecord::Base
   	start_date = (Time.now - 10.days)
     end_date = Time.now
   	joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
-        .select("count(distinct(case when ('impressions'.'created_at' BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id, items.title, items.id, items.image")
+        .select("count(distinct(case when ('impressions.created_at' BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id, items.title, items.id, items.image")
         .group('items.id')
         .order("counter desc")
   end
