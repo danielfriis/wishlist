@@ -29,7 +29,7 @@ class Item < ActiveRecord::Base
     if gender == "all"
       sort_general(general)
     else
-      sort_general(general).where("gender = ?", gender)
+      sort_general(general).where("items.gender = ?", gender)
     end
   end
 
