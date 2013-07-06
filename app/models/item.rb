@@ -25,16 +25,37 @@ class Item < ActiveRecord::Base
 
   is_impressionable
 
-  def self.popular
-  	start_date = (Time.now - 10.days)
-    end_date = Time.now
-  	joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
-        .select("count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id, items.title, items.id, items.image")
-        .group('items.id', 'impressions.impressionable_id')
-        .order("counter desc")
+  def self.sort(general, gender)
+    if gender == "all"
+      sort_general(general)
+    else
+      sort_general(general).where(gender: gender)
+    end
   end
 
-  def self.recent
-  	order("created_at desc")
+  def self.sort_general(general)
+    if general == "recent"
+      order("created_at desc")
+    else
+      start_date = (Time.now - 10.days)
+      end_date = Time.now
+      joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
+          .select("count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id, items.title, items.id, items.image")
+          .group('items.id', 'impressions.impressionable_id')
+          .order("counter desc")
+    end
   end
+
+  # def self.popular
+  # 	start_date = (Time.now - 10.days)
+  #   end_date = Time.now
+  # 	joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
+  #       .select("count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id, items.title, items.id, items.image")
+  #       .group('items.id', 'impressions.impressionable_id')
+  #       .order("counter desc")
+  # end
+
+  # def self.recent
+  # 	order("created_at desc")
+  # end
 end

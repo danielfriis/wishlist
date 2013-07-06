@@ -18,15 +18,35 @@ module ApplicationHelper
   	end
   end
 
-  def sortable(column, title = nil)
+  def sortable_general(column, title = nil)
     title ||= column.titleize
-    if column == params[:sort]
+    if params[:sort] == nil && column == "recent"
       css_class = "active"
-    elsif params[:sort] == nil && column == "recent"
+    elsif column == params[:sort]
       css_class = "active"
+    else
+      css_class = nil
     end
-    # css_class = column == params[:sort] ? "active" : nil
-    link_to title, {:sort => column}, {:class => css_class}
+    link_to title, {:sort => column, :gender => sort_gender}, {:class => css_class}
   end
+
+  def sortable_gender(gender, title = nil)
+    title ||= gender.titleize
+    if params[:gender] == nil && gender == "all"
+      css_class = "active"
+    elsif gender == params[:gender]
+      css_class = "active"
+    else
+      css_class = nil
+    end
+    link_to title, {:sort => sort_general, :gender => gender}, :class => "btn #{css_class}"
+  end
+
+  # def sortable(column, title = nil)
+  #   title ||= column.titleize
+  #   css_class = column == sort_column ? "current #{sort_direction}" : nil
+  #   direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+  #   link_to title, {:sort => column, :gender => gender}, {:class => css_class}
+  # end 
 
 end

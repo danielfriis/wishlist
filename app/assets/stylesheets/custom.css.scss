@@ -192,9 +192,28 @@ h3 {
 
 /* feed */
 
-a.active, a.active:hover, a.active:focus {
-  color: white;
-  background-color: #1693a5 !important; 
+.sort_general {
+  a {
+    color: $gray;
+  }
+  a.active {
+    color: $gray;
+    font-weight: bold;
+    background-color: transparent !important; 
+  }
+  a:hover, a:focus {
+    text-decoration: none;
+    background-color: #eeeeee !important;
+    }
+}
+
+
+.sort_gender {
+  a.active, a:hover, a:focus {
+    text-decoration: none;
+    color: #333333;
+    background-color: transparent !important;
+    }
 }
 
 
@@ -210,6 +229,7 @@ footer {
     color: $gray;
     &:hover { 
       color: $grayDarker;
+      text-decoration: none;
     }
   }  
   small { 

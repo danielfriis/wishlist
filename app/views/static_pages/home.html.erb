@@ -1,11 +1,15 @@
 <%= render 'layouts/jumbotron' if current_page?('/') && !signed_in? %>
 <div class="row">
 	<div class="span12">
-		<ul class="nav nav-pills pull-left">
-		  <li><%= sortable "recent" %></li>
-		  <li><%= sortable "popular" %></li>
+		<ul class="nav nav-pills sort_general pull-left">
+		  <li><%= sortable_general "recent" %></li>
+		  <li><%= sortable_general "popular" %></li>
 		</ul>
-
+		<div class="btn-group sort_gender pull-right">
+			<%= sortable_gender "all" %>
+			<%= sortable_gender "male" %>
+			<%= sortable_gender "female" %>
+		</div>
 	</div>
 </div>
 <div class="row items_home">
