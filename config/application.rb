@@ -66,9 +66,6 @@ module Wishlist
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Asset precompiling
-    config.assets.initialize_on_precompile = false
-
     # Loads environment variables in development mode
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')

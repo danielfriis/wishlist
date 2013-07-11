@@ -22,6 +22,6 @@ $.ajax('/linkpreview', {
   error: function() { alert("Something went wrong. Please try again."); 
     $("#urlb").removeClass("disabled").attr("href", "/items/new");
     $(".modal-body form").show();
-    $(".loading").hide();
+    $(".progress").hide();
   }
 }); 

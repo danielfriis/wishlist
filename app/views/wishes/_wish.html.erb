@@ -7,7 +7,7 @@
 		<div class="inline-block">
 		  <span class="content">
 		  	<h4><%= wish.item.title %></h4>
-		  	<p>Some more info</p>
+		  	<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click me to add a note!" %>
 		  </span>
 
 		  <span class="timestamp">

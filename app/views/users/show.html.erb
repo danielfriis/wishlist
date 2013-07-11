@@ -17,7 +17,7 @@
   <aside class="pull-right span3">
     <%= render 'shared/aside_share' %>
     <%= render 'shared/aside_lists' %>
-    <%= render 'shared/create_list' if current_page?(user_path(@user)) %>
+    <%= render 'shared/create_list' if current_user?(@user) %>
   </aside>
 
 </div>

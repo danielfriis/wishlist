@@ -21,6 +21,19 @@ class WishesController < ApplicationController
     end 
   end
 
+  def update
+    @wish = Wish.find(params[:id])
+    respond_to do |format|
+      if @wish.update_attributes(params[:wish])
+        format.html { redirect_to(@wish, :notice => 'Wish was successfully updated.') }
+        format.json { respond_with_bip(@wish) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@wish) }
+      end
+    end
+  end
+
   private
 
     def correct_user

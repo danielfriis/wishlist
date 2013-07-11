@@ -12,6 +12,7 @@ gem 'omniauth-facebook'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'nokogiri'
 gem 'impressionist'
+gem 'best_in_place'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

@@ -444,6 +444,62 @@ input {
 }
 
 
+.best_in_place {
+  margin: 0px !important;
+  border-bottom:1px dotted;
+  .form_in_place{
+    border: none;
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+    padding: inherit;
+    margin: inherit;
+    -moz-box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    background-color: inherit;
+    -webkit-box-shadow: inherit;
+    -moz-box-shadow: inherit;
+    box-shadow: inherit;
+    -webkit-transition: inherit;
+    -moz-transition: inherit;
+    -o-transition: inherit;
+    transition: inherit;
+    color: inherit;
+    -webkit-border-radius: inherit;
+    -moz-border-radius: inherit;
+    border-radius: inherit;
+    vertical-align: inherit;
+    
+    input {
+      border: none;
+      width: inherit;
+      height: inherit;
+      line-height: inherit;
+      padding: inherit;
+      margin: inherit;
+      -moz-box-sizing: inherit;
+      -webkit-box-sizing: inherit;
+      box-sizing: inherit;
+      background-color: inherit;
+      -webkit-box-shadow: inherit;
+      -moz-box-shadow: inherit;
+      box-shadow: inherit;
+      -webkit-transition: inherit;
+      -moz-transition: inherit;
+      -o-transition: inherit;
+      transition: inherit;
+      color: inherit;
+      -webkit-border-radius: inherit;
+      -moz-border-radius: inherit;
+      border-radius: inherit;
+      vertical-align: inherit;
+    }
+  }
+
+}
+
+
 
 
  /* lists */
