@@ -23,6 +23,10 @@ class Item < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 140 }
   validates_presence_of :image
+  validates :image,
+    :file_mime_type => {
+      :content_type => /image/
+    }
 
   is_impressionable
 

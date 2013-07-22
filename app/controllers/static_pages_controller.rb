@@ -30,7 +30,7 @@ private
   end
 
   def sort_gender
-    %w[male female].include?(params[:gender]) ? params[:gender].titleize : "all"
+    %w[Male Female].include?(params[:gender]) ? params[:gender].titleize : "all"
   end
   
 end

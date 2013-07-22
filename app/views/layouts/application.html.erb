@@ -24,6 +24,6 @@
     <%= render 'layouts/signin_modal' if !signed_in? %>
     <%= render 'layouts/footer' %>
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
-    
+    <%= render 'layouts/bloglic' unless Rails.env.production? %>
   </body>
 </html>
