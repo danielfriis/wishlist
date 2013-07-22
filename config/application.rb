@@ -60,7 +60,7 @@ module Wishlist
     config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    config.assets.enabled = true
+    config.assets.enabled = false
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     # Version of your assets, change this if you want to expire all your assets
