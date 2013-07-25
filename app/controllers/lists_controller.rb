@@ -13,7 +13,7 @@ class ListsController < ApplicationController
     @list = current_user.lists.build(params[:list])
     if @list.save
       flash[:success] = "List created!"
-      redirect_to current_user
+      redirect_to @list
     else
       redirect_to current_user
     end
