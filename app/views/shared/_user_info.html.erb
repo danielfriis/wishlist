@@ -1,16 +1,18 @@
 <a href="<%= user_path(@user) %>">
   <%= image_tag avatar(@user, :large), alt: @user.name, class: "gravatar img-rounded" %>
 </a>
-<h1>
-  <%= @user.name %>
-</h1>
+
+<% if current_page?(user_path(@user)) %>
+  <h1>All wishes (<%= @user.wishes.count %>)</h1>
+<% else %>
+  <h1><%= @list.name %> (<%= @list.items.count %>)</h1>
+<% end %>
+
 <span>
-  <i class="icon-map-marker"></i> <%= @user.location %> <i class="icon-user"></i> <%= @user.gender %>
+  <h3>
+  	<%= @user.name %>
+	</h3>
 </span>
 <span>
-  <% if current_page?(user_path(@user)) %>
-  	<h3>All wishes (<%= @user.wishes.count %>)</h3>
-  <% else %>
-  	<h3><%= @list.name %> (<%= @list.items.count %>)</h3>
-  <% end %>
+  <% if @user.location? %><i class="icon-map-marker"></i> <%= @user.location %> <% end %> <% if @user.gender? %> <i class="icon-user"></i> <%= @user.gender %> <% end %>
 </span>

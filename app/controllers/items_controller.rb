@@ -23,8 +23,8 @@ class ItemsController < ApplicationController
 		respond_to do |format|
 	    if @item.save
 	    	flash[:success] = "Item created!"
-	    	format.html {redirect_to(@item) }
-	    	format.js { render :js => "window.location.href = ('#{item_path(@item)}');" }
+	    	format.html {redirect_to(@list) }
+	    	format.js { render :js => "window.location.href = ('#{user_list_path(current_user, @list)}');" }
 	      # redirect_to @item
 	    else
 	      render 'new'

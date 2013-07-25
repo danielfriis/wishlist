@@ -21,6 +21,14 @@ $.ajax('/linkpreview', {
       newHTML.push('<div class="item"><img src="' + value + '"></div>')
     });
     $(".carousel-inner").html(newHTML.join(""));
+    $(".carousel-inner .item img").each(function(){
+      var $minHeight = 200;
+      //you need the height of the div you are currently iterating on: use this
+      if ( $(this).height() < $minHeight) {
+      //find the img in this div and hide it
+      $(this).closest(".item").remove();
+      }
+    });
     $("#item_title").val(data['title']);
     $("#item_link").val(data['url']);
     // $("#item_remote_image_url").val(data['img']);
@@ -32,7 +40,8 @@ $.ajax('/linkpreview', {
       $(this).addClass("disabled").attr("href", "#");
     })
   },
-  error: function() { alert("Something went wrong. Please try again."); 
+  error: function() { 
+    alert("Something went wrong. Please try again."); 
     $("#urlb").removeClass("disabled").attr("href", "/items/new");
     $(".modal-body form").show();
     $(".progress").hide();
