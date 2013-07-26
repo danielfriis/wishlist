@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update]
-  before_filter :correct_user,   only: [:edit, :update]
+  before_filter :correct_user, only: [:edit, :update]
+  before_filter :find_user, only: [:show, :edit, :update]
 
   def show
-    @user = User.find(params[:id])
     @lists = @user.lists
     @wishes = @user.wishes
     @list = current_user.lists.build if signed_in?
@@ -45,7 +45,11 @@ class UsersController < ApplicationController
   private
 
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.find_by_slug!(params[:id].split("/").last)
       redirect_to(root_path) unless current_user?(@user)
+    end
+
+    def find_user
+      @user = User.find_by_slug!(params[:id].split("/").last)
     end
 end

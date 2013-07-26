@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_filter :correct_user,   only: :destroy
 
   def show
-    @user = User.find(params[:user_id])
+    @user = User.find_by_slug!(params[:user_id])
     @list = @user.lists.find(params[:id])
     @wishes = @list.wishes
     @lists = @user.lists

@@ -1,8 +1,5 @@
 Wishlist::Application.routes.draw do
 
-  resources :users do
-    resources :lists, only: [:show, :create, :destroy]
-  end
   resources :items, only: [:show, :new, :create, :destroy]
   resources :wishes
   resources :sessions, only: [:new, :create, :destroy]
@@ -20,6 +17,11 @@ Wishlist::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/linkpreview', to: 'items#linkpreview'
+
+  resources :users, only: [:index, :new, :create]
+  resources :users, path: "" , except: [:index, :new, :create] do
+    resources :lists, only: [:show, :create, :destroy]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
