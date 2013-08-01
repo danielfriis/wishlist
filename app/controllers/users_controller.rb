@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @lists = @user.lists
-    @wishes = @user.wishes
+    @wishes = @user.wishes.order("created_at DESC")
     @list = current_user.lists.build if signed_in?
   end
 

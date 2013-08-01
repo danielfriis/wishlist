@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   def show
     @user = User.find_by_slug!(params[:user_id])
     @list = @user.lists.find(params[:id])
-    @wishes = @list.wishes
+    @wishes = @list.wishes.order("created_at DESC")
     @lists = @user.lists
   end
 
