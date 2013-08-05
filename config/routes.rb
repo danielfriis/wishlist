@@ -17,6 +17,7 @@ Wishlist::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/linkpreview', to: 'items#linkpreview'
+  match '/bookmarklet', to: 'items#bookmarklet'
 
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do

@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
-	
-	after_filter :set_access_control_headers
 
-	def set_access_control_headers
-		headers['Access-Control-Allow-Origin'] = '*'
-		headers['Access-Control-Request-Method'] = '*'
-	end
+  before_filter :hostname
+
+  def hostname
+  	@hostname = request.host || "www.mydomain.com"
+  end
+
+
 end

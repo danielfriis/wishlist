@@ -1,7 +1,10 @@
 class ItemsController < ApplicationController
-	before_filter :signed_in_user, only: [:new, :create, :destroy]
+	before_filter :signed_in_user, only: [:new, :create, :destroy, :bookmarklet]
 	before_filter :correct_user,   only: :destroy
 	impressionist :actions=>[:show]
+	skip_before_filter :verify_authenticity_token, :only => [:create] #For the bookmarklet
+
+	
 
 	def show
 		@item = Item.find(params[:id])
@@ -22,10 +25,14 @@ class ItemsController < ApplicationController
 		@item.wishes.build(list_id: @list.id)
 		respond_to do |format|
 	    if @item.save
-	    	flash[:success] = "Item created!"
-	    	format.html {redirect_to(@list) }
-	    	format.js { render :js => "window.location.href = ('#{user_list_path(current_user, @list)}');" }
-	      # redirect_to @item
+	    	if params[:via] == "bookmarklet"
+	    		format.json { render json: @item }
+	    	else
+		    	flash[:success] = "Item created!"
+		    	format.html { redirect_to(@list) }
+		    	format.json { render :js => "window.location.href = ('#{user_list_path(current_user, @list)}');" }
+		      # redirect_to @item
+		    end
 	    else
 	      render 'new'
 	    end
@@ -43,6 +50,11 @@ class ItemsController < ApplicationController
 	  respond_to do |format|
 		  format.json { render :json => preview }
 	  end	
+  end
+
+  def bookmarklet
+  	render layout: 'clean_layout'
+  	
   end
 
   private

@@ -1,0 +1,66 @@
+body {
+	padding: 0 !important;
+}
+
+body.tagger-js {
+	background:#eff1f7;
+}
+
+.close {
+	margin-top: 5px !important;
+}
+
+.main {
+	padding: 0 20px 20px;
+}
+
+.footer {
+	padding: 0 20px 20px;
+}
+
+#countdown {
+	margin-left:5px;
+	margin-top:10px;
+}
+
+#item_picked_image {
+	max-width: 239px;
+}
+
+.img-pick {
+	margin: 10px 0 !important;
+}
+
+#f-tagger {
+	margin: 5px 0;
+	width:200px;
+	height:100px;
+	line-height:98px;
+	background-repeat: repeat;
+	background-position: top left;
+	text-align:center;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAMAAAC6sdbXAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF5eXl////4sXsSQAAAAJ0Uk5T/wDltzBKAAAAGUlEQVR42mJgYAQCBkYGMAlFUD4jA0CAAQABSgAVvm3obwAAAABJRU5ErkJggg==);
+}
+#f-tagger .f-preview {
+	margin:0;
+	vertical-align:middle;
+}
+#main.f-tagger {
+	width: 620px;
+}
+
+#main fieldset {
+	width: 100%;
+}
+
+.status-msg {
+	display:none;
+	margin-left:5px;
+	line-height:30px;
+}
+#if-success .center {
+	text-align:center;
+}
+#if-success {
+	width:206px;
+}
