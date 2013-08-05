@@ -16,5 +16,3 @@
 //= require best_in_place
 //= require bootstrap
 //= require_directory .
-//= require_directory bookmarklet/.
-//= require_directory bookmarklet/js/.
