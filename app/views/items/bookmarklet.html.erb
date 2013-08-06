@@ -1,7 +1,7 @@
-<!-- <script src="http://localhost:3000/assets/bookmarklet/js/bookmarklet.js"></script> -->
-<%= stylesheet_link_tag "bookmarklet/bookmarklet-frame", :media => "all" %>
-<%= javascript_include_tag 'bookmarklet/js/bookmarklet' %>
-
+<% content_for :head do %>
+	<%= stylesheet_link_tag "bookmarklet/bookmarklet-frame", :media => "all" %>
+	<%= javascript_include_tag 'bookmarklet/js/bookmarklet' %>
+<% end %>
 
 
 <div id="main">
@@ -9,7 +9,7 @@
   <div class="header navbar">
 		<div class="navbar-inner">
 			<!-- <a class="close_box" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a> -->
-			<img src="http://localhost:3000/assets/logo.png" />
+			<%= image_tag "logo.png" %>
 			<ul class="nav pull-right">
 				<li><a href="#" class="close" >&times;</a></li>
 			</ul>
@@ -30,7 +30,7 @@
 	<div class="header navbar">
 		<div class="navbar-inner">
 			<!-- <a class="close_box" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a> -->
-			<img src="http://localhost:3000/assets/logo.png" />
+			<%= image_tag "logo.png" %>
 			<ul class="nav pull-right">
 				<li><a href="#" class="close" >&times;</a></li>
 			</ul>

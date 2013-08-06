@@ -41,7 +41,7 @@ jQuery(function($){
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://lit-fortress-2729.herokuapp.com/items',
+			url  : '/items',
 			data : { 'item': params, 'list_id': list, 'via': 'bookmarklet' },
 			headers  : {'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
 			dataType : 'json',

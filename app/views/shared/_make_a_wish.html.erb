@@ -5,10 +5,14 @@
   </div>
   <div id="linkpreview">
     <div class="modal-body">
-        <form>
-          <label for="url">Paste the URL for the product you wish</label>
-          <input id="url" type="text" placeholder="http://">
-        </form>
+      <div class="center">
+        <p>Drag this button to your bookmark bar, and add items easily to your wish list.</p><a href="javascript:(function()%7Bvar%20script=document.createElement('SCRIPT');script.src='<%= request.protocol %><%= request.host_with_port %>/assets/bookmarklet/wishlistt_tagger.js?r='+Math.random()*99999999;document.body.appendChild(script);%7D)()" class="btn btn-info">Wishlistt it</a>
+      </div>
+      <hr>
+      <form>
+        <label for="url">or, paste the URL for the product you wish</label>
+        <input id="url" type="text" placeholder="http://">
+      </form>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
