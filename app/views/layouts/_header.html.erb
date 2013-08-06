@@ -18,8 +18,10 @@
           <li>
             <a href="<%= user_path(current_user) %>"><%= current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar img-rounded" %></a>
           </li>
-          
-          <li id="fat-menu" class="dropdown">
+          <li class="hidden-desktop">
+            <%= link_to "Sign out", signout_path, method: "delete" %>
+          </li>
+          <li class="dropdown visible-desktop">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="icon-wrench"></i>
             </a>

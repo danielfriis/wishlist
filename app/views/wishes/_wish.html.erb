@@ -1,16 +1,14 @@
 <li id="item_id_<%= wish.id %>">
-		<div class="inline-block">
+		<div class="block pull-left">
 			<a class="thumb" href="<%= item_path(wish.item) %>">
 				<%= image_tag wish.item.image_url(:thumb).to_s %>
 			</a>
 		</div>
-		<div class="inline-block">
+		<div class="block">
 		  <span class="content">
 		  	<h4><%= wish.item.title %></h4>
 		  	<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click me to add a note!" %>
-		  </span>
-
-		  <span class="timestamp">
+		  	<span class="timestamp">
 		    Created <%= time_ago_in_words(wish.created_at) %> ago.		  
 		    <% if current_user?(wish.list.user) %>
 		    <%= link_to "Remove", wish, method: :delete,
@@ -19,9 +17,11 @@
 		                                remote: true %>
 		  	<% end %>
 		  </span>
+		  </span>
 		</div>
+		  
 		<div class="btn-group">
 			<!-- <button class="btn btn">Info</button> -->
-			<%= link_to "Buy", wish.item.link, target: '_blank', class: "btn btn-large" %>
+			<%= link_to "Buy", wish.item.link, target: '_blank', class: "btn btn-large visible-desktop" %>
 		</div>
 </li>

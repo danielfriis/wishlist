@@ -1,5 +1,5 @@
 <li>
-  <span class="content"><%= link_to list.name, user_list_path(@user, list) %></span>
+  <span><%= link_to list.name, user_list_path(@user, list) %></span>
   <span class="timestamp">
     Updated <%= time_ago_in_words(list.updated_at) %> ago.
         <% if current_user?(list.user) %>

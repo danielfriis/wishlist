@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create
   validates :slug, uniqueness: true, presence: true, 
-                    exclusion: { in: %w[signup signin signout help about contact linkpreview bookmarklet]}
+                    exclusion: { in: %w[signup signin signout help about contact terms privacy linkpreview bookmarklet]}
 
   before_validation :generate_slug
 

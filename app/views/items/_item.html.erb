@@ -1,14 +1,14 @@
 <div class="span4">
 	<div class="white-box item">
 		<div class="image-container">
-			<%= render 'shared/wishlistt_it', item: item %>
+			<%= render 'shared/wishlistt_it', item: item unless mobile_device? %>
 			<a href="<%= item_path(item) %>" class="item-link">
-				<em class="mark"></em>
+				<em class="mark visible-desktop"></em>
 				<%= image_tag item.image_url(:medium).to_s %>
 			</a>
 		</div>
 		<h3><%= truncate(item.title, length: 53) %></h3>
 		<%= item.wishes.count %> wishes this item
-
+		<%= render 'shared/wishlistt_it', item: item if mobile_device? %>
 	</div>
 </div>
