@@ -2,7 +2,7 @@
 
 if(/^(www\.)?wishlistt\.com$/.test(location.hostname)) return alert("Wishlistt bookmarklet is installed.\nYou can now add things to your wish list from other sites around the web. Go give it a try!");
 
-var host = 'lit-fortress-2729.herokuapp.com', prefix = 'wishlistt-bookmarklet-tagger-',
+var host = 'www.wishlistt.com', prefix = 'wishlistt-bookmarklet-tagger-',
     iframe  = {obj:null, id:prefix+'iframe', win: null, url:'http://'+host+'/bookmarklet'},
 	marker  = {obj:null, id:prefix+'marker'}, // image marker
 	factory = document.createElement('div'),
