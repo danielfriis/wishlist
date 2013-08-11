@@ -47,6 +47,22 @@ module ApplicationHelper
     link_to link_text, link_path, class: "#{css_class}" 
   end
 
+    def meta_keywords(tags = nil)
+    if tags.present?
+      content_for :meta_keywords, tags
+    else
+      content_for?(:meta_keywords) ? [content_for(:meta_keywords), APP_CONFIG['meta_keywords']].join(', ') : APP_CONFIG['meta_keywords']
+    end
+  end
+
+  def meta_description(desc = nil)
+    if desc.present?
+      content_for :meta_description, desc
+    else
+      content_for?(:meta_description) ? content_for(:meta_description) : APP_CONFIG['meta_description']
+    end
+  end
+
   # def sortable(column, title = nil)
   #   title ||= column.titleize
   #   css_class = column == sort_column ? "current #{sort_direction}" : nil
