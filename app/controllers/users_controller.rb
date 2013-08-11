@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       @user.lists.create!(name: "General")
       sign_in @user
       flash[:success] = "Thanks for signing up!"
-      redirect_to @user
+      redirect_to @user, signup: 'success'
     else
       render 'new'
     end

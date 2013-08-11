@@ -22,6 +22,8 @@ class SessionsController < ApplicationController
      # Create a new user or add an auth to existing user, depending on
      # whether there is already a user signed in.
       @auth = Authorization.create_with_omniauth(auth, current_user)
+      sign_in @auth.user
+      redirect_to root_url, signup: "success", notice: "Welcome, #{current_user.name}."
     end
     # Log the authorizing user in.
     sign_in @auth.user
