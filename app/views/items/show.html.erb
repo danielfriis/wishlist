@@ -18,7 +18,7 @@
     <h3>Additional info</h3>
     <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %>
     <% if @item.lists.any? && @item.lists.last.user %>
-      <p><%= @item.lists.last.user.name %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.</p>
+      <p><%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.</p>
     <% else %>
       <p>Be the first to wish this item!</p>
     <% end %>

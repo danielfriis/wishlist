@@ -1,11 +1,48 @@
-<li>
-  <span><%= link_to list.name, user_list_path(@user, list) %></span>
-  <span class="timestamp">
-    Updated <%= time_ago_in_words(list.updated_at) %> ago.
-        <% if current_user?(list.user) %>
-		    <%= link_to "Delete", [current_user, list], method: :delete,
-		                                data: { confirm: "You sure?" },
-		                                title: list.name %>
+<% if current_page?(user_lists_path(@user)) %> 
+<!-- Profile lists -->
+	<div class="span4">
+		<div class="white-box user_list">
+			
+				<% if current_user?(list.user) %>
+				  <%= link_to "&times;".html_safe, [current_user, list], class: "close", method: :delete,
+				                                data: { confirm: "You sure?" },
+				                                title: list.name %>
 				<% end %>
-  </span>
-</li>
+			<%= link_to user_list_path(@user, list) do %>
+				<div class="user_list_title">
+					<h3><%= list.name %></h3>
+					<p class="muted"><%= pluralize(list.wishes.count, "wish") %></p>
+
+				</div>
+				<% list.wishes.take(4).each do |wish| %>
+					<div class="user_list_wish">
+						<div class="block pull-left">
+							<%= image_tag wish.item.image_url(:thumb).to_s %>
+						</div>
+						<div class="block">
+							<span class="content">
+								<h4><%= wish.item.title %></h4>
+								<span class="timestamp">
+							    Added <%= time_ago_in_words(wish.created_at) %> ago.							 
+						 		 </span>
+							</span>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+<% else %>
+<!-- Aside sidebar lists -->
+	<li>
+	  <span><%= link_to list.name, user_list_path(@user, list) %></span>
+	  <span class="timestamp">
+	    Updated <%= time_ago_in_words(list.updated_at) %> ago.
+	        <% if current_user?(list.user) %>
+			    <%= link_to "Delete", [current_user, list], method: :delete,
+			                                data: { confirm: "You sure?" },
+			                                title: list.name %>
+					<% end %>
+	  </span>
+	</li>
+<% end %>

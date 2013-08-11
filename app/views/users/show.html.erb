@@ -4,9 +4,17 @@
     <%= render 'shared/user_info' %>
   </div>
 
-  <div class="span9">
+  <div class="span8">
+    <%= render 'shared/wish_list_sort' %>
+  </div>
+   <aside class="pull-right span4">
+    <%= render 'shared/aside_share' %>
+    <%= render 'shared/aside_lists' %>
+  </aside>
+  <div class="span8">
+    
     <% if @user.wishes.any? %>
-      <ol class="wish_list white-box">
+      <ol class="wishes white-box">
         <%= render @wishes %>
       </ol>
     <% else %>
@@ -14,11 +22,4 @@
     <% end %>
     <%= render 'shared/list_add_wish' %>
   </div>
-
-  <aside class="pull-right span3">
-    <%= render 'shared/aside_share' %>
-    <%= render 'shared/aside_lists' %>
-    <%= render 'shared/create_list' if current_user?(@user) %>
-  </aside>
-
 </div>

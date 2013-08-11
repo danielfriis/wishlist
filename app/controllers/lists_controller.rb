@@ -1,6 +1,11 @@
 class ListsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user, only: [:new, :create, :destroy]
   before_filter :correct_user,   only: :destroy
+
+  def index
+    @user = User.find_by_slug!(params[:user_id])
+    @lists = @user.lists
+  end
 
   def show
     @user = User.find_by_slug!(params[:user_id])
@@ -9,11 +14,15 @@ class ListsController < ApplicationController
     @lists = @user.lists
   end
 
+  def new
+    @list = List.new
+  end
+
   def create
     @list = current_user.lists.build(params[:list])
     if @list.save
       flash[:success] = "List created!"
-      redirect_to @list
+      redirect_to [current_user, @list]
     else
       redirect_to current_user
     end
@@ -21,7 +30,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to current_user
+    redirect_to :back
   end
 
   private

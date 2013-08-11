@@ -16,12 +16,14 @@ Wishlist::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/privacy', to: 'static_pages#privacy'
+  match '/terms',   to: 'static_pages#terms'
   match '/linkpreview', to: 'items#linkpreview'
   match '/bookmarklet', to: 'items#bookmarklet'
 
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
-    resources :lists, only: [:show, :create, :destroy]
+    resources :lists, only: [:index, :show, :new, :create, :destroy]
   end
 
   # The priority is based upon order of creation:

@@ -9,19 +9,16 @@
 		  	<h4><%= wish.item.title %></h4>
 		  	<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click me to add a note!" %>
 		  	<span class="timestamp">
-		    Created <%= time_ago_in_words(wish.created_at) %> ago.		  
-		    <% if current_user?(wish.list.user) %>
-		    <%= link_to "Remove", wish, method: :delete,
-		                                data: { confirm: "You sure?" },
-		                                title: wish.item.title,
-		                                remote: true %>
-		  	<% end %>
-		  </span>
+			    Created <%= time_ago_in_words(wish.created_at) %> ago.		  
+			    <% if current_user?(wish.list.user) %>
+			    <%= link_to "Remove", wish, method: :delete,
+			                                data: { confirm: "You sure?" },
+			                                title: wish.item.title,
+			                                remote: true %>
+			  	<% end %>
+		 		 </span>
 		  </span>
 		</div>
 		  
-		<div class="btn-group">
-			<!-- <button class="btn btn">Info</button> -->
-			<%= link_to "Buy", wish.item.link, target: '_blank', class: "btn btn-large visible-desktop" %>
-		</div>
+		
 </li>

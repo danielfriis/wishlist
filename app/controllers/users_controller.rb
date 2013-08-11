@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.lists.create!(name: "General")
       sign_in @user
-      flash[:success] = "Welcome to Wishlistt!"
+      flash[:success] = "Thanks for signing up!"
       redirect_to @user
     else
       render 'new'

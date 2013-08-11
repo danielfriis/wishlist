@@ -1,0 +1,30 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <div class="span12 user_info">
+    <%= render 'shared/user_info' %>
+  </div>
+
+  <div class="span8">
+    <%= render 'shared/wish_list_sort' %>
+    <div class="row">
+      <% if @user.lists.any? %>
+        <%= render @lists %> 
+      <% else %>
+        <!-- TODO: RENDER NO_LISTS -->
+      <% end %>
+      <% if current_user?(@user) %>
+        <div class="span4">
+          <div class="white-box" id="new_list_link">
+            <%= link_to "New wish list", new_user_list_path, remote: true %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <aside class="pull-right span4">
+    <%= render 'shared/aside_share' %>
+    
+  </aside>
+
+</div>

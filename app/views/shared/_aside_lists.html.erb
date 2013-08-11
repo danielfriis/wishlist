@@ -4,5 +4,6 @@
     <ul class="unstyled">
       <%= render @lists %>
     </ul>
+    <%= link_to("New wish list", new_user_list_path(current_user,@list), class: "muted", id: "new_list_link", remote: true) if current_user?(@user)  %>
   <% end %>
 </div>

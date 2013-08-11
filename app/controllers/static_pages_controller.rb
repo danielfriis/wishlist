@@ -24,6 +24,12 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def privacy
+  end
+
+  def terms
+  end
+
 private
   def sort_general
     %w[recent popular].include?(params[:sort]) ? params[:sort] : "recent"
