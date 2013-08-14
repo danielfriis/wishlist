@@ -20,6 +20,6 @@
     <% else %>
       <%= render 'shared/list_wo_wish' %>
     <% end %>
-    <%= render 'shared/list_add_wish' %>
+    <%= render 'shared/list_add_wish' if current_user?(@user) %>
   </div>
 </div>
