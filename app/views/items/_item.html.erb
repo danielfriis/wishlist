@@ -8,7 +8,6 @@
 			</a>
 		</div>
 		<h3><%= truncate(item.title, length: 53) %></h3>
-		<%= item.wishes.count %> wishes this item
 		<%= render 'shared/wishlistt_it', item: item if mobile_device? %>
 	</div>
 </div>

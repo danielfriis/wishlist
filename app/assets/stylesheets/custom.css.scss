@@ -101,19 +101,13 @@ textarea {
   display: block;
 }
 
-.jumbotron {
-  // display: block;
-  // width: auto;
-  // text-align: center;
+.hero-unit {
+  margin-bottom: 0;
+  
   h1 {
-    font-size: 16px;
+    font-size: 2.2em;
     font-weight: normal;
-    line-height: 1.5em;
-  }
-  a {
-    position: relative;
-    top: -1px;
-    font-size: 14px;
+    line-height: 2.2em;
   }
 
   h2 {
@@ -122,6 +116,23 @@ textarea {
     margin-bottom: 30px;
     font-weight: normal;
     // color: $grayLight;
+  }
+}
+
+.about-boxes {
+
+  span {
+    height: 200px;
+    display: block;
+    padding: 15px 0;
+
+    img.pull-left {
+      margin-right: 20px;
+    }
+
+    img.pull-right {
+      margin-left: 20px;
+    }
   }
 }
 
