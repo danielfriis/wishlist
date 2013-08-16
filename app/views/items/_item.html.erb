@@ -8,7 +8,7 @@
 			</a>
 		</div>
 		<h3><%= truncate(item.title, length: 53) %></h3>
-		<p class="muted"><%= pluralize(item.wishes.count, "wish") %> this item</p>
+		<p class="muted"><%= pluralize(item.wishes.count, "wish") %></p>
 		<%= render 'shared/wishlistt_it', item: item if mobile_device? %>
 	</div>
 </div>

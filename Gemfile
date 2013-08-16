@@ -13,7 +13,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'nokogiri'
 gem 'impressionist'
 gem 'best_in_place'
-gem 'sidekiq'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

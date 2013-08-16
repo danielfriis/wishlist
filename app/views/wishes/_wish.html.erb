@@ -7,7 +7,7 @@
 		<div class="block">
 		  <span class="content">
 		  	<h4><%= wish.item.title %></h4>
-		  	<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click me to add a note!" %>
+		  	<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
 		  	<span class="timestamp">
 			    Created <%= time_ago_in_words(wish.created_at) %> ago.		  
 			    <% if current_user?(wish.list.user) %>
