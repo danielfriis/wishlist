@@ -12,10 +12,11 @@
         <a href="auth/facebook" class="btn btn-facebook btn-large">
           <i class="icon-facebook"></i> | Sign up with Facebook
         </a>
-          <br />
-    	  <small>or <%= link_to "sign up with email", signup_path, class: "" %></small>
+        <p class="muted"><small>We will never post anything without your permission.</small></p>
+          
+    	  or <%= link_to "sign up with email", signup_path, class: "" %>
         <hr>
-        Already got an account? <%= link_to "Sign in now", signin_path %>
+        Already got an account? <%= link_to "Log in now", signin_path %>
         <br />
         <br />
       </div>
