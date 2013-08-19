@@ -34,6 +34,18 @@ class WishesController < ApplicationController
     end
   end
 
+  def sort
+    @wish = Wish.find(params[:id])
+
+    # .attributes is a useful shorthand for mass-assigning
+    # values via a hash
+    @wish.update_attributes(params[:wish])
+    @wish.save!
+
+    # this action will be called via ajax
+    render nothing: true
+  end
+
   private
 
     def correct_user

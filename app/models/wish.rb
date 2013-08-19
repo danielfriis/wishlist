@@ -11,7 +11,11 @@
 #
 
 class Wish < ActiveRecord::Base
-  attr_accessible :item_id, :list_id, :note
-  belongs_to :list, touch: true
+	include RankedModel
+
+  attr_accessible :item_id, :list_id, :note, :row_order, :row_order_position
+  belongs_to :list
+  ranks :row_order,
+  	:with_same => :list_id
   belongs_to :item
 end

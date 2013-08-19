@@ -14,9 +14,10 @@
 					<p class="muted"><%= pluralize(list.wishes.count, "wish") %></p>
 				</div>
 			<% end %>
-			<div class="user_list_wishes">
-				<% list.wishes.each do |wish| %>
-					<div class="user_list_wish">
+			<ul class="user_list_wishes unstyled" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
+				<!-- List wishes -->
+				<% list.wishes.rank(:row_order).each do |wish| %>
+					<li class="user_list_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
 						<div class="block pull-left">
 							<%= image_tag wish.item.image_url(:thumb).to_s %>
 						</div>
@@ -28,9 +29,10 @@
 						 		 </span>
 							</span>
 						</div>
-					</div>
+					</li>
 				<% end %>
-			</div>
+			</ul>
+			<a href="#make_wish" role="button" data-toggle="modal" class="user_list_add_wish">Add wish</a>
 		</div>
 	</div>
 <% else %>

@@ -241,8 +241,10 @@ h3 {
 }
 
 .brand {
+  position: absolute;
+  left: 50%;
   padding: 0px !important;
-  margin-left: 0px !important;
+  margin-left: -45px !important;
   text-indent: -999999em;
   background-image:url('logo.png');
   background-size:90px 40px;
@@ -686,10 +688,23 @@ input {
       max-width: 50px;
   }
   h4 {
-    font-size: 12px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 17px;
   }
   span.content {
     margin-left: 50px;
+  }
+}
+
+.user_list_add_wish {
+  display: block;
+  color: $grayLight !important;
+  padding: 10px 5px;
+
+  &:hover, &:focus {
+    color: $gray !important;
+    text-decoration: underline !important;
   }
 }
 

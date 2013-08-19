@@ -14,7 +14,7 @@
 class Item < ActiveRecord::Base
   attr_accessible :link, :title, :image, :remote_image_url, :gender
 
-  has_many :wishes
+  has_many :wishes, dependent: :destroy
   has_many :lists, through: :wishes
 
   accepts_nested_attributes_for :wishes, :lists 

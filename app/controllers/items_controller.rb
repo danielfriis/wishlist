@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 	    		format.json { render json: @item }
 	    	else
 		    	flash[:success] = "Item created!"
-		    	format.html { redirect_to(@list) }
+		    	format.html { redirect_to :back }
 		    	format.json { render :js => "window.location.href = ('#{user_list_path(current_user, @list)}');" }
 		      # redirect_to @item
 		    end
