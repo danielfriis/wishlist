@@ -3,23 +3,21 @@
   <div class="span12 user_info">
     <%= render 'shared/user_info' %>
   </div>
-
-  <div class="span9">
-    <%= render 'shared/wish_list_sort' %>
-  </div>
-   <aside class="pull-right span3">
-    <%= render 'shared/aside_share' %>
-    <%= render 'shared/aside_lists' %>
-  </aside>
-  <div class="span9">
+  <div class="span12">
     
-    <% if @user.wishes.any? %>
-      <ol class="wishes white-box">
-        <%= render @wishes %>
-      </ol>
-    <% else %>
-      <%= render 'shared/list_wo_wish' %>
-    <% end %>
-    <%= render 'shared/list_add_wish' if current_user?(@user) %>
+    <div class="row">
+      <% if @user.lists.any? %>
+        <%= render @lists %> 
+      <% else %>
+        <!-- TODO: RENDER NO_LISTS -->
+      <% end %>
+      <% if current_user?(@user) %>
+        <div class="span4">
+          <div class="white-box" id="new_list_link">
+            <%= link_to "New wish list", "#" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

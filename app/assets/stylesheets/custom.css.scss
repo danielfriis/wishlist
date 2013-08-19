@@ -673,6 +673,11 @@ input {
   border-bottom: 2px solid #e8e8e8;
 }
 
+.user_list_wishes {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 .user_list_wish {
   height: 40px;
   padding-bottom: 8px;

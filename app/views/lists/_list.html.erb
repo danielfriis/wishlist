@@ -1,4 +1,4 @@
-<% if current_page?(user_lists_path(@user)) %> 
+<% if current_page?(user_path(@user)) %> 
 <!-- Profile lists -->
 	<div class="span4">
 		<div class="white-box user_list">
@@ -12,9 +12,10 @@
 				<div class="user_list_title">
 					<h3><%= list.name %></h3>
 					<p class="muted"><%= pluralize(list.wishes.count, "wish") %></p>
-
 				</div>
-				<% list.wishes.take(4).each do |wish| %>
+			<% end %>
+			<div class="user_list_wishes">
+				<% list.wishes.each do |wish| %>
 					<div class="user_list_wish">
 						<div class="block pull-left">
 							<%= image_tag wish.item.image_url(:thumb).to_s %>
@@ -29,7 +30,7 @@
 						</div>
 					</div>
 				<% end %>
-			<% end %>
+			</div>
 		</div>
 	</div>
 <% else %>

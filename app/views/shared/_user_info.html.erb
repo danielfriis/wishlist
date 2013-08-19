@@ -2,18 +2,13 @@
   <%= image_tag avatar(@user, :large), alt: @user.name, class: "gravatar img-rounded" %>
 </a>
 
-<% if current_page?(user_path(@user)) || current_page?(user_lists_path(@user)) %>
   <h1><%= @user.name %></h1>
   <span>
   	<% if @user.location? %>
   		<i class="icon-map-marker"></i> <%= @user.location %> 
   	<% end %> 
   	<% if @user.gender? %> 
-  		<i class="icon-user"></i> <%= @user.gender %></span>
+  		<i class="icon-user"></i> <%= @user.gender %>
+  </span>
   	<% end %>
-  	<a href="#" class="btn">Follow</a>
-<% else %>
-  <h1><%= @list.name %></h1>
-  <span><p>by <strong><%= link_to @user.name, user_path(@user) %></strong></p></span>
-  <span><p><%= pluralize(@list.items.count, "wish") %></p></span>
-<% end %>
+  <a href="#" class="btn">Follow</a>

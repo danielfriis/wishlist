@@ -26,8 +26,7 @@
               <%= current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar img-rounded" %>
             </a>
             <ul class="dropdown-menu dropdown-inverse">
-              <li><%= link_to "My wish lists", user_lists_path(current_user) %></li>
-              <li><%= link_to "My wishes", current_user %></li>
+              <li><%= link_to "My wish lists", current_user %></li>
               <li class="divider"></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li><%= link_to "About", about_path %></li>
