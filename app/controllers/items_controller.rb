@@ -3,8 +3,7 @@ class ItemsController < ApplicationController
 	before_filter :correct_user,   only: :destroy
 	impressionist :actions=>[:show]
 	skip_before_filter :verify_authenticity_token, :only => [:create] #For the bookmarklet
-
-	
+	helper_method :sort_general, :sort_gender
 
 	def show
 		@item = Item.find(params[:id])
@@ -44,6 +43,10 @@ class ItemsController < ApplicationController
 		redirect_to :back
 	end
 
+	def inspiration
+		@items = Item.sort(sort_general, sort_gender).page(params[:page]).per_page(9)
+	end
+
 	def linkpreview
   	url = params[:url]
   	preview = LinkPreviewParser.parse(url) # returns a Hash
@@ -58,6 +61,14 @@ class ItemsController < ApplicationController
   end
 
   private
+
+		def sort_general
+	    %w[recent popular].include?(params[:sort]) ? params[:sort] : "recent"
+	  end
+
+	  def sort_gender
+	    %w[Male Female].include?(params[:gender]) ? params[:gender].titleize : "all"
+	  end
 
     def correct_user
       @item = current_user.items.find_by_id(params[:id])

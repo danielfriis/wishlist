@@ -1,0 +1,21 @@
+<div class="container center">
+	<h2>Find Inspiration</h2>
+</div>
+<div class="row">
+	<div class="span12">
+		<ul class="nav nav-pills sort_general pull-left">
+		  <li><%= sortable_general "recent" %></li>
+		  <li><%= sortable_general "popular" %></li>
+		</ul>
+		<div class="hidden-phone btn-group sort_gender pull-right">
+			<%= sortable_gender "all" %>
+			<%= sortable_gender "Male" %>
+			<%= sortable_gender "Female" %>
+		</div>
+	</div>
+</div>
+<div class="row items_home">
+  <%= render @items %>
+</div>
+
+<%= will_paginate @items %>

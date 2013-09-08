@@ -1,21 +1,39 @@
-<div class="container center">
-	<h2>Find Inspiration</h2>
+<div class="row home_about center">
+	<span>
+		<h2>How it works</h2>
+	</span>
+	<div class="spacer"></div>
+	<span class="span4">
+		<%= image_tag 'about-collect.gif' %>
+		<h2>Collect</h2>
+		<p>Some dummy text</p>
+ 	</span>
+ 	<span class="span4">
+		<img src="http://placehold.it/250x200" alt="">
+		<h2>Organize</h2>
+		<p>Some dummy text</p>
+ 	</span>
+	<span class="span4">
+		<img src="http://placehold.it/250x200" alt="">
+		<h2>Share</h2>
+		<p>Some dummy text</p>
+ 	</span>
 </div>
-<div class="row">
-	<div class="span12">
-		<ul class="nav nav-pills sort_general pull-left">
-		  <li><%= sortable_general "recent" %></li>
-		  <li><%= sortable_general "popular" %></li>
-		</ul>
-		<div class="hidden-phone btn-group sort_gender pull-right">
-			<%= sortable_gender "all" %>
-			<%= sortable_gender "Male" %>
-			<%= sortable_gender "Female" %>
-		</div>
+<hr>
+<div class="items_home">
+	<span class="center">
+		<h2>What other people wishes</h2>
+	</span>
+	<div class="spacer"></div>
+	<div class="row">
+	  <%= render @items.limit(6) %>
+	</div>
+	<div class="center">
+		<%= link_to "Find more inspiration", inspiration_path %>
 	</div>
 </div>
-<div class="row items_home">
-  <%= render @items %>
+<hr>
+<div class="spacer"></div>
+<div class="center">
+	<a href="#signUp" role="button" class="btn btn-large btn-inverse" data-toggle="modal">Sign up for free</a>
 </div>
-
-<%= will_paginate @items %>

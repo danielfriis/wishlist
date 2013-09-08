@@ -1,6 +1,6 @@
 Wishlist::Application.routes.draw do
 
-  resources :items, only: [:show, :new, :create, :destroy]
+  resources :items, only: [:show, :new, :create, :destroy, :inspiration]
   resources :wishes do
     collection { post :sort }
   end
@@ -22,6 +22,7 @@ Wishlist::Application.routes.draw do
   match '/terms',   to: 'static_pages#terms'
   match '/linkpreview', to: 'items#linkpreview'
   match '/bookmarklet', to: 'items#bookmarklet'
+  match '/inspiration', to: 'items#inspiration'
 
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
