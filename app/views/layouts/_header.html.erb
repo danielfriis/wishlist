@@ -1,10 +1,6 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <ul class="nav pull-left">
-        <li><%= link_to "Find Inspiration", inspiration_path %></li>
-      </ul>
-
       <%= link_to "Wishlistt", root_path, class: "brand logo" %>
       <% if signed_in? %>
       
@@ -22,11 +18,18 @@
           <li class="hidden-desktop">
             <%= link_to "Sign out", signout_path, method: "delete" %>
           </li>
-          <li class="dropdown visible-desktop">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <li class="visible-desktop">
+            <a href="<%= user_path(current_user) %>">
               <%= current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar img-rounded" %>
             </a>
+            
+          </li>
+          <li>
+            <a class="navbar-caret dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-chevron-down"></i>
+            </a>
             <ul class="dropdown-menu dropdown-inverse">
+              <li><%= link_to "Find Inspiration", inspiration_path %></li>
               <li><%= link_to "My wish lists", current_user %></li>
               <li class="divider"></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>

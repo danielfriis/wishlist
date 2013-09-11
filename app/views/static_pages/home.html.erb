@@ -1,29 +1,28 @@
 <div class="row home_about center">
-	<span>
-		<h2>How it works</h2>
-	</span>
-	<div class="spacer"></div>
-	<span class="span4">
+	<div class="span12">
+		<h1>How it works</h1>
+	</div>
+	<div class="span4">
 		<%= image_tag 'about-collect.gif' %>
 		<h2>Collect</h2>
 		<p>Some dummy text</p>
- 	</span>
- 	<span class="span4">
+ 	</div>
+ 	<div class="span4">
 		<img src="http://placehold.it/250x200" alt="">
 		<h2>Organize</h2>
 		<p>Some dummy text</p>
- 	</span>
-	<span class="span4">
+ 	</div>
+	<div class="span4">
 		<img src="http://placehold.it/250x200" alt="">
 		<h2>Share</h2>
 		<p>Some dummy text</p>
- 	</span>
+ 	</div>
 </div>
 <hr>
 <div class="items_home">
-	<span class="center">
-		<h2>What other people wishes</h2>
-	</span>
+	<div class="center">
+		<h1>Popular wishes right now</h1>
+	</div>
 	<div class="spacer"></div>
 	<div class="row">
 	  <%= render @items.limit(6) %>
@@ -33,7 +32,6 @@
 	</div>
 </div>
 <hr>
-<div class="spacer"></div>
-<div class="center">
+<div class="signup_home center">
 	<a href="#signUp" role="button" class="btn btn-large btn-inverse" data-toggle="modal">Sign up for free</a>
 </div>

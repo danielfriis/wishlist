@@ -1,6 +1,7 @@
 Wishlist::Application.routes.draw do
 
   resources :items, only: [:show, :new, :create, :destroy, :inspiration]
+  resources :welcome
   resources :wishes do
     collection { post :sort }
   end

@@ -18,17 +18,19 @@
 				<!-- List wishes -->
 				<% list.wishes.rank(:row_order).each do |wish| %>
 					<li class="user_list_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
-						<div class="block pull-left">
-							<%= image_tag wish.item.image_url(:thumb).to_s %>
-						</div>
-						<div class="block">
-							<span class="content">
-								<h4><%= wish.item.title %></h4>
-								<span class="timestamp">
-							    Added <%= time_ago_in_words(wish.created_at) %> ago.							 
-						 		 </span>
-							</span>
-						</div>
+						<%= link_to wish.item do %>	
+							<div class="block pull-left">
+								<%= image_tag wish.item.image_url(:thumb).to_s %>
+							</div>
+							<div class="block">
+								<span class="content">
+									<h4><%= wish.item.title %></h4>
+									<span class="timestamp">
+								    Added <%= time_ago_in_words(wish.created_at) %> ago.							 
+							 		 </span>
+								</span>
+							</div>
+						<% end %>
 					</li>
 				<% end %>
 			</ul>
@@ -37,7 +39,7 @@
 	</div>
 <% else %>
 <!-- Aside sidebar lists -->
-	<li class="user_list_wish">
+	<li class="aside_user_list_wish">
 		<div class="block pull-left">
 			<%= image_tag(list.wishes.last.item.image_url(:thumb).to_s, class: "img-rounded") if list.wishes.last %>
 		</div>

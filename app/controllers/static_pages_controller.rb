@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   helper_method :sort_general, :sort_gender
 
   def home
-
+    redirect_to current_user if signed_in?
     @items = Item.sort(sort_general, sort_gender).page(params[:page]).per_page(9)
 
     # if params[:sort] == "recent"

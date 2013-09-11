@@ -63,6 +63,11 @@ body {
   margin-bottom: 0;
 }
 
+.navbar-caret {
+  padding-left: 0 !important;
+  cursor: pointer;
+}
+
 .modal-footer {
   border-top: 0px solid #ddd;
 }
@@ -120,8 +125,8 @@ textarea {
 }
 
 .hero-unit {
-  // background-color: #7f8c8d;
-  background-color: #524982;
+  background-color: #7f8c8d;
+  // background-color: #524982;
   color: white;
   margin-bottom: 0;
   -webkit-border-radius: 0px;
@@ -131,7 +136,7 @@ textarea {
   .btn {
     background-color: #e6e6e6;
     font-weight: 600;
-    color: #524982;
+    color: #7f8c8d;
 
     &:hover, &:focus {
       background-color: white;
@@ -157,12 +162,12 @@ textarea {
   }
 }
 
-.items_home {
-  padding: 25px 0;
-}
 
-.home_about {
-  padding: 25px 0;
+.home_about, .items_home, .signup_home {
+  padding: 70px 0;
+  h1 {
+    margin-bottom: 50px;
+  }
 }
 
 
@@ -256,10 +261,8 @@ h3 {
 }
 
 .brand {
-  position: absolute;
-  left: 50%;
   padding: 0px !important;
-  margin-left: -45px !important;
+  margin-left: 0px !important;
   text-indent: -999999em;
   background-image:url('logo.png');
   background-size:90px 40px;
@@ -429,7 +432,7 @@ footer {
 }
 
 .user_info {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
       span {
       display: block;
       margin-bottom: 3px;
@@ -637,8 +640,8 @@ input {
       }
     }
     &:first-child {
-      border: 0;
-      padding: 0 0 10px 0;
+      border-top: 0px !important;
+      padding: 10px 0 ;
     }
 
     &:hover {
@@ -688,6 +691,7 @@ input {
     margin: 5px 0;
   }
   border-bottom: 2px solid #e8e8e8;
+  margin-bottom: 5px;
 }
 
 .user_list_wishes {
@@ -695,14 +699,26 @@ input {
   overflow-y: scroll;
 }
 
-.user_list_wish {
+.user_list_wish:active {
+  border: 1px solid $grayLighter;
+}
+
+.user_list_wish, .sortable_placeholder {
+  border: 1px solid white;
+  background-color: white;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.user_list_wish, .sortable_placeholder, .aside_user_list_wish {
   height: 40px;
-  padding-bottom: 8px;
-    img {
-      height: 40px;
-      max-width: 50px;
+  padding: 4px;
+  img {
+    height: 40px;
+    max-width: 50px;
   }
   h4 {
+    margin-top: 0;
     margin-bottom: 0;
     font-size: 13px;
     line-height: 17px;
@@ -711,6 +727,11 @@ input {
     margin-left: 50px;
   }
 }
+
+.sortable_placeholder {
+  background-color: $grayLighter;
+}
+
 
 .user_list_add_wish {
   display: block;
