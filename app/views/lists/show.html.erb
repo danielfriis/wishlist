@@ -6,9 +6,9 @@
 
   <div class="span9">
     <% if @list.items.any? %>
-      <div class="white-box">
+      <div class="white-box user_list_large">
         <div class="user_list_title">
-          <h3><%= @list.name %></h3>
+          <h2><%= @list.name %></h2>
           <p class="muted"><%= pluralize(@list.wishes.count, "wish") %></p>
         </div>
         <ol class="wishes ">

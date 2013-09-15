@@ -11,7 +11,7 @@
 			<%= link_to user_list_path(@user, list) do %>
 				<div class="user_list_title">
 					<h3><%= list.name %></h3>
-					<p class="muted"><%= pluralize(list.wishes.count, "wish") %></p>
+					<p class="muted" id="wishes_count"><%= pluralize(list.wishes.count, "wish") %></p>
 				</div>
 			<% end %>
 			<ul class="user_list_wishes unstyled" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
