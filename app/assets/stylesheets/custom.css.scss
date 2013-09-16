@@ -18,9 +18,9 @@ $fluidGridGutterWidth: 2.127659574%;
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700);
 
 $sansFontFamily: 'Open Sans', Helvetica, sans-serif;
-$linkColor: #1693A5;
-$btnPrimaryBackground: #1693A5;
-$btnPrimaryBackgroundHighlight: #1693A5;
+$linkColor: #47a599;
+$btnPrimaryBackground: #47a599;
+$btnPrimaryBackgroundHighlight: #47a599;
 
 @import "bootstrap";
 @import "font-awesome";
@@ -125,8 +125,10 @@ textarea {
 }
 
 .hero-unit {
-  background-color: #7f8c8d;
+  // background-color: #7f8c8d;
   // background-color: #524982;
+  background-color: #2d313d;
+
   color: white;
   margin-bottom: 0;
   -webkit-border-radius: 0px;
@@ -136,7 +138,7 @@ textarea {
   .btn {
     background-color: #e6e6e6;
     font-weight: 600;
-    color: #7f8c8d;
+    color: #2d313d;
 
     &:hover, &:focus {
       background-color: white;
