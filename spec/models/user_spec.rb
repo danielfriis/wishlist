@@ -13,6 +13,7 @@
 #  location        :string(255)
 #  avatar          :string(255)
 #  gender          :string(255)
+#  slug            :string(255)
 #
 
 require 'spec_helper'

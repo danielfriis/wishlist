@@ -1,0 +1,16 @@
+<ul class="media-list comments">
+  <% @comments.each do |comment| %>
+    <li class="media">
+      <%= link_to comment.user, class: "pull-left" do %>
+        <%= image_tag avatar(comment.user, :medium), alt: comment.user.name, class: "gravatar img-rounded" %>
+      <% end %>
+      <div class="media-body">
+        <%= link_to comment.user do %>
+          <h5 class="media-heading"><%= comment.user.name %></h5>
+        <% end %>
+        <p><%= comment.content %></p>
+        <small class="muted">Posted <%= time_ago_in_words(comment.created_at) %> ago.</small>
+      </div>
+    </li>
+  <% end %>
+</ul>

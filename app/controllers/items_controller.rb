@@ -7,6 +7,9 @@ class ItemsController < ApplicationController
 
 	def show
 		@item = Item.find(params[:id])
+		@commentable = @item
+	  @comments = @commentable.comments
+	  @comment = Comment.new
 	end
 
 	def new

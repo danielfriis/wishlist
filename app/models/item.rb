@@ -16,6 +16,7 @@ class Item < ActiveRecord::Base
 
   has_many :wishes, dependent: :destroy
   has_many :lists, through: :wishes
+  has_many :comments, as: :commentable
 
   accepts_nested_attributes_for :wishes, :lists 
 

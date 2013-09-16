@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  note       :string(255)
+#  row_order  :integer
 #
 
 class Wish < ActiveRecord::Base

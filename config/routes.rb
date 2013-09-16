@@ -1,7 +1,8 @@
 Wishlist::Application.routes.draw do
 
-  resources :items, only: [:show, :new, :create, :destroy, :inspiration]
-  resources :welcome
+  resources :items, only: [:show, :new, :create, :destroy, :inspiration] do
+    resources :comments
+  end
   resources :wishes do
     collection { post :sort }
   end
@@ -27,6 +28,7 @@ Wishlist::Application.routes.draw do
 
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
+    resources :comments
     resources :lists, only: [:index, :show, :new, :create, :destroy]
   end
 

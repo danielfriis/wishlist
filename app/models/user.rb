@@ -13,6 +13,7 @@
 #  location        :string(255)
 #  avatar          :string(255)
 #  gender          :string(255)
+#  slug            :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -24,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :wishes, through: :lists
   has_many :items, through: :wishes
   has_many :authorizations
+  has_many :comments, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
