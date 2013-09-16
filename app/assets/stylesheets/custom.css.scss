@@ -172,6 +172,25 @@ textarea {
   }
 }
 
+.home_about {
+  img {
+    margin-bottom: 20px;
+  }
+
+  .imgs .animated {
+    display: none;
+  }
+
+  .imgs:hover {
+    .animated {
+      display: inline;
+    }
+    .non-animated {
+      display: none;
+    }
+  }
+}
+
 
 .about-boxes {
 

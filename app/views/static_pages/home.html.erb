@@ -3,19 +3,25 @@
 		<h1>How it works</h1>
 	</div>
 	<div class="span4">
-		<%= image_tag 'about-collect.gif' %>
+		<div class="imgs">
+			<%= image_tag 'about-collect.gif', class: "animated" %>
+			<%= image_tag 'about-collect.png', class: "non-animated" %>
+		</div>
 		<h2>Collect</h2>
-		<p>Some dummy text</p>
+		<p>Easily add products to your wishlist from around the web with the Wishlistt button.</p>
  	</div>
  	<div class="span4">
-		<img src="http://placehold.it/250x200" alt="">
+		<div class="imgs">
+			<%= image_tag 'about-organize.gif', class: "animated" %>
+			<%= image_tag 'about-organize.png', class: "non-animated" %>
+		</div>
 		<h2>Organize</h2>
-		<p>Some dummy text</p>
+		<p>Wishlistt allows you to easily arrange and sort wishes across all your wishlists.</p>
  	</div>
 	<div class="span4">
 		<img src="http://placehold.it/250x200" alt="">
 		<h2>Share</h2>
-		<p>Some dummy text</p>
+		<p>With one click you can e-mail your wishlist to friends and family or export it to PDF.</p>
  	</div>
 </div>
 <hr>
@@ -28,10 +34,11 @@
 	  <%= render @items.limit(6) %>
 	</div>
 	<div class="center">
-		<%= link_to "Find more inspiration", inspiration_path %>
+		<%= link_to "Find more inspiration", inspiration_path, class: "btn" %>
 	</div>
 </div>
 <hr>
 <div class="signup_home center">
+	<p>Start collecting the products you wish today!</p>
 	<a href="#signUp" role="button" class="btn btn-large btn-inverse" data-toggle="modal">Sign up for free</a>
 </div>
