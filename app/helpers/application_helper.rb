@@ -64,14 +64,14 @@ module ApplicationHelper
   end
 
   def get_host_without_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
+    url = "http://#{url}" if URI.parse(URI.encode(url.strip)).scheme.nil?
+    host = URI.parse(URI.encode(url.strip)).host.downcase
     host.start_with?('www.') ? host[4..-1] : host
   end
 
   def get_host_with_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
+    url = "http://#{url}" if URI.parse(URI.encode(url.strip)).scheme.nil?
+    host = URI.parse(URI.encode(url.strip)).host.downcase
     host.start_with?('www.') ? host : host = "www.#{host}"
     url = "http://#{host}" if URI.parse(host).scheme.nil?
   end
