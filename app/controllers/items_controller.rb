@@ -23,7 +23,10 @@ class ItemsController < ApplicationController
 
 	def create
     @list = current_user.lists.find(params[:list_id])
-		@item = Item.create!(params[:item])
+		@item = Item.find_or_create_by_link!(params[:item][:link]) do |c|
+			c.assign_attributes(params[:item])
+			c.vendor_id = Vendor.custom_find_or_create(params[:item][:link])
+		end
 		@item.wishes.build(list_id: @list.id)
 		respond_to do |format|
 	    if @item.save
@@ -31,8 +34,9 @@ class ItemsController < ApplicationController
 	    		format.json { render json: @item }
 	    	else
 		    	flash[:success] = "Item created!"
+		    	flash.keep[:success]
 		    	format.html { redirect_to :back }
-		    	format.json { render :js => "window.location.href = ('#{user_list_path(current_user, @list)}');" }
+		    	format.js { render :js => "window.location.replace('#{user_list_path(current_user, @list)}')" }
 		      # redirect_to @item
 		    end
 	    else
@@ -60,7 +64,6 @@ class ItemsController < ApplicationController
 
   def bookmarklet
   	render layout: 'clean_layout'
-  	
   end
 
   private

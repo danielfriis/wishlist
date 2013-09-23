@@ -351,6 +351,12 @@ footer {
 .item {
   margin-bottom: 20px;
   min-height: 364px;
+  p {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    margin-bottom: 0;
+  }
 } 
 
 .item, .item-big {
@@ -442,22 +448,43 @@ footer {
 /* aside sidebar */
 
 .share {
-  i {
-    font-size: 2em;
-    line-height: 1.2em;
-    display: inline-block;
-    color: #777777;
+  a {
+    color: inherit;
+    text-decoration: inherit;
   }
-  .icon-facebook-sign:hover {
-    color: #4c66a4;
-  }
-  .icon-link:hover {
-    color: #3c8fc9;
-  }
-  .icon-envelope:hover {
-    color: orange;
+  input {
+    font-weight: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-variant: inherit;
+    font-style: inherit;
+    text-indent: inherit;
+    border: none;
+    width: inherit;
+    height: inherit !important;
+    line-height: inherit !important;
+    padding: 0 !important;
+    margin: inherit !important;
+    -moz-box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    background-color: inherit;
+    -webkit-box-shadow: inherit;
+    -moz-box-shadow: inherit;
+    box-shadow: inherit;
+    -webkit-transition: inherit;
+    -moz-transition: inherit;
+    -o-transition: inherit;
+    transition: inherit;
+    color: inherit;
+    -webkit-border-radius: inherit;
+    -moz-border-radius: inherit;
+    border-radius: inherit;
+    vertical-align: inherit;
+    display: inline;
   }
 }
+
 
 .user_info {
   margin-bottom: 20px;
@@ -490,6 +517,27 @@ footer {
     }
   }
 }
+
+.shop_now {
+  a {
+    margin-bottom: 10px
+  }
+}
+
+// .show_user {
+//   white-space: nowrap;
+//   overflow-x:scroll;
+
+//   .row {
+//     width: 100%;
+
+//     .span6 {
+//       float: none;
+//       display: inline-block;
+//       vertical-align: top;
+//     }
+//   }
+// }
 
 
 .create-list .input-append { 
@@ -578,14 +626,14 @@ input {
 .best_in_place {
   margin: 0px !important;
   border-bottom:1px dotted;
-  background-color: #fffed4;
+  // background-color: #fffed4;
   .form_in_place{
     border: none;
     width: inherit;
-    height: inherit;
-    line-height: inherit;
-    padding: inherit;
-    margin: inherit;
+    height: 100% !important;
+    line-height: inherit !important;
+    padding: 0 !important;
+    margin: 0 !important;
     -moz-box-sizing: inherit;
     -webkit-box-sizing: inherit;
     box-sizing: inherit;
@@ -604,12 +652,18 @@ input {
     vertical-align: inherit;
     
     input {
+      font-weight: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      font-variant: inherit;
+      font-style: inherit;
+      text-indent: inherit;
       border: none;
       width: inherit;
-      height: inherit;
-      line-height: inherit;
-      padding: inherit;
-      margin: inherit;
+      height: inherit !important;
+      line-height: inherit !important;
+      padding: 0 !important;
+      margin: inherit !important;
       -moz-box-sizing: inherit;
       -webkit-box-sizing: inherit;
       box-sizing: inherit;
@@ -626,6 +680,13 @@ input {
       -moz-border-radius: inherit;
       border-radius: inherit;
       vertical-align: inherit;
+      display: inline;
+    }
+    input[type="text"] {
+      padding: 0;
+      height: 35px;
+      line-height: 1em;
+      outline-offset: 0;
     }
   }
 
@@ -659,6 +720,7 @@ input {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
     min-height: 85px;
+    background-color: white;
 
     &:last-child {
       padding: 10px 0 0 0;
@@ -714,12 +776,25 @@ input {
   }
 }
 
+.user_list_large {
+  h4 {
+    margin: 0 0 5px 0;
+    font-weight: normal;
+    a {
+      color: inherit;
+      text-decoration: inherit;
+      line-height: 1.6em;
+    }
+  }
+}
+
 .user_list_title {
   h2 {
     font-size: 1.8em;
   }
   h3 {
     margin: 5px 0;
+    font-size: 1.4em;
   }
   border-bottom: 2px solid #e8e8e8;
   margin-bottom: 5px;
@@ -727,8 +802,9 @@ input {
 
 .user_list_wishes {
   min-height: 10px;
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: scroll;
+  margin-bottom: 0;
 }
 
 .user_list_wish:active {
@@ -743,20 +819,21 @@ input {
 }
 
 .user_list_wish, .sortable_placeholder, .aside_user_list_wish {
-  height: 40px;
+  height: 45px;
   padding: 4px;
   img {
-    height: 40px;
+    height: 45px;
     max-width: 50px;
   }
   h4 {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 13px;
+    font-size: 1em;
     line-height: 17px;
+    font-weight: normal;
   }
   span.content {
-    margin-left: 50px;
+    margin-left: 55px;
   }
 }
 

@@ -29,7 +29,7 @@ Wishlist::Application.routes.draw do
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
     resources :comments
-    resources :lists, only: [:index, :show, :new, :create, :destroy]
+    resources :lists
   end
 
   # The priority is based upon order of creation:

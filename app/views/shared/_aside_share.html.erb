@@ -1,11 +1,20 @@
 <div class="share">
   <h3>Share</h3>
-  <p>wishlistt.com<%= request.fullpath %></p>
-  <span>
-  	<ul class="inline-block">
-  		<li><i class="icon-facebook-sign"></i></li>
-  		<li><i class="icon-link"></i></li>
-  		<li><i class="icon-envelope"></i></li>
-  	</ul>
-  </span>
+  <ul class="inline muted">
+		<li>
+			<a href="#">
+				<i class="icon-link"></i> <input type="url" readonly onClick="this.select();" value="wishlistt.com<%= request.fullpath %>">
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<i class="icon-envelope"></i> Send with e-mail
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<i class="icon-share"></i> Export to PDF
+			</a>
+		</li>
+  </ul>
 </div>

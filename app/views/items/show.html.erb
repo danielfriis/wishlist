@@ -16,15 +16,32 @@
     <%= render 'comments/comments' %>
     <%= render 'comments/form' if signed_in? %>
   </div>
+  <aside class="span4 shop_now">
+    <%= link_to "Shop Now", @item.link, class: "btn btn-primary btn-large btn-block", target: "_blank" %>
+    <p class="muted">from <strong><%= @item.vendor.name %></strong></p>
+    <hr>
+  </aside>
+  <aside class="span4 social-count">
+    <ul class="unstyled">
+      <li>
+        <i class="icon-heart"></i> 
+        <% if @item.lists.any? && @item.lists.last.user %>
+          <%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.
+        <% else %>
+          Be the first to wish this
+        <% end %>
+      </li>
+      <li><i class="icon-eye-open"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
+    </ul>
+  </aside>
   <aside class="span4">
-    <%= link_to "Shop now", @item.link, class: "btn btn-primary btn-large btn-block", target: "_blank" %>
-    <h3>Additional info</h3>
-    <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %>
-    <% if @item.lists.any? && @item.lists.last.user %>
-      <p><%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> and <%= pluralize(@item.wishes.count, 'other') %> wishes this.</p>
-    <% else %>
-      <p>Be the first to wish this item!</p>
-    <% end %>
+    <h3>More from <%= link_to @item.vendor.name, @item.vendor.url, target: "_blank" %></h3>
+    <div class="">
+      <% @item.vendor.items.all.sample(9).each do |item| %>
+      <%= link_to image_tag(item.image_url(:thumb), class: "img-rounded", style: "margin-bottom:4px;width:95px;height:95px;"), item %>
+      <% end %>
+    </div>
+
   </aside>
 
 </div>

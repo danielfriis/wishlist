@@ -12,7 +12,9 @@
 #
 
 class Item < ActiveRecord::Base
-  attr_accessible :link, :title, :image, :remote_image_url, :gender
+  attr_accessible :link, :title, :image, :remote_image_url, :gender, :vendor_id
+
+  belongs_to :vendor
 
   has_many :wishes, dependent: :destroy
   has_many :lists, through: :wishes

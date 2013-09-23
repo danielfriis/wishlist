@@ -2,6 +2,8 @@ class ListsController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :destroy]
   before_filter :correct_user,   only: :destroy
 
+  respond_to :html, :json
+
   def index
     @user = User.find_by_slug!(params[:user_id])
     @lists = @user.lists
@@ -10,7 +12,7 @@ class ListsController < ApplicationController
   def show
     @user = User.find_by_slug!(params[:user_id])
     @list = @user.lists.find(params[:id])
-    @wishes = @list.wishes.order("created_at DESC")
+    @wishes = @list.wishes.rank(:row_order)
     @lists = @user.lists
   end
 
@@ -26,6 +28,12 @@ class ListsController < ApplicationController
     else
       redirect_to current_user
     end
+  end
+  
+  def update
+    @list = List.find(params[:id])
+    @list.update_attributes(params[:list])
+    respond_with @list
   end
 
   def destroy
