@@ -1,7 +1,7 @@
 <% provide(:title, @item.title) %>
 <div class="row">
   <div class="span12">
-    <h1><%= @item.title %></h1>
+    <h1><%= best_in_place_if @item.lists.any? && current_user?(@item.lists.first.user) && @item.wishes.count < 5, @item, :title, nil: "Please name this product" %></h1>
     <div class="spacer hidden-phone"></div>
   </div>
   <div class="span8">

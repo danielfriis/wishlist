@@ -1,6 +1,6 @@
 Wishlist::Application.routes.draw do
 
-  resources :items, only: [:show, :new, :create, :destroy, :inspiration] do
+  resources :items, only: [:show, :new, :create, :update, :destroy, :inspiration] do
     resources :comments
   end
   resources :wishes do

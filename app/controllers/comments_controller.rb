@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 	before_filter :load_commentable
+  before_filter :correct_user,   only: :destroy
 
   def index
   	@comments = @commentable.comments
@@ -14,8 +15,13 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @commentable, notice: "Comment created."
     else
-      render :new
+      redirect_to @commentable
     end
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_to @commentable
   end
 
 private
@@ -25,4 +31,8 @@ private
 		@commentable = resource.singularize.classify.constantize.find(id)
 	end
 
+  def correct_user
+    @comment = current_user.comments.find_by_id(params[:id])
+    redirect_to current_user if @comment.nil?
+  end
 end

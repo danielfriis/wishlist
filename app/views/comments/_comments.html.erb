@@ -1,6 +1,12 @@
 <ul class="media-list comments">
   <% @comments.each do |comment| %>
     <li class="media">
+      <% if current_user?(comment.user) %>
+          <%= link_to "&times;".html_safe, [@item, comment], class: "close", method: :delete,
+                                      data: { confirm: "You sure?" },
+                                      title: comment.user.name
+                                      %>
+          <% end %>
       <%= link_to comment.user, class: "pull-left" do %>
         <%= image_tag avatar(comment.user, :medium), alt: comment.user.name, class: "gravatar img-rounded" %>
       <% end %>

@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
-	before_filter :signed_in_user, only: [:new, :create, :destroy, :bookmarklet]
+	before_filter :signed_in_user, only: [:new, :create, :update, :destroy, :bookmarklet]
 	before_filter :correct_user,   only: :destroy
 	impressionist :actions=>[:show]
 	skip_before_filter :verify_authenticity_token, :only => [:create] #For the bookmarklet
 	helper_method :sort_general, :sort_gender
+
+	respond_to :html, :json
 
 	def show
 		@item = Item.find(params[:id])
@@ -48,6 +50,12 @@ class ItemsController < ApplicationController
 	def destroy
 		@item.destroy
 		redirect_to :back
+	end
+
+	def update
+		@item = Item.find(params[:id])
+    @item.update_attributes(params[:item])
+    respond_with @item
 	end
 
 	def inspiration
