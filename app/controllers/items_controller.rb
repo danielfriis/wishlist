@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 			c.assign_attributes(params[:item])
 			c.vendor_id = Vendor.custom_find_or_create(params[:item][:link])
 		end
-		@item.wishes.build(list_id: @list.id)
+		@item.wishes.build(list_id: @list.id, note: params[:note])
 		respond_to do |format|
 	    if @item.save
 	    	if params[:via] == "bookmarklet"

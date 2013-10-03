@@ -13,9 +13,11 @@ $.ajax('/linkpreview', {
   success: function(data, textStatus, jqXHR) {
   	$("#linkpreview").hide().after('<%= j render("item_fields") %>').after('<%= j render("carousel") %>');
     $('label[for="item_image"]').hide();
-    $('label[for="item_remote_image_url"]').hide();
     $("#item_image").hide();
-    // $("#item_remote_image_url").hide();
+    $('label[for="item_remote_image_url"]').hide();
+    $("#item_remote_image_url").hide();
+    $('label[for="item_link"]').hide();
+    $("#item_link").hide();
     var newHTML = [];
     $.each(data['img'], function(index, value) {
       newHTML.push('<div class="item"><img src="' + value + '"></div>')
