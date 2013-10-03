@@ -487,18 +487,22 @@ footer {
 
 
 .user_info {
-  margin-bottom: 20px;
+  form {
+    margin-bottom: 0;
+  }
+  margin-bottom: 15px;
       span {
       display: block;
-      margin-bottom: 3px;
+      margin-bottom: 5px;
       line-height: 1;
       color: #777777;
     }
       h1 {
-      font-size: 2em;
+      font-size: 1.6em;
+      line-height: 1em;
       text-align: left;
       letter-spacing: -1px;
-      margin-bottom: 3px;
+      margin-bottom: 7px;
       margin-top: 0px;
     }
 }
@@ -511,9 +515,9 @@ footer {
 .user_lists {
   li {
   padding: 5px 0;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $grayLighter;
   &:last-child {
-    border-bottom: 0;
+    border-bottom: 0px;
     }
   }
 }
@@ -923,6 +927,37 @@ aside {
 
 .sortable {
   
+}
+
+
+// .stats {
+//   overflow: auto;
+//   float:right;
+//   margin-top: 20px;
+//   a {
+//     float: left;
+//     padding: 0 10px;
+//     border-left: 1px solid $grayLighter;
+//     color: gray;
+//     &:first-child {
+//       padding-left: 0;
+//       border: 0;
+//     }
+//     &:hover {
+//       text-decoration: none;
+//     }
+//   }
+//   strong {
+//     display: block;
+//   }
+// }
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
 }
 
 

@@ -3,6 +3,7 @@
 		<ul class="nav nav-pills sort_general pull-left">
 		  <li><%= sortable_general "recent" %></li>
 		  <li><%= sortable_general "popular" %></li>
+		  <li><%= sortable_general "following" %></li>
 		</ul>
 		<div class="hidden-phone btn-group sort_gender pull-right">
 			<%= sortable_gender "all" %>
@@ -13,6 +14,7 @@
 </div>
 <div class="row inspiration">
   <%= render @items %>
+  <%= render 'no_following' if current_user.followed_users.empty? && params[:sort] == "following" %>
 </div>
 
 <%= will_paginate @items %>

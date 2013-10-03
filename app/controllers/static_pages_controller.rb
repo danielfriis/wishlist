@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
     redirect_to inspiration_path if signed_in?
-    @items = Item.sort(sort_general, sort_gender).page(params[:page]).per_page(9)
+    @items = Item.sort(sort_general, sort_gender, current_user).page(params[:page]).per_page(9)
 
     # if params[:sort] == "recent"
     #   @items = Item.recent.page(params[:page]).per_page(9)
@@ -32,7 +32,7 @@ class StaticPagesController < ApplicationController
 
 private
   def sort_general
-    %w[recent popular].include?(params[:sort]) ? params[:sort] : "recent"
+    %w[recent popular following].include?(params[:sort]) ? params[:sort] : "recent"
   end
 
   def sort_gender

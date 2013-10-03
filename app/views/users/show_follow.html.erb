@@ -1,0 +1,23 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <%= render 'shared/user_info' %>
+
+  <div class="span9">
+    <h1><%= @title %></h1>
+    <% if @users.any? %>
+      <ul class="users">
+        <% @users.each do |user| %>
+          <li>
+            <%= image_tag avatar(user, :medium), alt: user.name, class: "gravatar img-rounded" %>
+            <div><%= link_to user.name, user %></div>
+            <div><%= pluralize(user.wishes.count, "wish") %></div>
+          </li>
+        <% end %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+  <aside class="pull-right span3">
+    <%= render 'shared/aside_lists' %>
+  </aside>
+</div>

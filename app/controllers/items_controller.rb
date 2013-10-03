@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
 	end
 
 	def inspiration
-		@items = Item.sort(sort_general, sort_gender).page(params[:page]).per_page(9)
+		@items = Item.sort(sort_general, sort_gender, current_user).page(params[:page]).per_page(9)
 	end
 
 	def linkpreview
@@ -69,7 +69,7 @@ class ItemsController < ApplicationController
   private
 
 		def sort_general
-	    %w[recent popular].include?(params[:sort]) ? params[:sort] : "recent"
+	    %w[recent popular following].include?(params[:sort]) ? params[:sort] : "recent"
 	  end
 
 	  def sort_gender

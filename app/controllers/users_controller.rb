@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :following, :followers]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :find_user, only: [:show, :edit, :update]
+  before_filter :find_user, only: [:show, :edit, :update, :following, :followers]
 
   def show
     @lists = @user.lists
@@ -41,6 +41,20 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def following
+    @lists = @user.lists
+    @title = "Following"
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @lists = @user.lists
+    @title = "Followers"
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private

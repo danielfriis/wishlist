@@ -4,10 +4,11 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
+	<% @users.each do |user| %>
     <li>
-      <%= gravatar_for user, size: 52 %>
-      <%= link_to user.name, user %>
+      <%= image_tag avatar(user, :medium), alt: user.name, class: "gravatar img-rounded" %>
+      <div><%= link_to user.name, user %></div>
+      <div><%= pluralize(user.wishes.count, "wish") %></div>
     </li>
   <% end %>
 </ul>

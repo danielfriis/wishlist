@@ -7,6 +7,7 @@ Wishlist::Application.routes.draw do
     collection { post :sort }
   end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -30,6 +31,9 @@ Wishlist::Application.routes.draw do
   resources :users, path: "" , except: [:index, :new, :create] do
     resources :comments
     resources :lists
+    member do
+      get :following, :followers
+    end
   end
 
   # The priority is based upon order of creation:

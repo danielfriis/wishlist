@@ -33,17 +33,23 @@ class Item < ActiveRecord::Base
 
   is_impressionable
 
-  def self.sort(general, gender)
+  def self.sort(general, gender, current_user)
     if gender == "all"
-      sort_general(general)
+      sort_general(general, current_user)
     else
-      sort_general(general).where("gender = ?", gender)
+      sort_general(general, current_user).where("gender = ?", gender)
     end
   end
 
-  def self.sort_general(general)
+  def self.sort_general(general, current_user)
     if general == "recent"
       order("created_at desc")
+    elsif general == "following"
+      followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+      followed_user_lists = "SELECT id FROM lists WHERE user_id IN (#{followed_user_ids})"
+      followed_user_wishes = "SELECT item_id FROM wishes WHERE list_id IN (#{followed_user_lists})"
+      where("id IN (#{followed_user_wishes})", user_id: current_user.id)
+      .order("created_at desc")
     else
       start_date = (Time.now - 10.days)
       end_date = Time.now

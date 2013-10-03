@@ -1,8 +1,6 @@
 <% provide(:title, @list.name) %>
 <div class="row">
-  <div class="span12 user_info">
-    <%= render 'shared/user_info' %>
-  </div>
+  <%= render 'shared/user_info' %>
 
   <div class="span9">
     <% if @list.items.any? %>
