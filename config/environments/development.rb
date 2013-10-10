@@ -16,17 +16,7 @@ Wishlist::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
   
-  # Change mail delvery to either :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => ENV["MANDRILL_USERNAME"],
-    :password  => ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'wishlistt.com', # your domain to identify your server when connecting
-  }
+  # Mail here
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
