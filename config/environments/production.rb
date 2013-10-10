@@ -53,6 +53,10 @@ Wishlist::Application.configure do
 
   # Mail here
 
+  config.action_mailer.default_url_options = {
+      :host => "wishlistt.com"
+    }
+
   # Enable threaded mode
   # config.threadsafe!
 
