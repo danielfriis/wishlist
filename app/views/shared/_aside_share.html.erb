@@ -7,7 +7,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="#share_list" role="button" data-toggle="modal">
 				<i class="icon-envelope"></i> Send with e-mail
 			</a>
 		</li>
@@ -17,4 +17,27 @@
 			<% end %>
 		</li>
   </ul>
+</div>
+
+<!-- Modal -->
+<div id="share_list" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="share_list" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="share_list">Share list</h3>
+  </div>
+  <%= form_for @message, :url => user_list_share_path(@user, @list) do |f| %>
+	  <div class="modal-body">    
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    
+      <%= f.label :body, "Message" %>
+      <%= f.text_area :body %>
+
+  	</div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			  <%= f.submit "Send", class: "btn btn-primary" %>
+			<% end %>
+	  </div>
 </div>

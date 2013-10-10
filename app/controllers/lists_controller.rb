@@ -14,6 +14,7 @@ class ListsController < ApplicationController
     @list = @user.lists.find(params[:id])
     @wishes = @list.wishes.rank(:row_order)
     @lists = @user.lists
+    @message = Message.new
   end
 
   def new
@@ -40,6 +41,19 @@ class ListsController < ApplicationController
     @list.destroy
     redirect_to :back
   end
+
+  def share
+    @list = List.find(params[:list_id])
+    @message = Message.new(params[:message])
+    
+    if @message.valid?
+      UserMailer.share_list(@message, @list).deliver
+      redirect_to([@list.user, @list], :notice => "Message was successfully sent.")
+    else
+      flash.now.alert = "Please fill all fields."
+    end
+  end
+
 
   private
 

@@ -124,6 +124,15 @@ textarea {
   display: block;
 }
 
+.muted a, a.muted {
+  color: #999999;
+  text-decoration: none;
+  &:hover, &:focus {
+    color: #333333;
+  }
+
+}
+
 .hero-unit {
   // background-color: #7f8c8d;
   // background-color: #524982;
@@ -451,6 +460,9 @@ footer {
   a {
     color: inherit;
     text-decoration: inherit;
+    &:hover, &:focus {
+      color: #333333;
+    }
   }
   input {
     font-weight: inherit;
@@ -482,8 +494,18 @@ footer {
     border-radius: inherit;
     vertical-align: inherit;
     display: inline;
+    cursor: pointer;
   }
 }
+
+#share_list {
+    h3 {
+      border-bottom: 0 !important;
+    }
+    form {
+      margin-bottom: 0 !important;
+    }
+  }
 
 
 .user_info {
@@ -782,7 +804,7 @@ input {
 
 .user_list_large {
   h4 {
-    margin: 0 0 5px 0;
+    margin: 0 0 0px 0;
     font-weight: normal;
     a {
       color: inherit;

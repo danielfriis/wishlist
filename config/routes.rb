@@ -30,7 +30,9 @@ Wishlist::Application.routes.draw do
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
     resources :comments
-    resources :lists
+    resources :lists do
+      post :share
+    end
     member do
       get :following, :followers
     end
