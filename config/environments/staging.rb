@@ -53,10 +53,6 @@ Wishlist::Application.configure do
 
   # Mail here
 
-  config.action_mailer.default_url_options = {
-      :host => "lit-fortress-2729.herokuapp.com"
-    }
-
   # Enable threaded mode
   # config.threadsafe!
 
