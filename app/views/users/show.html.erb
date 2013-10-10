@@ -2,8 +2,8 @@
 <div class="row">
   <%= render 'shared/user_info' %>
 </div>
-<div class="show_user">
-  <div class="row">
+<div class="show_user" >
+  <div class="row js-masonry" data-masonry-options='{ "itemSelector": ".span6", "transitionDuration": "0.1s" }'>
     <% if @user.lists.any? %>
       <%= render @lists %> 
     <% else %>
