@@ -20,5 +20,5 @@ ActionMailer::Base.default_url_options = {
     } if Rails.env.staging?
 
 ActionMailer::Base.default_url_options = {
-      host: "wishlistt.com"
+      host: "www.wishlistt.com"
     } if Rails.env.production?
