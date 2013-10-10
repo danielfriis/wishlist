@@ -13,4 +13,12 @@
 ActionMailer::Base.default_url_options = {
       host: "localhost",
       port: 3000
-    }
+    } if Rails.env.development?
+
+ActionMailer::Base.default_url_options = {
+      host: "lit-fortress-2729.herokuapp.com"
+    } if Rails.env.staging?
+
+ActionMailer::Base.default_url_options = {
+      host: "wishlistt.com"
+    } if Rails.env.production?
