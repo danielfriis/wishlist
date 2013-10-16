@@ -20,7 +20,7 @@ module ApplicationHelper
 
   def sortable_general(column, title = nil)
     title ||= column.titleize
-    if params[:sort] == nil && column == "recent"
+    if params[:sort] == nil && column == "following"
       css_class = "active"
     elsif column == params[:sort]
       css_class = "active"

@@ -32,7 +32,7 @@ class StaticPagesController < ApplicationController
 
 private
   def sort_general
-    %w[recent popular following].include?(params[:sort]) ? params[:sort] : "recent"
+    %w[recent popular following].include?(params[:sort]) ? params[:sort] : "popular"
   end
 
   def sort_gender
