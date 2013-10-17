@@ -63,6 +63,14 @@ module ApplicationHelper
     end
   end
 
+  def meta_image(desc = nil)
+    if desc.present?
+      content_for :meta_image, desc
+    else
+      content_for?(:meta_image) ? content_for(:meta_image) : APP_CONFIG['meta_image']
+    end
+  end
+
   def get_host_without_www(url)
     url = "http://#{url}" if URI.parse(URI.encode(url.strip)).scheme.nil?
     host = URI.parse(URI.encode(url.strip)).host.downcase
