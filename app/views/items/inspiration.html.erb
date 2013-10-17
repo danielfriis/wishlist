@@ -17,4 +17,6 @@
   <%= render 'no_following' if current_user.followed_users.empty? && params[:sort] == "following" %>
 </div>
 
-<%= will_paginate @items %>
+<div id="inspiration-pagination">
+	<%= will_paginate @items %>
+</div>

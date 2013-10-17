@@ -10,7 +10,7 @@ jQuery ->
                 elemBottom = elemTop + $(elem).height()
                 (elemTop >= docViewTop) && (elemTop <= docViewBottom)
 
-        if $('.pagination').length
+        if $('#inspiration-pagination').children('.pagination').length
                 $(window).scroll ->
                         url = $('.pagination .next_page a').attr('href')
                         if url && isScrolledIntoView('.pagination')
