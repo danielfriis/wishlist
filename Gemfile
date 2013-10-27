@@ -14,6 +14,7 @@ gem 'nokogiri'
 gem 'impressionist'
 gem 'best_in_place'
 gem 'ranked-model'
+gem 'fastimage'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

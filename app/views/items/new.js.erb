@@ -23,14 +23,14 @@ $.ajax('/linkpreview', {
       newHTML.push('<div class="item"><img src="' + value + '"></div>')
     });
     $(".carousel-inner").html(newHTML.join(""));
-    $(".carousel-inner .item").each(function(){
-      var $minHeight = 200;
-      //you need the height of the div you are currently iterating on: use this
-      if ( $(this).children('img').get(0).height < $minHeight) {
-      //find the img in this div and hide it
-      $(this).closest(".item").remove();
-      }
-    });
+    // $(".carousel-inner .item").each(function(){
+    //   var $minHeight = 200;
+    //   //you need the height of the div you are currently iterating on: use this
+    //   if ( $(this).children('img').get(0).height < $minHeight) {
+    //   //find the img in this div and hide it
+    //   $(this).closest(".item").remove();
+    //   }
+    // });
     $("#item_title").val(data['title']);
     $("#item_link").val(data['url']);
 

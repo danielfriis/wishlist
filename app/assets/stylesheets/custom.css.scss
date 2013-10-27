@@ -720,18 +720,15 @@ input {
 
 #imgPreview {
   margin-top: 20px;
-  height: 200px;
-  .carousel-inner {
-    height: 100%;
-    .item {
-      height: 100%;
-      img {
-        max-height: 100%;
-        margin: 0 auto;
-      }
-    }
-  }
 }
+ #imgPreview, .carousel-inner, .item, #imgPreview .carousel-inner .item > img { 
+  height: 200px;
+}
+
+#imgPreview .carousel-inner .item > img { 
+  margin: 0 auto;
+}
+
 
 
 
