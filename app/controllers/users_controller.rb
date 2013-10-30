@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new(gender: "Female")
   end
   
   def create

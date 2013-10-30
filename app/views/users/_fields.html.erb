@@ -4,14 +4,15 @@
 <%= f.text_field :name %>
 
 <%= f.label :gender %>
-<label class="radio checked">
+
+<label class="radio <% if @user.gender == "Female" %> checked <% end %> ">
 	<span class="icons">
 		<span class="first-icon fui-radio-unchecked"></span>
 		<span class="second-icon fui-radio-checked"></span>
 	</span>
-	<%= f.radio_button :gender, "Female", checked: true %> Female
+	<%= f.radio_button :gender, "Female" %> Female
 </label>
-<label class="radio">
+<label class="radio <% if @user.gender == "Male" %> checked <% end %> ">
 	<span class="icons">
 		<span class="first-icon fui-radio-unchecked"></span>
 		<span class="second-icon fui-radio-checked"></span>
