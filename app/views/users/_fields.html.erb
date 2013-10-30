@@ -3,6 +3,22 @@
 <%= f.label :name %>
 <%= f.text_field :name %>
 
+<%= f.label :gender %>
+<label class="radio checked">
+	<span class="icons">
+		<span class="first-icon fui-radio-unchecked"></span>
+		<span class="second-icon fui-radio-checked"></span>
+	</span>
+	<%= f.radio_button :gender, "Female", checked: true %> Female
+</label>
+<label class="radio">
+	<span class="icons">
+		<span class="first-icon fui-radio-unchecked"></span>
+		<span class="second-icon fui-radio-checked"></span>
+	</span>
+	<%= f.radio_button :gender, "Male" %> Male
+</label>
+
 <%= f.label :email %>
 <%= f.text_field :email %>
 
