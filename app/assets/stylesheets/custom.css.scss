@@ -185,18 +185,18 @@ textarea {
   img {
     margin-bottom: 20px;
   }
+}
 
-  .imgs .animated {
+.about-imgs .animated {
     display: none;
-  }
+}
 
-  .imgs:hover {
-    .animated {
-      display: inline;
-    }
-    .non-animated {
-      display: none;
-    }
+.about-imgs:hover {
+  .animated {
+    display: inline;
+  }
+  .non-animated {
+    display: none;
   }
 }
 
@@ -208,11 +208,11 @@ textarea {
     display: block;
     padding: 15px 0;
 
-    img.pull-left {
+    .about-imgs.pull-left {
       margin-right: 20px;
     }
 
-    img.pull-right {
+    .about-imgs.pull-right {
       margin-left: 20px;
     }
   }

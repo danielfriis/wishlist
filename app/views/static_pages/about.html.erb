@@ -20,17 +20,26 @@
   <div class="span9 about-boxes">
   	<h2>How it works</h2>
 		<span class="text-left">
-			<%= image_tag 'about-collect.gif', class: "pull-left" %>
+			<div class="about-imgs pull-left">
+				<%= image_tag 'about-collect.gif', class: "animated" %>
+				<%= image_tag 'about-collect.png', class: "non-animated" %>
+			</div>
 			<h2>Collect</h2>
 			<p>Easily add products to your wishlist from around the web with the Wishlistt button.</p>
 	 	</span>
 	 	<span class="text-right">
-			<%= image_tag 'about-organize.gif', class: "pull-right" %>
+			<div class="about-imgs pull-right">
+				<%= image_tag 'about-organize.gif', class: "animated" %>
+				<%= image_tag 'about-organize.png', class: "non-animated" %>
+			</div>
 			<h2>Organize</h2>
 			<p>Wishlistt allows you to easily arrange and sort wishes across all your wishlists.</p>
 	 	</span>
 		<span class="text-left">
-			<img class="pull-left" src="http://placehold.it/250x200" alt="">
+			<div class="about-imgs pull-left">
+				<%= image_tag 'about-share.gif', class: "animated" %>
+				<%= image_tag 'about-share.png', class: "non-animated" %>
+			</div>
 			<h2>Share</h2>
 			<p>With one click you can e-mail your wishlist to friends and family or export it to PDF.</p>
 	 	</span>
