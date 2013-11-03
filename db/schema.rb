@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130927084332) do
+ActiveRecord::Schema.define(:version => 20131031194416) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130927084332) do
     t.string   "image"
     t.string   "gender"
     t.integer  "vendor_id"
+    t.string   "via"
   end
 
   create_table "lists", :force => true do |t|

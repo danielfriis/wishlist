@@ -1,0 +1,12 @@
+<div class="more_vendor">
+	<% if @item.vendor.present? %>
+		<h3>More from <%= link_to @item.vendor.name, @item.vendor.url, target: "_blank" %></h3>
+	<% else %>
+	  <h3>Possibly related to</h3>
+  <% end %>
+  <div>
+    <% @items.each do |item| %>
+    <%= link_to image_tag(item.image_url(:thumb), class: "img-rounded", style: "margin-bottom:4px;width:95px;height:95px;"), item %>
+    <% end %>
+  </div>
+</div>

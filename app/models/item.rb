@@ -9,10 +9,12 @@
 #  updated_at :datetime         not null
 #  image      :string(255)
 #  gender     :string(255)
+#  vendor_id  :integer
+#  via        :string(255)
 #
 
 class Item < ActiveRecord::Base
-  attr_accessible :link, :title, :image, :remote_image_url, :gender, :vendor_id
+  attr_accessible :link, :title, :image, :remote_image_url, :gender, :vendor_id, :via
 
   belongs_to :vendor
 
@@ -25,7 +27,6 @@ class Item < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates :title, presence: true, length: { maximum: 140 }
-  validates_presence_of :image
   validates :image,
     :file_mime_type => {
       :content_type => /image/

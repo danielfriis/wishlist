@@ -1,65 +1,86 @@
-var link = $("#url");
-var text = $(link).val();
-var loading = $('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
-// send url to service for parsing
+$('#make_wish').remove();
+$('#add_wish').after('<%= j render("shared/make_a_wish") %>');
 
-$("#urlb").addClass("disabled").attr("href", "#");
-$(".modal-body form").hide().after(loading);
+console.log('Wuhuu');
 
-$.ajax('/linkpreview', {
-  type: 'POST',
-  dataType:'json',
-  data: { url: text },
-  success: function(data, textStatus, jqXHR) {
-  	$("#linkpreview").hide().after('<%= j render("item_fields") %>').after('<%= j render("carousel") %>');
-    $('label[for="item_image"]').hide();
-    $("#item_image").hide();
-    $('label[for="item_remote_image_url"]').hide();
-    $("#item_remote_image_url").hide();
-    $('label[for="item_link"]').hide();
-    $("#item_link").hide();
-    var newHTML = [];
-    $.each(data['img'], function(index, value) {
-      newHTML.push('<div class="item"><img src="' + value + '"></div>')
-    });
-    $(".carousel-inner").html(newHTML.join(""));
-    // $(".carousel-inner .item").each(function(){
-    //   var $minHeight = 200;
-    //   //you need the height of the div you are currently iterating on: use this
-    //   if ( $(this).children('img').get(0).height < $minHeight) {
-    //   //find the img in this div and hide it
-    //   $(this).closest(".item").remove();
-    //   }
-    // });
-    $("#item_title").val(data['title']);
-    $("#item_link").val(data['url']);
+$('#manual_wish').on('click', function(event) {
+ console.log('Wuhuu');
+ return false;
+});
 
-    if ($('.carousel-inner .item img').length) {
-      $('.carousel').carousel('next').carousel('pause');
-          // $("#item_remote_image_url").val(data['img']);
-      $("#commit").on('hover', function() {
-        $("#item_remote_image_url").val($("#imgPreview .active img").attr("src"))
+console.log('Wuhuu2');
+
+$('#manual_wish').click(function (event) {
+  console.log($('#manual_wish'));
+  $('#modal-default-body').hide();
+  $('#modal-default-footer').hide().after('<%= j render("manual_wish") %>');
+  event.preventDefault(); // Prevent link from following its href
+});
+
+$('#linkpreview_parse').click(function (event) {
+  var link = $("#url");
+  var text = $(link).val();
+  var loading = $('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+  // send url to service for parsing
+
+  $("#urlb").addClass("disabled").attr("href", "#");
+  $(".modal-body form").hide().after(loading);
+
+  $.ajax('/linkpreview', {
+    type: 'POST',
+    dataType:'json',
+    data: { url: text },
+    success: function(data, textStatus, jqXHR) {
+      $("#linkpreview").hide().after('<%= j render("item_fields") %>').after('<%= j render("carousel") %>');
+      $('label[for="item_image"]').hide();
+      $("#item_image").hide();
+      $('label[for="item_remote_image_url"]').hide();
+      $("#item_remote_image_url").hide();
+      $('label[for="item_link"]').hide();
+      $("#item_link").hide();
+      var newHTML = [];
+      $.each(data['img'], function(index, value) {
+        newHTML.push('<div class="item"><img src="' + value + '"></div>')
       });
-      $("#commit").on('click', function() {
-        // $("#item_remote_image_url").val($("#imgPreview .active img").attr("src"))
-        $(this).addClass("disabled").attr("href", "#");
-      })
-    }
-    else {
-      alert('Damn, could not find any good images!');
-      $("#imgPreview").remove();
-      $("#new_item").remove();
-      $("#linkpreview").show();
-      $(".modal-body form").show();
+      $(".carousel-inner").html(newHTML.join(""));
+      // $(".carousel-inner .item").each(function(){
+      //   var $minHeight = 200;
+      //   //you need the height of the div you are currently iterating on: use this
+      //   if ( $(this).children('img').get(0).height < $minHeight) {
+      //   //find the img in this div and hide it
+      //   $(this).closest(".item").remove();
+      //   }
+      // });
+      $("#item_title").val(data['title']);
+      $("#item_link").val(data['url']);
+
+      if ($('.carousel-inner .item img').length) {
+        $('.carousel').carousel('next').carousel('pause');
+            // $("#item_remote_image_url").val(data['img']);
+        $("#commit").on('hover', function() {
+          $("#item_remote_image_url").val($("#imgPreview .active img").attr("src"))
+        });
+        $("#commit").on('click', function() {
+          // $("#item_remote_image_url").val($("#imgPreview .active img").attr("src"))
+          $(this).addClass("disabled").attr("href", "#");
+        })
+      }
+      else {
+        alert('Damn, could not find any good images!');
+        $("#imgPreview").remove();
+        $("#new_item").remove();
+        $("#linkpreview").show();
+        $(".modal-body form").show();
+        $("#urlb").removeClass("disabled").attr("href", "/items/new");
+        $(".progress").hide();
+      }
+        
+    },
+    error: function() { 
+      alert("Damn, the link you provided did not work! Please try another"); 
       $("#urlb").removeClass("disabled").attr("href", "/items/new");
+      $(".modal-body form").show();
       $(".progress").hide();
     }
-      
-  },
-  error: function() { 
-    alert("Damn, the link you provided did not work! Please try another"); 
-    $("#urlb").removeClass("disabled").attr("href", "/items/new");
-    $(".modal-body form").show();
-    $(".progress").hide();
-  }
-}); 
+  }); 
+});

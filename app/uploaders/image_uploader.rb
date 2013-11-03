@@ -47,6 +47,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [280, 280]
   end
 
+  def default_url
+    "/assets/default_images/" + [version_name, "gift.png"].compact.join('_')
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

@@ -63,9 +63,9 @@ module ApplicationHelper
     end
   end
 
-  def meta_image(desc = nil)
-    if desc.present?
-      content_for :meta_image, desc
+  def meta_image(image = nil)
+    if image.present?
+      content_for :meta_image, image
     else
       content_for?(:meta_image) ? content_for(:meta_image) : APP_CONFIG['meta_image']
     end

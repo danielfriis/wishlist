@@ -1,0 +1,11 @@
+<div id="modal-manual-wish-body" class="modal-body">
+	<%= form_for(@item, html: { multipart: true }) do |f| %>
+	  <%= render 'fields', f: f %>
+	  <%= f.hidden_field :via, value: "no_link" %>
+	  <%= f.submit "Add wish", class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>
+<div id="modal-manual-wish-footer" class="modal-footer">
+	<a href="#" id="manual_wish_back" class="muted pull-left">Back</a>
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>

@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
 
 	def show
 		@item = Item.find(params[:id])
+		@items = @item.vendor.present? ? @item.vendor.items.sample(9) : Item.all.sample(9)
 		@commentable = @item
 	  @comments = @commentable.comments
 	  @comment = Comment.new
@@ -24,10 +25,15 @@ class ItemsController < ApplicationController
 	end
 
 	def create
+		@user = current_user
     @list = current_user.lists.find(params[:list_id])
-		@item = Item.find_or_create_by_link!(params[:item][:link]) do |c|
-			c.assign_attributes(params[:item])
-			c.vendor_id = Vendor.custom_find_or_create(params[:item][:link])
+    if params[:item][:via] == "no_link"
+    	@item = Item.create(params[:item])
+    else
+			@item = Item.find_or_create_by_link!(params[:item][:link]) do |c|
+				c.assign_attributes(params[:item])
+				c.vendor_id = Vendor.custom_find_or_create(params[:item][:link])
+			end
 		end
 		@item.wishes.build(list_id: @list.id, note: params[:note])
 		respond_to do |format|

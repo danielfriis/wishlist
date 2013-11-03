@@ -1,0 +1,13 @@
+<div class="shop_now">
+	<% if @item.vendor.present? %>
+		<%= link_to "Shop Now", @item.link, class: "btn btn-primary btn-large btn-block", target: "_blank" %>
+    <p class="muted">from <strong><%= @item.vendor.name %></strong></p>
+    <hr>
+  <% elsif @item.link.present? %>
+  	<h3>May be found here</h3>
+  	<p><%= @item.link %></p>
+  <% else %>
+    <h3>Additional Info</h3>
+  	<%= best_in_place @item, :link, nil: "Add a link to this wish" %>
+  <% end %>
+</div>

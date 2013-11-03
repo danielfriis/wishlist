@@ -7,13 +7,13 @@
 <%= f.text_field :remote_image_url %>
 
 <%= f.label :title %>
-<%= f.text_field :title %>
+<%= f.text_field :title, placeholder: "Warm Sweater" %>
 
 <%= f.label :link %>
-<%= f.text_field :link %>
+<%= f.text_field :link, placeholder: "http://" %>
 
 <%= label_tag :note %>
-<%= text_field_tag :note %>
+<%= text_field_tag :note, nil, placeholder: "Love it in blue!" %>
 
 <%= f.label :list_id %>
 <%= select_tag :list_id, options_for_select(@user.lists.all.collect{ |u| [u.name, u.id] }) %>

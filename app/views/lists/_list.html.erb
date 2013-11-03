@@ -19,7 +19,7 @@
 			<ul class="user_list_wishes <% if current_user?(list.user) %>dragndrop<% end %> unstyled" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
 
 				<!-- List wishes -->
-				<% list.wishes.rank(:row_order).each do |wish| %>
+				<% list.wishes.includes(:item).rank(:row_order).each do |wish| %>
 					<li class="user_list_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
 
 						<%= link_to wish.item do %>	
@@ -45,7 +45,7 @@
 
 			</ul>
 			<% if current_user?(list.user) %>
-				<a href="#make_wish" role="button" data-toggle="modal" class="user_list_add_wish">Add wish</a>
+				<%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish", class: "user_list_add_wish"} %>
 			<% end %>
 		</div>
 	</div>

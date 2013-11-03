@@ -1,7 +1,8 @@
 <% provide(:title, @item.title) %>
+<% meta_image @item.image_url.to_s %>
 <div class="row">
   <div class="span12">
-    <h1><%= best_in_place_if @item.lists.any? && current_user?(@item.lists.first.user) && @item.wishes.count < 5, @item, :title, nil: "Please name this product" %></h1>
+    <h1><%= best_in_place_if @item.lists.any? && current_user?(@item.wishes.first.list.user) && @item.wishes.count < 5, @item, :title, nil: "Please name this product" %></h1>
     <div class="spacer hidden-phone"></div>
   </div>
   <div class="span8">
@@ -16,37 +17,9 @@
     <%= render 'comments/comments' %>
     <%= render 'comments/form' if signed_in? %>
   </div>
-  <aside class="span4 shop_now">
-    <%= link_to "Shop Now", @item.link, class: "btn btn-primary btn-large btn-block", target: "_blank" %>
-    <p class="muted">from <strong><%= @item.vendor.name %></strong></p>
-    <hr>
-  </aside>
-  <aside class="span4 social-count">
-    <ul class="unstyled">
-      <li>
-        <i class="icon-heart"></i> 
-        <% if @item.lists.any? && @item.lists.last.user %>
-          <%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> 
-          
-          <% if @item.wishes.count > 1 %> 
-            and <%= pluralize(@item.wishes.count - 1, 'other') %>
-          <% end %>
-          wishes this.
-        <% else %>
-          Be the first to wish this
-        <% end %>
-      </li>
-      <li><i class="icon-eye-open"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
-    </ul>
-  </aside>
   <aside class="span4">
-    <h3>More from <%= link_to @item.vendor.name, @item.vendor.url, target: "_blank" %></h3>
-    <div class="">
-      <% @item.vendor.items.all.sample(9).each do |item| %>
-      <%= link_to image_tag(item.image_url(:thumb), class: "img-rounded", style: "margin-bottom:4px;width:95px;height:95px;"), item %>
-      <% end %>
-    </div>
-
+    <%= render 'aside_shop_now' %>
+    <%= render 'aside_social_count' %>
+    <%= render 'aside_more_vendor' %>
   </aside>
-
 </div>

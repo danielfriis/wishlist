@@ -1,0 +1,18 @@
+<div class="social-count">
+	<ul class="unstyled">
+      <li>
+        <i class="icon-heart"></i> 
+        <% if @item.lists.any? && @item.lists.last.user %>
+          <%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> 
+          
+          <% if @item.wishes.count > 1 %> 
+            and <%= pluralize(@item.wishes.count - 1, 'other') %>
+          <% end %>
+          wishes this.
+        <% else %>
+          Be the first to wish this
+        <% end %>
+      </li>
+      <li><i class="icon-eye-open"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
+    </ul>
+</div>

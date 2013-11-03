@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #  image      :string(255)
 #  gender     :string(255)
+#  vendor_id  :integer
+#  via        :string(255)
 #
 
 require 'spec_helper'
