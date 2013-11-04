@@ -17,7 +17,7 @@ end
 
 task :item_via_default => :environment do
 	Item.find_each do |item|
-		if item.via = nil
+		if item.via.nil?
 			item.via = "default"
 			item.save
 		end
