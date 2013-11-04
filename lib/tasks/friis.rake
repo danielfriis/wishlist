@@ -14,3 +14,10 @@ task :create_vendors => :environment do
 		item.vendor.save
 	end
 end
+
+task :item_via_default => :environment do
+	Item.find_each do |item|
+		item.via = "default"
+		item.save
+	end
+end
