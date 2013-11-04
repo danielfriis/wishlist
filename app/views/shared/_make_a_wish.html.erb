@@ -4,23 +4,29 @@
     <h3 id="make_wish">Make a wish</h3>
   </div>
   <div id="linkpreview">
-    <div id="modal-default-body" class="modal-body">
-      <div class="center">
-        <div class="spacer"></div>
-        <div class="spacer"></div>
-        <p>Drag this button to your bookmark bar, and easily add items to your wish list.</p><a href="javascript:(function()%7Bvar%20script=document.createElement('SCRIPT');script.src='<%= request.protocol %><%= request.host_with_port %>/assets/bookmarklet/wishlistt_tagger.js?r='+Math.random()*99999999;document.body.appendChild(script);%7D)()" class="btn btn-success">Wishlistt it</a>
-        <div class="spacer"></div>
+    <%= form_tag '/linkpreview', id: "linkpreview_form", remote: true do %>
+      <div id="modal-default-body" class="modal-body">
+        <div class="center hidden-phone">
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+          <p>Drag this button to your bookmark bar, and easily add items to your wish list.</p><a href="javascript:(function()%7Bvar%20script=document.createElement('SCRIPT');script.src='<%= request.protocol %><%= request.host_with_port %>/assets/bookmarklet/wishlistt_tagger.js?r='+Math.random()*99999999;document.body.appendChild(script);%7D)()" class="btn btn-success">Wishlistt it</a>
+          <div class="spacer"></div>
+          <hr>
+        </div>
+        
+          <!-- <label for="url">or, paste the URL for the product you wish</label>
+          <input id="url" type="text" placeholder="http://"> -->
+          <%= label_tag :url, "or, paste the URL for the product you wish" %>
+          <%= text_field_tag :url %>
+
       </div>
-      <hr>
-      <form>
-        <label for="url">or, paste the URL for the product you wish</label>
-        <input id="url" type="text" placeholder="http://">
-      </form>
-    </div>
-    <div id="modal-default-footer" class="modal-footer">
-      <a href="#" id="manual_wish" class="muted pull-left">Add a wish manually</a>
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <a href="#" id="urlb" role="button" class="btn btn-primary">Add wish</a>
-    </div>
+      <div id="modal-default-footer" class="modal-footer">
+        <a href="#" id="manual_wish" class="muted pull-left">Add a wish manually</a>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <!-- <a href="#" id="urlb" role="button" class="btn btn-primary">Add wish</a> -->
+        
+        <%= submit_tag "Add wish", class: "btn btn-primary", id: "urlb" %>
+      </div>
+    <% end %>
   </div>
 </div>

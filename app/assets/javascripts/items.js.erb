@@ -1,1 +1,27 @@
 $('.best_in_place').best_in_place();
+$(document).on('click', '#manual_wish', function() { 
+  $('#linkpreview').hide();
+  $('#item_fields').show();
+  $('#imgPreview').hide();
+  $('#item_via').val("no_link");
+});
+
+
+$(document).on('click', '#manual_wish_back', function() { 
+  $('#linkpreview').show();
+  $('#item_fields').hide();
+
+  // Reset
+  $('#item_via').val("");
+  $("#item_remote_image_url").val("");
+  $("#item_link").val("");
+  $("#item_title").val("");
+
+  $('#imgPreview').show();
+  $('label[for="item_image"]').show();
+  $("#item_image").show();
+  $('label[for="item_remote_image_url"]').show();
+  $("#item_remote_image_url").show();
+  $('label[for="item_link"]').show();
+  $("#item_link").show();
+});
