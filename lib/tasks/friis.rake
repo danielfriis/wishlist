@@ -23,3 +23,12 @@ task :item_via_default => :environment do
 		end
 	end
 end
+
+task :gender_default => :environment do
+	User.find_each do |user|
+		if user.gender.nil?
+			user.gender = "Male"
+			user.save
+		end
+	end
+end
