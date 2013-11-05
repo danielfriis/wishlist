@@ -1,5 +1,11 @@
 $(document).ready ->
   $("#linkpreview_form").on("ajax:success", (e, data, status, xhr) ->
+    $("#urlb").removeClass("disabled").attr("tyoe", "submit");
+    $('#manual_wish').show();
+    $("#modal-default-body").show();
+    $("#loading").remove();
+    $('#url').val("");
+
     $('.carousel-inner').html('')
     $("#item_title").val("");
     $("#item_link").val("");
@@ -32,4 +38,8 @@ $(document).ready ->
     $('#item_fields').show() if data.img.length > 0
 
   	).bind "ajax:error", (e, xhr, status, error) ->
-    	$("#url").after "<p>Damn, no good images found!</p>"
+        $("#modal-default-body").show();
+        $("#loading").remove();
+        $("#urlb").removeClass("disabled");
+        $('#manual_wish').show();
+        $('#url').val("");

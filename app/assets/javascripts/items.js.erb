@@ -6,12 +6,20 @@ $(document).on('click', '#manual_wish', function() {
   $('#item_via').val("no_link");
 });
 
+$(document).on('click', '#urlb', function() {
+  $("#urlb").addClass("disabled");
+  $("#modal-default-body").hide().after('<div id="loading" class="center"><div class="spacer"></div><div class="spacer"></div><p>Grabbing information for you</p><div class="spacer"></div></div>');
+  $('#manual_wish').hide();
+});
+
 
 $(document).on('click', '#manual_wish_back', function() { 
   $('#linkpreview').show();
   $('#item_fields').hide();
 
   // Reset
+  $("#modal-default-body").show();
+  $("#loading").remove();
   $('#item_via').val("");
   $("#item_remote_image_url").val("");
   $("#item_link").val("");
