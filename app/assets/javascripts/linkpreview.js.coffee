@@ -28,8 +28,8 @@ $(document).ready ->
     $('#commit').hover ->
     	$("#item_remote_image_url").val($(".carousel-inner .active img").attr("src"));
 
-    $('#linkpreview').hide() if data.img.length > 1
-    $('#item_fields').show() if data.img.length > 1
+    $('#linkpreview').hide() if data.img.length > 0
+    $('#item_fields').show() if data.img.length > 0
 
   	).bind "ajax:error", (e, xhr, status, error) ->
     	$("#url").after "<p>Damn, no good images found!</p>"
