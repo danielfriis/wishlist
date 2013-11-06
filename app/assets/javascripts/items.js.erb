@@ -33,3 +33,8 @@ $(document).on('click', '#manual_wish_back', function() {
   $('label[for="item_link"]').show();
   $("#item_link").show();
 });
+
+$(document).on('click', '#commit', function() {
+  $("#commit").addClass("disabled");
+  $("#commit").removeClass("btn-primary");
+});
