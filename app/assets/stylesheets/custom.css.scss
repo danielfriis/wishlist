@@ -68,6 +68,29 @@ body {
   cursor: pointer;
 }
 
+.modal {
+  position: absolute;
+  top: 10%;
+}
+
+// Fix to make modals scrollable
+
+.modal-body {
+  max-height: none !important;
+}
+
+@media all and (min-height: 40em) {
+  .modal {
+    position: fixed;
+  }
+  .modal-body {
+    max-height: 40em;
+    overflow-y: auto;
+  }
+}
+
+// END
+
 .modal-footer {
   border-top: 0px solid #ddd;
   background-color: white;
