@@ -1,5 +1,9 @@
 Wishlist::Application.routes.draw do
 
+  namespace :admin do
+    resources :users, :items, :wishes, :comments
+  end
+
   resources :items, only: [:show, :new, :create, :update, :destroy, :inspiration] do
     resources :comments
   end

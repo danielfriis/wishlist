@@ -1,0 +1,23 @@
+<% provide(:title, 'All items') %>
+<h1>All items</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+	<% @items.each do |item| %>
+    <li id="item_<%= item.id %>">
+      <%= image_tag item.image_url(:thumb), alt: item.title, class: "gravatar img-rounded" %>
+      <div><strong>Title:</strong> <%= link_to item.title, admin_item_path(item) %></div>
+      <div><strong>Link:</strong> <%= item.link %></div>
+      <div><strong>ID:</strong> <%= item.id %>, <strong>Created:</strong> <%= item.created_at %>, <strong>via:</strong> <%= item.via %></div>
+      <div><strong>Gender:</strong> <%= item.gender %></div>
+      <div><strong>Wishes:</strong> <%= item.wishes.count %></div>
+      <div><%= link_to "Remove", admin_item_path(item), method: :delete,
+			                                data: { confirm: "You sure?" },
+			                                title: item.title,
+			                                remote: true %></div>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

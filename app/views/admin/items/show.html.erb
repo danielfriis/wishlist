@@ -1,0 +1,29 @@
+<% provide(:title, @item.title) %>
+<% meta_image @item.image_url.to_s %>
+<div class="row">
+  <div class="span12">
+    <h1><%= best_in_place_if @item.lists.any? && current_user?(@item.wishes.first.list.user) && @item.wishes.count < 5, @item, :title, nil: "Please name this product" %></h1>
+    <div class="spacer hidden-phone"></div>
+  </div>
+  <div class="span8">
+    <div class="white-box item-big">
+      <div class="image-container">
+        <%= render 'shared/wishlistt_it', item: @item %>
+        <em class="mark"></em>
+        <%= image_tag @item.image_url.to_s %>
+      </div>
+    </div>
+    <div><%= link_to "Remove", admin_item_path(@item), method: :delete,
+                                      data: { confirm: "You sure?" },
+                                      title: @item.title,
+                                      remote: true %></div>
+    <div class="spacer"></div>
+    <%= render 'comments/comments' %>
+    <%= render 'comments/form' if signed_in? %>
+  </div>
+  <aside class="span4">
+    <%= render 'items/aside_shop_now' %>
+    <%= render 'items/aside_social_count' %>
+    <%= render 'items/aside_more_vendor' %>
+  </aside>
+</div>
