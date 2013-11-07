@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="span12">
 		<ul class="nav nav-pills sort_general pull-left">
-		  <li><%= sortable_general "following" %></li>
+		  <% if signed_in? %><li><%= sortable_general "following" %></li><% end %>
 			<li><%= sortable_general "popular" %></li>
 		  <li><%= sortable_general "recent" %></li>		  
 		</ul>
@@ -14,7 +14,7 @@
 </div>
 <div class="row inspiration">
   <%= render @items %>
-  <%= render 'no_following' if current_user.followed_users.empty? && params[:sort] == "following" %>
+  <%= render 'no_following' if signed_in? && current_user.followed_users.empty? && params[:sort] == "following" %>
 </div>
 
 <div id="inspiration-pagination">

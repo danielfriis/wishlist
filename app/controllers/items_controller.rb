@@ -83,7 +83,12 @@ class ItemsController < ApplicationController
   private
 
 		def sort_general
-	    %w[recent popular following].include?(params[:sort]) ? params[:sort] : "following"
+	    if signed_in? 
+	    	%w[recent popular following].include?(params[:sort]) ? params[:sort] : "following"
+	    else
+	    	%w[recent popular following].include?(params[:sort]) ? params[:sort] : "popular"
+	    end
+
 	  end
 
 	  def sort_gender

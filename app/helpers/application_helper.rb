@@ -20,7 +20,9 @@ module ApplicationHelper
 
   def sortable_general(column, title = nil)
     title ||= column.titleize
-    if params[:sort] == nil && column == "following"
+    if signed_in? && params[:sort] == nil && column == "following"
+      css_class = "active"
+    elsif !signed_in? && params[:sort] == nil && column == "popular"
       css_class = "active"
     elsif column == params[:sort]
       css_class = "active"
