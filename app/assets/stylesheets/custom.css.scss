@@ -158,9 +158,20 @@ textarea {
 }
 
 .hero-unit {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(45,49,61, .6)), color-stop(100%, rgba(45,49,61, 1))), url('nice-things.jpg'); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, rgba(45,49,61, .6), rgba(45,49,61, 1)), url('nice-things.jpg'); /* Chrome10+,Safari5.1+ */
+    background-image:    -moz-linear-gradient(top, rgba(45,49,61, .6), rgba(45,49,61, 1)), url('nice-things.jpg'); /* FF3.6+ */
+    background-image:     -ms-linear-gradient(top, rgba(45,49,61, .6), rgba(45,49,61, 1)), url('nice-things.jpg'); /* IE10+ */
+    background-image:      -o-linear-gradient(top, rgba(45,49,61, .6), rgba(45,49,61, 1)), url('nice-things.jpg'); /* Opera 11.10+ */
+    background-image:         linear-gradient(to bottom, rgba(45,49,61, .6), rgba(45,49,61, 1)), url('nice-things.jpg'); /* W3C */
+
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+
   // background-color: #7f8c8d;
   // background-color: #524982;
-  background-color: #2d313d;
+  // background-color: #2d313d;
 
   color: white;
   margin-bottom: 0;
