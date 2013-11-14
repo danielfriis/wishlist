@@ -32,3 +32,12 @@ task :gender_default => :environment do
 		end
 	end
 end
+
+task :hide_wish => :environment do
+	Wish.find_each do |wish|
+		if wish.hide.nil?
+			wish.hide = false
+			wish.save
+		end
+	end
+end

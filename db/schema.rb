@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107150340) do
+ActiveRecord::Schema.define(:version => 20131113143446) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20131107150340) do
     t.datetime "updated_at", :null => false
     t.string   "note"
     t.integer  "row_order"
+    t.boolean  "hide"
   end
 
 end

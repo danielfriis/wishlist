@@ -18,6 +18,15 @@
 <%= f.label :list_id %>
 <%= select_tag :list_id, options_for_select(@user.lists.all.collect{ |u| [u.name, u.id] }) %>
 
+<label class="checkbox">
+	<span class="icons">
+		<span class="first-icon fui-checkbox-unchecked"></span>
+		<span class="second-icon fui-checkbox-checked"></span>
+	</span>
+	<%= label_tag :hide, "Hide from inspiration feed" %>
+	<%= check_box_tag :hide %>
+</label>
+
 <%= f.hidden_field :gender, value: @user.gender %>
 
 <%= f.hidden_field :via %>

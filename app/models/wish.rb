@@ -14,7 +14,7 @@
 class Wish < ActiveRecord::Base
 	include RankedModel
 
-  attr_accessible :item_id, :list_id, :note, :row_order, :row_order_position
+  attr_accessible :item_id, :list_id, :note, :row_order, :row_order_position, :hide
   belongs_to :list
   ranks :row_order,
   	:with_same => :list_id
