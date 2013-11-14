@@ -117,11 +117,11 @@ ActiveRecord::Schema.define(:version => 20131113143446) do
   create_table "wishes", :force => true do |t|
     t.integer  "list_id"
     t.integer  "item_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "note"
     t.integer  "row_order"
-    t.boolean  "hide"
+    t.boolean  "hide",       :default => false
   end
 
 end

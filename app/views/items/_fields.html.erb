@@ -23,8 +23,8 @@
 		<span class="first-icon fui-checkbox-unchecked"></span>
 		<span class="second-icon fui-checkbox-checked"></span>
 	</span>
-	<%= label_tag :hide, "Hide from inspiration feed" %>
-	<%= check_box_tag :hide %>
+	<%= label :wish, "hide", "Hide from inspiration feed" %>
+	<%= check_box :wish, "hide", {}, "true", "false" %>
 </label>
 
 <%= f.hidden_field :gender, value: @user.gender %>
