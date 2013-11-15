@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 		@item.wishes.build(list_id: @list.id, note: params[:note], hide: params[:wish][:hide])
 		respond_to do |format|
 	    if @item.save
-	    	if params[:via] == "bookmarklet"
+	    	if params[:item][:via] == "bookmarklet"
 	    		format.json { render json: @item }
 	    	else
 		    	flash[:success] = "Item created!"
