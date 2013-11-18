@@ -1,2 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('users/follow')) %>")
-$("#followers").html('<%= pluralize(@user.followers.count, "follower") %>')
+$("#follow_form_<%= @user.id %>").html("<%= escape_javascript(render(partial: 'users/follow', locals: {:user => @user})) %>")
+$("#followers_<%= @user.id %>").html('<%= @user.followers.count %>')

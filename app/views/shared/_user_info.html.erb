@@ -1,27 +1,21 @@
-<div class="span12 user_info">
-  <div class="row">
-    <% @user ||= current_user %>
-    <div class="span8">
-      <a href="<%= user_path(@user) %>">
-        <%= image_tag avatar(@user, :large), alt: @user.name, class: "gravatar img-rounded" %>
-      </a>
+<% user ||= @user %>
+<div class="span8">
+  <a href="<%= user_path(user) %>">
+    <%= image_tag avatar(user, :large), alt: user.name, class: "gravatar img-rounded" %>
+  </a>
 
-      <h1><%= @user.name %></h1>
-      <span>
-        <% if @user.location? %>
-          <i class="icon-map-marker"></i> <%= @user.location %> 
-        <% end %> 
-        <% if @user.gender? %> 
-          <i class="icon-user"></i> <%= @user.gender %>
-      </span>
-        <% end %>
-        <%= render 'users/follow_form' if signed_in? %>
-        <div id="stats" class="btn-group inline-block">
-          <a href="<%= following_user_path(@user) %>" id="following" class="btn"><%= @user.followed_users.count %> following</a>
-          <a href="<%= followers_user_path(@user) %>" id="followers" class="btn"><%= pluralize(@user.followers.count, "follower") %></a>
-        </div>
-    </div>
-    <!-- <a href="#" class="btn">Follow</a> -->
-    
-  </div>
+  <h1><%= user.name %></h1>
+  <span>
+    <% if user.location? %>
+      <i class="icon-map-marker"></i> <%= user.location %> 
+    <% end %> 
+    <% if user.gender? %> 
+      <i class="icon-user"></i> <%= user.gender %>
+    <% end %>
+  </span>
+  <span>
+    <%= render partial: 'users/follow_form', locals: {:user => user} if signed_in? %>
+    <%= render partial: 'users/follow_stats', locals: {:user => user} %>
+  </span>
 </div>
+<!-- <a href="#" class="btn">Follow</a> -->

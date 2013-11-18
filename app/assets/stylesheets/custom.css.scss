@@ -149,7 +149,7 @@ textarea {
 }
 
 .muted a, a.muted {
-  color: #999999;
+  color: #777777;
   text-decoration: none;
   &:hover, &:focus {
     color: #333333;
@@ -572,6 +572,10 @@ footer {
     }
 }
 
+.follow_form {
+  margin-right: 10px;
+}
+
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -659,6 +663,7 @@ aside > div {
 //   font-size: 13px;
 // }
 
+
 /* forms */
 
 form {
@@ -676,6 +681,8 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
+
 
 #error_explanation {
   color: #f00;
@@ -1000,27 +1007,31 @@ aside {
 }
 
 
-// .stats {
-//   overflow: auto;
-//   float:right;
-//   margin-top: 20px;
-//   a {
-//     float: left;
-//     padding: 0 10px;
-//     border-left: 1px solid $grayLighter;
-//     color: gray;
-//     &:first-child {
-//       padding-left: 0;
-//       border: 0;
-//     }
-//     &:hover {
-//       text-decoration: none;
-//     }
-//   }
-//   strong {
-//     display: block;
-//   }
-// }
+.stats {
+  // overflow: auto;
+  margin-top: 0px;
+  display: inline-block;
+  vertical-align: bottom;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $grayLighter;
+    color: gray;
+    font-size: 12px;
+    line-height: 16px;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  strong {
+    display: block;
+    font-size: 14px;
+  }
+}
 
 .user_avatars {
   overflow: auto;
@@ -1075,10 +1086,10 @@ aside {
 
 .users {
   list-style: none;
-  margin: 0;
+  margin: 10px 0 0 0;
   li {
     overflow: auto;
-    padding: 10px 0;
+    padding: 10px 0 0;
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;

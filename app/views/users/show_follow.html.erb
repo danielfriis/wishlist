@@ -1,20 +1,19 @@
 <% provide(:title, @title) %>
 <div class="row">
-  <%= render 'shared/user_info' %>
-
+  <div class="span12 user_info">
+    <div class="row">
+      <%= render partial: 'shared/user_info', locals: {:user => @user} %>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="span9">
     <h1><%= @title %></h1>
     <% if @users.any? %>
       <ul class="users">
-        <% @users.each do |user| %>
-          <li>
-            <%= image_tag avatar(user, :medium), alt: user.name, class: "gravatar img-rounded" %>
-            <div><%= link_to user.name, user %></div>
-            <div><%= pluralize(user.wishes.count, "wish") %></div>
-          </li>
-        <% end %>
+        <%= render @users %>
       </ul>
-      <%= will_paginate %>
+      <%= will_paginate @users %>
     <% end %>
   </div>
   <aside class="pull-right span3">
