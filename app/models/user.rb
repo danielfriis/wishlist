@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
       user.location = auth['info']['location']
       user.password = "foobar"
       user.password_confirmation = "foobar"
+      UserMailer.signup_confirmation(user).deliver
     end
   end
 

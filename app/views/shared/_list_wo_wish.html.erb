@@ -1,5 +1,12 @@
-<div class="no-wish center">
-	<h3>A list without a wish is no wish list!</h3>
-	<p>Begin collecting your wishes by clicking the 'Add wish' button on the top bar of this page. It's super easy!</p>
-
-</div>
+<% if current_user?(@user) %>
+	<div class="no-wish center">
+		<%= image_tag('default_images/thumb_gift.png', size: "60x60") %>
+		<h3>A list without a wish is no wish list!</h3>
+		<p>Begin collecting your wishes by clicking the 'Add wish' button. It's super easy!</p>
+	</div>
+<% else %>
+	<div class="no-wish center">
+		<%= image_tag('default_images/thumb_gift.png', size: "60x60") %>
+		<h3>This list has no wishes yet</h3>
+	</div>
+<% end %>
