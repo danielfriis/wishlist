@@ -16,6 +16,15 @@
             <a href="<%= user_path(current_user) %>"><%= current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar img-rounded" %></a>
           </li>
           <li class="hidden-desktop">
+            <%= link_to "Find Inspiration", inspiration_path %>
+          </li>
+          <li class="hidden-desktop">
+            <%= link_to "About", about_path %>
+          </li>
+          <li class="hidden-desktop">
+            <%= link_to "Contact", contact_path %>
+          </li>
+          <li class="hidden-desktop">
             <%= link_to "Sign out", signout_path, method: "delete" %>
           </li>
           <li class="visible-desktop">
@@ -24,7 +33,7 @@
             </a>
             
           </li>
-          <li>
+          <li class="visible-desktop">
             <a class="navbar-caret dropdown-toggle" data-toggle="dropdown">
               <i class="icon-chevron-down"></i>
             </a>
@@ -32,13 +41,11 @@
               <li><%= link_to "Find Inspiration", inspiration_path %></li>
               <li><%= link_to "My wish lists", current_user %></li>
               <li class="divider"></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Contact", contact_path %></li>
               <li class="divider"></li>
-              <li>
-
-                <%= link_to "Sign out", signout_path, method: "delete" %>
-              </li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
             </ul>
           </li>
         </ul>
