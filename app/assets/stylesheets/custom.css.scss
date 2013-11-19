@@ -402,7 +402,11 @@ footer {
 
 .item {
   margin-bottom: 20px;
-  min-height: 364px;
+  min-height: 344px;
+  h3 {
+    font-size: 1em;
+    line-height: 1.3em;
+  }
   p {
     position: absolute;
     bottom: 10px;
