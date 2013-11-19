@@ -946,6 +946,9 @@ input {
 
 .no-wish {
   padding: 5% 10% 5% 10%;
+  clear:both;
+  display: block;
+  min-height: 150px;
   p {
     color: #777777;
   }

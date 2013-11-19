@@ -19,7 +19,7 @@
         </ul>
       </div>
     <% else %>
-      <%= render 'shared/list_wo_wish' %>
+      <%= render partial: 'shared/list_wo_wish', locals: {list: @list} %>
     <% end %>
     <%= render 'shared/list_add_wish' if current_user?(@user) %> 
   </div>

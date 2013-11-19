@@ -42,11 +42,8 @@
 
 						</li>
 					<% end %>
-				<% else %>
-					<%= render 'shared/list_wo_wish' %>
 				<% end %>
-
-
+				<%= render partial: 'shared/list_wo_wish', locals: {list: list} %>
 			</ul>
 			<% if current_user?(list.user) %>
 				<%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish", class: "user_list_add_wish"} %>

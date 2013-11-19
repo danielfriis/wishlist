@@ -1,15 +1,26 @@
 $(document).ready(function(){
   $('.user_list_wishes.dragndrop').sortable({
-   connectWith: ".user_list_wishes",
-   items: ".user_list_wish",
-   placeholder: "sortable_placeholder",
-   over: function( event, ui ) {
-    $('.js-masonry').masonry()
+    connectWith: ".user_list_wishes",
+    items: ".user_list_wish",
+    placeholder: "sortable_placeholder",
+    over: function( event, ui ) {
+      $('li.no-wish', this).hide();
+      $('.js-masonry').masonry();
     },
-   update: function(e, ui)
-   {
-      if (this === ui.item.parent()[0]) 
-      {
+    receive: function(event, ui) {
+      //hide empty message on receiver
+      $('li.no-wish', this).hide();
+
+      //show empty message on sender if applicable
+      if($('li:not(.no-wish)', ui.sender).length == 0){
+         $('li.no-wish', ui.sender).show();
+      } else {
+         $('li.no-wish', ui.sender).hide();
+      };
+      $('.js-masonry').masonry();         
+    }, 
+   update: function(e, ui) {
+      if (this === ui.item.parent()[0]) {
         item_id = ui.item.data('item-id');
         list_id = $(this).data('list-id');
         position = ui.item.index();
