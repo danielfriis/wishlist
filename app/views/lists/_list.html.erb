@@ -22,23 +22,27 @@
 				<% if list.wishes.any? %>
 					<% list.wishes.includes(:item).rank(:row_order).each do |wish| %>
 						<li class="user_list_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
-
-							<%= link_to wish.item do %>	
-
 								<div class="block pull-left">
-									<%= image_tag wish.item.image_url(:thumb).to_s %>
+									<%= link_to wish.item do %>	
+										<%= image_tag wish.item.image_url(:thumb).to_s %>
+									<% end %>
 								</div>
 
 								<div class="block">
 									<span class="content">
-										<h4><%= wish.item.title %></h4>
+										<%= link_to wish.item do %>	
+											<h4><%= wish.item.title %></h4>
+										<% end %>
+										<span class="muted">
+									    <p><%= wish.note %></p>
+								 		</span>
 										<span class="timestamp">
 									    Added <%= time_ago_in_words(wish.created_at) %> ago.
 								 		</span>
 									</span>
 								</div>
 
-							<% end %>
+							
 
 						</li>
 					<% end %>

@@ -892,6 +892,13 @@ input {
   margin-bottom: 0;
 }
 
+
+.dragndrop .user_list_wish:hover, .dragndrop .user_list_wish:active {
+  border-left: solid $grayLighter 4px;
+  padding-left: 1px;
+  cursor: move;
+}
+
 .user_list_wish:active {
   border: 1px solid $grayLighter;
 }
@@ -904,13 +911,13 @@ input {
 }
 
 .user_list_wish, .sortable_placeholder, .aside_user_list_wish {
-  height: 45px;
+  min-height: 45px;
   padding: 4px;
   img {
     height: 45px;
     max-width: 50px;
   }
-  h4 {
+  h4, p {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 1em;
