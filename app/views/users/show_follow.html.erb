@@ -10,9 +10,11 @@
   <div class="span9">
     <h1><%= @title %></h1>
     <% if @users.any? %>
-      <ul class="users">
-        <%= render @users %>
-      </ul>
+      <div class="row">
+        <ul class="users">
+          <%= render @users %>
+        </ul>
+      </div>
       <%= will_paginate @users %>
     <% end %>
   </div>

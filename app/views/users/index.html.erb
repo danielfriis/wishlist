@@ -2,6 +2,9 @@
 <div class="row">
 	<div class="span12">
 		<h1>Find Friends</h1>
+		<% if current_user.admin? %>
+			<p>(<%= @users.count %> users in total)</p>
+		<% end %>
 	</div>
 </div>
 
@@ -14,9 +17,11 @@
 			<% end %>
 		</div>
 
-		<ul class="users">
-			<%= render @users %>
-		</ul>
+		<div class="row">
+			<ul class="users">
+				<%= render @users %>
+			</ul>
+		</div>
 
 		<%= will_paginate @users, page_links: false %>
 	</div>

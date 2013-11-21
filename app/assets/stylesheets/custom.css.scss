@@ -571,9 +571,16 @@ footer {
       line-height: 1em;
       text-align: left;
       letter-spacing: -1px;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
       margin-top: 0px;
     }
+}
+
+li.user_info {
+  margin-bottom: 5px;
+  &:last-child {
+    margin-bottom: 10px;
+  }
 }
 
 .follow_form {
@@ -708,6 +715,10 @@ input {
 
 #make_wish > form, #new_wish > form {
   margin-bottom: 0;
+}
+
+.carousel-control {
+  background: #47a599;
 }
 
 
@@ -855,10 +866,6 @@ input {
   padding-bottom: 12px;
   margin-bottom: 10px;
   background: white url('project-bottom.png') repeat-x bottom left;
-  a, a:hover, a:active, a:visited {
-    text-decoration: none !important;
-    color: #444444;
-  }
 }
 
 .user_list_large {
@@ -890,6 +897,10 @@ input {
   max-height: 500px;
   overflow-y: scroll;
   margin-bottom: 0;
+  a, a:hover, a:active, a:visited {
+    text-decoration: none !important;
+    color: #444444;
+  }
 }
 
 
@@ -1032,7 +1043,7 @@ aside {
     border-left: 1px solid $grayLighter;
     color: gray;
     font-size: 12px;
-    line-height: 16px;
+    line-height: 15px;
     &:first-child {
       padding-left: 0;
       border: 0;

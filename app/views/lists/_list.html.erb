@@ -9,12 +9,11 @@
 				                                title: list.name %>
 				<% end %>
 			
-			<%= link_to user_list_path(@user, list) do %>
+			
 				<div class="user_list_title">
-					<h3><%= list.name %></h3>
+					<h3><%= link_to list.name, user_list_path(@user, list) %></h3>
 					<p class="muted" id="wishes_count"><%= pluralize(list.wishes.count, "wish") %></p>
 				</div>
-			<% end %>
 
 			<ul class="user_list_wishes <% if current_user?(list.user) %>dragndrop<% end %> unstyled" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
 
@@ -33,9 +32,6 @@
 										<%= link_to wish.item do %>	
 											<h4><%= wish.item.title %></h4>
 										<% end %>
-										<span class="muted">
-									    <p><%= wish.note %></p>
-								 		</span>
 										<span class="timestamp">
 									    Added <%= time_ago_in_words(wish.created_at) %> ago.
 								 		</span>

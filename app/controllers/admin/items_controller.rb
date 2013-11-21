@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
 	before_filter :authenticate_admin!
 
 	def index
-    @items = Item.paginate(page: params[:page])
+    @items = Item.paginate(page: params[:page]).order("created_at desc")
 	end
 
 	def show
