@@ -2,9 +2,7 @@
 <div class="row">
 	<div class="span12">
 		<h1>Find Friends</h1>
-		<% if current_user.admin? %>
-			<p>(<%= @users.count %> users in total)</p>
-		<% end %>
+		<p>Browse, or search below</p>
 	</div>
 </div>
 
@@ -26,6 +24,15 @@
 		<%= will_paginate @users, page_links: false %>
 	</div>
 	<aside class="pull-right span3">
+		<% if current_user.admin? %>
+			<div class="admin">
+			  <h3>Admin-info</h3>
+			  <span>
+			  	<p><%= @users.count %> users in total</p>
+			  </span>
+			</div>
+		<% end %>
+		
 		<%= render 'shared/aside_facebook' %>
 	</aside>
 </div>

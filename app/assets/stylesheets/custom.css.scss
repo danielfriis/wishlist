@@ -576,13 +576,6 @@ footer {
     }
 }
 
-li.user_info {
-  margin-bottom: 5px;
-  &:last-child {
-    margin-bottom: 10px;
-  }
-}
-
 .follow_form {
   margin-right: 10px;
 }
@@ -1115,6 +1108,7 @@ aside {
   li {
     overflow: auto;
     padding: 10px 0 0;
+    margin-bottom: 10px;
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
