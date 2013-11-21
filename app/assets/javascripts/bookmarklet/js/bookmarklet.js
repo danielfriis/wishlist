@@ -35,6 +35,8 @@ jQuery(function($){
 		
 		params.remote_image_url = $('#item_picked_image').attr('src');
 		
+		var note = $('#note').val();
+
 		var list = $('#list_id').val();
 
 		var hide_wish = $('#wish_hide').prop('checked');
@@ -44,7 +46,7 @@ jQuery(function($){
 		$.ajax({
 			type : 'POST',
 			url  : '/items',
-			data : { 'item': params, 'list_id': list, 'wish[hide]': hide_wish },
+			data : { 'item': params, 'list_id': list, 'note': note, 'wish[hide]': hide_wish },
 			headers  : {'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')},
 			dataType : 'json',
 			success  : function(results, textStatus, jqXHR){

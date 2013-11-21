@@ -46,9 +46,11 @@
 				<a class="btn img-pick" did="0" href="#"><i class="icon-arrow-left"></i></a><a class="btn pull-right img-pick" did="1" href="#"><i class="icon-arrow-right"></i></a>
 			</div>
 
-			<input id="item_link" name="item[link]" type="text">
+			<input type="hidden" id="item_link" name="item[link]" type="text">
 
 			<input id="item_title" name="item[title]" type="text">
+
+			<input id="note" name="note" type="text" placeholder="Optional: A short comment">
 
 			<input type="hidden" id="item_gender" name="item[gender]" value="<%= current_user.gender %>">
 
