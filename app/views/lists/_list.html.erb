@@ -34,6 +34,12 @@
 										<% end %>
 										<span class="timestamp">
 									    Added <%= time_ago_in_words(wish.created_at) %> ago.
+									    <% if current_user?(list.user) %>
+											  <%= link_to "Remove", wish, method: :delete,
+											                                data: { confirm: "You sure?" },
+											                                title: wish.item.title,
+											                                remote: true %>
+											<% end %>
 								 		</span>
 									</span>
 								</div>

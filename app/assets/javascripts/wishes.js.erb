@@ -29,7 +29,7 @@ $(document).ready(function(){
           url: $(this).data('update-url'),
           dataType: 'json',
           data: { id: item_id, wish: { row_order_position: position, list_id: list_id } }
-        })
+        });
       }
     }
   })
