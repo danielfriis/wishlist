@@ -1,4 +1,10 @@
 <div class="stats muted hidden-phone">
+  <a href="<%= user_path(user) %>">
+    <strong id="wishes_from_<%= user.id %>" class="stat">
+      <%= user.wishes.count %>
+    </strong>
+    wishes
+  </a>
   <a href="<%= following_user_path(user) %>">
     <strong id="following_<%= user.id %>" class="stat">
       <%= user.followed_users.count %>
