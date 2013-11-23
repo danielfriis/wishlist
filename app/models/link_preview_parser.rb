@@ -1,6 +1,7 @@
 class LinkPreviewParser
   def self.parse(url)
     require 'fastimage'
+    require 'addressable/uri'
 
   	base_url = baseurl = URI::join(url, "/").to_s
 
@@ -21,14 +22,16 @@ class LinkPreviewParser
     page_info[:img].delete_if{|img| img.ends_with? ".gif" } # Removes gifs because I think its mostly crappy load-images
 
     if page_info[:img][0].starts_with?("/") # Checks if src is a relative reference
-    	page_info[:img] = page_info[:img].collect{ |img| URI::join(url, URI.escape(img)).to_s} # Sets the absoloute reference
+    	page_info[:img] = page_info[:img].collect{ |img| URI::join(url, URI::escape(img)).to_s} # Sets the absoloute reference
     end
+
+    page_info[:img].collect{ |img| Addressable::URI.parse(img).normalize.to_s }
 
     imgs_and_sizes = Hash.new
 
     page_info[:img].each do |img|
         begin # ignores error with asos.com
-        imgs_and_sizes[img] = FastImage.size(URI.escape(img))
+        imgs_and_sizes[img] = FastImage.size(img)
         rescue URI::InvalidComponentError
             next
         end
