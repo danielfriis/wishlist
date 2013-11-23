@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
 	    	if params[:item][:via] == "bookmarklet"
 	    		format.json { render json: @item }
 	    	else
-		    	flash[:success] = "Item created!"
+		    	flash[:success] = "Product added to Wishlistt"
 		    	flash.keep[:success]
 		    	format.html { redirect_to :back }
 		    	format.js { render :js => "window.location.replace('#{user_list_path(current_user, @list)}')" }

@@ -99,8 +99,8 @@ class User < ActiveRecord::Base
   end
 
   def self.most_followers
-    joins('left join relationships on relationships.followed_id = users.id')
-    .select('users.*, count(relationships.followed_id) as relationships_count')
+    select('users.*, count(relationships.followed_id) as relationships_count')
+    .joins('left join relationships on relationships.followed_id = users.id')
     .group('users.id')
     .order('relationships_count desc')
   end
