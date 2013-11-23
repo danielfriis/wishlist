@@ -61,7 +61,7 @@ class Item < ActiveRecord::Base
           .select("items.*, count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id")
           .group('items.id', 'impressions.impressionable_id')
           .where("items.id IN (#{not_hidden})", false: false)
-          .order("counter desc")
+          .order("counter desc, items.created_at desc")
     end
   end
 end

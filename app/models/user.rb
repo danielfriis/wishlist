@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
     joins('left join relationships on relationships.followed_id = users.id')
     .select('users.*, count(relationships.followed_id) as relationships_count')
     .group('users.id')
-    .order('relationships_count desc, users.name desc')
+    .order('relationships_count desc, users.created_at desc')
   end
 
 
