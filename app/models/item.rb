@@ -58,8 +58,8 @@ class Item < ActiveRecord::Base
       not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
       where(Item.arel_table[:via].not_eq("no_link"))
           .joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
-          .select("count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id, items.gender, items.title, items.id, items.image")
-          .group('items.id', 'impressions.impressionable_id')
+          .select("items.*, count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id")
+          .group('items.id')
           .where("items.id IN (#{not_hidden})", false: false)
           .order("counter desc")
     end
