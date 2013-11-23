@@ -14,7 +14,7 @@
         <%= image_tag @wish.item.image_url.to_s %>
       </div>
     </div>
-    <% if @wish.note || current_user?(@wish.list.user) %>
+    <% unless @wish.note.blank? && current_user != @wish.list.user %>
       <div class="media wish_note">
         <%= image_tag avatar(@wish.list.user, :medium), alt: @wish.list.user.name, class: "pull-left gravatar gravatar-medium img-rounded" %>
         <div class="media-body">
