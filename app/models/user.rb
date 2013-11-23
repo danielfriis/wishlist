@@ -98,6 +98,13 @@ class User < ActiveRecord::Base
     where("name like ?", "%#{query}%") 
   end
 
+  def self.most_followers
+    joins('left join relationships on relationships.followed_id = users.id')
+    .select('users.*, count(relationships.followed_id) as relationships_count')
+    .group('users.id')
+    .order('relationships_count desc')
+  end
+
 
   private
 
