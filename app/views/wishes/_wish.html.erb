@@ -1,5 +1,5 @@
 <li class="media user_list<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>_large<% end %>_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
-		<a class="thumb pull-left" href="<%= item_path(wish.item) %>">
+		<a class="thumb pull-left" href="<%= wish_path(wish) %>">
 			<%= image_tag wish.item.image_url(:thumb).to_s, class: "img-rounded" %>
 		</a>
 		<div class="media-body">
