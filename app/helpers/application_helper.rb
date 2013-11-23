@@ -18,6 +18,10 @@ module ApplicationHelper
   	end
   end
 
+  def first_name(full_name)
+    full_name.split(" ")[0]
+  end
+
   def sortable_general(column, title = nil)
     title ||= column.titleize
     if signed_in? && params[:sort] == nil && column == "following"

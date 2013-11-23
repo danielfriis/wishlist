@@ -1,0 +1,34 @@
+<% provide(:title, @wish.title) %>
+<% meta_image @wish.item.image_url.to_s %>
+<div class="row">
+  <div class="span12">
+    <h1><%= best_in_place_if current_user?(@wish.list.user), @wish, :title, nil: "Please name this product" %></h1>
+    <p><%= image_tag avatar(@wish.list.user, :small), alt: @wish.list.user.name, class: "gravatar img-rounded" %>by <%= @wish.list.user.name %></p>
+    <div class="spacer hidden-phone"></div>
+  </div>
+  <div class="span8">
+    <div class="white-box item-big">
+      <div class="image-container">
+        <%= render 'shared/wishlistt_it', item: @wish.item %>
+        <em class="mark"></em>
+        <%= image_tag @wish.item.image_url.to_s %>
+      </div>
+    </div>
+    <% if @wish.note || current_user?(@wish.list.user) %>
+      <div class="media wish_note">
+        <%= image_tag avatar(@wish.list.user, :medium), alt: @wish.list.user.name, class: "pull-left gravatar gravatar-medium img-rounded" %>
+        <div class="media-body">
+          <p><%= first_name @wish.list.user.name %>'s note: <strong><%= best_in_place_if current_user?(@wish.list.user), @wish, :note, nil: "Click to add a note" %></strong></p>
+        </div>
+      </div>
+    <% end %>
+    <%= render 'comments/comments', item: @wish %>
+    <%= render 'comments/form' if signed_in? %>
+    
+  </div>
+  <aside class="span4">
+    <%= render partial: 'items/aside_shop_now', locals: {item: @wish.item} %>
+    <%= render 'shared/aside_more_from_list' %>
+    <%= render 'shared/aside_more_vendor', item: @wish.item %>
+  </aside>
+</div>

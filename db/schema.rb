@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113143446) do
+ActiveRecord::Schema.define(:version => 20131123170017) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20131113143446) do
     t.string   "note"
     t.integer  "row_order"
     t.boolean  "hide",       :default => false
+    t.string   "title"
   end
 
 end

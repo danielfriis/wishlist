@@ -1,22 +1,25 @@
-<ul class="media-list comments">
-  <% @comments.each do |comment| %>
-    <li class="media">
-      <% if current_user?(comment.user) %>
-          <%= link_to "&times;".html_safe, [@item, comment], class: "close", method: :delete,
-                                      data: { confirm: "You sure?" },
-                                      title: comment.user.name
-                                      %>
-          <% end %>
-      <%= link_to comment.user, class: "pull-left" do %>
-        <%= image_tag avatar(comment.user, :medium), alt: comment.user.name, class: "gravatar img-rounded" %>
-      <% end %>
-      <div class="media-body">
-        <%= link_to comment.user do %>
-          <h5 class="media-heading"><%= comment.user.name %></h5>
+<div class="comments-area">
+  <h3>Comments</h3>
+  <ul class="media-list comments">
+    <% @comments.each do |comment| %>
+      <li class="media">
+        <% if current_user?(comment.user) %>
+            <%= link_to "&times;".html_safe, [item, comment], class: "close", method: :delete,
+                                        data: { confirm: "You sure?" },
+                                        title: comment.user.name
+                                        %>
+            <% end %>
+        <%= link_to comment.user, class: "pull-left" do %>
+          <%= image_tag avatar(comment.user, :medium), alt: comment.user.name, class: "gravatar gravatar-medium img-rounded" %>
         <% end %>
-        <p><%= comment.content %></p>
-        <small class="muted">Posted <%= time_ago_in_words(comment.created_at) %> ago.</small>
-      </div>
-    </li>
-  <% end %>
-</ul>
+        <div class="media-body">
+          <%= link_to comment.user do %>
+            <h5 class="media-heading"><%= comment.user.name %></h5>
+          <% end %>
+          <p><%= comment.content %></p>
+          <small class="muted">Posted <%= time_ago_in_words(comment.created_at) %> ago.</small>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

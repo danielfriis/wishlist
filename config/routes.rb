@@ -9,6 +9,7 @@ Wishlist::Application.routes.draw do
   end
   resources :wishes do
     collection { post :sort }
+    resources :comments
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]

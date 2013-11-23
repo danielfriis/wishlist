@@ -8,12 +8,12 @@
 </div>
 <div class="row">
   <div class="span9">
-      <div class="white-box">
+      <div class="white-box user_list">
         <div class="user_list_title">
           <h2><%= best_in_place_if current_user?(@list.user), [@user, @list], :name, nil: "Please name your list" %></h2>
           <p class="muted"><%= pluralize(@list.wishes.count, "wish") %></p>
         </div>
-        <ul class="wishes user_list_large <% if current_user?(@list.user) %>dragndrop<% end %> unstyled" id="list_<%= @list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= @list.id %>">
+        <ul class="wishes <% if current_user?(@list.user) %>dragndrop<% end %> unstyled" id="list_<%= @list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= @list.id %>">
           <% if @list.items.any? %>
             <%= render @wishes %>
           <% else %>

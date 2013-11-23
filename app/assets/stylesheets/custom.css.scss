@@ -73,6 +73,12 @@ body {
   top: 10%;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+
 // Fix to make modals scrollable
 
 .modal-body {
@@ -485,10 +491,25 @@ footer {
   }
 }
 
+.comments-area {
+  h3 {
+    padding-bottom: 5px;
+    margin: 20px 0;
+    border-bottom: 2px solid #e8e8e8;
+    font-size: 1em;
+  }
+}
+
 .comments {
   margin-bottom: 20px;
   p {
   margin-bottom: 0px;
+  }
+}
+
+.comments, .new_comment {
+  .gravatar {
+    margin-right: 0;
   }
 }
 
@@ -717,8 +738,12 @@ input {
 
 .best_in_place {
   margin: 0px !important;
-  border-bottom:1px dotted;
+  cursor: text;
+  // border-bottom:1px dotted;
   // background-color: #fffed4;
+  &:hover, &:active {
+    background-color: #fffed4;
+  }
   .form_in_place{
     border: none;
     width: inherit;
@@ -843,6 +868,10 @@ input {
     .inline-block {
       vertical-align: top;
     }
+
+    .media-body {
+      padding-bottom: 20px;
+    }
   }
 }
 
@@ -859,9 +888,6 @@ input {
   padding-bottom: 12px;
   margin-bottom: 10px;
   background: white url('project-bottom.png') repeat-x bottom left;
-}
-
-.user_list_large {
   h4 {
     margin: 0 0 0px 0;
     font-weight: normal;
@@ -869,6 +895,20 @@ input {
       color: inherit;
       text-decoration: inherit;
       line-height: 1.6em;
+    }
+  }
+  a {
+    color: #444444;
+  }
+}
+
+.list_more {
+  .user_list {
+    background: none;
+    max-height: 300px;
+    .user_list_wish {
+      background: none;
+      border: none;
     }
   }
 }
@@ -890,9 +930,8 @@ input {
   max-height: 500px;
   overflow-y: scroll;
   margin-bottom: 0;
-  a, a:hover, a:active, a:visited {
-    text-decoration: none !important;
-    color: #444444;
+  .media {
+    margin-top: 0px;
   }
 }
 
@@ -921,15 +960,15 @@ input {
     height: 45px;
     max-width: 50px;
   }
+  h4 {
+    font-size: 1em;
+  }
   h4, p {
     margin-top: 0;
-    margin-bottom: 0;
-    font-size: 1em;
+    margin-bottom: 4px;
+    // font-size: 1em;
     line-height: 17px;
     font-weight: normal;
-  }
-  span.content {
-    margin-left: 55px;
   }
 }
 
@@ -969,19 +1008,6 @@ input {
   margin-top: 20px;
 }
 
-.content {
-  display: block;
-  max-width: 100%;
-  min-height: 100%;
-  margin-left: 105px;
-  h4, p {
-    max-width: 540px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-}
-
 .timestamp {
   color: $grayLight;
   font-size: 11px;
@@ -992,6 +1018,22 @@ input {
   float: left;
   margin-right: 10px;
 }
+
+.gravatar-small {
+  height: 20px;
+  width: 20px;
+}
+
+.gravatar-medium {
+  height: 40px;
+  width: 40px;
+}
+
+.gravatar-large {
+  height: 80px;
+  width: 80px;
+}
+
 aside {
   textarea {
     height: 100px;
@@ -1017,11 +1059,6 @@ aside {
   a.active {
     font-weight: 600;
   }
-}
-
-
-.sortable {
-  
 }
 
 

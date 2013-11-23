@@ -14,12 +14,12 @@
       </div>
     </div>
     <div class="spacer"></div>
-    <%= render 'comments/comments' %>
+    <%= render 'comments/comments', item: @item %>
     <%= render 'comments/form' if signed_in? %>
   </div>
   <aside class="span4">
-    <%= render 'aside_shop_now' %>
+    <%= render 'aside_shop_now', item: @item %>
     <%= render 'aside_social_count' %>
-    <%= render 'aside_more_vendor' %>
+    <%= render 'shared/aside_more_vendor', item: @item %>
   </aside>
 </div>

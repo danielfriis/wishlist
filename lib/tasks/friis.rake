@@ -41,3 +41,12 @@ task :hide_wish => :environment do
 		end
 	end
 end
+
+task :title_wish => :environment do
+	Wish.find_each do |wish|
+		if wish.title.nil?
+			wish.title = wish.item.title
+			wish.save
+		end
+	end
+end

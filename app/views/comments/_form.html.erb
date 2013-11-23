@@ -1,6 +1,6 @@
 <div class="media new_comment" id="new_comment">
   <a class="pull-left" href="#">
-    <%= image_tag avatar(current_user, :medium), alt: current_user.name, class: "gravatar img-rounded" %>
+    <%= image_tag avatar(current_user, :medium), alt: current_user.name, class: "gravatar gravatar-medium img-rounded" %>
   </a>
   <div class="media-body">
   	<%= form_for [@commentable, @comment] do |f| %>

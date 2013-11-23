@@ -1,15 +1,16 @@
-<li class="user_list_large_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
-		<div class="block pull-left">
-			<a class="thumb" href="<%= item_path(wish.item) %>">
-				<%= image_tag wish.item.image_url(:thumb).to_s %>
-			</a>
-		</div>
-		<div class="block">
-		  <span class="content">
-		  	<h4><%= link_to wish.item.title, wish.item %></h4>
-		  	<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
+<li class="media user_list<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>_large<% end %>_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
+		<a class="thumb pull-left" href="<%= item_path(wish.item) %>">
+			<%= image_tag wish.item.image_url(:thumb).to_s, class: "img-rounded" %>
+		</a>
+		<div class="media-body">
+		  	<h4 class="media-heading ellipsis">
+		  		<%= link_to wish.title, wish %>
+		  	</h4>
+		  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>	
+		  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
+		  	<% end %>
 		  	<span class="timestamp">
-			    Created <%= time_ago_in_words(wish.created_at) %> ago.		  
+			    Added <%= time_ago_in_words(wish.created_at) %> ago.		  
 			    <% if current_user?(wish.list.user) %>
 			    <%= link_to "Remove", wish, method: :delete,
 			                                data: { confirm: "You sure?" },
@@ -17,6 +18,5 @@
 			                                remote: true %>
 			  	<% end %>
 		 		 </span>
-		  </span>
 		</div>
 </li>

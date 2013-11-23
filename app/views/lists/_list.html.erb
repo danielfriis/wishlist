@@ -20,33 +20,7 @@
 				<!-- List wishes -->
 				<% if list.wishes.any? %>
 					<% list.wishes.includes(:item).rank(:row_order).each do |wish| %>
-						<li class="user_list_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
-								<div class="block pull-left">
-									<%= link_to wish.item do %>	
-										<%= image_tag wish.item.image_url(:thumb).to_s %>
-									<% end %>
-								</div>
-
-								<div class="block">
-									<span class="content">
-										<%= link_to wish.item do %>	
-											<h4><%= wish.item.title %></h4>
-										<% end %>
-										<span class="timestamp">
-									    Added <%= time_ago_in_words(wish.created_at) %> ago.
-									    <% if current_user?(list.user) %>
-											  <%= link_to "Remove", wish, method: :delete,
-											                                data: { confirm: "You sure?" },
-											                                title: wish.item.title,
-											                                remote: true %>
-											<% end %>
-								 		</span>
-									</span>
-								</div>
-
-							
-
-						</li>
+						<%= render partial: 'wishes/wish', locals: {wish: wish} %>
 					<% end %>
 				<% end %>
 				<%= render partial: 'shared/list_wo_wish', locals: {list: list} %>

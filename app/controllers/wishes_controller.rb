@@ -1,6 +1,14 @@
 class WishesController < ApplicationController
-  before_filter :signed_in_user, only: [:new, :create, :destroy]
+  before_filter :signed_in_user, only: [:new, :create, :update, :destroy]
   before_filter :correct_user,   only: :destroy
+
+  def show
+    @wish = Wish.find_by_id(params[:id])
+    @items = @wish.item.vendor.present? ? @wish.item.vendor.items.sample(9) : Item.all.sample(9)
+    @commentable = @wish
+    @comments = @commentable.comments
+    @comment = Comment.new
+  end
 
   def new
     @item = Item.find_by_id(params[:item_id])
