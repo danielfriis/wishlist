@@ -1,7 +1,7 @@
 <% user ||= @user %>
 <div class="span8">
   <a href="<%= user_path(user) %>">
-    <%= image_tag avatar(user, :large), alt: user.name, class: "gravatar img-rounded" %>
+    <%= image_tag avatar(user, :large), alt: user.name, class: "gravatar gravatar-large img-rounded" %>
   </a>
 
   <h1><%= user.name %></h1>
