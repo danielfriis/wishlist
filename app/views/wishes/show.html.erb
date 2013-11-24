@@ -3,7 +3,7 @@
 <div class="row">
   <div class="span12">
     <h1><%= best_in_place_if current_user?(@wish.list.user), @wish, :title, nil: "Please name this product" %></h1>
-    <p><%= image_tag avatar(@wish.list.user, :small), alt: @wish.list.user.name, class: "gravatar img-rounded" %>by <%= @wish.list.user.name %></p>
+    <p><%= image_tag avatar(@wish.list.user, :small), alt: @wish.list.user.name, class: "gravatar gravatar-small img-rounded" %>by <%= @wish.list.user.name %></p>
     <div class="spacer hidden-phone"></div>
   </div>
   <div class="span8">
