@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     end
     # Log the authorizing user in.
     sign_in @auth.user
-    redirect_to root_url, notice: "Welcome, #{current_user.name}."
+    redirect_to @auth.user, notice: "Welcome, #{current_user.name}."
   end
 
   def destroy
