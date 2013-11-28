@@ -10,7 +10,8 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <%= render 'layouts/shim' %>    
+    <%= render 'layouts/shim' %>
+    <%= render 'layouts/mixpanel_setup' %>
   </head>
 
   <%= render 'layouts/header' %>
@@ -25,7 +26,7 @@
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
     </div>
-    <%= render 'shared/make_a_wish' if signed_in? %>
+    <%= render 'shared/add_wish' if signed_in? %>
     <%= render 'layouts/signin_modal' if !signed_in? %>
     <%= render 'layouts/footer' %>
     <%= render 'layouts/google_analytics' if Rails.env.production? %>

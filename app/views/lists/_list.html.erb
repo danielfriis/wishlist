@@ -15,7 +15,7 @@
 					<p class="muted" id="wishes_count"><%= pluralize(list.wishes.count, "wish") %></p>
 				</div>
 
-			<ul class="user_list_wishes <% if current_user?(list.user) %>dragndrop<% end %> unstyled" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
+			<ul class="user_list_wishes <% if current_user?(list.user) %>dragndrop<% end %> unstyled hidden-phone" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
 
 				<!-- List wishes -->
 				<% if list.wishes.any? %>

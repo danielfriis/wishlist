@@ -17,7 +17,7 @@
           <!-- <label for="url">or, paste the URL for the product you wish</label>
           <input id="url" type="text" placeholder="http://"> -->
           <%= label_tag :url, "or, paste the URL for the product you wish" %>
-          <%= text_field_tag :url %>
+          <%= text_field_tag :url, nil, placeholder: "http://" %>
 
       </div>
       <div id="modal-default-footer" class="modal-footer">
