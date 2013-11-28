@@ -1,7 +1,6 @@
 $(document).ready ->
   $("#linkpreview_form").on("ajax:success", (e, data, status, xhr) ->
     $("#urlb").removeClass("disabled");
-    alert("Tjek!");
     $('#manual_wish').show();
     $("#modal-default-body").show();
     $("#loading").remove();
