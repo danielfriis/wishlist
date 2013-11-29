@@ -40,7 +40,7 @@ class LinkPreviewParser
     end
 
     imgs_and_sizes.delete_if do |img, size| 
-        if size && size.any?{ |i| i > 200 } && size.all? { |i| i > 150 }
+        if size && size.any?{ |i| i > 200 } && size.all? { |i| i > 70 }
             false
         else
             true
