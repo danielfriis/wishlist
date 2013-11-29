@@ -74,7 +74,7 @@ $(document).ready ->
   	).bind "ajax:error", (e, xhr, status, error) ->
         $("#modal-default-body").show();
         $("#loading").remove();
-        $("#urlb").removeClass("disabled");
+        $("#urlb").removeClass("disabled").addClass("btn-primary");
         $('#manual_wish').show();
         $('#url').val("");
         alert('Damn, could not find any good images!');

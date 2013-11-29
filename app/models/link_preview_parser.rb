@@ -3,6 +3,8 @@ class LinkPreviewParser
     require 'fastimage'
     require 'addressable/uri'
 
+    url = Addressable::URI.parse(url).normalize.to_s
+
   	base_url = baseurl = URI::join(url, "/").to_s
 
     doc = Nokogiri::HTML(open(url))
