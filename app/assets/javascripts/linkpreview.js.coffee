@@ -45,31 +45,6 @@ $(document).ready ->
         $("#item_via").val("no_image")
         $("#imgPreview").hide()
 
-    ###
-    IF YOU WANT TO GIVE ERROR WHEN NO IMAGES FOUND UNCOMMENT BELOW
-    $('#linkpreview').hide() if data.img.length > 0
-    $('#item_fields').show() if data.img.length > 0
-
-    if data.img.length == 0
-        $('.carousel-inner').html('')
-        $("#item_title").val("");
-        $("#item_link").val("");
-        $("#item_remote_image_url").val("");
-        $("#item_via").val("");
-        $("#urlb").removeClass("disabled")
-        $('#manual_wish').show();
-        $("#modal-default-body").show();
-        $("#loading").remove();
-        $('#url').val("");
-        $('label[for="item_image"]').show();
-        $("#item_image").show();
-        $('label[for="item_remote_image_url"]').show();
-        $("#item_remote_image_url").show();
-        $('label[for="item_link"]').show();
-        $("#item_link").show();
-        alert('Damn, could not find any good images!');
-    ###
-
 
   	).bind "ajax:error", (e, xhr, status, error) ->
         $("#modal-default-body").show();
