@@ -7,11 +7,10 @@ $(document).on('click', '#manual_wish', function() {
 });
 
 $(document).on('click', '#urlb', function() {
-  $("#urlb").addClass("disabled");
+  $("#urlb").addClass("disabled").removeClass("btn-primary");
   $("#modal-default-body").hide().after('<div id="loading" class="center"><div class="spacer"></div><div class="spacer"></div><p>Grabbing information for you</p><div class="spacer"></div></div>');
   $('#manual_wish').hide();
 });
-
 
 $(document).on('click', '#manual_wish_back', function() { 
   $('#linkpreview').show();
@@ -19,6 +18,7 @@ $(document).on('click', '#manual_wish_back', function() {
 
   // Reset
   $("#modal-default-body").show();
+  $("#imgPreview").show();
   $("#loading").remove();
   $('#item_via').val("");
   $("#item_remote_image_url").val("");

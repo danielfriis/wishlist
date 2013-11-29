@@ -1,6 +1,6 @@
 $(document).ready ->
   $("#linkpreview_form").on("ajax:success", (e, data, status, xhr) ->
-    $("#urlb").removeClass("disabled");
+    $("#urlb").removeClass("disabled").addClass("btn-primary");
     $('#manual_wish').show();
     $("#modal-default-body").show();
     $("#loading").remove();
@@ -34,6 +34,19 @@ $(document).ready ->
     $('#commit').hover ->
     	$("#item_remote_image_url").val($(".carousel-inner .active img").attr("src"));
 
+    $('#linkpreview').hide()
+    $('#item_fields').show()
+
+    if data.img.length == 0
+        $('.carousel-inner').html('')
+        $("#item_remote_image_url").val("");
+        $('label[for="item_image"]').show();
+        $("#item_image").show();
+        $("#item_via").val("no_image")
+        $("#imgPreview").hide()
+
+    ###
+    IF YOU WANT TO GIVE ERROR WHEN NO IMAGES FOUND UNCOMMENT BELOW
     $('#linkpreview').hide() if data.img.length > 0
     $('#item_fields').show() if data.img.length > 0
 
@@ -55,6 +68,7 @@ $(document).ready ->
         $('label[for="item_link"]').show();
         $("#item_link").show();
         alert('Damn, could not find any good images!');
+    ###
 
 
   	).bind "ajax:error", (e, xhr, status, error) ->

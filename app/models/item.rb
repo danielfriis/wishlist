@@ -45,18 +45,18 @@ class Item < ActiveRecord::Base
   def self.sort_general(general, current_user)
     if general == "recent"
       not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
-      where(Item.arel_table[:via].not_eq("no_link")).where("id IN (#{not_hidden})", false: false).order("created_at desc")
+      where(Item.arel_table[:via].not_eq("no_link").and(Item.arel_table[:via].not_eq("no_image"))).where("id IN (#{not_hidden})", false: false).order("created_at desc")
     elsif general == "following"
       followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
       followed_user_lists = "SELECT id FROM lists WHERE user_id IN (#{followed_user_ids})"
       followed_user_wishes = "SELECT item_id FROM wishes WHERE list_id IN (#{followed_user_lists}) AND hide = :false"
-      where(Item.arel_table[:via].not_eq("no_link")).where("id IN (#{followed_user_wishes})", user_id: current_user.id, false: false)
+      where(Item.arel_table[:via].not_eq("no_link").and(Item.arel_table[:via].not_eq("no_image"))).where("id IN (#{followed_user_wishes})", user_id: current_user.id, false: false)
       .order("created_at desc")
     else
       start_date = (Time.now - 10.days)
       end_date = Time.now
       not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
-      where(Item.arel_table[:via].not_eq("no_link"))
+      where(Item.arel_table[:via].not_eq("no_link").and(Item.arel_table[:via].not_eq("no_image")))
           .joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
           .select("items.*, count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id")
           .group('items.id', 'impressions.impressionable_id')

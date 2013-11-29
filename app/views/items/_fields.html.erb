@@ -1,10 +1,10 @@
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :image %>
+<%= f.label :image, "Upload an image" %>
 <%= f.file_field :image %>
 
-<%= f.label :remote_image_url, "or image URL" %>
-<%= f.text_field :remote_image_url %>
+<%= f.label :remote_image_url, "or paste an image URL" %>
+<%= f.text_field :remote_image_url, placeholder: "http://" %>
 
 <%= f.label :title %>
 <%= f.text_field :title, placeholder: "Warm Sweater" %>
