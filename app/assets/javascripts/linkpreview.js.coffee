@@ -25,7 +25,6 @@ $(document).ready ->
         $('.carousel-inner').append("<div class='item active'><img src='#{e}' /></div>")
       else
         $('.carousel-inner').append("<div class='item'><img src='#{e}' /></div>")
-
       i += 1
     $("#item_title").val(data.title);
     $("#item_link").val(data.url);
