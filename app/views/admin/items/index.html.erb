@@ -12,10 +12,14 @@
       <div><strong>ID:</strong> <%= item.id %>, <strong>Created:</strong> <%= item.created_at %>, <strong>via:</strong> <%= item.via %></div>
       <div><strong>Gender:</strong> <%= item.gender %></div>
       <div><strong>Wishes:</strong> <%= item.wishes.count %></div>
-      <div><%= link_to "Remove", admin_item_path(item), method: :delete,
+      <div>
+        <%= link_to "Remove", admin_item_path(item), method: :delete,
 			                                data: { confirm: "You sure?" },
 			                                title: item.title,
-			                                remote: true %></div>
+			                                remote: true %> | 
+        <%= link_to("Hide (no_link)", admin_item_path(item, :item =>{:via => "no_link"}), :method => :put, :confirm => "Are you sure?") %> | 
+        <%= link_to("Show (linkpreview)", admin_item_path(item, :item =>{:via => "linkpreview"}), :method => :put, :confirm => "Are you sure?") %>
+      </div>
     </li>
   <% end %>
 </ul>

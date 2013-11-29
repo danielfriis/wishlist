@@ -17,11 +17,19 @@ class Admin::ItemsController < ApplicationController
 		@item = Item.find(params[:id])
 		@item.destroy
 		respond_to do |format|
-      format.html { redirect_to admin_index_url }
+      format.html { redirect_to admin_items_path }
       format.js
     end 
 	end
 
+	def update
+		@item = Item.find(params[:id])
+    @item.update_attributes(params[:item])
+    respond_to do |format|
+      format.html { redirect_to admin_items_path }
+      format.js
+    end 
+	end
 
   private
 

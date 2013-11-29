@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #  note       :string(255)
 #  row_order  :integer
+#  hide       :boolean          default(FALSE)
+#  title      :string(255)
 #
 
 require 'spec_helper'

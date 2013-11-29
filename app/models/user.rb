@@ -14,6 +14,7 @@
 #  avatar          :string(255)
 #  gender          :string(255)
 #  slug            :string(255)
+#  admin           :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
