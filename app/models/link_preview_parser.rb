@@ -33,14 +33,14 @@ class LinkPreviewParser
 
     page_info[:img].each do |img|
         begin # ignores error with asos.com
-        imgs_and_sizes[img] = FastImage.size(img)
+        imgs_and_sizes[img] = FastImage.size(img) rescue nil
         rescue URI::InvalidComponentError
             next
         end
     end
 
     imgs_and_sizes.delete_if do |img, size| 
-        if size && size.any?{ |i| i > 200 } && size.all? { |i| i > 70 }
+        if size && size.any?{ |i| i > 200 } && size.all? { |i| i > 50 }
             false
         else
             true

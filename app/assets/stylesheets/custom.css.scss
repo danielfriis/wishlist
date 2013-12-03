@@ -194,12 +194,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33323232', e
   border-radius: 0px;
 
   .btn {
-    background-color: #e6e6e6;
+    background-color: white;
     font-weight: 600;
     color: #378278;
 
     &:hover, &:focus {
-      background-color: white;
+      background-color: #e6e6e6;
     }
   }  
 
