@@ -11,11 +11,11 @@
 				<i class="icon-envelope"></i> Send with e-mail
 			</a>
 		</li>
-		<li>
-			<%= link_to "#" do %>
+		<!-- <li>
+			<a href="#">
 				<i class="icon-share"></i> Export to PDF
-			<% end %>
-		</li>
+			</a>
+		</li> -->
   </ul>
 </div>
 
@@ -29,10 +29,10 @@
 	  <div class="modal-body">    
 
       <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, placeholder: "john@doe.com" %>
     
       <%= f.label :body, "Message" %>
-      <%= f.text_area :body %>
+      <%= f.text_area :body, value: "Hi, this is my wish list :)", placeholder: "Message" %>
 
   	</div>
 	  <div class="modal-footer">
