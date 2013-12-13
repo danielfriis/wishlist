@@ -1,5 +1,7 @@
 Wishlist::Application.routes.draw do
 
+  use_link_thumbnailer
+
   namespace :admin do
     resources :users, :items, :wishes, :comments
   end

@@ -16,6 +16,8 @@ gem 'best_in_place'
 gem 'ranked-model'
 gem 'fastimage'
 gem 'addressable'
+gem 'link_thumbnailer'
+gem "ruby-readability", :require => 'readability'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

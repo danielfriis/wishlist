@@ -20,7 +20,7 @@ $(document).ready ->
     $("#item_link").hide();
 
     i = 0
-    data.img.map (e) ->
+    data.images.map (e) ->
       if i is 0
         $('.carousel-inner').append("<div class='item active'><img src='#{e}' /></div>")
       else
@@ -37,7 +37,7 @@ $(document).ready ->
     $('#linkpreview').hide()
     $('#item_fields').show()
 
-    if data.img.length == 0
+    if data.images.length == 0
         $('.carousel-inner').html('')
         $("#item_remote_image_url").val("");
         $('label[for="item_image"]').show();
@@ -47,10 +47,10 @@ $(document).ready ->
 
     ###
     IF YOU WANT TO GIVE ERROR WHEN NO IMAGES FOUND UNCOMMENT BELOW
-    $('#linkpreview').hide() if data.img.length > 0
-    $('#item_fields').show() if data.img.length > 0
+    $('#linkpreview').hide() if data.images.length > 0
+    $('#item_fields').show() if data.images.length > 0
 
-    if data.img.length == 0
+    if data.images.length == 0
         $('.carousel-inner').html('')
         $("#item_title").val("");
         $("#item_link").val("");
