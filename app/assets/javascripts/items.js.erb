@@ -8,7 +8,7 @@ $(document).on('click', '#manual_wish', function() {
 
 $(document).on('click', '#urlb', function() {
   $("#urlb").addClass("disabled").removeClass("btn-primary");
-  $("#modal-default-body").hide().after('<div id="loading" class="center"><div class="spacer"></div><div class="spacer"></div><p>Grabbing information for you</p><div class="spacer"></div></div>');
+  $("#modal-default-body").hide().after('<div id="loading" class="center"><div class="spacer"></div><%= image_tag("ajax-loader.gif") %><div class="spacer"></div><p>Grabbing information for you</p><p class="muted">Please be patient. This may take up to 30 seconds</p><div class="spacer"></div></div>');
   $('#manual_wish').hide();
 });
 
