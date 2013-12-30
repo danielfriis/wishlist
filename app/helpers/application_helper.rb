@@ -53,7 +53,7 @@ module ApplicationHelper
     link_to link_text, link_path, class: "#{css_class}" 
   end
 
-    def meta_keywords(tags = nil)
+  def meta_keywords(tags = nil)
     if tags.present?
       content_for :meta_keywords, tags
     else

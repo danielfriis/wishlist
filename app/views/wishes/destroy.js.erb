@@ -1,1 +1,2 @@
 $('#wish_<%= @wish.id %>').remove();
+$("#wishlistt_it_form_<%= @item.id %>").html("<%= escape_javascript(render(partial: 'wishes/wishlistt_it', item: @item)) %>")

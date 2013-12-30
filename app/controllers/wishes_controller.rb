@@ -17,11 +17,15 @@ class WishesController < ApplicationController
 
   def create
     @item = Item.find_by_id(params[:wish][:item_id])
-    @wish = Wish.create!(title: @item.title, item_id: params[:wish][:item_id], list_id: params[:list_id])
-    redirect_to :back
+    @wish = Wish.create!(title: @item.title, item_id: params[:wish][:item_id], list_id: params[:wish][:list_id])
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
   def destroy
+    @item = @wish.item
     @wish.destroy
     respond_to do |format|
       format.html { redirect_to :back }

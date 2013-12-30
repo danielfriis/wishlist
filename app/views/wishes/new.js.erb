@@ -1,2 +1,3 @@
+$('.new_wish_modal').remove();
 $('body').append('<%= j render "new_wish" %>');
-$('#<%= @item.id %>_new_wish').modal('toggle')
+$('#new_wish_<%= @item.id %>').modal('toggle')

@@ -1,0 +1,5 @@
+<% item ||= @item %>
+<%= form_for(current_user.wishes.find_by_item_id(item.id),
+   html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit "Wishlistt'd", class: "btn btn-large" %>
+<% end %>
