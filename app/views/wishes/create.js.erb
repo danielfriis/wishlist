@@ -1,2 +1,5 @@
+// If on profile page
 $("#wishlistt_it_form_<%= @item.id %>").html("<%= escape_javascript(render(partial: 'wishes/un_wishlistt_it', item: @item)) %>")
+
+// If on inspiration feed
 $("#new_wish_<%= @item.id %>").modal('toggle')

@@ -6,7 +6,7 @@
           <%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> 
           
           <% if @item.wishes.count > 1 %> 
-            and <%= pluralize(@item.wishes.count - 1, 'other') %>
+            and <a href="#wishers" rel="tooltip" class="tooltip-toggle" data-html="true" data-toggle="modal" data-title="<% @item.wishes.each do |w| %><%= w.list.user.name %><br/><% end %>"><%= pluralize(@item.wishes.count - 1, 'other') %></a>
           <% end %>
           wishes this.
         <% else %>
@@ -15,4 +15,24 @@
       </li>
       <li><i class="icon-eye-open"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
     </ul>
+</div>
+
+<div id="wishers" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="wishersLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 id="signUpLabel">People who wishes this</h2>
+  </div>
+  <div class="modal-body">
+    <div class="">
+      <ul class="users">
+        
+          <% @item.wishes.each do |w| %>
+          <li class="user_info">
+            <%= render 'shared/user_info', user: w.list.user %>
+          </li>
+          <% end %>
+        
+    </ul>
+    </div>
+  </div>
 </div>

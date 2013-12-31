@@ -1,4 +1,6 @@
 <% user ||= @user %>
 <li class="user_info">
-  <%= render partial: 'shared/user_info', locals: {:user => user} %>
+	<div class="span8">
+  		<%= render partial: 'shared/user_info', locals: {:user => user} %>
+  	</div>
 </li>

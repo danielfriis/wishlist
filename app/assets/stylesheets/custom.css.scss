@@ -160,7 +160,10 @@ textarea {
   &:hover, &:focus {
     color: #333333;
   }
+}
 
+a.no-color {
+  color: inherit;
 }
 
 .hero-unit {
@@ -1105,7 +1108,6 @@ aside {
 }
 
 
-
 /* social */
 
 .btn-facebook {
@@ -1149,14 +1151,15 @@ aside {
 
 .users {
   list-style: none;
-  margin: 10px 0 0 0;
+  margin: 0px 0 0 0;
   li {
     overflow: auto;
-    padding: 10px 0 0;
+    padding: 15px 0 0;
     margin-bottom: 10px;
     border-top: 1px solid $grayLighter;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
+    &:first-child {
+      border-top: 0;
     }
   }
 }
+
