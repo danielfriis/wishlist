@@ -1,3 +1,4 @@
+# encoding: utf-8
 class LinkPreviewParser
   require 'fastimage'
   require 'addressable/uri'
@@ -122,6 +123,20 @@ class LinkPreviewParser
     # end
 
     return page_info[:images][1..100]
+  end
+
+  def self.price(url)
+    
+    url = Addressable::URI.parse(url).normalize.to_s
+    doc = Nokogiri::HTML(open(url))
+
+    prices = doc.at('body').xpath("//*[@*[contains(., 'price')]]").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }.compact
+
+    header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }
+
+    price = (prices - header_tag)[0].to_s
+      
+
   end
 
     # page_info[:img] = doc.css('body img').select{|img| img[:width].to_i > 200}[0]['src']

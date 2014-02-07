@@ -29,7 +29,7 @@
   </div>
 
   <aside class="pull-right span3">
-    <%= render 'shared/aside_share' %>
+    <%= render 'shared/aside_share' if current_user?(@list.user) %>
     <%= render 'shared/aside_lists' %>
   </aside>
 

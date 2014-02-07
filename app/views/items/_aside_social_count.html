@@ -26,11 +26,11 @@
     <div class="">
       <ul class="users">
         
-          <% @item.wishes.each do |w| %>
+        <% @item.wishes.each do |w| %>
           <li class="user_info">
             <%= render 'shared/user_info', user: w.list.user %>
           </li>
-          <% end %>
+        <% end %>
         
     </ul>
     </div>
