@@ -1,5 +1,5 @@
 <div class="user_lists">
-  <h3><%= first_name @list.user.name %>'s lists</h3>
+  <h3><%= first_name @user.name %>'s lists</h3>
   <% if @user.lists.any? %>
     <ul class="unstyled">
       <%= render @lists %>
