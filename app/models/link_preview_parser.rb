@@ -135,7 +135,6 @@ class LinkPreviewParser
     header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }
 
     price = (prices - header_tag)[0].to_s
-      
 
   end
 
