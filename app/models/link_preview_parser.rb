@@ -139,7 +139,7 @@ class LinkPreviewParser
     currencies_string = Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.map { |c| Regexp.escape(c) unless c.nil? }.join('|')
     currencies_string << "|kr."
     # Construct regex
-    price_regex = /(?<=\p{Z}|^)((#{currencies_string})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_string}))?(?=\p{Z}|$)/m
+    price_regex = /(?<=\p{Z}|^)((#{currencies_string})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_string}))?(?=\p{Z}|$)/m
 
     # Retract price based on meta data
     itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
