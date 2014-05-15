@@ -24,6 +24,16 @@ task :item_via_default => :environment do
 	end
 end
 
+task :item_price_recent => :environment do
+	Item.find_each(start: 1800, batch_size: 2000) do |item|
+		# if item.price.nil?
+			price = LinkPreviewParser.price(item.link).to_money rescue nil
+			item.price = price.to_money unless price.nil?
+			item.save
+		# end
+	end
+end
+
 task :item_price => :environment do
 	Item.find_each do |item|
 		# if item.price.nil?
@@ -31,6 +41,16 @@ task :item_price => :environment do
 			item.price = price.to_money unless price.nil?
 			item.save
 		# end
+	end
+end
+
+task :no_item_price => :environment do
+	Item.find_each do |item|
+		if item.price.nil?
+			price = LinkPreviewParser.price(item.link).to_money rescue nil
+			item.price = price.to_money unless price.nil?
+			item.save
+		end
 	end
 end
 
