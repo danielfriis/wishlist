@@ -1,17 +1,28 @@
 # encoding : utf-8
+require 'money/bank/google_currency'
+require 'json'
 
 MoneyRails.configure do |config|
 
   Money.assume_from_symbol = true
 
+  # For correct formatting
+  Money.use_i18n = false
+
   # To set the default currency
   #
   # config.default_currency = :usd
+
+  # (optional)
+  # set the seconds after than the current rates are automatically expired
+  # by default, they never expire
+  Money::Bank::GoogleCurrency.ttl_in_seconds = 86400
 
   # Set default bank object
   #
   # Example:
   # config.default_bank = EuCentralBank.new
+  Money.default_bank = Money::Bank::GoogleCurrency.new
 
   # Add exchange rates to current money bank object.
   # (The conversion rate refers to one direction only)

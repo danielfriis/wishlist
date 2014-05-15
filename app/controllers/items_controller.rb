@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
     else
 			@item = Item.find_or_create_by_link!(params[:item][:link]) do |c|
 				c.assign_attributes(params[:item])
+				c.price = params[:item][:price].to_money unless params[:item][:price].nil?
 				c.vendor_id = Vendor.custom_find_or_create(params[:item][:link])
 			end
 		end

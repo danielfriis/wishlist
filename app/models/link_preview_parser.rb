@@ -58,6 +58,8 @@ class LinkPreviewParser
 
     # END
 
+    page_info[:price] = price(url) rescue nil
+
     return page_info
 
   end
@@ -127,14 +129,64 @@ class LinkPreviewParser
 
   def self.price(url)
     
+    # Normalize URI
     url = Addressable::URI.parse(url).normalize.to_s
+
+    # Open page
     doc = Nokogiri::HTML(open(url))
 
-    prices = doc.at('body').xpath("//*[@*[contains(., 'price')]]").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }.compact
+    # Get arrary of iso_codes and symbols
+    currencies_string = Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.join('|')
+    currencies_string << "|kr."
+    # Construct regex
+    price_regex = /(?<=\p{Z}|^)((#{currencies_string})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_string}))?(?=\p{Z}|$)/m
 
-    header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }
+    # Retract price based on meta data
+    itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+    itemprop_price = (itemprop_price.kind_of?(Array) ? itemprop_price[0] : itemprop_price)
 
-    price = (prices - header_tag)[0].to_s
+    itemprop_curr = doc.at('body').xpath("//*[@itemprop='currency']").inner_text.strip
+    itemprop_curr = (itemprop_curr.kind_of?(Array) ? itemprop_curr[0] : itemprop_curr)
+
+    if itemprop_curr.present? && itemprop_price.present?
+      price = itemprop_price + " " + itemprop_curr
+    elsif itemprop_curr.blank? && itemprop_price.present?
+      price = itemprop_price
+    else
+      # Retract prices based on classes containing "price" and a regex
+      # prices = doc.at('body').xpath("//*[@*[contains(., 'price')]]").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }.compact
+      prices = doc.at('body').xpath("//*[@*[contains(., 'price')]]").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+
+      # This is to exclude the 'basket'
+      header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }
+
+      # Get the first price which is not in the header tag
+      price = (prices - header_tag)[0]
+
+    end
+
+    # Replace symbols for the monetize gem to work properply
+    # price.gsub('$','USD').gsub('€','EUR').gsub('£','GBP').to_s unless price.nil?
+    currencies = {'$' => 'USD','€' => 'EUR','kr' => 'DKK','kr.' => 'DKK',',-' => 'DKK', '£' => 'GBP'}
+    re = Regexp.new(currencies.keys.map { |x| Regexp.escape(x) }.join('|'))
+    price.gsub!(re, currencies) unless price.nil?
+
+    # Money gem fucks up when parsing 2.000 DKK. Becomes 2,00 DKK
+    tousands_dot = /((\.\d{3})(?=\p{Z}|$|\w))/
+    tousands_comma = /((\,\d{3})(?=\p{Z}|$|\w))/
+
+    tousands_dot_found = price.match(tousands_dot)[0] rescue nil
+    tousands_comma_found = price.match(tousands_dot)[0] rescue nil
+
+    if tousands_dot_found.present?
+      tousands_dot_found_fix = tousands_dot_found + ",00"
+      price.gsub!(tousands_dot_found,tousands_dot_found_fix)
+    elsif tousands_comma_found.present?
+      tousands_comma_found_fix = tousands_comma_found + ".00"
+      price.gsub!(tousands_comma_found,tousands_comma_found_fix)
+    end
+
+    return price
 
   end
 

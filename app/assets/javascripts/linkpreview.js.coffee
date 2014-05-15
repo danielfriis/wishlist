@@ -11,6 +11,7 @@ $(document).ready ->
     $("#item_link").val("");
     $("#item_remote_image_url").val("");
     $("#item_via").val("");
+    $("#item_price").val("");
 
     $('label[for="item_image"]').hide();
     $("#item_image").hide();
@@ -29,6 +30,7 @@ $(document).ready ->
       i += 1
     $("#item_title").val(data.title);
     $("#item_link").val(data.url);
+    $("#item_price").val(data.price);
     $("#item_remote_image_url").val($(".carousel-inner .active img").attr("src"));
     $("#item_via").val("linkpreview");
     $('#commit').hover ->

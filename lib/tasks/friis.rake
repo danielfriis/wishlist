@@ -24,6 +24,16 @@ task :item_via_default => :environment do
 	end
 end
 
+task :item_price => :environment do
+	Item.find_each do |item|
+		# if item.price.nil?
+			price = LinkPreviewParser.price(item.link).to_money rescue nil
+			item.price = price.to_money unless price.nil?
+			item.save
+		# end
+	end
+end
+
 task :gender_default => :environment do
 	User.find_each do |user|
 		if user.gender.nil?

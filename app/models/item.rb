@@ -2,19 +2,21 @@
 #
 # Table name: items
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  link       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  image      :string(255)
-#  gender     :string(255)
-#  vendor_id  :integer
-#  via        :string(255)
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  link           :string(255)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  image          :string(255)
+#  gender         :string(255)
+#  vendor_id      :integer
+#  via            :string(255)
+#  price_cents    :integer
+#  price_currency :string(255)
 #
 
 class Item < ActiveRecord::Base
-  attr_accessible :link, :title, :image, :remote_image_url, :gender, :vendor_id, :via
+  attr_accessible :link, :title, :image, :remote_image_url, :gender, :vendor_id, :via, :price
 
   belongs_to :vendor
 
@@ -22,7 +24,9 @@ class Item < ActiveRecord::Base
   has_many :lists, through: :wishes
   has_many :comments, as: :commentable
 
-  accepts_nested_attributes_for :wishes, :lists 
+  accepts_nested_attributes_for :wishes, :lists
+
+  monetize :price_cents, with_model_currency: :price_currency, :allow_nil => true
 
   mount_uploader :image, ImageUploader
 

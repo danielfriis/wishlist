@@ -2,15 +2,17 @@
 #
 # Table name: items
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  link       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  image      :string(255)
-#  gender     :string(255)
-#  vendor_id  :integer
-#  via        :string(255)
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  link           :string(255)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  image          :string(255)
+#  gender         :string(255)
+#  vendor_id      :integer
+#  via            :string(255)
+#  price_cents    :integer
+#  price_currency :string(255)
 #
 
 require 'spec_helper'

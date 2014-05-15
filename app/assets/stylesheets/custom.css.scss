@@ -411,7 +411,7 @@ footer {
 
 .item {
   margin-bottom: 20px;
-  min-height: 344px;
+  min-height: 354px;
   h3 {
     font-size: 1em;
     line-height: 1.3em;
@@ -421,6 +421,9 @@ footer {
     bottom: 10px;
     right: 15px;
     margin-bottom: 0;
+  }
+  p.price {
+    left:10px;
   }
 } 
 
@@ -825,6 +828,7 @@ input {
 }
  #imgPreview, .carousel-inner, .item, #imgPreview .carousel-inner .item > img { 
   height: 200px;
+  padding-bottom: 15px;
 }
 
 #imgPreview .carousel-inner .item > img { 
@@ -873,6 +877,7 @@ input {
     .btn-group, .timestamp {
         position: absolute;
         bottom: 10px;
+        right:0;
       }
     
 
@@ -884,6 +889,10 @@ input {
       padding-bottom: 20px;
     }
   }
+}
+
+.user_list_large_wish {
+  margin-top: 0;
 }
 
 .wishes img {

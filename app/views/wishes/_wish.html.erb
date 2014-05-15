@@ -6,7 +6,8 @@
 		  	<h4 class="media-heading ellipsis">
 		  		<%= link_to wish.title, wish %>
 		  	</h4>
-		  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>	
+		  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>
+		  		<% if wish.item.price.present? %><div><%= wish.item.price.currency.iso_code %> <%= humanized_money wish.item.price %> from <strong><%= link_to wish.item.vendor.name, wish.item.link %></strong></div><% end %>
 		  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
 		  	<% end %>
 		  	<span class="timestamp">

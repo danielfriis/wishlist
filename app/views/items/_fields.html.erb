@@ -3,19 +3,24 @@
 <%= f.label :image, "Upload an image" %>
 <%= f.file_field :image %>
 
-<%= f.label :remote_image_url, "or paste an image URL" %>
-<%= f.text_field :remote_image_url, placeholder: "http://" %>
+<%= f.label :remote_image_url, "or paste a link to the image" %>
+<%= f.text_field :remote_image_url, placeholder: "http://www.abc-shop.com/image.png" %>
 
-<%= f.label :title %>
-<%= f.text_field :title, placeholder: "Warm Sweater" %>
+<hr />
 
-<%= f.label :link %>
-<%= f.text_field :link, placeholder: "http://" %>
+<!-- <%= f.label :title %> -->
+<%= f.text_field :title, placeholder: "Product title (Warm Sweater from ABC Brand)" %>
 
-<%= label_tag :note %>
-<%= text_field_tag :note, nil, placeholder: "Love it in blue!" %>
+<!-- <%= f.label :link %> -->
+<%= f.text_field :link, placeholder: "Link to product (http://www. ...)" %>
 
-<%= f.label :list_id %>
+
+<%= f.hidden_field :price, placeholder: "Optional: Price (E.g.: 20 USD or 100 DKK)" %>
+
+<!-- <%= label_tag :note %> -->
+<%= text_field_tag :note, nil, placeholder: "Optional: Short comment (E.g. Love it in blue!)" %>
+
+<%= f.label :list_id, "Choose your wish list" %>
 <%= select_tag :list_id, options_for_select(@user.lists.all.collect{ |u| [u.name, u.id] }) %>
 
 <label class="checkbox">
