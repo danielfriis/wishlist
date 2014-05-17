@@ -136,8 +136,7 @@ class LinkPreviewParser
     doc = Nokogiri::HTML(open(url))
 
     # Get arrary of iso_codes and symbols
-    currencies_string = Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.map { |c| Regexp.escape(c) unless c.nil? }.join('|')
-    currencies_string << "|kr."
+    currencies_string = Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.map { |c| Regexp.escape(c) unless c.nil? }.join('|') << "|kr."
     # Construct regex
     price_regex = /(?<=\p{Z}|^)((#{currencies_string})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_string}))?(?=\p{Z}|$)/m
 
@@ -145,8 +144,12 @@ class LinkPreviewParser
     itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
     itemprop_price = (itemprop_price.kind_of?(Array) ? itemprop_price[0] : itemprop_price)
 
-    itemprop_curr = doc.at('body').xpath("//*[@itemprop='currency']").inner_text.strip
-    itemprop_curr = (itemprop_curr.kind_of?(Array) ? itemprop_curr[0] : itemprop_curr)
+    itemprop_curr_pre = doc.at('body').xpath("//*[@itemprop='currency']")
+    itemprop_curr = itemprop_curr_pre.inner_text.strip
+    if itemprop_curr_pre.present?
+      itemprop_curr = itemprop_curr_pre.inner_text.strip.empty? ? itemprop_curr_pre.first["content"] : itemprop_curr_pre.inner_text.strip
+      itemprop_curr = (itemprop_curr.kind_of?(Array) ? itemprop_curr[0] : itemprop_curr)
+    end
 
     if itemprop_curr.present? && itemprop_price.present?
       price = itemprop_price + " " + itemprop_curr
@@ -154,8 +157,8 @@ class LinkPreviewParser
       price = itemprop_price
     else
       # Retract prices based on classes containing "price" and a regex
-      # prices = doc.at('body').xpath("//*[@*[contains(., 'price')]]").map{|i| i.inner_text.strip.match(/(?<=\p{Z}|^)(([A-Z]{3}|\p{Sc})(\p{Z})?)?(([1-9]{1}(\d{1,2})?(\.\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?(\,\d{3})*(\.\d{2})?))((\p{Z})?([A-Z]{3}|\p{Sc}))?(?=\p{Z}|$)/m).to_a[0] }.compact
-      prices = doc.at('body').xpath("//*[@*[contains(., 'price')]]").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+      # "translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" is to makes nokogiri case in-sentive. Replaces "."
+      prices = doc.at('body').xpath("//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
 
       # This is to exclude the 'basket'
       header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }

@@ -38,6 +38,11 @@ class Item < ActiveRecord::Base
 
   is_impressionable
 
+  def exchanged_price
+    new_price = price.exchange_to("DKK")
+    "#{new_price.currency.iso_code}" + " #{new_price.format}"
+  end
+
   def self.sort(general, gender, current_user)
     if gender == "all"
       sort_general(general, current_user)

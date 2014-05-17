@@ -20,6 +20,7 @@ gem 'link_thumbnailer'
 gem "ruby-readability", :require => 'readability'
 gem 'money-rails'
 gem "google_currency"
+gem 'ruby-progressbar'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'
