@@ -36,7 +36,7 @@ end
 
 task :item_price => :environment do
 	total = Item.all.count
-	progressbar = ProgressBar.create(format: '%a %E %B %p%% %t',total: total)
+	progressbar = ProgressBar.create(format: '%a %E %c/%C |%B| %p%% %t',total: total)
 	Item.find_each do |item|
 		# if item.price.nil?
 			price = LinkPreviewParser.price(item.link).to_money rescue nil
@@ -48,11 +48,14 @@ task :item_price => :environment do
 end
 
 task :no_item_price => :environment do
+	total = Item.all.count
+	progressbar = ProgressBar.create(format: '%a %E %c/%C |%B| %p%% %t',total: total)
 	Item.find_each do |item|
 		if item.price.nil?
 			price = LinkPreviewParser.price(item.link).to_money rescue nil
 			item.price = price.to_money unless price.nil?
 			item.save
+			progressbar.increment
 		end
 	end
 end
