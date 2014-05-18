@@ -136,9 +136,9 @@ class LinkPreviewParser
     doc = Nokogiri::HTML(open(url))
 
     # Get arrary of iso_codes and symbols
-    currencies_string = Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.map { |c| Regexp.escape(c) unless c.nil? }.join('|') << "|kr."
+    currencies_regex = Regexp.union(Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.compact.reject!{ |c| c.empty? } << "|kr.")
     # Construct regex
-    price_regex = /(?<=\p{Z}|^)((#{currencies_string})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_string}))?(?=\p{Z}|$)/m
+    price_regex = /(?<=\p{Z}|^)((#{currencies_regex})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_regex}))?(?=\p{Z}|$)/m
 
     # Retract price based on meta data
     itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
@@ -159,6 +159,7 @@ class LinkPreviewParser
       # Retract prices based on classes containing "price" and a regex
       # "translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" is to makes nokogiri case in-sentive. Replaces "."
       prices = doc.at('body').xpath("//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+      prices = prices.map{|i| i unless i.match(currencies_regex).nil? }.compact unless prices.nil?
 
       # This is to exclude the 'basket'
       header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }
