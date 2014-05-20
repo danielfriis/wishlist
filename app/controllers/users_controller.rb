@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      UserMailer.signup_confirmation(@user).deliver
+      UserMailer.delay.signup_confirmation(@user.id) # When
       @user.lists.create!(name: "General")
       sign_in @user
       flash[:success] = "Thanks for signing up!"

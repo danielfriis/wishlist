@@ -6,10 +6,10 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.signup_confirmation.subject
   #
-  def signup_confirmation(user)
-    @user = user
+  def signup_confirmation(user_id)
+    @user = User.find(user_id)
 
-    mail to: user.email, subject: "[Wishlistt] Sign Up Confirmation"
+    mail to: @user.email, subject: "[Wishlistt] Sign Up Confirmation"
   end
 
   def share_list(message, list)
