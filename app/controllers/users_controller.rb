@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :following, :followers]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :find_user, only: [:show, :edit, :update, :following, :followers]
+  include Analyzable
 
   def show
     @lists = @user.lists
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      UserMailer.delay.signup_confirmation(@user.id) # When
+      UserMailer.delay.signup_confirmation(@user.id) # When using delayed_job for actionmailer '.deliver' is omitted
       @user.lists.create!(name: "General")
       sign_in @user
       flash[:success] = "Thanks for signing up!"

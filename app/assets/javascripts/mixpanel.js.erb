@@ -1,0 +1,26 @@
+$('document').ready(function(){
+  var mixpanel_temp_id = mixpanel.get_distinct_id();
+	// PRIOR TO SIGNUP OR LOGIN
+	mixpanel.track_links("#jumbotron_signup", "click jumbotron signup link", {
+	    "referrer": document.referrer
+	});
+	mixpanel.track_links("#bottom_home_signup", "click home bottom signup link", {
+	    "referrer": document.referrer
+	});
+	mixpanel.track_links("#facebook_signup", "click facebook signup link", {
+	    "referrer": document.referrer
+	});
+	mixpanel.track_links("#email_signup", "click email signup link", {
+	    "referrer": document.referrer
+	});
+	mixpanel.track_links("#home_inspiration", "click inspiration link", {
+	    "referrer": document.referrer
+	});
+	// SIGNS UP
+	$('<input>').attr({
+	    type: 'hidden',
+	    id: 'mixpanel_temp_id',
+	    name: 'mixpanel_temp_id',
+	    value: mixpanel_temp_id
+	}).appendTo('form#new_user');
+});

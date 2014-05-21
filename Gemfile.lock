@@ -140,6 +140,7 @@ GEM
     mime-types (1.21)
     mini_magick (3.4)
       subexec (~> 0.2.1)
+    mixpanel-ruby (1.4.0)
     money (5.1.1)
       i18n (~> 0.6.0)
     money-rails (0.8.1)
@@ -282,6 +283,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   link_thumbnailer
   mini_magick
+  mixpanel-ruby
   money-rails
   newrelic_rpm
   nokogiri

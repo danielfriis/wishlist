@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   before_validation :generate_slug
 
   def self.create_with_omniauth!(auth)
-    create! do |user|
+    user = create! do |user|
       user.name = auth['info']['name']
       user.email = auth['info']['email']
       user.remote_avatar_url = auth['info']['image'].split("=")[0] << "=large"
@@ -60,8 +60,9 @@ class User < ActiveRecord::Base
       user.location = auth['info']['location']
       user.password = "foobar"
       user.password_confirmation = "foobar"
-      UserMailer.signup_confirmation(user).deliver
     end
+    UserMailer.delay.signup_confirmation(user.id)
+    return user
   end
 
   def to_param

@@ -22,6 +22,7 @@ gem 'money-rails'
 gem "google_currency"
 gem 'ruby-progressbar'
 gem 'delayed_job_active_record'
+gem 'mixpanel-ruby'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'

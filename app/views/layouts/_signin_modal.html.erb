@@ -9,12 +9,12 @@
         Sign up to wishlistt and start organizing your desires!
         <br />
         <br />
-        <a href="auth/facebook" class="btn btn-facebook btn-large">
+        <a href="auth/facebook" id="facebook_signup" class="btn btn-facebook btn-large">
           <i class="icon-facebook"></i> | Sign up with Facebook
         </a>
         <p class="muted"><small>We will never post anything without your permission.</small></p>
           
-    	  or <%= link_to "sign up with email", signup_path, class: "" %>
+    	  or <%= link_to "sign up with email", signup_path, id: "email_signup" %>
         <hr>
         Already got an account? <%= link_to "Log in now", signin_path %>
         <br />

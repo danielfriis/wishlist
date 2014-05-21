@@ -59,6 +59,9 @@ module Wishlist
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
+    # Added by Daniel: Autoload lib
+    config.autoload_paths += %W(#{config.root}/lib)
+
     # Enable the asset pipeline
     config.assets.enabled = true
     config.assets.paths << "#{Rails.root}/app/assets/fonts"

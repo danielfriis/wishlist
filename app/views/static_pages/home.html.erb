@@ -37,12 +37,12 @@
 	  <%= render @items.limit(6) %>
 	</div>
 	<div class="center">
-		<%= link_to "Find more inspiration", inspiration_path, class: "btn" %>
+		<%= link_to "Find more inspiration", inspiration_path, class: "btn", id: "home_inspiration" %>
 	</div>
 </div>
 <hr>
 <div class="signup_home center">
-	<a href="#signUp" role="button" class="btn btn-large btn-primary" data-toggle="modal">Sign up for free</a>
+	<a href="#signUp" id="bottom_home_signup" role="button" class="btn btn-large btn-primary" data-toggle="modal">Sign up for free</a>
 	<div class="spacer"></div>
 	<p>Start collecting your wishes!</p>
 </div>
