@@ -3,7 +3,7 @@ class WishesController < ApplicationController
   before_filter :correct_user,   only: :destroy
 
   def show
-    @wish = Wish.find_by_id(params[:id])
+    @wish = Wish.find_by_id(params[:id]) || not_found
     @items = @wish.item.vendor.present? ? @wish.item.vendor.items.sample(9) : Item.all.sample(9)
     @commentable = @wish
     @comments = @commentable.comments

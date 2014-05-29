@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
+  def not_found
+	  raise ActionController::RoutingError.new('Not Found')
+	end
+
   private
     def mobile_device?
       request.user_agent =~ /Mobile|webOS/
