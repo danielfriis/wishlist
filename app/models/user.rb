@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :lists, dependent: :destroy
   has_many :wishes, through: :lists
   has_many :items, through: :wishes
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy

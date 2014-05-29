@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 	impressionist :actions=>[:show]
 	skip_before_filter :verify_authenticity_token, :only => [:create] #For the bookmarklet
 	helper_method :sort_general, :sort_gender
+	include Analyzable
 
 	respond_to :html, :json
 
@@ -29,17 +30,20 @@ class ItemsController < ApplicationController
     @list = current_user.lists.find(params[:list_id])
     if params[:item][:via] == "no_link"
     	@item = Item.create(params[:item])
+    	tracker.track("Created an item with no link")
     else
 			@item = Item.find_or_create_by_link!(params[:item][:link]) do |c|
 				c.assign_attributes(params[:item])
 				c.price = params[:item][:price].to_money unless params[:item][:price].nil?
 				c.vendor_id = Vendor.custom_find_or_create(params[:item][:link])
 			end
+			tracker.track("Created an item")
 		end
 		@item.wishes.build(title: params[:item][:title], list_id: @list.id, note: params[:note], hide: params[:wish][:hide])
 		respond_to do |format|
 	    if @item.save
 	    	if params[:item][:via] == "bookmarklet"
+	    		tracker.track("Created an item with bookmarklet")
 	    		format.json { render json: @item }
 	    	else
 		    	flash[:success] = "Product added to Wishlistt"

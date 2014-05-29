@@ -1,11 +1,11 @@
 <div class="shop_now">
 	<% if item.vendor.present? && item.price.present? %>
-    <%= link_to item.link, class: "btn btn-primary btn-large btn-block", target: "_blank" do %>
+    <%= link_to item.link, class: "btn btn-primary btn-large btn-block shop-link", target: "_blank" do %>
       <%= item.price.currency.iso_code %> <%= humanized_money item.price %>
     <% end %>
     <p class="muted">from <strong><%= item.vendor.name %></strong></p>
   <% elsif item.vendor.present? && item.price.nil? %>
-		<%= link_to "Shop Now", item.link, class: "btn btn-primary btn-large btn-block", target: "_blank" %>
+		<%= link_to "Shop Now", item.link, class: "btn btn-primary btn-large btn-block shop-link", target: "_blank" %>
     <p class="muted">from <strong><%= item.vendor.name %></strong></p>
   <% elsif item.link.present? %>
   	<h3>May be found here</h3>

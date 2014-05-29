@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include Analyzable
 
   def new
     render layout: 'clean_layout'
@@ -25,6 +26,12 @@ class SessionsController < ApplicationController
     end
     # Log the authorizing user in.
     sign_in @auth.user
+    tracker.alias(@auth.user.id, cookies[:mp_distinct_id]) if cookies[:mp_distinct_id] if @auth.user.new_record?
+    tracker.people_set({
+          '$name' => @auth.user.name,
+          '$email' => @auth.user.email,
+          '$gender' => @auth.user.gender
+      });
     redirect_to @auth.user, notice: "Welcome, #{current_user.name}."
   end
 

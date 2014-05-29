@@ -12,11 +12,11 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: "[Wishlistt] Sign Up Confirmation"
   end
 
-  def share_list(message, list)
+  def share_list(message, list_id)
     @message = message
-    @list = list
+    @list = List.find(list_id)
 
-    mail from: "#{list.user.name} <no-reply@wishlistt.com>", to: message.email, subject: "#{list.user.name} via Wishlistt", reply_to: list.user.email
+    mail from: "#{@list.user.name} <no-reply@wishlistt.com>", to: message.email, subject: "#{@list.user.name} via Wishlistt", reply_to: @list.user.email
   end
 
 end

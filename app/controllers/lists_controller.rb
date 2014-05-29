@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :destroy]
   before_filter :correct_user,   only: :destroy
+  include Analyzable
 
   respond_to :html, :json
 
@@ -25,6 +26,8 @@ class ListsController < ApplicationController
     @list = current_user.lists.build(params[:list])
     if @list.save
       flash[:success] = "List created!"
+      tracker.track("Created a list")
+      tracker.increment({'Lists created' => 1})
       redirect_to [current_user, @list]
     else
       redirect_to current_user
@@ -39,6 +42,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
+    tracker.track("Removed a list")
     redirect_to :back
   end
 
@@ -47,7 +51,9 @@ class ListsController < ApplicationController
     @message = Message.new(params[:message])
     
     if @message.valid?
-      UserMailer.share_list(@message, @list).deliver
+      UserMailer.share_list(@message, @list.id).deliver
+      tracker.track("Shared a list")
+      tracker.increment({'Lists shared' => 1})
       redirect_to([@list.user, @list], :notice => "Message was successfully sent.")
     else
       flash.now.alert = "Please fill all fields."

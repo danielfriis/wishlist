@@ -1,19 +1,22 @@
 $('document').ready(function(){
   var mixpanel_temp_id = mixpanel.get_distinct_id();
 	// PRIOR TO SIGNUP OR LOGIN
-	mixpanel.track_links("#jumbotron_signup", "click jumbotron signup link", {
+	mixpanel.track_links("#jumbotron_signup", "Click jumbotron signup link", {
 	    "referrer": document.referrer
 	});
-	mixpanel.track_links("#bottom_home_signup", "click home bottom signup link", {
+	mixpanel.track_links("#bottom_home_signup", "Click home bottom signup link", {
 	    "referrer": document.referrer
 	});
-	mixpanel.track_links("#facebook_signup", "click facebook signup link", {
+	mixpanel.track_links("#facebook_signup", "Click facebook signup link", {
 	    "referrer": document.referrer
 	});
-	mixpanel.track_links("#email_signup", "click email signup link", {
+	mixpanel.track_links("#email_signup", "Click email signup link", {
 	    "referrer": document.referrer
 	});
-	mixpanel.track_links("#home_inspiration", "click inspiration link", {
+	mixpanel.track_links("#home_inspiration", "Click inspiration link", {
+	    "referrer": document.referrer
+	});
+	mixpanel.track_links(".shop-link", "Click on shop now link", {
 	    "referrer": document.referrer
 	});
 	// SIGNS UP

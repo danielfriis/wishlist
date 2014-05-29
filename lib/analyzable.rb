@@ -1,5 +1,4 @@
 module Analyzable 
-  
   private 
   
   def tracker
