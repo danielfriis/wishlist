@@ -26,12 +26,15 @@ class SessionsController < ApplicationController
     end
     # Log the authorizing user in.
     sign_in @auth.user
-    tracker.alias(@auth.user.id, cookies[:mp_distinct_id]) if cookies[:mp_distinct_id] if @auth.user.new_record?
-    tracker.people_set({
-          '$name' => @auth.user.name,
-          '$email' => @auth.user.email,
-          '$gender' => @auth.user.gender
-      });
+    if @auth.user.new_record? && cookies[:mp_distinct_id]
+      tracker.alias(@auth.user.id, cookies[:mp_distinct_id])
+      tracker.people_set(@auth.user.id, {
+            '$name' => @auth.user.name,
+            '$email' => @auth.user.email,
+            '$gender' => @auth.user.gender
+        });
+      tracker.track(@auth.user.id, 'Signup')
+    end
     redirect_to @auth.user, notice: "Welcome, #{current_user.name}."
   end
 

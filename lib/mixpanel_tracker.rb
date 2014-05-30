@@ -1,24 +1,23 @@
 class MixpanelTracker
 	require 'mixpanel-ruby'
 	
-  def initialize(user_id) 
-    @user_id = user_id 
-  end 
+  # def initialize() 
+  # end 
   
-  def track(event, params = {}) 
-    tracker.track(@user_id, event, params) 
+  def track(user_id, event, params = {}) 
+    tracker.track(user_id, event, params) 
   end
 
   def alias(new_id, old_id)
     tracker.alias(new_id,old_id)
   end
 
-  def increment(params = {})
-    tracker.people.increment(@user_id, params)
+  def increment(user_id, params = {})
+    tracker.people.increment(user_id, params)
   end
 
-  def people_set(params = {})
-    tracker.people.set(@user_id, params)
+  def people_set(user_id, params = {})
+    tracker.people.set(user_id, params)
   end
 
   private 

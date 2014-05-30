@@ -1,8 +1,12 @@
 module SessionsHelper
 
+  include Analyzable
+
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
     self.current_user = user
+    tracker.track(user.id, 'Sign in')
+    tracker.increment(user.id, {'Logins' => 1})
   end
 
   def signed_in?

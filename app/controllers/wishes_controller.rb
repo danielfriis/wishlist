@@ -19,8 +19,8 @@ class WishesController < ApplicationController
   def create
     @item = Item.find_by_id(params[:wish][:item_id])
     @wish = Wish.create!(title: @item.title, item_id: params[:wish][:item_id], list_id: params[:wish][:list_id])
-    tracker.track('Added a wish')
-    tracker.increment({'Wishes added' => 1})
+    tracker.track(current_user.id, 'Added a wish')
+    tracker.increment(current_user.id, {'Wishes added' => 1})
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
@@ -30,8 +30,8 @@ class WishesController < ApplicationController
   def destroy
     @item = @wish.item
     @wish.destroy
-    tracker.track('Removed a wish')
-    tracker.increment({'Wishes removed' => 1})
+    tracker.track(current_user.id, 'Removed a wish')
+    tracker.increment(current_user.id, {'Wishes removed' => 1})
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
@@ -40,7 +40,7 @@ class WishesController < ApplicationController
 
   def update
     @wish = Wish.find(params[:id])
-    tracker.track('Updated a wish')
+    tracker.track(current_user.id, 'Updated a wish')
     respond_to do |format|
       if @wish.update_attributes(params[:wish])
         format.html { redirect_to(@wish, :notice => 'Wish was successfully updated.') }

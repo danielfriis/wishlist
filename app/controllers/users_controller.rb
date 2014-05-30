@@ -22,11 +22,12 @@ class UsersController < ApplicationController
       sign_in @user
       flash[:success] = "Thanks for signing up!"
       tracker.alias(@user.id, cookies[:mp_distinct_id]) if cookies[:mp_distinct_id]
-      tracker.people_set({
+      tracker.people_set(@user.id, {
             '$name' => @user.name,
             '$email' => @user.email,
             '$gender' => @user.gender
         });
+      tracker.track(@user.id, 'Signup')
       redirect_to @user
     else
       render 'new'

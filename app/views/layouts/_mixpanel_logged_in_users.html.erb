@@ -1,3 +1,8 @@
 <script type="text/javascript">
-    mixpanel.identify('<%= current_user.id %>')
+    mixpanel.identify('<%= current_user.id %>');
+    mixpanel.people.set({
+            '$name': '<%= current_user.name %>',
+            '$email': '<%= current_user.email %>',
+            '$gender': '<%= current_user.gender %>'
+        });
 </script>
