@@ -6,8 +6,9 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.signup_confirmation.subject
   #
-  def signup_confirmation(user_id)
+  def signup_confirmation(user_id, generated_password = nil)
     @user = User.find(user_id)
+    @generated_password = generated_password if generated_password.present?
 
     mail to: @user.email, subject: "[Wishlistt] Sign Up Confirmation"
   end

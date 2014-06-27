@@ -52,16 +52,17 @@ class User < ActiveRecord::Base
   before_validation :generate_slug
 
   def self.create_with_omniauth!(auth)
+    generated_password = SecureRandom.hex[0,8]
     user = create! do |user|
       user.name = auth['info']['name']
       user.email = auth['info']['email']
       user.remote_avatar_url = auth['info']['image'].split("=")[0] << "=large"
       user.gender = auth['extra']['raw_info']['gender'].titleize
       user.location = auth['info']['location']
-      user.password = "foobar"
-      user.password_confirmation = "foobar"
+      user.password = generated_password
+      user.password_confirmation = generated_password
     end
-    UserMailer.delay.signup_confirmation(user.id)
+    UserMailer.delay.signup_confirmation(user.id, generated_password)
     return user
   end
 
