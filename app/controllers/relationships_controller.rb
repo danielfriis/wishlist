@@ -3,22 +3,30 @@ class RelationshipsController < ApplicationController
   include Analyzable
 
   def create
-    @user = User.find(params[:relationship][:followed_id])
-    current_user.follow!(@user)
-    tracker.track(current_user.id, "Followed another user")
+    subject_class = params[:relationship][:followed_type].classify.constantize
+    @subject = subject_class.find(params[:relationship][:followed_id])
+    current_user.relationships.create!(followed_id: @subject.id, followed_type: @subject.class.name)
+    tracker.track(current_user.id, "Followed another #{@subject.class.name}")
     respond_to do |format|
-      format.html { redirect_to @user }
+      format.html { redirect_to @subject }
       format.js
     end
   end
 
   def destroy
-    @user = Relationship.find(params[:id]).followed
-    current_user.unfollow!(@user)
-    tracker.track(current_user.id, "Unfollowed another user")
+    @subject = Relationship.find(params[:id]).followed
+    current_user.relationships.find_by_followed_id_and_followed_type(@subject.id, @subject.class.name).destroy
+    tracker.track(current_user.id, "Unfollowed another #{@subject.class.name}")
     respond_to do |format|
-      format.html { redirect_to @user }
+      format.html { redirect_to @subject }
       format.js
     end
+  end
+
+private
+
+  def correct_user
+    @comment = current_user.comments.find_by_id(params[:id])
+    redirect_to current_user if @comment.nil?
   end
 end

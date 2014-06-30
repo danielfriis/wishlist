@@ -1,0 +1,30 @@
+<% provide(:title, @vendor.name) %>
+<div class="row">
+  <div class="span12 user_info">
+    <div class="row">
+      <div class="span8">
+        <%= render partial: 'shared/vendor_info', locals: {:vendor => @vendor} %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+	<div class="span12">
+		<ul class="nav nav-pills sort_general pull-left">
+			<li><%= sortable_general "popular", true %></li>
+		  <li><%= sortable_general "recent", true %></li>		  
+		</ul>
+		<div class="hidden-phone btn-group sort_gender pull-right">
+			<%= sortable_gender "all" %>
+			<%= sortable_gender "Male" %>
+			<%= sortable_gender "Female" %>
+		</div>
+	</div>
+</div>
+<div class="row inspiration">
+  <%= render @items %>
+</div>
+
+<div id="inspiration-pagination">
+  <%= will_paginate @items %>
+</div>

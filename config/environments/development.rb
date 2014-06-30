@@ -15,6 +15,8 @@ Wishlist::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
+
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   
   # Mail here
 

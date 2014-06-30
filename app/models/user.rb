@@ -29,7 +29,9 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_users, through: :relationships, source: :followed
+  has_many :followed_users, through: :relationships, source: :followed, source_type: 'User'
+  has_many :followed_vendors, through: :relationships, source: :followed, source_type: 'Vendor'
+
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
                                    dependent:   :destroy
@@ -88,13 +90,13 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id)
   end
 
-  def follow!(other_user)
-    relationships.create!(followed_id: other_user.id)
-  end
+  # def follow!(other_user)
+  #   relationships.create!(followed_id: other_user.id)
+  # end
 
-  def unfollow!(other_user)
-    relationships.find_by_followed_id(other_user.id).destroy
-  end
+  # def unfollow!(other_user)
+  #   relationships.find_by_followed_id(other_user.id).destroy
+  # end
 
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query

@@ -14,8 +14,8 @@
     <% end %>
   </span>
   <span>
-    <%= render partial: 'users/follow_form', locals: {:user => user} if signed_in? %>
-    <%= render partial: 'users/follow_stats', locals: {:user => user} %>
+    <%= render partial: 'users/follow_form', locals: {:subject => user} if signed_in? %>
+    <%= render partial: 'users/follow_stats', locals: {:subject => user} %>
   </span>
 
 <!-- <a href="#" class="btn">Follow</a> -->

@@ -1,10 +1,10 @@
-<% user ||= @user %>
-<% unless current_user?(user) %>
-	<div id="follow_form_<%= user.id %>" class="follow_form inline-block">
-	  <% if current_user.following?(user) %>
-	    <%= render partial: 'users/unfollow', locals: {:user => user} %>
+<% subject ||= @subject %>
+<% unless current_user?(subject) %>
+	<div id="follow_form_<%= subject.class.name %>_<%= subject.id %>" class="follow_form inline-block">
+	  <% if current_user.following?(subject) %>
+	    <%= render partial: 'users/unfollow', locals: {:subject => subject} %>
 	  <% else %>
-	    <%= render partial: 'users/follow', locals: {:user => user} %>
+	    <%= render partial: 'users/follow', locals: {:subject => subject} %>
 	  <% end %>
 	</div>
 <% end %>

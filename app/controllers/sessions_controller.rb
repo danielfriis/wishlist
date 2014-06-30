@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
         });
       tracker.track(@auth.user.id, 'Signup')
     end
-    redirect_to @auth.user, notice: "Welcome, #{current_user.name}."
+    redirect_back_or @auth.user
   end
 
   def destroy

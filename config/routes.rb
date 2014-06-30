@@ -7,14 +7,15 @@ Wishlist::Application.routes.draw do
   end
 
   resources :items, only: [:show, :new, :create, :update, :destroy, :inspiration] do
-    resources :comments
+    resources :comments, :defaults => { :commentable => 'item' }
   end
   resources :wishes do
     collection { post :sort }
-    resources :comments
+    resources :comments, :defaults => { :commentable => 'wish' }
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :vendors, path: "v" , except: [:index, :new, :create]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -36,12 +37,13 @@ Wishlist::Application.routes.draw do
 
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
-    resources :comments
+    resources :comments, :defaults => { :commentable => 'user' }
     resources :lists do
       post :share
     end
     member do
-      get :following, :followers
+      get :following, :defaults => { :followed => 'user' }
+      get :followers, :defaults => { :followed => 'user' }
     end
   end
 

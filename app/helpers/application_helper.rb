@@ -22,16 +22,26 @@ module ApplicationHelper
     full_name.split(" ")[0]
   end
 
-  def sortable_general(column, title = nil)
+  def sortable_general(column, vendor = false, title = nil)
     title ||= column.titleize
-    if signed_in? && params[:sort] == nil && column == "following"
-      css_class = "active"
-    elsif !signed_in? && params[:sort] == nil && column == "popular"
-      css_class = "active"
-    elsif column == params[:sort]
-      css_class = "active"
+    if vendor
+      if params[:sort] == nil && column == "popular"
+        css_class = "active"
+      elsif column == params[:sort]
+        css_class = "active"
+      else
+        css_class = nil
+      end
     else
-      css_class = nil
+      if signed_in? && params[:sort] == nil && column == "following"
+        css_class = "active"
+      elsif !signed_in? && params[:sort] == nil && column == "popular"
+        css_class = "active"
+      elsif column == params[:sort]
+        css_class = "active"
+      else
+        css_class = nil
+      end
     end
     link_to title, {:sort => column, :gender => sort_gender}, {:class => css_class}
   end
@@ -84,10 +94,17 @@ module ApplicationHelper
   end
 
   def get_host_with_www(url)
-    url = "http://#{url}" if URI.parse(URI.encode(url.strip)).scheme.nil?
-    host = URI.parse(URI.encode(url.strip)).host.downcase
-    host.start_with?('www.') ? host : host = "www.#{host}"
-    url = "http://#{host}" if URI.parse(host).scheme.nil?
+    url = "#{URI.parse(URI.encode(url.strip)).scheme}" + "://" + "#{URI.parse(URI.encode(url.strip)).host.downcase}"
+  end
+
+  def get_root_url
+    url = Rails.application.routes.url_helpers.root_url
+    parsed = URI.parse(URI.encode(url.strip))
+    if parsed.port.present?
+      root = "#{parsed.host}" + ":" + "#{parsed.port}"
+    else
+      root = "#{parsed.host}"
+    end
   end
 
   # def sortable(column, title = nil)

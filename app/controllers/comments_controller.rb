@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	before_filter :load_commentable
+	before_filter :get_commentable
   before_filter :correct_user,   only: :destroy
 
   def index
@@ -26,10 +26,13 @@ class CommentsController < ApplicationController
 
 private
 
-	def load_commentable
-		resource, id = request.path.split('/')[1, 2]
-		@commentable = resource.singularize.classify.constantize.find(id)
-	end
+	def get_commentable
+    @commentable = params[:commentable].classify.constantize.find(commentable_id)
+  end
+
+  def commentable_id
+    params[(params[:commentable].singularize + "_id").to_sym]
+  end
 
   def correct_user
     @comment = current_user.comments.find_by_id(params[:id])

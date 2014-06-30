@@ -1,20 +1,41 @@
+<% if subject.class.name == 'User' %>
+
 <div class="stats muted">
-  <a href="<%= user_path(user) %>">
-    <strong id="wishes_from_<%= user.id %>" class="stat">
-      <%= user.wishes.count %>
+  <%= link_to(subject) do %>
+    <strong id="wishes_from_<%= subject.id %>" class="stat">
+      <%= subject.items.count %>
     </strong>
-    wishes
-  </a>
-  <a href="<%= following_user_path(user) %>">
-    <strong id="following_<%= user.id %>" class="stat">
-      <%= user.followed_users.count %>
+    <%= "wish".pluralize(subject.items.count) %>
+  <% end %>
+  <a href="<%= following_user_path(subject) %>">
+    <strong id="following_<%= subject.class.name %>_<%= subject.id %>" class="stat">
+      <%= subject.followed_users.count %>
     </strong>
     following
   </a>
-  <a href="<%= followers_user_path(user) %>">
-    <strong id="followers_<%= user.id %>" class="stat">
-      <%= user.followers.count %>
+  <a href="<%= followers_user_path(subject) %>">
+    <strong id="followers_<%= subject.class.name %>_<%= subject.id %>" class="stat">
+      <%= subject.followers.count %>
     </strong>
-    followers
+    <%= "follower".pluralize(subject.followers.count) %>
   </a>
 </div>
+
+<% else %>
+
+<div class="stats muted">
+  <%= link_to(subject) do %>
+    <strong id="wishes_from_<%= subject.id %>" class="stat">
+      <%= subject.wishes.count %>
+    </strong>
+    <%= "wish".pluralize(subject.wishes.count) %>
+  <% end %>
+  <a href="#">
+    <strong id="followers_<%= subject.class.name %>_<%= subject.id %>" class="stat">
+      <%= subject.followers.count %>
+    </strong>
+    <%= "follower".pluralize(subject.followers.count) %>
+  </a>
+</div>
+
+<% end %>

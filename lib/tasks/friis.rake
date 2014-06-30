@@ -15,6 +15,20 @@ task :create_vendors => :environment do
 	end
 end
 
+task :set_relationships => :environment do
+	Relationship.find_each do |rel|
+		rel.followed_type = "User"
+		rel.save
+	end
+end
+
+task :generate_vendor_slug => :environment do
+ Vendor.find_each do |vendor|
+ 	vendor.slug = vendor.create_unique_slug
+ 	vendor.save
+ end
+end
+
 task :item_via_default => :environment do
 	Item.find_each do |item|
 		if item.via.nil?
