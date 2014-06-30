@@ -28,7 +28,7 @@
         
         <% @item.wishes.each do |w| %>
           <li class="user_info">
-            <%= render 'shared/user_info', user: w.list.user %>
+            <%= render 'shared/user_info', subject: w.list.user %>
           </li>
         <% end %>
         

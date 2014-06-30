@@ -14,7 +14,7 @@
 </div>
 <div class="row inspiration">
   <%= render @items %>
-  <%= render 'no_following' if signed_in? && current_user.followed_users.empty? && ( params[:sort] == nil || params[:sort] == "following" ) %>
+  <%= render 'no_following' if signed_in? && current_user.followed_users.empty? && current_user.followed_vendors.empty? && ( params[:sort] == nil || params[:sort] == "following" ) %>
 </div>
 
 <div id="inspiration-pagination">
