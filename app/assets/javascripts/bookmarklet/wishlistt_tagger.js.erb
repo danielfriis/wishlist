@@ -2,7 +2,7 @@
 
 if(/^(www\.)?wishlistt\.com$/.test(location.hostname)) return alert("Drag this button to your bookmarks bar.\nThen you can add things to your wish list from any site around the web. Go give it a try!");
 
-	var host = "localhost:3000", prefix = 'wishlistt-bookmarklet-tagger-',
+	var host = "lit-fortress-2729.herokuapp.com", prefix = 'wishlistt-bookmarklet-tagger-',
   iframe  = {obj:null, id:prefix+'iframe', win: null, url:'http://'+host+'/bookmarklet'},
 	marker  = {obj:null, id:prefix+'marker'}, // image marker
 	factory = document.createElement('div'),
