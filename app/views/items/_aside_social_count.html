@@ -27,8 +27,8 @@
       <ul class="users">
         <% @item.wishes.each do |w| %>
           <li class="user_info">
-            <% user = w.list.user %>
-            <%= render partial: 'shared/user_info', locals: {user: user} %>
+            <%= w.list.user.name %>
+            
           </li>
         <% end %>  
       </ul>
