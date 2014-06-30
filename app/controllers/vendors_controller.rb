@@ -25,7 +25,7 @@ class VendorsController < ApplicationController
 	  end
 
 	  def find_vendor
-      @vendor = Vendor.find_by_slug!(params[:id].split("/").last)
+      @vendor = Vendor.find_by_slug!(params[:id])
     end
 
 end
