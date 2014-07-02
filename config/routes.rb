@@ -15,6 +15,7 @@ Wishlist::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :vendors, only: [:index, :new, :create]
   resources :vendors, path: "v" , except: [:index, :new, :create]
 
   match '/signup',  to: 'users#new'

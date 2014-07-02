@@ -47,4 +47,16 @@ class Vendor < ActiveRecord::Base
   	return vendor.id
   end
 
+  def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("upper(name) like upper(?)", "%#{query}%") 
+  end
+
+  def self.most_followers
+    joins("left join relationships on relationships.followed_id = vendors.id AND relationships.followed_type = 'Vendor'")
+    .select('vendors.*, count(relationships.followed_id) as relationships_count')
+    .group('vendors.id')
+    .order('relationships_count desc, vendors.created_at desc')
+  end
+
 end

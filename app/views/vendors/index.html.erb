@@ -1,0 +1,38 @@
+<% provide(:title, 'Find Vendors') %>
+<div class="row">
+	<div class="span12">
+		<h1>Find Vendors</h1>
+		<p>Browse, or search below</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span9">
+		<div>
+			<%= form_tag(vendors_path, :method => "get", id: "search-form", class: "form-search form-inline") do %>
+				<%= text_field_tag :search, params[:search], class: "span6", placeholder: "Search for vendors" %>
+				<%= submit_tag "Search", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+
+		<div class="row">
+			<ul class="users">
+				<%= render @vendors %>
+			</ul>
+		</div>
+
+		<%= will_paginate @vendors, page_links: false %>
+	</div>
+	<aside class="pull-right span3">
+		<% if current_user.admin? %>
+			<div class="admin">
+			  <h3>Admin-info</h3>
+			  <span>
+			  	<p><%= Vendor.all.count %> vendors in total</p>
+			  </span>
+			</div>
+		<% end %>
+		
+		<%= render 'shared/aside_facebook' %>
+	</aside>
+</div>

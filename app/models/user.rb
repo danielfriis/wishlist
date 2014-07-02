@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create
   validates :slug, uniqueness: true, presence: true, 
-                    exclusion: { in: %w[admin signup signin signout help about contact terms privacy linkpreview bookmarklet inspiration]}
+                    exclusion: { in: %w[admin signup signin signout help about contact terms privacy linkpreview bookmarklet inspiration vendors]}
 
   before_validation :generate_slug
 
@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
   end
 
   def self.most_followers
-    joins('left join relationships on relationships.followed_id = users.id')
+    joins("left join relationships on relationships.followed_id = users.id AND relationships.followed_type = 'User'")
     .select('users.*, count(relationships.followed_id) as relationships_count')
     .group('users.id')
     .order('relationships_count desc, users.created_at desc')
