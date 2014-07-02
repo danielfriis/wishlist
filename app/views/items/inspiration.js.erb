@@ -1,7 +1,7 @@
+$('.inspiration').on('touchstart', function(event){});
 $('.inspiration').append('<%= j render(@items) %>');
 <% if @items.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate(@items) %>');
 <% else %>
   $('.pagination').remove();
 <% end %>
-$('.inspiration').on('touchstart', function(event){});
