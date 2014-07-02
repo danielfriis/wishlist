@@ -24,6 +24,7 @@ gem 'ruby-progressbar'
 gem 'delayed_job_active_record'
 gem 'mixpanel-ruby'
 gem 'exception_notification', '~> 3.0.0'
+gem 'gibbon'
 
 group :development, :test do
   gem 'sqlite3', '1.3.6'
