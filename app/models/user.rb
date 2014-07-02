@@ -65,7 +65,13 @@ class User < ActiveRecord::Base
       user.password_confirmation = generated_password
     end
     UserMailer.delay.signup_confirmation(user.id, generated_password)
+    user.delay.subscribe_email
     return user
+  end
+
+  def subscribe_email
+    gb = Gibbon::API.new
+    gb.lists.subscribe({:id => ENV["MAILCHIMP_LIST_ID"], :email => {:email => email}, :merge_vars => {:FNAME => name.split(" ").first, :LNAME => name.split(" ").last}, :double_optin => false})
   end
 
   def to_param

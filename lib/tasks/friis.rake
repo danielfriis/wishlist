@@ -1,7 +1,6 @@
 task :subscribe_mailchimp => :environment do
- gb = Gibbon::API.new
  User.find_each do |user|
- 	gb.lists.subscribe({:id => ENV["MAILCHIMP_LIST_ID"], :email => {:email => user.email}, :merge_vars => {:FNAME => user.name.split(" ").first, :LNAME => user.name.split(" ").last}, :double_optin => false})
+ 	user.subscribe_email
  end
 end	
 

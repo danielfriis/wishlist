@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       UserMailer.delay.signup_confirmation(@user.id) # When using delayed_job for actionmailer '.deliver' is omitted
+      @user.delay.subscribe_email
       @user.lists.create!(name: "General")
       sign_in @user
       flash[:success] = "Thanks for signing up!"
