@@ -1,5 +1,4 @@
 jQuery(function($){
-	send({cmd:'show'});
 	var args = {}, hash, saving = false;
 
 	if(/^#tagger:/.test(hash=location.hash)) args = unparam(location.hash.substr(8));

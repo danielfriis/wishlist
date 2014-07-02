@@ -2,7 +2,7 @@
 
 if(/^(www\.)?wishlistt\.com$/.test(location.hostname)) return alert("Drag this button to your bookmarks bar.\nThen you can add things to your wish list from any site around the web. Go give it a try!");
 
-	var host = "localhost:3000", prefix = 'wishlistt-bookmarklet-tagger-',
+	var host = 'www.wishlistt.com', prefix = 'wishlistt-bookmarklet-tagger-',
   iframe  = {obj:null, id:prefix+'iframe', win: null, url:'http://'+host+'/bookmarklet'},
 	marker  = {obj:null, id:prefix+'marker'}, // image marker
 	factory = document.createElement('div'),
@@ -102,23 +102,20 @@ if('postMessage' in window){
 }
 
 function onMessage(args){
-   switch(args.cmd){
-      case 'close':
-         iframe.hide();
-         tagger.clean_listeners();
-         break;
-      case 'show':
-         iframe.show();
-         break;
-      case 'resize':
-         iframe.obj.style.height = args.h+'px';
-         break;
-      case 'index':
-         args.idx = parseInt(args.idx);
-         data = imageData(args.idx);
-         send(data);
-         break;
-   }
+	switch(args.cmd){
+		case 'close':
+			iframe.hide();
+			tagger.clean_listeners();
+			break;
+		case 'resize':
+			iframe.obj.style.height = args.h+'px';
+			break;
+		case 'index':
+			args.idx = parseInt(args.idx);
+ 			data = imageData(args.idx);
+			send(data);
+			break;
+	}
 };
 
 (function(){
