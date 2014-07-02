@@ -435,6 +435,12 @@ footer {
   }
 }
 
+.inspiration {
+  height: 100%;
+                overflow: scroll;
+                -webkit-overflow-scrolling: touch;
+}
+
 .item, .item-big {
   display: block;
   position: relative;
