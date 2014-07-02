@@ -1,11 +1,23 @@
 <% item ||= @item %>
 
-<div id="wishlistt_it_form_<%= item.id %>" class="wishlistt_it_form center">
-	<% if signed_in? && current_user.items.find_by_id(item.id) %>
-		 <%= render 'wishes/un_wishlistt_it', item: item %>
-	<% elsif !signed_in? %>
-		<a href="#signUp" role="button" class="btn btn-large btn-primary" data-toggle="modal">Wishlistt it</a>
-	<% else %>
-		<%= render 'wishes/wishlistt_it', item: item %>
-	<% end %>
-</div>
+<% if !mobile_device? %>
+	<div id="wishlistt_it_form_<%= item.id %>" class="wishlistt_it_form center">
+		<% if signed_in? && current_user.items.find_by_id(item.id) %>
+			 <%= render 'wishes/un_wishlistt_it', item: item %>
+		<% elsif !signed_in? %>
+			<a href="#signUp" role="button" class="btn btn-large btn-primary" data-toggle="modal">Wishlistt it</a>
+		<% else %>
+			<%= render 'wishes/wishlistt_it', item: item %>
+		<% end %>
+	</div>
+<% else %>
+	<div id="wishlistt_it_form_<%= item.id %>" class="wishlistt_it_form">
+		<% if signed_in? && current_user.items.find_by_id(item.id) %>
+			 <%= render 'wishes/un_wishlistt_it', item: item %>
+		<% elsif !signed_in? %>
+			<p class="muted price"><strong><a href="#signUp" data-toggle="modal">Wishlistt it</a></strong></p>
+		<% else %>
+			<%= render 'wishes/wishlistt_it', item: item %>
+		<% end %>
+	</div>
+<% end %>

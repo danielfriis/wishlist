@@ -5,81 +5,81 @@
 
 
 <div id="main">
-<form class="no_image" style="display:none">
-  <div class="header navbar">
-		<div class="navbar-inner">
-			<!-- <a class="close_box" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a> -->
-			<%= image_tag "logo.png", size: "90x40" %>
-			<ul class="nav pull-right">
-				<li><a href="#" class="close" >&times;</a></li>
-			</ul>
-		</div>
-	</div>
-  <div class="main">
-	<p><strong>Could not find any good pictures on this page.</strong></p>
-	<p>The images may not be large enough, may be protected, or within a web plugin.</p>
-	<p>Try again on another page.</p>
-  </div>
-  <div class="footer">
-	<a class="f-button cancel_add_thing" href="#">Cancel</a>
-  </div>
-</form>
-
-
-<form class="add_thing" style="display:none">
-	<div class="header navbar">
-		<div class="navbar-inner">
-			<!-- <a class="close_box" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a> -->
-			<%= image_tag "logo.png", size: "90x40" %>
-			<ul class="nav pull-right">
-				<li><a href="#" class="close" >&times;</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="main">
-		
-		<fieldset>
-			<img class="f-preview img-polaroid" id="item_picked_image">
-
-			<div id="f-imgpick">
-				<a class="btn img-pick" did="0" href="#"><i class="icon-arrow-left"></i></a><a class="btn pull-right img-pick" did="1" href="#"><i class="icon-arrow-right"></i></a>
+	<form class="no_image" style="display:none">
+	  <div class="header navbar">
+			<div class="navbar-inner">
+				<!-- <a class="close_box" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a> -->
+				<%= image_tag "logo.png", size: "90x40" %>
+				<ul class="nav pull-right">
+					<li><a href="#" class="close" >&times;</a></li>
+				</ul>
 			</div>
-
-			<input type="hidden" id="item_link" name="item[link]" type="text">
-
-			<input id="item_title" name="item[title]" type="text">
-
-			<input id="note" name="note" type="text" placeholder="Optional: A short comment">
-
-			<input type="hidden" id="item_gender" name="item[gender]" value="<%= current_user.gender %>">
-
-			<%= select_tag :list_id, options_for_select(current_user.lists.all.collect{ |u| [u.name, u.id] }) %>
-
-			<label class="checkbox">
-				<span class="icons">
-					<span class="first-icon fui-checkbox-unchecked"></span>
-					<span class="second-icon fui-checkbox-checked"></span>
-				</span>
-				<label for="wish_hide">Hide from inspiration feed</label>
-				<input name="wish[hide]" type="hidden" value="false"><input id="wish_hide" name="wish[hide]" type="checkbox" value="true">
-			</label>
-
-			<!-- <input type="text" name="f-note" placeholder="Valgfrit: tilføj en kort bemærkning?" class="f-field f-ghost" id="f-note" maxlength="200"> -->
-
-		</fieldset>
-		<div id="if-success" style="display:none">
-			<p>The item has been saved to your wish list!</p>
-			<%= link_to 'Go see it', current_user, target: "_blank", class: "btn btn-primary" %>
 		</div>
-	</div>
-	<div class="footer">
-		<span class="next-action">
-			<a class="add_new_thing btn btn-primary" href="/login?close" target="_blank" >Wishlistt it!</a> <a href="#" class="l2 cancel_add_thing">Cancel</a>
-		</span>
-		<span class="status-msg">
-			<strong>Saving...</strong>
-		</span>
-	</div>
-</form>
+	  <div class="main">
+			<p><strong>Could not find any good pictures on this page.</strong></p>
+			<p>The images may not be large enough, may be protected, or within a web plugin.</p>
+			<p>Try again on another page.</p>
+	  </div>
+	  <div class="footer">
+		<a class="f-button cancel_add_thing" href="#">Cancel</a>
+	  </div>
+	</form>
+
+
+	<form class="add_thing" style="display:none">
+		<div class="header navbar">
+			<div class="navbar-inner">
+				<!-- <a class="close_box" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a> -->
+				<%= image_tag "logo.png", size: "90x40" %>
+				<ul class="nav pull-right">
+					<li><a href="#" class="close" >&times;</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="main">
+			
+			<fieldset>
+				<img class="f-preview img-polaroid" id="item_picked_image">
+
+				<div id="f-imgpick">
+					<a class="btn img-pick" did="0" href="#"><i class="icon-arrow-left"></i></a><a class="btn pull-right img-pick" did="1" href="#"><i class="icon-arrow-right"></i></a>
+				</div>
+
+				<input type="hidden" id="item_link" name="item[link]" type="text">
+
+				<input id="item_title" name="item[title]" type="text">
+
+				<input id="note" name="note" type="text" placeholder="Optional: A short comment">
+
+				<input type="hidden" id="item_gender" name="item[gender]" value="<%= current_user.gender %>">
+
+				<%= select_tag :list_id, options_for_select(current_user.lists.all.collect{ |u| [u.name, u.id] }) %>
+
+				<label class="checkbox">
+					<span class="icons">
+						<span class="first-icon fui-checkbox-unchecked"></span>
+						<span class="second-icon fui-checkbox-checked"></span>
+					</span>
+					<label for="wish_hide">Hide from inspiration feed</label>
+					<input name="wish[hide]" type="hidden" value="false"><input id="wish_hide" name="wish[hide]" type="checkbox" value="true">
+				</label>
+
+				<!-- <input type="text" name="f-note" placeholder="Valgfrit: tilføj en kort bemærkning?" class="f-field f-ghost" id="f-note" maxlength="200"> -->
+
+			</fieldset>
+			<div id="if-success" style="display:none">
+				<p>The item has been saved to your wish list!</p>
+				<%= link_to 'Go see it', current_user, target: "_blank", class: "btn btn-primary" %>
+			</div>
+		</div>
+		<div class="footer">
+			<span class="next-action">
+				<a class="add_new_thing btn btn-primary" href="/login?close" target="_blank" >Wishlistt it!</a> <a href="#" class="l2 cancel_add_thing">Cancel</a>
+			</span>
+			<span class="status-msg">
+				<strong>Saving...</strong>
+			</span>
+		</div>
+	</form>
 </div>

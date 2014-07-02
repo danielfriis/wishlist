@@ -15,7 +15,7 @@
     </div>
     <div class="spacer"></div>
     <%= render 'comments/comments', item: @item unless @item.comments.count == 0 && !signed_in? %>
-    <%= render 'comments/form' if signed_in? %>
+    <%= render 'comments/form' if signed_in? && !mobile_device? %>
   </div>
   <aside class="span4">
     <%= render 'aside_shop_now', item: @item %>

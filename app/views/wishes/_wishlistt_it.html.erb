@@ -1,2 +1,7 @@
 <% item ||= @item %>
-<%= link_to "Wishlistt it", new_wish_path(item_id: item.id), id: "new_wish_link", class: "btn btn-primary btn-large", remote: true %>
+
+<% unless mobile_device? %>
+	<%= link_to "Wishlistt it", new_wish_path(item_id: item.id), id: "new_wish_link", class: "btn btn-primary btn-large", remote: true %>
+<% else %>
+	<p class="muted price"><strong><%= link_to "Wishlistt it", new_wish_path(item_id: item.id), id: "new_wish_link", class: "", remote: true %></strong></p>
+<% end %>

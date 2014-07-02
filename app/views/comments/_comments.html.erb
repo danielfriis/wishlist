@@ -1,5 +1,5 @@
 <div class="comments-area">
-  <h3>Comments</h3>
+  <% unless mobile_device? %><h3>Comments</h3><% end %>
   <ul class="media-list comments">
     <% @comments.each do |comment| %>
       <li class="media">
