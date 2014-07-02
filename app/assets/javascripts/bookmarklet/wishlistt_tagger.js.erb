@@ -13,7 +13,7 @@ extend(iframe, {
 	show : function(){
 		var im = document.images, i, c, imgs=[], idx=-1, data;
 		for(i=0,c=im.length; i < c; i++){
-			if(im[i].src && im[i].offsetWidth > 280 && im[i].offsetHeight > 280) {
+			if(im[i].src && im[i].offsetWidth > 130 && im[i].offsetHeight > 130) {
 				if(latest.img && latest.img === im[i]) idx = imgs.length;
 				imgs[imgs.length] = im[i];
 			}

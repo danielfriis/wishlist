@@ -30,7 +30,7 @@ class LinkPreviewParser
 
     page_info[:images] = page_info[:images].collect{ |image| Addressable::URI.parse(image).normalize.to_s } # Do something
 
-    page_info[:images].delete_if{|image| FastImage.type(image) == :gif rescue nil } # Removes gifs because I think its mostly crappy load-images
+    # page_info[:images].delete_if{|image| FastImage.type(image) == :gif rescue nil } # Removes gifs because I think its mostly crappy load-images
 
     # Size
 
@@ -45,7 +45,7 @@ class LinkPreviewParser
     end
 
     images_and_sizes.delete_if do |images, size| 
-        if size && size.any?{ |i| i > 200 } && size.all?{ |i| i > 50 }
+        if size && size.any?{ |i| i > 130 } && size.all?{ |i| i > 50 }
             false
         else
             true
