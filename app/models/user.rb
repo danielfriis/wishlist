@@ -71,7 +71,9 @@ class User < ActiveRecord::Base
 
   def subscribe_email
     gb = Gibbon::API.new
-    gb.lists.subscribe({:id => ENV["MAILCHIMP_LIST_ID"], :email => {:email => email}, :merge_vars => {:FNAME => name.split(" ").first, :LNAME => name.split(" ").last}, :double_optin => false})
+    first_name = name.split(" ").first
+    last_name = name.split(" ").last unless name.split(" ").first == name.split(" ").last
+    gb.lists.subscribe({:id => ENV["MAILCHIMP_LIST_ID"], :email => {:email => email}, :merge_vars => {:FNAME => first_name, :LNAME => last_name}, :double_optin => false})
   end
 
   def to_param
