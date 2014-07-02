@@ -8,7 +8,7 @@
 		  	</h4>
 		  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>
 		  		<% if wish.item.price.present? %>
-		  			<div><%= wish.item.price.currency.iso_code %> <%= humanized_money wish.item.price %><% if wish.item.vendor.present? %> from <strong><%= link_to wish.item.vendor.name, wish.item.link, class: "shop-link" %></strong> <% end %></div>
+		  			<div><%= exchanged_price(wish.item) %><% if wish.item.vendor.present? %> from <strong><%= link_to wish.item.vendor.name, wish.item.link, class: "shop-link" %></strong> <% end %></div>
 		  		<% end %>
 		  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
 		  	<% end %>

@@ -1,17 +1,19 @@
-$('document').ready(function(){
-  // var mixpanel_temp_id = mixpanel.get_distinct_id();
-	// PRIOR TO SIGNUP OR LOGIN
-	mixpanel.track_links("#jumbotron_signup", "Click jumbotron signup link");
-	mixpanel.track_links("#bottom_home_signup", "Click home bottom signup link");
-	mixpanel.track_links("#facebook_signup", "Click facebook signup link");
-	mixpanel.track_links("#email_signup", "Click email signup link");
-	mixpanel.track_links("#home_inspiration", "Click inspiration link");
-	mixpanel.track_links(".shop-link", "Click on shop now link");
-	// SIGNS UP
-	// $('<input>').attr({
-	//     type: 'hidden',
-	//     id: 'mixpanel_temp_id',
-	//     name: 'mixpanel_temp_id',
-	//     value: mixpanel_temp_id
-	// }).appendTo('form#new_user');
-});
+<% if Rails.env.production? %>
+	$('document').ready(function(){
+	  // var mixpanel_temp_id = mixpanel.get_distinct_id();
+		// PRIOR TO SIGNUP OR LOGIN
+		mixpanel.track_links("#jumbotron_signup", "Click jumbotron signup link");
+		mixpanel.track_links("#bottom_home_signup", "Click home bottom signup link");
+		mixpanel.track_links("#facebook_signup", "Click facebook signup link");
+		mixpanel.track_links("#email_signup", "Click email signup link");
+		mixpanel.track_links("#home_inspiration", "Click inspiration link");
+		mixpanel.track_links(".shop-link", "Click on shop now link");
+		// SIGNS UP
+		// $('<input>').attr({
+		//     type: 'hidden',
+		//     id: 'mixpanel_temp_id',
+		//     name: 'mixpanel_temp_id',
+		//     value: mixpanel_temp_id
+		// }).appendTo('form#new_user');
+	});
+<% end %>
