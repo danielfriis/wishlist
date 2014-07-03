@@ -69,7 +69,8 @@ class Item < ActiveRecord::Base
       with_pictures
           .joins("left join wishes on wishes.item_id = items.id")
           .joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
-          .select("items.*, count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, count(wishes.id) as wish_count, impressionable_id")
+          .select("items.*, count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as counter, impressionable_id")
+          .select("items.*, count(wishes.id) as wish_count")
           .group('items.id', 'impressions.impressionable_id')
           .where("items.id IN (#{not_hidden})", false: false)
           .order("(counter * wish_count) desc, items.created_at desc")
