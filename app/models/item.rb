@@ -72,7 +72,7 @@ class Item < ActiveRecord::Base
           .select("items.*, count(distinct(case when (impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}') then ip_address end)) as view_count, count(wishes.id) as wish_count, impressionable_id")
           .group('items.id', 'impressions.impressionable_id')
           .where("items.id IN (#{not_hidden})", false: false)
-          .order("(wish_count * view_count) desc, items.created_at desc")
+          .order("view_count desc, items.created_at desc")
     end
   end
 
