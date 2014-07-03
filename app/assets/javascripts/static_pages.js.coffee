@@ -18,3 +18,16 @@ jQuery ->
                                 $.getScript(url)
                 
                 $(window).scroll()
+jQuery ->
+        $(".scroll-container").scroll ->
+                url = $('.pagination .next_page a').attr('href')
+                interval = setInterval () -> 
+                        checkScroll()
+                , 10
+                
+                checkScroll = () ->
+                        if ($(".scroll-container").scrollTop()) > ($(".inspiration").height() - 500) && url
+                                clearInterval(interval)
+                                $('.pagination').text('Fetching more...')
+                                $.getScript(url)
+        $(".scroll-container").scroll()
