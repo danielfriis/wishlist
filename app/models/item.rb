@@ -86,8 +86,8 @@ class Item < ActiveRecord::Base
   end
 
   def popularity_score
-    start_date = (Time.now - 7.days)
-    start_date_w = (Time.now - 20.days)
+    start_date = (Time.now - 5.days)
+    start_date_w = (Time.now - 21.days)
     end_date = Time.now
     view_count = impressions.select('distinct(ip_address)').where("created_at BETWEEN '#{start_date}' AND '#{end_date}'").count
     wish_count = wishes.where("created_at BETWEEN '#{start_date_w}' AND '#{end_date}'").count
