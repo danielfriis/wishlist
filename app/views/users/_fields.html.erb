@@ -5,26 +5,37 @@
 
 <%= f.label :gender %>
 
-<label class="radio <% if @user.gender == "Female" %> checked <% end %> ">
-	<span class="icons">
-		<span class="first-icon fui-radio-unchecked"></span>
-		<span class="second-icon fui-radio-checked"></span>
-	</span>
-	<%= f.radio_button :gender, "Female" %> Female
-</label>
-<label class="radio <% if @user.gender == "Male" %> checked <% end %> ">
-	<span class="icons">
-		<span class="first-icon fui-radio-unchecked"></span>
-		<span class="second-icon fui-radio-checked"></span>
-	</span>
-	<%= f.radio_button :gender, "Male" %> Male
-</label>
+<%= f.label :gender, class: "radio" do %>
+	<%= f.radio_button :gender, "Female" %> 
+	Female
+<% end %>
+
+<%= f.label :gender, class: "radio" do %>
+	<%= f.radio_button :gender, "Male" %>
+	Male
+<% end %>
 
 <%= f.label :email %>
 <%= f.text_field :email %>
 
 <%= f.label :avatar, "Choose a profile picture" %>
 <%= f.file_field :avatar %>
+
+<% unless f.object.new_record? %>
+
+<p>Email me when...</p>
+
+	<%= f.label :follower_notification, class: "checkbox" do %>
+		<%= f.check_box :follower_notification %>
+		someone follows me
+	<% end %>
+
+	<%= f.label :comment_notification, class: "checkbox" do %>
+		<%= f.check_box :comment_notification %>
+		someone comments on my wish
+	<% end %>
+
+<% end %>
 
 <%= f.label :password %>
 <%= f.password_field :password %>

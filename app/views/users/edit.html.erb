@@ -1,8 +1,22 @@
 <% provide(:title, "Edit user") %> 
 
 <div class="row">
-  <div class="span6 offset3 white-box">
-  	<h1>Update your profile</h1>
+  <div class="span12 user_info">
+    <div class="row">
+      <div class="span8">
+        <%= render partial: 'shared/user_info', locals: {:user => @user} %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+	<div class="span3">
+		<ul class="nav nav-tabs nav-stacked">
+			<li class="active"><a href="#" id="edit_general">Profile settings</a></li>
+		</ul>
+	</div>
+  <div class="span6 white-box">
+  	<h1 class="edit_profile">Update your profile</h1>
   	<hr>
     <%= form_for(@user) do |f| %>
       <%= render 'fields', f: f %>
