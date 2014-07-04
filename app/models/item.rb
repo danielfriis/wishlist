@@ -38,6 +38,7 @@ class Item < ActiveRecord::Base
 
   is_impressionable
 
+
   def self.sort(general, gender, current_user)
     if gender == "all"
       sort_general(general, current_user)
@@ -48,9 +49,8 @@ class Item < ActiveRecord::Base
 
   def self.sort_general(general, current_user)
     if general == "recent"
-      not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
       with_pictures
-        .where("id IN (#{not_hidden})", false: false)
+        .no_hidden_wishes
         .order("created_at desc")
     elsif general == "following"
       followed_user_ids = "SELECT followed_id FROM relationships WHERE (follower_id = :user_id AND followed_type = 'User')"
@@ -66,18 +66,31 @@ class Item < ActiveRecord::Base
       start_date = (Time.now - 7.days)
       start_date_w = (Time.now - 20.days)
       end_date = Time.now
-      not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
       with_pictures
           .joins("left join wishes on item_id = items.id")
           .joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
           .select("items.*, (count(distinct(case when impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}' then ip_address end)) + (count(distinct(case when wishes.created_at BETWEEN '#{start_date_w}' AND '#{end_date}' then wishes.id end)) * 5)) as counter, impressionable_id")
           .group('items.id', 'impressions.impressionable_id')
-          .where("items.id IN (#{not_hidden})", false: false)
+          .no_hidden_wishes
           .order("counter desc, items.created_at desc")
     end
   end
 
-  def self.with_pictures
-    self.where(Item.arel_table[:via].not_eq("no_link").and(Item.arel_table[:via].not_eq("no_image")))
+  def self.no_hidden_wishes
+    not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
+    where("items.id IN (#{not_hidden})", false: false)
+  end
+
+  def self.with_pictures 
+    where(Item.arel_table[:via].not_eq("no_link").and(Item.arel_table[:via].not_eq("no_image")))
+  end
+
+  def popularity_score
+    start_date = (Time.now - 7.days)
+    start_date_w = (Time.now - 20.days)
+    end_date = Time.now
+    view_count = impressions.select('distinct(ip_address)').where("created_at BETWEEN '#{start_date}' AND '#{end_date}'").count
+    wish_count = wishes.where("created_at BETWEEN '#{start_date_w}' AND '#{end_date}'").count
+    pop_score = view_count + wish_count * 5
   end
 end

@@ -15,6 +15,9 @@
         <% end %>
       </li>
       <li><i class="icon-eye-open"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
+      <% if signed_in? && current_user.admin? %>
+        <li><i class="icon-money"></i> Popularity score (admin only): <%= @item.popularity_score %></li>
+      <% end %>
     </ul>
 </div>
 

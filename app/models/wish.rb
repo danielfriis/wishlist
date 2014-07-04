@@ -23,4 +23,9 @@ class Wish < ActiveRecord::Base
   belongs_to :item
 
   has_many :comments, as: :commentable
+
+  def self.not_hidden
+  	where(hide: false)
+  end
+
 end
