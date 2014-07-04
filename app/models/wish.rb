@@ -21,8 +21,8 @@ class Wish < ActiveRecord::Base
   ranks :row_order,
   	:with_same => :list_id
   belongs_to :item
-
   has_many :comments, as: :commentable
+  has_one :reservation, dependent: :destroy
 
   def self.not_hidden
   	where(hide: false)

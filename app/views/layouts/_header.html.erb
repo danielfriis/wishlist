@@ -31,6 +31,9 @@
             <%= link_to "Sign out", signout_path, method: "delete" %>
           </li>
           <li class="visible-desktop">
+            <%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish" } %>
+          </li>
+          <li class="visible-desktop">
             <a href="<%= user_path(current_user) %>">
               <%= first_name current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar gravatar-small img-rounded" %>
             </a>

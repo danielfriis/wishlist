@@ -1,0 +1,6 @@
+<% wish ||= @wish %>
+
+<%= form_for(current_user.reservations.build(wish_id: wish.id), remote: true) do |f| %>
+  <div><%= f.hidden_field :wish_id %></div>
+  <%= f.submit "Reserve", class: "btn btn-primary btn-small tooltip-toggle", data: { title: 'Click to reserve this gift', container: 'body' } %>
+<% end %>

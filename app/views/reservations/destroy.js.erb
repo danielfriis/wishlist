@@ -1,0 +1,1 @@
+$("#reserve_form_<%= @wish.id %>").html("<%= escape_javascript(render(partial: 'reservations/reserve', locals: {:wish => @wish})) %>")

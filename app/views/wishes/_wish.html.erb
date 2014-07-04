@@ -6,16 +6,17 @@
 		  	<h4 class="media-heading ellipsis">
 		  		<%= link_to wish.title, wish %>
 		  	</h4>
+		  	<%= render partial: 'reservations/reserve_form', locals: {wish: wish} if signed_in? && !current_user?(wish.list.user) && current_page?(url_for(:controller => 'lists', :action => 'show')) %>
 		  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>
 		  		<% if wish.item.price.present? %>
-		  			<div><%= exchanged_price(wish.item) %><% if wish.item.vendor.present? %> from <strong><%= link_to wish.item.vendor.name, wish.item.link, class: "shop-link" %></strong> <% end %></div>
+		  			<div><%= exchanged_price(wish.item) %><% if wish.item.vendor.present? %> from <strong><%= link_to wish.item.vendor.name, wish.item.link, class: "shop-link muted" %></strong> <% end %></div>
 		  		<% end %>
 		  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
 		  	<% end %>
 		  	<span class="timestamp">
 			    Added <%= time_ago_in_words(wish.created_at) %> ago.		  
 			    <% if current_user?(wish.list.user) %>
-			    <%= link_to "Remove", wish, method: :delete,
+			    <%= link_to "Remove", wish, method: :delete, class: "muted",
 			                                data: { confirm: "You sure?" },
 			                                title: wish.item.title,
 			                                remote: true %>

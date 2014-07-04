@@ -1,0 +1,5 @@
+<% wish ||= @wish %>
+<%= form_for(current_user.reservations.find_by_wish_id(wish.id),
+             html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit "Unreserve", class: "btn btn-danger btn-small" %>
+<% end %>

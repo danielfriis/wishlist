@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :items, through: :wishes
   has_many :authorizations, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed, source_type: 'User'

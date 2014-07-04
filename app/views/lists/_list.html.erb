@@ -36,7 +36,7 @@
 		<div class="block pull-left">
 			<%= image_tag(list.wishes.last.item.image_url(:thumb).to_s, class: "img-rounded") if list.wishes.last %>
 		</div>
-	  <div class="block">
+	  <div class="block block-content">
 	  	<span class="content">
 	  		<span><%= link_to list.name, user_list_path(@user, list) %></span>
 			  <span class="timestamp">

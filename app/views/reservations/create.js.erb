@@ -1,0 +1,2 @@
+$("#reserve_form_<%= @wish.id %>").html("<%= escape_javascript(render(partial: 'reservations/unreserve', locals: {:wish => @wish})) %>")
+$(".tooltip").remove();

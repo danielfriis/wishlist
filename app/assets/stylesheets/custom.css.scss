@@ -668,6 +668,12 @@ footer {
   margin-right: 10px;
 }
 
+.reserve_form {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -910,13 +916,7 @@ input {
     min-height: 85px;
     background-color: white;
 
-    &:last-child {
-      padding: 10px 0 0 0;
 
-      .btn-group, .timestamp {
-        bottom: 0px;
-      }
-    }
     &:first-child {
       border-top: 0px !important;
       padding: 10px 0 ;
@@ -952,6 +952,7 @@ input {
 
 .user_list_large_wish {
   margin-top: 0;
+  overflow: visible;
 }
 
 .wishes img {
@@ -976,9 +977,6 @@ input {
       line-height: 1.6em;
     }
   }
-  a {
-    color: #444444;
-  }
 }
 
 .list_more {
@@ -1002,6 +1000,12 @@ input {
   }
   border-bottom: 2px solid #e8e8e8;
   margin-bottom: 5px;
+  position:relative;
+  #add_wish {
+    position: absolute;
+    top: 0;
+    right:0;
+  }
 }
 
 .user_list_wishes {
@@ -1048,6 +1052,9 @@ input {
     // font-size: 1em;
     line-height: 17px;
     font-weight: normal;
+  }
+  .block-content {
+    padding-left: 50px;
   }
 }
 

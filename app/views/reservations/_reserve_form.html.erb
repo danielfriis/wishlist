@@ -1,0 +1,11 @@
+<% wish ||= @wish %>
+
+<div id="reserve_form_<%= wish.id %>" class="reserve_form inline-block">
+  <% if wish.reservation && current_user == wish.reservation.user %>
+    <%= render partial: 'reservations/unreserve', locals: {:wish => wish} %>
+  <% elsif wish.reservation && current_user != wish.reservation.user %>
+  	<%= render partial: 'reservations/reserved', locals: {:wish => wish} %>
+  <% else %>
+    <%= render partial: 'reservations/reserve', locals: {:wish => wish} %>
+  <% end %>
+</div>

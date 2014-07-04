@@ -274,7 +274,7 @@ DEPENDENCIES
   annotate (= 2.5.0)
   bcrypt-ruby (= 3.0.1)
   best_in_place
-  bootstrap-sass (~> 2.3.2.0)
+  bootstrap-sass (~> 2.3.2)
   bootstrap-will_paginate (= 0.0.6)
   bullet
   capybara (= 1.1.2)
