@@ -63,8 +63,8 @@ class Item < ActiveRecord::Base
         .where("(id IN (#{followed_user_wishes})) OR (id IN (#{followed_vendors_wishes}))", user_id: current_user.id, false: false)
         .order("created_at desc")
     else
-      start_date = (Time.now - 7.days)
-      start_date_w = (Time.now - 20.days)
+      start_date = (Time.now - 5.days)
+      start_date_w = (Time.now - 21.days)
       end_date = Time.now
       with_pictures
           .joins("left join wishes on item_id = items.id")
