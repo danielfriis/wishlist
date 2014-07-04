@@ -63,7 +63,7 @@ class Item < ActiveRecord::Base
         .where("(id IN (#{followed_user_wishes})) OR (id IN (#{followed_vendors_wishes}))", user_id: current_user.id, false: false)
         .order("created_at desc")
     else
-      start_date = (Time.now - 10.days)
+      start_date = (Time.now - 8.days)
       end_date = Time.now
       not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
       with_pictures
