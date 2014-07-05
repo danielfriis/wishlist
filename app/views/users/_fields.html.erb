@@ -1,5 +1,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 
+<h2>Basic information</h2>
+
 <%= f.label :name %>
 <%= f.text_field :name %>
 
@@ -21,8 +23,11 @@
 <%= f.label :avatar, "Choose a profile picture" %>
 <%= f.file_field :avatar %>
 
+<hr>
+
 <% unless f.object.new_record? %>
 
+<h2>Notifications</h2>
 <p>Email me when...</p>
 
 	<%= f.label :follower_notification, class: "checkbox" do %>
@@ -34,11 +39,18 @@
 		<%= f.check_box :comment_notification %>
 		someone comments on my wish
 	<% end %>
+	<hr>
 
 <% end %>
 
+<h2>Password</h2>
+<% unless f.object.new_record? %>
+<p>Leave this blank unless you want to change your password.</p>
+<% end %>
 <%= f.label :password %>
 <%= f.password_field :password %>
 
 <%= f.label :password_confirmation, "Confirm password" %>
 <%= f.password_field :password_confirmation %>
+
+<hr>
