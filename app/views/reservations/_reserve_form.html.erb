@@ -1,6 +1,6 @@
 <% wish ||= @wish %>
 
-<div id="reserve_form_<%= wish.id %>" class="reserve_form inline-block">
+<div id="reserve_form_<%= wish.id %>" class="reserve_form inline-block" <% unless current_user.following?(wish.list.user) %>style="display:none;"<% end %>>
   <% if wish.reservation && current_user == wish.reservation.user %>
     <%= render partial: 'reservations/unreserve', locals: {:wish => wish} %>
   <% elsif wish.reservation && current_user != wish.reservation.user %>
