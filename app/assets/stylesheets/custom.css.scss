@@ -107,6 +107,14 @@ body {
   margin-bottom: 0;
 }
 
+.navbar-search {
+  input#search {
+    padding: 4px;
+    margin: 0;
+    border: 1px solid lightgrey;
+  }
+}
+
 .navbar-caret {
   padding-left: 0 !important;
   cursor: pointer;
@@ -1237,4 +1245,3 @@ aside {
     }
   }
 }
-

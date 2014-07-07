@@ -30,6 +30,17 @@ class StaticPagesController < ApplicationController
   def terms
   end
 
+  def search
+    if params[:search]
+      @users = User.search(params[:search]).most_followers.paginate(page: params[:page], per_page: 10)
+      @vendors = Vendor.search(params[:search]).most_followers.paginate(page: params[:page], per_page: 10)
+    else
+      @users = User.most_followers.paginate(page: params[:page], per_page: 10)
+      @vendors = Vendor.most_followers.paginate(page: params[:page], per_page: 10)
+    end
+    @searchresults = (@users + @vendors).sort_by!{|r| r.name.downcase}
+  end
+
 private
   def sort_general
     %w[recent popular following].include?(params[:sort]) ? params[:sort] : "popular"

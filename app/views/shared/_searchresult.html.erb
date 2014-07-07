@@ -1,0 +1,5 @@
+<% if searchresult.class.name == "User" %>
+	<%= render 'users/user', user: searchresult %>
+<% else %>
+	 <%= render 'vendors/vendor', user: searchresult %>
+<% end %>

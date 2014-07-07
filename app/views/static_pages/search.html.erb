@@ -1,0 +1,41 @@
+<% provide(:title, 'Search') %>
+<div class="row">
+	<div class="span12">
+		<h1>Search for friends or vendors</h1>
+		<p>Browse, or search below</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span9">
+		<div>
+			<%= form_tag(search_path, :method => "get", id: "search-form", class: "form-search form-inline") do %>
+				<%= text_field_tag :search, params[:search], class: "span6", placeholder: "Search for friends" %>
+				<%= submit_tag "Search", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+
+		<div class="row">
+			<ul class="users">
+				<%= render @searchresults %>
+			</ul>
+		</div>
+
+		<%= will_paginate @users, page_links: false %>
+	</div>
+	<aside class="pull-right span3">
+		<% if current_user.admin? %>
+			<div class="admin">
+			  <h3>Admin-info</h3>
+			  <span>
+			  	<p><%= User.all.count %> users in total</p>
+			  </span>
+			  <span>
+			  	<p><%= Vendor.all.count %> vendors in total</p>
+			  </span>
+			</div>
+		<% end %>
+		
+		<%= render 'shared/aside_facebook' %>
+	</aside>
+</div>

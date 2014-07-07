@@ -33,6 +33,11 @@
           <li class="visible-desktop">
             <%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish" } %>
           </li>
+          <li>
+            <%= form_tag(search_path, :method => "get", id: "navbar-search",class: "navbar-search pull-left") do %>
+              <%= text_field_tag :search, params[:search], class: "span3", placeholder: "Search" %>
+            <% end %>
+          </li>
           <li class="visible-desktop">
             <a href="<%= user_path(current_user) %>">
               <%= first_name current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar gravatar-small img-rounded" %>
