@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed, source_type: 'User'
   has_many :followed_vendors, through: :relationships, source: :followed, source_type: 'Vendor'
 
-  has_many :reverse_relationships, foreign_key: "followed_id",
+  has_many :reverse_relationships, as: :followed,
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower

@@ -16,7 +16,7 @@ class Vendor < ActiveRecord::Base
   has_many :items, dependent: :destroy
   has_many :wishes, through: :items
 
-  has_many :relationships, foreign_key: "followed_id"
+  has_many :relationships, as: :followed
   has_many :followers, through: :relationships, source: :follower
 
   validates :slug, uniqueness: true, presence: true
