@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, only: [:create, :destroy]
+  before_filter :correct_user, only: [:create]
   include Analyzable
 
 	def create
