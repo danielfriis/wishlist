@@ -60,7 +60,11 @@ task :item_price => :environment do
 	Item.find_each do |item|
 		# if item.price.nil?
 			price = LinkPreviewParser.price(item.link).to_money rescue nil
-			item.price = price.to_money unless price.nil?
+			if price.blank?
+				item.price = ""
+			else
+				item.price = price.to_money
+			end
 			item.save
 			progressbar.increment
 		# end

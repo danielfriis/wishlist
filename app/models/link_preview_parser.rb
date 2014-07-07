@@ -11,7 +11,9 @@ class LinkPreviewParser
 
     page_info = linktumbnailer_gem(url)
 
-    page_info[:images] = (page_info[:images] + readability_gem(url) + home_made(url)).uniq
+    # page_info[:images] = (page_info[:images] + readability_gem(url) + home_made(url)).uniq
+    page_info[:images] = (page_info[:images] + home_made(url)).uniq
+    # Removed readability gem parsing because it is slow.
 
 
     page_info[:images] = page_info[:images].compact # Removes empty entries from array
@@ -144,9 +146,10 @@ class LinkPreviewParser
     itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
     itemprop_price = (itemprop_price.kind_of?(Array) ? itemprop_price[0] : itemprop_price)
 
-    itemprop_curr_pre = doc.at('body').xpath("//*[@itemprop='currency']")
+    # itemprop_curr_pre = doc.at('body').xpath("//*[@itemprop='currency']")
+    itemprop_curr_pre = doc.at('body').xpath("//*[contains(translate(@itemprop,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'currency')]")
     itemprop_curr = itemprop_curr_pre.inner_text.strip
-    if itemprop_curr_pre.present?
+    if itemprop_curr_pre.present? && itemprop_curr.empty?
       itemprop_curr = itemprop_curr_pre.inner_text.strip.empty? ? itemprop_curr_pre.first["content"] : itemprop_curr_pre.inner_text.strip
       itemprop_curr = (itemprop_curr.kind_of?(Array) ? itemprop_curr[0] : itemprop_curr)
     end
