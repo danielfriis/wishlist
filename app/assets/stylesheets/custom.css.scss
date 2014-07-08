@@ -112,8 +112,21 @@ body {
     padding: 4px;
     margin: 0;
     border: 1px solid lightgrey;
+    -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s;
+  }
+  input#search:focus {
+    width: 250px;
+    border: 1px solid #47a599;
   }
 }
+
+.form-search {
+  .btn {
+    padding: 8px;
+  }
+}
+
 
 .navbar-caret {
   padding-left: 0 !important;
