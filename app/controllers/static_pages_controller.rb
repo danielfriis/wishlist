@@ -32,13 +32,14 @@ class StaticPagesController < ApplicationController
 
   def search
     if params[:search]
-      @users = User.search(params[:search]).most_followers.paginate(page: params[:page], per_page: 10)
-      @vendors = Vendor.search(params[:search]).most_followers.paginate(page: params[:page], per_page: 10)
+      @users = User.search(params[:search]).most_followers.limit(10)
+      @vendors = Vendor.search(params[:search]).most_followers.limit(10)
+      @items = Item.search(params[:search]).popular.paginate(page: params[:page], per_page: 10)
     else
-      @users = User.most_followers.paginate(page: params[:page], per_page: 10)
-      @vendors = Vendor.most_followers.paginate(page: params[:page], per_page: 10)
+      @users = User.most_followers.limit(10)
+      @vendors = Vendor.most_followers.limit(10)
+      @items = Item.popular.paginate(page: params[:page], per_page: 10)
     end
-    @searchresults = (@users + @vendors).sort_by!{|r| r.name.downcase}
   end
 
 private

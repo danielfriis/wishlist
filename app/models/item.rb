@@ -38,6 +38,10 @@ class Item < ActiveRecord::Base
 
   is_impressionable
 
+  def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("upper(items.title) like upper(?)", "%#{query}%") 
+  end
 
   def self.sort(general, gender, current_user)
     if gender == "all"
@@ -49,11 +53,22 @@ class Item < ActiveRecord::Base
 
   def self.sort_general(general, current_user)
     if general == "recent"
-      with_pictures
+      recent
+    elsif general == "following"
+      following(current_user)
+    else
+      popular
+    end
+  end
+
+  def self.recent
+    with_pictures
         .no_hidden_wishes
         .order("created_at desc")
-    elsif general == "following"
-      followed_user_ids = "SELECT followed_id FROM relationships WHERE (follower_id = :user_id AND followed_type = 'User')"
+  end
+
+  def self.following(current_user)
+    followed_user_ids = "SELECT followed_id FROM relationships WHERE (follower_id = :user_id AND followed_type = 'User')"
       followed_user_lists = "SELECT id FROM lists WHERE user_id IN (#{followed_user_ids})"
       followed_user_wishes = "SELECT item_id FROM wishes WHERE list_id IN (#{followed_user_lists}) AND hide = :false"
       followed_vendors_ids = "SELECT followed_id FROM relationships WHERE (follower_id = :user_id AND followed_type = 'Vendor')"
@@ -62,18 +77,19 @@ class Item < ActiveRecord::Base
       with_pictures
         .where("(id IN (#{followed_user_wishes})) OR (id IN (#{followed_vendors_wishes}))", user_id: current_user.id, false: false)
         .order("created_at desc")
-    else
-      start_date = (Time.now - 5.days)
-      start_date_w = (Time.now - 21.days)
-      end_date = Time.now
-      with_pictures
-          .joins("left join wishes on item_id = items.id")
-          .joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
-          .select("items.*, (count(distinct(case when impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}' then ip_address end)) + (count(distinct(case when wishes.created_at BETWEEN '#{start_date_w}' AND '#{end_date}' then wishes.id end)) * 5)) as counter, impressionable_id")
-          .group('items.id', 'impressions.impressionable_id')
-          .no_hidden_wishes
-          .order("counter desc, items.created_at desc")
-    end
+  end
+
+  def self.popular
+    start_date = (Time.now - 5.days)
+    start_date_w = (Time.now - 21.days)
+    end_date = Time.now
+    with_pictures
+        .joins("left join wishes on item_id = items.id")
+        .joins("left join impressions on impressions.impressionable_id = items.id and impressions.impressionable_type = 'Item'")
+        .select("items.*, (count(distinct(case when impressions.created_at BETWEEN '#{start_date}' AND '#{end_date}' then ip_address end)) + (count(distinct(case when wishes.created_at BETWEEN '#{start_date_w}' AND '#{end_date}' then wishes.id end)) * 5)) as counter, impressionable_id")
+        .group('items.id', 'impressions.impressionable_id')
+        .no_hidden_wishes
+        .order("counter desc, items.created_at desc")
   end
 
   def self.no_hidden_wishes

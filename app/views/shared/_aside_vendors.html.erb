@@ -1,0 +1,23 @@
+<div class="aside_vendors">
+  <h3>Vendors</h3>
+  	<% if @vendors.first.present? %>
+	    <ul class="unstyled">
+	      <% @vendors.each do |vendor| %>
+	      	<li class="aside_search_result">
+		      		<%= link_to(vendor) do %>
+		      			<div class="block pull-left">
+		      				<%= image_tag "default_images/vendor.png", alt: vendor.name, class: "gravatar gravatar-small img-rounded" %>
+								</div>
+								<div class="block block-content">
+		      				<%= vendor.name %>
+		      			</div>
+		      		<% end %>
+	      	</li>
+	      <% end %>
+	      <li class="text-right"><%= link_to "Full result", vendors_path(search: params[:search]) %></li>
+	    </ul>
+	  <% else %>
+	  	<p class="muted center">No vendors found</p>
+	  <% end %>
+  
+</div>

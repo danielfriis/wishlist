@@ -1,0 +1,22 @@
+<div class="aside_users">
+  <h3>Users</h3>
+  	<% if @users.first.present? %>
+	    <ul class="unstyled">
+	      <% @users.each do |user| %>
+	      	<li class="aside_search_result">
+		      		<%= link_to(user) do %>
+		      			<div class="block pull-left">
+		      				<%= image_tag avatar(user, :small), alt: user.name, class: "gravatar gravatar-small img-rounded" %>
+								</div>
+								<div class="block block-content">
+		      				<%= user.name %>
+		      			</div>
+		      		<% end %>
+	      	</li>
+	      <% end %>
+	      <li class="text-right"><%= link_to "Full result", users_path(search: params[:search]) %></li>
+	    </ul>
+	  <% else %>
+	    <p class="muted center">No users found</p>
+  	<% end %>	
+</div>

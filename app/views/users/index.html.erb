@@ -19,6 +19,10 @@
 			<ul class="users">
 				<%= render @users %>
 			</ul>
+			<% if @users.empty? %>
+				<div class="spacer"></div>
+		  	<h2 class="center muted">No users found</h2>
+		  <% end %>
 		</div>
 
 		<%= will_paginate @users, page_links: false %>

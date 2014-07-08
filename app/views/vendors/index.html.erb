@@ -19,6 +19,10 @@
 			<ul class="users">
 				<%= render @vendors %>
 			</ul>
+			<% if @vendors.empty? %>
+				<div class="spacer"></div>
+		  	<h2 class="center muted">No vendors found</h2>
+		  <% end %>
 		</div>
 
 		<%= will_paginate @vendors, page_links: false %>

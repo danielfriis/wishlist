@@ -1,32 +1,39 @@
 <% provide(:title, 'Search') %>
 <div class="row">
 	<div class="span12">
-		<h1>Search for friends or vendors</h1>
+		<h1>Search for friends, products or vendors</h1>
 		<p>Browse, or search below</p>
+		<div>
+			<%= form_tag(search_path, :method => "get", id: "search-form", class: "form-search form-inline") do %>
+				<%= text_field_tag :search, params[:search], class: "span6", placeholder: "Search for friends, vendors or products" %>
+				<%= submit_tag "Search", class: "btn btn-primary" %>
+			<% end %>
+		</div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="span9">
-		<div>
-			<%= form_tag(search_path, :method => "get", id: "search-form", class: "form-search form-inline") do %>
-				<%= text_field_tag :search, params[:search], class: "span6", placeholder: "Search for friends" %>
-				<%= submit_tag "Search", class: "btn btn-primary" %>
-			<% end %>
+	<div class="span8">
+		<div class="spacer"></div>
+		<div class="row inspiration">
+		  <%= render @items %>
+		  <% if @items.empty? %>
+		  	<h2 class="center muted">No products found</h2>
+		  <% end %>
 		</div>
 
-		<div class="row">
-			<ul class="users">
-				<%= render @searchresults %>
-			</ul>
+		<div id="inspiration-pagination">
+			<%= will_paginate @items %>
 		</div>
-
-		<%= will_paginate @users, page_links: false %>
 	</div>
-	<aside class="pull-right span3">
+	
+	<aside class="pull-right span4">
 		<% if current_user.admin? %>
 			<div class="admin">
 			  <h3>Admin-info</h3>
+			  <span>
+			  	<p><%= Item.all.count %> items in total</p>
+			  </span>
 			  <span>
 			  	<p><%= User.all.count %> users in total</p>
 			  </span>
@@ -35,7 +42,7 @@
 			  </span>
 			</div>
 		<% end %>
-		
-		<%= render 'shared/aside_facebook' %>
+		<%= render 'shared/aside_users' %>
+		<%= render 'shared/aside_vendors' %>
 	</aside>
 </div>

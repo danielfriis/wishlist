@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("upper(name) like upper(?)", "%#{query}%") 
+    where("upper(users.name) like upper(?)", "%#{query}%") 
   end
 
   def self.most_followers
