@@ -1,0 +1,15 @@
+<p>Hi <%= @followed_user.name %>,</p>
+
+<p><%= @current_user.name %> just commented on <%= link_to @wish.title, wish_url(@wish), {style: 'color: #222222;font-weight:600;text-decoration: none;'} %> which is on your list (<%= link_to @wish.list.name, user_list_url(@followed_user, @wish.list), {style: 'color: #222222;font-weight:600;text-decoration: none;'} %>).</p>
+
+<br>
+<p><strong>"<%= @comment.content %>"</strong></p>
+
+<br>
+<p>All the best,</p>
+
+<p>The team behind <%= link_to "Wishlistt.com", "http://www.Wishlistt.com", {style: 'color: #222222;font-weight:600;text-decoration: none;'} %></p>
+
+<p style="color:#808080">-------------</p>
+
+<p style="color:#808080"><small>Don't want to receive these kind of messages again? Click <%= link_to "here", edit_user_url(@followed_user), {style: 'color: #222222;text-decoration: none;'} %> to change your settings.</small></p>

@@ -13,6 +13,22 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: "[Wishlistt] Sign Up Confirmation"
   end
 
+  def new_follower(current_user, followed_user)
+    @current_user = User.find(current_user)
+    @followed_user = User.find(followed_user)
+
+    mail to: @followed_user.email, subject: "#{@followed_user.name}, you have a new follower on Wishlistt"
+  end
+
+  def new_comment(current_user, followed_user, wish, comment)
+    @current_user = User.find(current_user)
+    @followed_user = User.find(followed_user)
+    @wish = Wish.find(wish)
+    @comment = Comment.find(comment)
+
+    mail to: @followed_user.email, subject: "#{@current_user.name} commented on your wish"
+  end
+
   def share_list(message, list_id)
     @message = message
     @list = List.find(list_id)

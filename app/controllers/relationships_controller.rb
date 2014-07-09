@@ -7,6 +7,9 @@ class RelationshipsController < ApplicationController
     @subject = subject_class.find(params[:relationship][:followed_id])
     current_user.relationships.create!(followed_id: @subject.id, followed_type: @subject.class.name)
     tracker.track(current_user.id, "Followed another #{@subject.class.name}")
+    if @subject.class.name == "User" && @subject.follower_notification?
+      UserMailer.delay.new_follower(current_user.id, @subject.id)
+    end
     respond_to do |format|
       format.html { redirect_to @subject }
       format.js

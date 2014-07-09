@@ -1,0 +1,13 @@
+Hi <%= @followed_user.name %>,
+
+<%= @current_user.name %> just commented on <%= @wish.title %> which is on your list (<%= @wish.list.name %>).
+
+"<%= @comment.content %>"
+
+All the best, 
+
+The team behind Wishlist.com
+
+-------------
+
+Don't want to receive these kind of messages again? Click here to change your settings: <%= edit_user_url(@followed_user) %>.
