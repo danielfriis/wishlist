@@ -2,7 +2,13 @@ task :subscribe_mailchimp => :environment do
  User.find_each do |user|
  	user.subscribe_email
  end
-end	
+end
+
+task :send_survey => :environment do
+ User.find_each do |user|
+ 	UserMailer.delay.survey(user.id)
+ end
+end
 
 task :generate_slug => :environment do
  User.find_each do |user|
