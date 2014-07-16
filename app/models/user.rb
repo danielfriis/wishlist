@@ -119,6 +119,13 @@ class User < ActiveRecord::Base
     .order('relationships_count desc, users.created_at desc')
   end
 
+  def send_password_reset
+    self.password_reset_token = SecureRandom.urlsafe_base64
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.delay.password_reset(self)
+  end
+
 
   private
 

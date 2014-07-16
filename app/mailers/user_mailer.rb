@@ -42,4 +42,9 @@ class UserMailer < ActionMailer::Base
     mail from: "#{@list.user.name} <no-reply@wishlistt.com>", to: message.email, subject: "#{@list.user.name} via Wishlistt", reply_to: @list.user.email
   end
 
+  def password_reset(user)
+    @user = user
+    mail to: user.email, subject: "[Wishlistt] Password reset"
+  end
+
 end

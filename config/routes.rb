@@ -18,6 +18,7 @@ Wishlist::Application.routes.draw do
   resources :reservations
   resources :vendors, only: [:index, :new, :create]
   resources :vendors, path: "v" , except: [:index, :new, :create]
+  resources :password_resets
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
