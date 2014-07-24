@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def avatar(user, size)
   	if user.avatar_url("#{size}").nil?
-  		"#{root_url}/assets/default_images/#{size.to_s}_#{user.gender.downcase}.png"
+  		"#{root_url}assets/default_images/#{size.to_s}_#{user.gender.downcase}.png"
   	else
   		user.avatar_url("#{size}")
   	end
