@@ -18,7 +18,7 @@ class LinkPreviewParser
     page_info = {}
     page_info[:title] = doc.at_css("title").text
     page_info[:url] = url
-    page_info[:images] = images(url, doc) rescue nil
+    page_info[:images] = images(url, doc)
     page_info[:price] = price(doc) rescue nil
 
     return page_info
@@ -32,6 +32,7 @@ class LinkPreviewParser
     end
 
     page_info = {}
+
     page_info[:images] = doc.css('body img').map{ |node| node['src'] }
     page_info[:images] << doc.at('body').xpath("//*[@itemprop='image']/@content").map{|i| i.value }.first  rescue nil
     page_info[:images] << doc.at('body').xpath("//*[@itemprop='image']/@src").map{|i| i.value }.first  rescue nil

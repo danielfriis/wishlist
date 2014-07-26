@@ -18,13 +18,13 @@
             <%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish", class: "btn btn-primary btn-small"} %>
             <% end %>
         </div>
-        <% unless @list %>
+        
           <div class="list-add-wish">
             <%= form_tag items_path, method: :get do %>
               <%= text_field_tag :search, params[:search], :data => {:provide => "typeahead"}, autocomplete: :off %>
             <% end %>
           </div>
-        <% end %>
+        
         <ul class="wishes <% if current_user?(@list.user) %>dragndrop<% end %> unstyled" id="list_<%= @list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= @list.id %>">
           <% if @list.items.any? %>
             <%= render @wishes %>
