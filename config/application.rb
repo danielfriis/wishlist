@@ -88,5 +88,7 @@ module Wishlist
       end
     end
     
+    config.middleware.insert_before 0, "Items"
+
   end
 end

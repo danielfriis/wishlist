@@ -2,22 +2,51 @@
 class LinkPreviewParser
   require 'fastimage'
   require 'addressable/uri'
-  require 'link_thumbnailer'
-  require 'rubygems'
-  require 'readability'
   require 'open-uri'
   
   def self.parse(url)
 
-    page_info = linktumbnailer_gem(url)
+    # page_info = linktumbnailer_gem(url)
 
     # page_info[:images] = (page_info[:images] + readability_gem(url) + home_made(url)).uniq
-    page_info[:images] = (page_info[:images] + home_made(url)).uniq
+    # page_info[:images] = (page_info[:images] + home_made(url)).uniq
     # Removed readability gem parsing because it is slow.
 
+    url = Addressable::URI.parse(url).normalize.to_s
+    doc = Nokogiri::HTML(open(url))
+
+    page_info = {}
+    page_info[:title] = doc.at_css("title").text
+    page_info[:url] = url
+    page_info[:images] = images(url, doc) rescue nil
+    page_info[:price] = price(doc) rescue nil
+
+    return page_info
+
+  end
+
+  def self.images(url, doc=nil)
+    if doc == nil
+      url = Addressable::URI.parse(url).normalize.to_s
+      doc = Nokogiri::HTML(open(url))
+    end
+
+    page_info = {}
+    page_info[:images] = doc.css('body img').map{ |node| node['src'] }
+    page_info[:images] << doc.at('body').xpath("//*[@itemprop='image']/@content").map{|i| i.value }.first  rescue nil
+    page_info[:images] << doc.at('body').xpath("//*[@itemprop='image']/@src").map{|i| i.value }.first  rescue nil
+    page_info[:images] << doc.at('meta[@property="og:image"]')[:content] rescue nil
+
+    page_info[:bad_images] = doc.css('header img').map{ |node| node['src'] } rescue nil
+    page_info[:bad_images] << doc.css('footer img').map{ |node| node['src'] } rescue nil
+    page_info[:bad_images] << doc.css('nav img').map{ |node| node['src'] } rescue nil
+
+    page_info[:images] = page_info[:images] - page_info[:bad_images].flatten rescue nil
 
     page_info[:images] = page_info[:images].compact # Removes empty entries from array
     page_info[:images] = page_info[:images].collect{ |image| URI::escape(image).to_s } # Do something
+
+    # Maybe exclude anything from nav and footer and header
 
     page_info[:images] = page_info[:images].collect do |image| # Ensures right url
       parsed = Addressable::URI.parse(image)
@@ -57,85 +86,17 @@ class LinkPreviewParser
     images_and_sizes = images_and_sizes.sort_by{ |k, v| v[0] * v[1] }.reverse
 
     page_info[:images] = images_and_sizes.map{ |k, v| k }
-
-    # END
-
-    page_info[:price] = price(url) rescue nil
-
-    return page_info
-
-  end
-
-  def self.linktumbnailer_gem(url)
-
-    object = LinkThumbnailer.generate(url)
-
-    page_info = {}
-    page_info[:title] = object.title
-    page_info[:url] = url
-    page_info[:images] = Array.new
     
-    if object.images.size > 1
-        page_info[:images] = page_info[:images] + object.images.collect{ |i| i.source_url.to_s }
-    else
-        page_info[:images] = page_info[:images] << object.images[0][:source_url]
-    end
-
-    return page_info
-
+    return page_info[:images][0..100]
   end
 
-  
-  def self.readability_gem(url)
-    # RELY ON READABILITY GEM
-
-    source = open(url).read
-    body = Readability::Document.new(source, :remove_empty_nodes => false, :tags => %w[img], :attributes => %w[src], :ignore_image_format => ["gif"], :min_image_height => 200)
-
-    page_info = {}
-    page_info[:title] = body.title
-    page_info[:url] = url
-    page_info[:images] = body.images
-
-    # object = LinkThumbnailer.generate(url)
-    
-    # if object.images.size > 1
-    #     page_info[:images] = page_info[:images] + object.images.collect{ |i| i.source_url.to_s }
-    # else
-    #     page_info[:images] = page_info[:images] << object.images[0][:source_url]
-    # end
-
-    return page_info[:images]
-
-    # END RELY ON READABILITY
-
-  end
-
-  def self.home_made(url)
-
-    url = Addressable::URI.parse(url).normalize.to_s
-
-    doc = Nokogiri::HTML(open(url))
-
-    page_info = {}
-
-    # Find all images based on size if possible
-    # if doc.css('body img').select{|img| img[:width].to_i > 200}.map{ |node| node['src'] }.empty?
-      page_info[:images] = doc.css('body img').map{ |node| node['src'] }
-    # else
-    #   page_info[:img] = doc.css('body img').select{|img| img[:width].to_i > 200}.map{ |node| node['src'] }
-    # end
-
-    return page_info[:images][1..100]
-  end
-
-  def self.price(url)
+  def self.price(doc)
     
     # Normalize URI
-    url = Addressable::URI.parse(url).normalize.to_s
+    # url = Addressable::URI.parse(url).normalize.to_s
 
-    # Open page
-    doc = Nokogiri::HTML(open(url))
+    # # Open page
+    # doc = Nokogiri::HTML(open(url))
 
     # Get arrary of iso_codes and symbols
     currencies_regex = Regexp.union(Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.compact.reject!{ |c| c.empty? } << "|kr.")
@@ -194,6 +155,51 @@ class LinkPreviewParser
     end
 
     return price
+
+  end
+
+  def self.linktumbnailer_gem(url)
+
+    object = LinkThumbnailer.generate(url)
+
+    page_info = {}
+    page_info[:title] = object.title
+    page_info[:url] = url
+    page_info[:images] = Array.new
+    
+    if object.images.size > 1
+        page_info[:images] = page_info[:images] + object.images.collect{ |i| i.source_url.to_s }
+    else
+        page_info[:images] = page_info[:images] << object.images[0][:source_url]
+    end
+
+    return page_info
+
+  end
+
+  
+  def self.readability_gem(url)
+    # RELY ON READABILITY GEM
+
+    source = open(url).read
+    body = Readability::Document.new(source, :remove_empty_nodes => false, :tags => %w[img], :attributes => %w[src], :ignore_image_format => ["gif"], :min_image_height => 200)
+
+    page_info = {}
+    page_info[:title] = body.title
+    page_info[:url] = url
+    page_info[:images] = body.images
+
+    # object = LinkThumbnailer.generate(url)
+    
+    # if object.images.size > 1
+    #     page_info[:images] = page_info[:images] + object.images.collect{ |i| i.source_url.to_s }
+    # else
+    #     page_info[:images] = page_info[:images] << object.images[0][:source_url]
+    # end
+
+    return page_info[:images]
+
+    # END RELY ON READABILITY
 
   end
 

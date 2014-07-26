@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
 
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("upper(items.title) like upper(?)", "%#{query}%") 
+    where("upper(items.title) like upper(?)", "%#{query}%").includes(:vendor)
   end
 
   def self.sort(general, gender, current_user)

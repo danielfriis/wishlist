@@ -38,6 +38,7 @@ Wishlist::Application.routes.draw do
   match '/bookmarklet', to: 'items#bookmarklet'
   match '/inspiration', to: 'items#inspiration'
   match '/search',  to: 'static_pages#search'
+  match '/search_suggestion', to:'items#search_suggestion'
 
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do

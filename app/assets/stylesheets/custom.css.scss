@@ -974,6 +974,21 @@ input {
 .user_list_large_wish {
   margin-top: 0;
   overflow: visible;
+  img {
+    width: 85px;
+    height: 85px;
+  }
+}
+
+.typeahead.dropdown-menu {
+  img {
+    height: 80px;
+    width: 80px;
+  }
+  a {
+    padding: 4px 8px 4px 4px;
+    min-height: 80px;
+  }
 }
 
 .wishes img {

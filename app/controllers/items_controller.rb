@@ -66,6 +66,10 @@ class ItemsController < ApplicationController
 		redirect_to :back
 	end
 
+	def search_suggestion
+		render json: Item.search(params[:query]).to_json(include: :vendor)
+	end
+
 	def update
 		@item = Item.find(params[:id])
     @item.update_attributes(params[:item])
