@@ -36,8 +36,11 @@ end
 
 group :development do
   gem 'annotate', '2.5.0'
-  gem 'rack-mini-profiler'
   gem 'bullet'
+end
+
+group :development, :staging do
+  gem 'rack-mini-profiler'
 end
 
 # Gems used only for assets and not required
