@@ -19,7 +19,7 @@ class LinkPreviewParser
     page_info[:title] = doc.at_css("title").text
     page_info[:url] = url
     page_info[:images] = images(url, doc)
-    page_info[:price] = price(doc) rescue nil
+    page_info[:price] = price(url, doc) rescue nil
 
     return page_info
 
@@ -91,8 +91,11 @@ class LinkPreviewParser
     return page_info[:images][0..100]
   end
 
-  def self.price(doc)
-    
+  def self.price(url, doc=nil)
+    if doc == nil
+      url = Addressable::URI.parse(url).normalize.to_s
+      doc = Nokogiri::HTML(open(url))
+    end
     # Normalize URI
     # url = Addressable::URI.parse(url).normalize.to_s
 

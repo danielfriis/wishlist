@@ -1,109 +1,156 @@
 $(document).ready(function(){
-	function ifExists(val){
-		if (val) {
-			return val
-		}
-		else {
-			return ""
-		}
-	};
-	function ValidUrl(str) {
-	  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-	  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-	  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-	  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-	  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-	  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-	  if(!pattern.test(str)) {
-	    return false;
-	  } else {
-	    return true;
-	  }
-	};
-	function commaSeparateNumber(val){
-    val = val.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
-    return val;
-  };
 
 	var searchfield = $(".list-add-wish").find("#search");
 
-
-	searchfield.on('input', function(e) {
-		// IF URL IS ENTERED
-		if (ValidUrl(searchfield.val())) {
-			searchfield.data('typeahead').source = function (query, process) {
-	      return $.get('/linkpreview', { url: query }, function (data) {
-	      	datas = [];
-	      	datas.push(data);
-	      	objects = [];
-	        map = {};
-	        $.each(datas, function(i, object) {
-	            map[object.title] = object;
-	            objects.push(object.title);
-	        });
-	        return process(objects);
-	      });
-	    };
-	    searchfield.data('typeahead').highlighter = function (item) {
-	    	var regex = new RegExp( '(' + this.query + ')', 'gi' );
-		    return('<div class="media list_typeahead">' +
-		    	'<img src="' + map[item].images[0] + '" class="img-rounded thumb pull-left" id="item_' + map[item].id + '" />' +
-		    	'<div class="media-body">' + 
-		    		'<h4 class="media-heading">' + item.replace(regex, "<strong>$1</strong>") + '</h4>' +
-		    		'<div>' + ifExists(map[item].url) + '</div>' +
-		    		'<div>' + String(ifExists(map[item].price)) + '</div>' +
-		    	'</div>' + 
-		    	'</div>');
-			}
-		}
-		// IF NO URL IS ENTERED
-		else {
-	  	searchfield.data('typeahead').source = function(query, process) {
-		    //Create a copy of this, so code in $.ajax can access the variables
-		    var that = this;
-		    $.ajax({
-		        url: '/search_suggestion',
-		        data: {query: query},
-
-		        beforeSend: function() {
-		            //that.$element is a variable that stores the element the plugin was called on
-		            that.$element.addClass('loading');
-		            that.$element.removeClass('shit');
-		        },
-		        complete: function() {
-		            that.$element.removeClass('loading');
-		        },
-		        success: function(data) {
-		        	objects = [];
-			        map = {};
-			        $.each(data, function(i, object) {
-			            map[object.title] = object;
-			            objects.push(object.title);
-			        });
-			        if (objects.length == 0){
-			        	that.$element.addClass('shit');
-			        };
-		          return process(objects);
-		        }
-		    })
-			};
-	    searchfield.data('typeahead').highlighter = function (item) {
-	    	var regex = new RegExp( '(' + this.query + ')', 'gi' );
-		    return('<div class="media list_typeahead">' +
-		    	'<img src="' + map[item].image.thumb.url + '" class="img-rounded thumb pull-left" id="item_' + map[item].id + '" />' +
-		    	'<div class="media-body">' + 
-		    		'<h4 class="media-heading">' + item.replace(regex, "<strong>$1</strong>") + '</h4>' +
-		    		'<div>' + ifExists(map[item].vendor.name) + '</div>' +
-		    		'<div>' + commaSeparateNumber(String(ifExists(map[item].price_cents))) + ' ' + ifExists(map[item].price_currency) + '</div>' +
-		    	'</div>' + 
-		    	'</div>');
-			}
+	var search_source = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  remote: {
+	  	url: '/search_suggestion?query=%QUERY',
+	  	filter: function(data) {
+		    return $.map(data, function(product) { 
+		    	return { 
+		    		value: product.title,
+		    		image: product.image.thumb.url,
+		    		id: product.id,
+		    		url: product.link,
+		    		price: product.price_cents,
+		    	}; 
+		    });
+		  }
 		}
 	});
-
-  searchfield.typeahead({
-	  matcher: function(item) {
-	    return true;
+	 
+	search_source.initialize();
+	 
+	searchfield.typeahead({
+		
+	},
+	{
+	  name: 'search_source',
+	  displayKey: 'value',
+	  source: search_source.ttAdapter(),
+	  templates: {
+	    empty: [
+	      '<div class="empty-message">',
+	      'unable to find any Best Picture winners that match the current query',
+	      '</div>'
+	    ].join('\n'),
+	    suggestion: Handlebars.compile('<div class="media list_typeahead">' + 
+	    	'<img src="{{image}}" class="img-rounded thumb pull-left" id="item_{{id}}" />' +
+		    	'<div class="media-body">' + 
+		    		'<h4 class="media-heading">{{value}}</h4>' +
+		    		'<div>{{url}}</div>' +
+		    		'<div>{{price}}</div>' +
+		    	'</div>' + 
+		    '</div>')
 	  }
 	});
+	// function ifExists(val){
+	// 	if (val) {
+	// 		return val
+	// 	}
+	// 	else {
+	// 		return ""
+	// 	}
+	// };
+	// function ValidUrl(str) {
+	//   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+	//   '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+	//   '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+	//   '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+	//   '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+	//   '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+	//   if(!pattern.test(str)) {
+	//     return false;
+	//   } else {
+	//     return true;
+	//   }
+	// };
+	// function commaSeparateNumber(val){
+ //    val = val.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
+ //    return val;
+ //  };
+
+	// var searchfield = $(".list-add-wish").find("#search");
+
+
+	// searchfield.on('input', function(e) {
+	// 	// IF URL IS ENTERED
+	// 	if (ValidUrl(searchfield.val())) {
+	// 		searchfield.data('typeahead').source = function (query, process) {
+	//       return $.get('/linkpreview', { url: query }, function (data) {
+	//       	datas = [];
+	//       	datas.push(data);
+	//       	objects = [];
+	//         map = {};
+	//         $.each(datas, function(i, object) {
+	//             map[object.title] = object;
+	//             objects.push(object.title);
+	//         });
+	//         return process(objects);
+	//       });
+	//     };
+	//     searchfield.data('typeahead').highlighter = function (item) {
+	//     	var regex = new RegExp( '(' + this.query + ')', 'gi' );
+	// 	    return('<div class="media list_typeahead">' +
+	// 	    	'<img src="' + map[item].images[0] + '" class="img-rounded thumb pull-left" id="item_' + map[item].id + '" />' +
+	// 	    	'<div class="media-body">' + 
+	// 	    		'<h4 class="media-heading">' + item.replace(regex, "<strong>$1</strong>") + '</h4>' +
+	// 	    		'<div>' + ifExists(map[item].url) + '</div>' +
+	// 	    		'<div>' + String(ifExists(map[item].price)) + '</div>' +
+	// 	    	'</div>' + 
+	// 	    	'</div>');
+	// 		}
+	// 	}
+	// 	// IF NO URL IS ENTERED
+	// 	else {
+	//   	searchfield.data('typeahead').source = function(query, process) {
+	// 	    //Create a copy of this, so code in $.ajax can access the variables
+	// 	    var that = this;
+	// 	    $.ajax({
+	// 	        url: '/search_suggestion',
+	// 	        data: {query: query},
+
+	// 	        beforeSend: function() {
+	// 	            //that.$element is a variable that stores the element the plugin was called on
+	// 	            that.$element.addClass('loading');
+	// 	            that.$element.removeClass('shit');
+	// 	        },
+	// 	        complete: function() {
+	// 	            that.$element.removeClass('loading');
+	// 	        },
+	// 	        success: function(data) {
+	// 	        	objects = [];
+	// 		        map = {};
+	// 		        $.each(data, function(i, object) {
+	// 		            map[object.title] = object;
+	// 		            objects.push(object.title);
+	// 		        });
+	// 		        if (objects.length == 0){
+	// 		        	that.$element.addClass('shit');
+	// 		        };
+	// 	          return process(objects);
+	// 	        }
+	// 	    })
+	// 		};
+	//     searchfield.data('typeahead').highlighter = function (item) {
+	//     	var regex = new RegExp( '(' + this.query + ')', 'gi' );
+	// 	    return('<div class="media list_typeahead">' +
+	// 	    	'<img src="' + map[item].image.thumb.url + '" class="img-rounded thumb pull-left" id="item_' + map[item].id + '" />' +
+	// 	    	'<div class="media-body">' + 
+	// 	    		'<h4 class="media-heading">' + item.replace(regex, "<strong>$1</strong>") + '</h4>' +
+	// 	    		'<div>' + ifExists(map[item].vendor.name) + '</div>' +
+	// 	    		'<div>' + commaSeparateNumber(String(ifExists(map[item].price_cents))) + ' ' + ifExists(map[item].price_currency) + '</div>' +
+	// 	    	'</div>' + 
+	// 	    	'</div>');
+	// 		}
+	// 	}
+	// });
+
+ //  searchfield.typeahead({
+	//   matcher: function(item) {
+	//     return true;
+	//   }
+	// });
 });
