@@ -25,6 +25,7 @@
               <%= text_field_tag :search, params[:search], :data => {:provide => "typeahead"}, autocomplete: :off, placeholder: "Type the product you wish for or paste a link." %>
   
               <div class="item_fields" style="display:none;">
+                <hr />
 
                 <span id="item-display-image" class="btn btn-default btn-large btn-file pull-right" style="background-image:url(<%= asset_path('choose-image.png') %>);" data-images="" >
                   <%= f.file_field :image, onchange: "readURL(this);" %>
