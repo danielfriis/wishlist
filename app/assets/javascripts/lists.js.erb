@@ -40,8 +40,8 @@ $(document).ready(function(){
     return val;
   };
   $(document).on({
-    ajaxStart: function() { $(".twitter-typeahead").addClass("loading");    },
-     ajaxStop: function() { $(".twitter-typeahead").removeClass("loading"); }    
+    ajaxStart: function() { $("#new_item").addClass("loading");    },
+     ajaxStop: function() { $("#new_item").removeClass("loading"); }    
 });
 
   var database = {
@@ -51,13 +51,18 @@ $(document).ready(function(){
 		    return $.map(data, function(product) {
 		    	var images = [];
 		    	images.push(product.image.thumb.url);
+		    	var price = "";
+		    	if (product.price_cents) {
+		    		var price = commaSeparateNumber(product.price_cents) + " " + product.price_currency;	
+		    	};
 		    	return { 
 		    		title: product.title,
 		    		image: product.image.thumb.url,
 		    		images: images,
 		    		id: product.id,
 		    		url: product.link,
-		    		price: product.price_cents,
+		    		vendor: product.vendor.name,
+		    		price: price
 		    	}; 
 		    });
 		  }
@@ -119,7 +124,7 @@ $(document).ready(function(){
 	    	'<img src="{{image}}" id="selected-img" class="img-rounded thumb pull-left" id="item_{{id}}" />' +
 		    	'<div class="media-body">' + 
 		    		'<h4 class="media-heading">{{title}}</h4>' +
-		    		'<div>{{url}}</div>' +
+		    		'<div><strong>{{vendor}}</strong></div>' +
 		    		'<div>{{price}}</div>' +
 		    	'</div>' + 
 		    '</div>'),
@@ -130,6 +135,7 @@ $(document).ready(function(){
 	searchfield.keypress(function(e) {
     if(e.which == 13) {
     	e.preventDefault();
+    	searchfield.typeahead('close');
     	$('#new_item')[0].reset();
       $("#new_item > .item_fields").show();
       $('#item_title').val(searchfield.val());

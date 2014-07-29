@@ -109,7 +109,7 @@ input.typeahead.tt-query{ /* This is optional */
   display: none;
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 5px 0 0;
   margin: 2px 0 0;
   list-style: none;
   font-size: 14px;
@@ -124,8 +124,8 @@ input.typeahead.tt-query{ /* This is optional */
     height: 80px;
     width: 80px;
   }
-  a {
-    padding: 4px 8px 4px 4px;
+  .list_typeahead {
+    padding: 6px 8px;
     min-height: 80px;
   }
 }
@@ -144,7 +144,7 @@ input.typeahead.tt-query{ /* This is optional */
   color: #ffffff;
   text-decoration: none;
   outline: 0;
-  background-color: #428bca;
+  background-color: $btnPrimaryBackground;
 }
 
 .list_typeahead {
@@ -1150,7 +1150,13 @@ input {
   .checkbox {
     width: 70%;
   }
+  &.loading #search {
+    background: url(ajax-loader.gif) no-repeat;
+    background-position: right 7px center;
+  }
 }
+
+
 
 .dragndrop .user_list_wish:hover, .dragndrop .user_list_wish:active {
   border-left: solid $grayLighter 4px;
