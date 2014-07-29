@@ -16,7 +16,7 @@ class LinkPreviewParser
     doc = Nokogiri::HTML(open(url))
 
     page_info = {}
-    page_info[:title] = doc.at_css("title").text
+    page_info[:title] = doc.at_css("title").text.strip.gsub(/\r\n|\r|\n/, '')
     page_info[:url] = url
     page_info[:images] = images(url, doc)
     page_info[:price] = price(url, doc) rescue nil

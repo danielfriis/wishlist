@@ -138,13 +138,13 @@ $(document).ready(function(){
     	searchfield.typeahead('close');
     	$('#new_item')[0].reset();
       $("#new_item > .item_fields").show();
-      $('#item_title').val(searchfield.val());
+      $('#item_title').val(searchfield.val()).focus();
     }
 	});
 
 	searchfield.on('typeahead:selected', function(evt, item) {
 		$("#new_item > .item_fields").show();
-    $('#item_title').val(item.title);
+    $('#item_title').val(item.title).focus();
     $('#item_remote_image_url').val(item.image);
     $('input#item_image').hide();
     $('#item-display-image').css("background-image", "url(" + item.image + ")");
