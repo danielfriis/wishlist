@@ -55,6 +55,40 @@ body {
   }
 }
 
+/* BOOTSTRAP STYLING FOR FILE UPLOAD */
+
+.btn-file, .btn-file:hover {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.btn-file input[type=file], .btn-file input[type=file]:hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.list-add-wish .btn-file {
+  height: 120px;
+  width: 120px;
+  margin-bottom: 0;
+  border: 2px solid #bdc3c7;
+}
+
+/* END BOOTSTRAP STYLING FOR FILE UPLOAD*/
+
 /* START TYPEAHEAD */
 
 .twitter-typeahead{
@@ -111,6 +145,12 @@ input.typeahead.tt-query{ /* This is optional */
   text-decoration: none;
   outline: 0;
   background-color: #428bca;
+}
+
+.list_typeahead {
+  a {
+    padding: 0;
+  }
 }
 
 /* END TYPEAHEAD */
@@ -1103,6 +1143,14 @@ input {
   }
 }
 
+.list-add-wish #new_item {
+  #note, #item_link {
+    width: 75%;
+  }
+  .checkbox {
+    width: 70%;
+  }
+}
 
 .dragndrop .user_list_wish:hover, .dragndrop .user_list_wish:active {
   border-left: solid $grayLighter 4px;

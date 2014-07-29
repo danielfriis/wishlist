@@ -84,7 +84,7 @@ class LinkPreviewParser
         end
     end
 
-    images_and_sizes = images_and_sizes.sort_by{ |k, v| v[0] * v[1] }.reverse
+    images_and_sizes = images_and_sizes.sort_by{ |k, v| (v[0] * v[1]) }.reverse
 
     page_info[:images] = images_and_sizes.map{ |k, v| k }
     
@@ -139,7 +139,7 @@ class LinkPreviewParser
 
     # Replace symbols for the monetize gem to work properply
     # price.gsub('$','USD').gsub('€','EUR').gsub('£','GBP').to_s unless price.nil?
-    currencies = {'$' => 'USD','€' => 'EUR','kr' => 'DKK','kr.' => 'DKK',',-' => 'DKK', '£' => 'GBP'}
+    currencies = {'$' => 'USD','€' => 'EUR','kr' => 'DKK','kr.' => 'DKK',',-' => 'DKK', '£' => 'GBP', 'Rs.' => 'INR'}
     re = Regexp.new(currencies.keys.map { |x| Regexp.escape(x) }.join('|'))
     price.gsub!(re, currencies) unless price.nil?
 

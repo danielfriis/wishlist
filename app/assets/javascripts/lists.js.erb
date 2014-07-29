@@ -1,17 +1,60 @@
+function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('.btn-file').css("background-image", "url(" + e.target.result + ")");
+	        };
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	};
+
 $(document).ready(function(){
 
 	var searchfield = $(".list-add-wish").find("#search");
 
-	var search_source = new Bloodhound({
-	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  remote: {
+	function ifExists(val){
+		if (val) {
+			return val
+		}
+		else {
+			return ""
+		}
+	};
+	function ValidUrl(str) {
+	  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+	  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+	  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+	  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+	  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+	  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+	  if(!pattern.test(str)) {
+	    return false;
+	  } else {
+	    return true;
+	  }
+	};
+	function commaSeparateNumber(val){
+    val = val.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
+    return val;
+  };
+  $(document).on({
+    ajaxStart: function() { $(".twitter-typeahead").addClass("loading");    },
+     ajaxStop: function() { $(".twitter-typeahead").removeClass("loading"); }    
+});
+
+  var database = {
 	  	url: '/search_suggestion?query=%QUERY',
+	  	wildcard: '%QUERY',
 	  	filter: function(data) {
-		    return $.map(data, function(product) { 
+		    return $.map(data, function(product) {
+		    	var images = [];
+		    	images.push(product.image.thumb.url);
 		    	return { 
-		    		value: product.title,
+		    		title: product.title,
 		    		image: product.image.thumb.url,
+		    		images: images,
 		    		id: product.id,
 		    		url: product.link,
 		    		price: product.price_cents,
@@ -19,138 +62,100 @@ $(document).ready(function(){
 		    });
 		  }
 		}
+
+	var linkpreview = {
+	  	url: '/linkpreview?url=%QUERY',
+	  	wildcard: '%QUERY',
+	  	filter: function(data) {
+	  		datas = [];
+	      datas.push(data);
+		    return $.map(datas, function(product) { 
+		    	return { 
+		    		title: product.title,
+		    		image: product.images[0],
+		    		images: product.images,
+		    		id: 0,
+		    		url: product.url,
+		    		price: product.price,
+		    	}; 
+		    });
+		  }
+		}
+
+	var search_source = new Bloodhound({
+	  datumTokenizer: function(d) {
+	    return Bloodhound.tokenizers.whitespace(d.val);
+	  },
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  remote: linkpreview
+	});
+
+	search_source.initialize();
+
+	searchfield.on('input', function(e) {
+    $('#new_item .item_fields').hide();
+    $('input#item_image').show();
+    $('#item-display-image').removeClass("image-cycler");
+    $('#item_link').prop('readonly', false);
+    $('#item-display-image').css("background-image", "url(<%= asset_path('choose-image.png') %>)");
+    if (ValidUrl(searchfield.val())) {
+    		search_source.clear();
+        search_source.remote = linkpreview; // Next choose the desired alternate data source
+    } else {
+        search_source.remote = database;
+    };
+    search_source.initialize(true); // Finally reinitialise the bloodhound suggestion engine
 	});
 	 
-	search_source.initialize();
-	 
 	searchfield.typeahead({
-		
+		// Options here
 	},
 	{
 	  name: 'search_source',
-	  displayKey: 'value',
+	  displayKey: 'title',
 	  source: search_source.ttAdapter(),
 	  templates: {
-	    empty: [
-	      '<div class="empty-message">',
-	      'unable to find any Best Picture winners that match the current query',
-	      '</div>'
-	    ].join('\n'),
 	    suggestion: Handlebars.compile('<div class="media list_typeahead">' + 
-	    	'<img src="{{image}}" class="img-rounded thumb pull-left" id="item_{{id}}" />' +
+	    	'<img src="{{image}}" id="selected-img" class="img-rounded thumb pull-left" id="item_{{id}}" />' +
 		    	'<div class="media-body">' + 
-		    		'<h4 class="media-heading">{{value}}</h4>' +
+		    		'<h4 class="media-heading">{{title}}</h4>' +
 		    		'<div>{{url}}</div>' +
 		    		'<div>{{price}}</div>' +
 		    	'</div>' + 
-		    '</div>')
+		    '</div>'),
+	    header: Handlebars.compile('<div id="loading-indicator" style="display:none;"><p>Loading</p></div>')
 	  }
 	});
-	// function ifExists(val){
-	// 	if (val) {
-	// 		return val
-	// 	}
-	// 	else {
-	// 		return ""
-	// 	}
-	// };
-	// function ValidUrl(str) {
-	//   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-	//   '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-	//   '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-	//   '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-	//   '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-	//   '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-	//   if(!pattern.test(str)) {
-	//     return false;
-	//   } else {
-	//     return true;
-	//   }
-	// };
-	// function commaSeparateNumber(val){
- //    val = val.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
- //    return val;
- //  };
 
-	// var searchfield = $(".list-add-wish").find("#search");
+	searchfield.keypress(function(e) {
+    if(e.which == 13) {
+    	e.preventDefault();
+    	$('#new_item')[0].reset();
+      $("#new_item > .item_fields").show();
+      $('#item_title').val(searchfield.val());
+    }
+	});
 
+	searchfield.on('typeahead:selected', function(evt, item) {
+		$("#new_item > .item_fields").show();
+    $('#item_title').val(item.title);
+    $('#item_remote_image_url').val(item.image);
+    $('input#item_image').hide();
+    $('#item-display-image').css("background-image", "url(" + item.image + ")");
+    $('#item-display-image').attr('data-images', item.images);
+    $('#item-display-image').addClass("image-cycler");
+    $('#item_link').val(item.url);
+    $('#item_link').prop('readonly', true);
+    $('#item_price').val(item.price);
+    // $('#new_item').submit();
+	});
 
-	// searchfield.on('input', function(e) {
-	// 	// IF URL IS ENTERED
-	// 	if (ValidUrl(searchfield.val())) {
-	// 		searchfield.data('typeahead').source = function (query, process) {
-	//       return $.get('/linkpreview', { url: query }, function (data) {
-	//       	datas = [];
-	//       	datas.push(data);
-	//       	objects = [];
-	//         map = {};
-	//         $.each(datas, function(i, object) {
-	//             map[object.title] = object;
-	//             objects.push(object.title);
-	//         });
-	//         return process(objects);
-	//       });
-	//     };
-	//     searchfield.data('typeahead').highlighter = function (item) {
-	//     	var regex = new RegExp( '(' + this.query + ')', 'gi' );
-	// 	    return('<div class="media list_typeahead">' +
-	// 	    	'<img src="' + map[item].images[0] + '" class="img-rounded thumb pull-left" id="item_' + map[item].id + '" />' +
-	// 	    	'<div class="media-body">' + 
-	// 	    		'<h4 class="media-heading">' + item.replace(regex, "<strong>$1</strong>") + '</h4>' +
-	// 	    		'<div>' + ifExists(map[item].url) + '</div>' +
-	// 	    		'<div>' + String(ifExists(map[item].price)) + '</div>' +
-	// 	    	'</div>' + 
-	// 	    	'</div>');
-	// 		}
-	// 	}
-	// 	// IF NO URL IS ENTERED
-	// 	else {
-	//   	searchfield.data('typeahead').source = function(query, process) {
-	// 	    //Create a copy of this, so code in $.ajax can access the variables
-	// 	    var that = this;
-	// 	    $.ajax({
-	// 	        url: '/search_suggestion',
-	// 	        data: {query: query},
-
-	// 	        beforeSend: function() {
-	// 	            //that.$element is a variable that stores the element the plugin was called on
-	// 	            that.$element.addClass('loading');
-	// 	            that.$element.removeClass('shit');
-	// 	        },
-	// 	        complete: function() {
-	// 	            that.$element.removeClass('loading');
-	// 	        },
-	// 	        success: function(data) {
-	// 	        	objects = [];
-	// 		        map = {};
-	// 		        $.each(data, function(i, object) {
-	// 		            map[object.title] = object;
-	// 		            objects.push(object.title);
-	// 		        });
-	// 		        if (objects.length == 0){
-	// 		        	that.$element.addClass('shit');
-	// 		        };
-	// 	          return process(objects);
-	// 	        }
-	// 	    })
-	// 		};
-	//     searchfield.data('typeahead').highlighter = function (item) {
-	//     	var regex = new RegExp( '(' + this.query + ')', 'gi' );
-	// 	    return('<div class="media list_typeahead">' +
-	// 	    	'<img src="' + map[item].image.thumb.url + '" class="img-rounded thumb pull-left" id="item_' + map[item].id + '" />' +
-	// 	    	'<div class="media-body">' + 
-	// 	    		'<h4 class="media-heading">' + item.replace(regex, "<strong>$1</strong>") + '</h4>' +
-	// 	    		'<div>' + ifExists(map[item].vendor.name) + '</div>' +
-	// 	    		'<div>' + commaSeparateNumber(String(ifExists(map[item].price_cents))) + ' ' + ifExists(map[item].price_currency) + '</div>' +
-	// 	    	'</div>' + 
-	// 	    	'</div>');
-	// 		}
-	// 	}
-	// });
-
- //  searchfield.typeahead({
-	//   matcher: function(item) {
-	//     return true;
-	//   }
-	// });
+  var i = 0;
+  $("#item-display-image").on('click', function(){
+  		// alert('clicked');
+  		var images = $(".image-cycler").attr('data-images').split(',');
+      i = (i+1)%images.length;
+      $("#item-display-image").css("background-image", "url(" + images[i] + ")");
+      $('#item_remote_image_url').val(images[i]);
+  });
 });
