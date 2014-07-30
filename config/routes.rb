@@ -4,6 +4,7 @@ Wishlist::Application.routes.draw do
 
   namespace :admin do
     resources :users, :items, :wishes, :comments
+    match '/lptester', to: 'items#lptester'
   end
 
   resources :items, only: [:show, :new, :create, :update, :destroy, :inspiration] do

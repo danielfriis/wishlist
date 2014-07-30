@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
 			tracker.track(@user.id, "Created an item")
 			tracker.increment(@user.id, {'Items created' => 1})
 		end
-		@item.wishes.build(title: params[:item][:title], list_id: @list.id, note: params[:note], hide: params[:wish][:hide])
+		@item.wishes.build(title: params[:item][:title], list_id: @list.id, note: params[:note], hide: params[:wish][:hide], row_order_position: :first)
 		respond_to do |format|
 	    if @item.save
 	    	if params[:item][:via] == "bookmarklet"

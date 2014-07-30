@@ -31,6 +31,10 @@ class Admin::ItemsController < ApplicationController
     end 
 	end
 
+	def lptester
+		
+	end
+
   private
 
     def authenticate_admin!

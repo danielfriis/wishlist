@@ -151,10 +151,12 @@ $(document).ready(function(){
 		$("#new_item > .item_fields").show();
     $('#item_title').val(item.title).focus();
     $('#item_remote_image_url').val(item.image);
-    $('input#item_image').hide();
-    $('#item-display-image').css("background-image", "url(" + item.image + ")");
-    $('#item-display-image').attr('data-images', JSON.stringify(item.images));
-    $('#item-display-image').addClass("image-cycler");
+    if (item.image) {
+    	$('input#item_image').hide();
+    	$('#item-display-image').css("background-image", "url(" + item.image + ")");
+	    $('#item-display-image').attr('data-images', JSON.stringify(item.images));
+	    $('#item-display-image').addClass("image-cycler");
+    }
     $('#item_link').val(item.url);
     $('#item_link').prop('readonly', true);
     $('#item_price').val(item.price);

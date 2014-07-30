@@ -1,0 +1,40 @@
+$(document).ready(function(){
+	$('#test-urls').on('click', function(e) {
+		e.preventDefault();
+		var urls = $('#urls').val().split('\n');
+		urls.forEach(function(entry) {
+		  $.ajax({
+		      url: 'http://localhost:3000/linkpreview',
+		      data: { url: entry },
+		      type: 'POST',
+		      dataType: 'json'
+		  }).done(function(e) {
+			  $("#tested-urls").append('<div class="media list_typeahead">' + 
+	    	'<img src="' + e.images[0] + '" id="selected-img" class="img-rounded image-cycler thumb pull-left" />' +
+		    	'<div class="media-body">' + 
+		    		'<h4 class="media-heading">' + e.title + '</h4>' +
+		    		'<div>' + e.url + '</div>' +
+		    		'<div>' + e.price + '</div>' +
+		    	'</div>' + 
+		    '</div>');
+		    $('#selected-img').attr('data-images', JSON.stringify(e.images));
+			}).fail(function(e) {
+				$("#tested-urls").append('<div class="media list_typeahead">' + 
+	    	'<img src="" id="selected-img" class="img-rounded image-cycler thumb pull-left" />' +
+		    	'<div class="media-body">' + 
+		    		'<h4 class="media-heading">' + entry + '</h4>' +
+		    		'<div>Failed</div>' +
+		    	'</div>' + 
+		    '</div>');
+			});
+		});
+	});
+
+	var i = 0;
+  $(".image-cycler").on('click', function(){
+  		alert('clicked');
+  		var images = JSON.parse($(this).attr('data-images'));
+      i = (i+1)%images.length;
+      $(this).attr("src", images[i]);
+  });
+});
