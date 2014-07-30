@@ -106,10 +106,13 @@ $(document).ready(function(){
     if (ValidUrl(searchfield.val())) {
     		search_source.clear();
         search_source.remote = linkpreview; // Next choose the desired alternate data source
-    } else {
+        search_source.initialize(true); // Finally reinitialise the bloodhound suggestion engine
+        console.log("Source changed to: " + search_source.remote.url)
+    } else if (search_source.remote.url == linkpreview.url) {
         search_source.remote = database;
+        search_source.initialize(true); // Finally reinitialise the bloodhound suggestion engine
+        console.log("Source changed to: " + search_source.remote.url)
     };
-    search_source.initialize(true); // Finally reinitialise the bloodhound suggestion engine
 	});
 	 
 	searchfield.typeahead({
@@ -143,12 +146,14 @@ $(document).ready(function(){
 	});
 
 	searchfield.on('typeahead:selected', function(evt, item) {
+		console.log(item);
+		console.log(item.images);
 		$("#new_item > .item_fields").show();
     $('#item_title').val(item.title).focus();
     $('#item_remote_image_url').val(item.image);
     $('input#item_image').hide();
     $('#item-display-image').css("background-image", "url(" + item.image + ")");
-    $('#item-display-image').attr('data-images', item.images);
+    $('#item-display-image').attr('data-images', JSON.stringify(item.images));
     $('#item-display-image').addClass("image-cycler");
     $('#item_link').val(item.url);
     $('#item_link').prop('readonly', true);
@@ -159,7 +164,7 @@ $(document).ready(function(){
   var i = 0;
   $("#item-display-image").on('click', function(){
   		// alert('clicked');
-  		var images = $(".image-cycler").attr('data-images').split(',');
+  		var images = JSON.parse($(".image-cycler").attr('data-images'));
       i = (i+1)%images.length;
       $("#item-display-image").css("background-image", "url(" + images[i] + ")");
       $('#item_remote_image_url').val(images[i]);
