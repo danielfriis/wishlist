@@ -156,6 +156,8 @@ $(document).ready(function(){
     	$('#item-display-image').css("background-image", "url(" + item.image + ")");
 	    $('#item-display-image').attr('data-images', JSON.stringify(item.images));
 	    $('#item-display-image').addClass("image-cycler");
+    } else {
+    	$('#item_via').val('no_link');
     }
     $('#item_link').val(item.url);
     $('#item_link').prop('readonly', true);
