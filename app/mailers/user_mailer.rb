@@ -35,6 +35,12 @@ class UserMailer < ActionMailer::Base
     mail from: "Daniel Friis <df@wishlistt.com>", to: @user.email, subject: "Are we doing things right?"
   end
 
+  def friendly_reminder(user_id)
+    @user = User.find(user_id)
+
+    mail from: "Daniel Friis <df@wishlistt.com>", to: @user.email, subject: "Friendly Reminder: Are we doing things right?"
+  end
+
   def share_list(message, list_id)
     @message = message
     @list = List.find(list_id)

@@ -10,6 +10,33 @@ task :send_survey => :environment do
  end
 end
 
+task :send_friendly_reminder => :environment do
+	nosend = []
+	nosend << "louisefriis@gmail.com"
+	nosend << "ole@ole.kristensen.name"
+	nosend << "tsk@netcompany.com"
+	nosend << "jannick4@hotmail.com"
+	nosend << "emmaarfelt@gmail.com"
+	nosend << "annifong9@gmail.com"
+	nosend << "tinat86@hotmail.com"
+	nosend << "niels.wilken@gmail.com"
+	nosend << "andrea.baccenetti@gmail.com"
+	nosend << "henrikbn@hotmail.com"
+	nosend << "langomango@gmail.com"
+	nosend << "kqualmann@gmail.com"
+	nosend << "lullumut@gmail.com"
+	nosend << "jhfriisj@gmail.com"
+	nosend << "cgallstar@gmail.com"
+	nosend << "aliaproductions@live.dk"
+	nosend << "thelle.k@gmail.com"
+	nosend << "casperneergaard@hotmail.com"
+	User.find_each do |user|
+	 	unless nosend.include? user.email
+	 		UserMailer.delay.friendly_reminder(user.id)
+	 	end
+	end
+end
+
 task :generate_slug => :environment do
  User.find_each do |user|
  	user.slug = user.generate_slug
