@@ -6,7 +6,7 @@ class Items
   def call(env)
     if env["PATH_INFO"] == "/search_suggestion"
       request = Rack::Request.new(env)
-      items = Item.search(request.params["query"]).includes(:vendor)
+      items = Item.search(request.params["query"]).popular
       [200, {"Content-Type" => "application/json"}, [items.to_json(include: :vendor)]]
     else
       @app.call(env)

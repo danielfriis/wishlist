@@ -67,7 +67,8 @@ class ItemsController < ApplicationController
 	end
 
 	def search_suggestion
-		render json: Item.search(params[:query]).to_json(include: :vendor)
+		# Handled by middleware items.rb
+		# render json: Item.search(params[:query]).popular.to_json(include: :vendor)
 	end
 
 	def update

@@ -97,7 +97,7 @@ class Item < ActiveRecord::Base
     where("items.id IN (#{not_hidden})", false: false)
   end
 
-  def self.with_pictures 
+  def self.with_pictures
     where(Item.arel_table[:via].not_eq("no_link").and(Item.arel_table[:via].not_eq("no_image")))
   end
 
