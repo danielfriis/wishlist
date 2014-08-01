@@ -108,16 +108,12 @@ class LinkPreviewParser
     price_regex = /(?<=\p{Z}|^)((#{currencies_regex})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_regex}))?(?=\p{Z}|$)/m
 
     # Retract price based on meta data
-    itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+    itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| [i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0], i[:content]] }.flatten.uniq.compact
     itemprop_price = (itemprop_price.kind_of?(Array) ? itemprop_price[0] : itemprop_price)
 
     # itemprop_curr_pre = doc.at('body').xpath("//*[@itemprop='currency']")
-    itemprop_curr_pre = doc.at('body').xpath("//*[contains(translate(@itemprop,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'currency')]")
-    itemprop_curr = itemprop_curr_pre.inner_text.strip
-    if itemprop_curr_pre.present? && itemprop_curr.empty?
-      itemprop_curr = itemprop_curr_pre.inner_text.strip.empty? ? itemprop_curr_pre.first["content"] : itemprop_curr_pre.inner_text.strip
-      itemprop_curr = (itemprop_curr.kind_of?(Array) ? itemprop_curr[0] : itemprop_curr)
-    end
+    itemprop_curr = doc.at('body').xpath("//*[contains(translate(@itemprop,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'currency')]").map{|i| [i.inner_text.strip, i[:content]] }.flatten.uniq.compact.reject(&:empty?)
+    itemprop_curr = (itemprop_curr.kind_of?(Array) ? itemprop_curr[0] : itemprop_curr)
 
     if itemprop_curr.present? && itemprop_price.present?
       price = itemprop_price + " " + itemprop_curr
