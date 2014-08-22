@@ -123,6 +123,7 @@ class LinkPreviewParser
       # Retract prices based on classes containing "price" and a regex
       # "translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" is to makes nokogiri case in-sentive. Replaces "."
       prices = doc.at('body').xpath("//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+      # prices = doc.at('body').xpath("//*[translate(@class,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
       prices = prices.map{|i| i unless i.match(currencies_regex).nil? }.compact unless prices.nil?
 
       # This is to exclude the 'basket'
@@ -135,7 +136,7 @@ class LinkPreviewParser
 
     # Replace symbols for the monetize gem to work properply
     # price.gsub('$','USD').gsub('€','EUR').gsub('£','GBP').to_s unless price.nil?
-    currencies = {'$' => 'USD','€' => 'EUR','kr' => 'DKK','kr.' => 'DKK',',-' => 'DKK', '£' => 'GBP', 'Rs.' => 'INR'}
+    currencies = {'$' => 'USD','€' => 'EUR','kr' => 'DKK','kr.' => 'DKK',',-' => 'DKK','.-' => 'DKK', '£' => 'GBP', 'Rs.' => 'INR'}
     re = Regexp.new(currencies.keys.map { |x| Regexp.escape(x) }.join('|'))
     price.gsub!(re, currencies) unless price.nil?
 
