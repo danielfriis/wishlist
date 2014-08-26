@@ -9,6 +9,14 @@ class PluginController < ApplicationController
   end
 
   def index
+    render 'index'
+  end
 
+  def signin
+
+  end
+
+  def signup
+    @user = User.new(gender: "Female")
   end
 end
