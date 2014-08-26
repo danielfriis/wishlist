@@ -24,7 +24,9 @@ Wishlist::Application.routes.draw do
   resources :plugin, only: [:index]
   match '/plugin/script', to: 'plugin#script'
   match '/plugin/signin', to: 'plugin#signin'
+  match '/plugin/signout', to: 'plugin#signout'
   match '/plugin/signup', to: 'plugin#signup'
+  match '/plugin/signup_create', to: 'plugin#signup_create', via: :post
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

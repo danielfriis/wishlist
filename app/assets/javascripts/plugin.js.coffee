@@ -1,4 +1,5 @@
 #= require jquery
+#= require jquery_ujs
 
 window.onmessage = (e) ->
   console.log e.data

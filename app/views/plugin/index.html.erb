@@ -1,6 +1,6 @@
 <% if signed_in? %>
     Davs
-    <%= link_to "Sign out", signout_path %>
+    <%= link_to "Sign out", plugin_signout_path %>
 <% else %>
     <img data-picture>
     <div class="info">
@@ -9,7 +9,7 @@
     </div>
     <hr>
 
-    <%= button_to 'Save wish list', signin_path %>
+    <%= button_to 'Save wish list', plugin_signin_path %>
 
     <%= link_to "Sign up", plugin_signup_path %>
     <%= link_to "Login", plugin_signin_path %>

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :find_user, only: [:show, :edit, :update, :following, :followers]
   include Analyzable
+  include UsersHelper
 
   def show
     @lists = @user.lists
@@ -13,22 +14,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new(gender: "Female")
   end
-  
+
   def create
     @user = User.new(params[:user])
-    if @user.save
-      UserMailer.delay.signup_confirmation(@user.id) # When using delayed_job for actionmailer '.deliver' is omitted
-      @user.delay.subscribe_email
-      @user.lists.create!(name: "My Wish List")
-      sign_in @user
-      flash[:success] = "Thanks for signing up!"
-      tracker.alias(@user.id, cookies[:mp_distinct_id]) if cookies[:mp_distinct_id]
-      tracker.people_set(@user.id, {
-            '$name' => @user.name,
-            '$email' => @user.email,
-            '$gender' => @user.gender
-        });
-      tracker.track(@user.id, 'Signup')
+    if create_user @user
       redirect_to @user
     else
       render 'new'
