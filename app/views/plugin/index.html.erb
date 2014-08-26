@@ -1,5 +1,12 @@
 <% if signed_in? %>
     Davs
 <% else %>
-    <%= params %>
+    <img data-picture>
+    <div class="info">
+        <p data-title></p>
+        <p data-price></p>
+    </div>
+    <hr>
+
+    <%= button_to 'Save wish list', signin_path %>
 <% end %>

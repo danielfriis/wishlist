@@ -33,6 +33,12 @@ body {
   top: 100px;
   left: 0;
   width: 100%;
+
+  img[data-picture] {
+    position: absolute;
+    width: 60px;
+  }
+  .info { margin-left: 65px; }
 }
 
 .debug_dump {
