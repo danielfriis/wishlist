@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(:version => 20140716155834) do
   create_table "items", :force => true do |t|
     t.string   "title"
     t.string   "link"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "image"
     t.string   "gender"
     t.integer  "vendor_id"
-    t.string   "via"
+    t.string   "via",            :default => "default"
     t.integer  "price_cents"
     t.string   "price_currency"
   end

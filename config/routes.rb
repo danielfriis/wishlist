@@ -30,6 +30,8 @@ Wishlist::Application.routes.draw do
 
   root to: 'static_pages#home'
 
+  match '/plugin/script',  to: 'plugin#script'
+  match '/plugin/list',    to: 'plugin#list'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
