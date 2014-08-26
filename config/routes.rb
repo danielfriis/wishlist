@@ -21,6 +21,9 @@ Wishlist::Application.routes.draw do
   resources :vendors, path: "v" , except: [:index, :new, :create]
   resources :password_resets
 
+  resources :plugin, only: [:index]
+  match '/plugin/script', to: 'plugin#script'
+
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
@@ -30,8 +33,6 @@ Wishlist::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  match '/plugin/script',  to: 'plugin#script'
-  match '/plugin/list',    to: 'plugin#list'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'

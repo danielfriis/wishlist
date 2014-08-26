@@ -9,12 +9,5 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *
- *= require comments
- *= require custom
- *= require password_resets
- *= require reservations
- *= require sessions
- *= require static_pages
- *= require users
+ *= require_directory ./plugin
  */
