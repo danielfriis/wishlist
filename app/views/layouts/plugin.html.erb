@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= full_title(yield(:title)) %></title>
-    <meta name="keywords" content="<%= meta_keywords %>" />
-    <meta name="description" property="og:description" content="<%= meta_description %>" />
-    <meta name="image" property="og:image" content="<%= 'http://www.wishlistt.com' + asset_path('share-logo.png') %>" />
-    <meta name="image" property="og:image" content="<%= meta_image %>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <head>
+        <title><%= full_title(yield(:title)) %></title>
+        <meta name="keywords" content="<%= meta_keywords %>" />
+        <meta name="description" property="og:description" content="<%= meta_description %>" />
+        <meta name="image" property="og:image" content="<%= 'http://www.wishlistt.com' + asset_path('share-logo.png') %>" />
+        <meta name="image" property="og:image" content="<%= meta_image %>" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag    "plugin", media: "all" %>
-    <%#= javascript_include_tag "plugin" %>
-    <%= csrf_meta_tags %>
-  </head>
+        <%= stylesheet_link_tag    "plugin", media: "all" %>
+        <%#= javascript_include_tag "plugin" %>
+        <%= csrf_meta_tags %>
+    </head>
 
-  <body>
-    <div>
-        <%= yield %>
+    <body>
+        <%= render 'header', title: 'Your wish list' %>
+        <div class="container">
+            <%= yield %>
+        </div>
         <%= debug(params) if Rails.env.development? %>
-    </div>
-  </body>
+        <%= render 'footer' %>
+    </body>
 </html>
