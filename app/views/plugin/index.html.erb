@@ -1,8 +1,16 @@
-<div class="row">
+<div class="row plugin-index">
     <div class="span6 white-box">
         <% if signed_in? %>
-            Davs
-            <%= link_to "Sign out", plugin_signout_path %>
+            <h5 class="choose-list-header">Choose wish list&hellip;</h5>
+
+            <ul class="lists">
+                <% current_user.lists.each do |list| %>
+                    <li><%= list.name %></li>
+                <% end %>
+
+            </ul>
+
+            <div class="new-list">New wish list</div>
         <% else %>
             <ul class="wishes">
                 <% @wishes.each do |wish| %>
@@ -18,14 +26,15 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="span6 white-box cta">
-        <% if not signed_in? %>
+<% if not signed_in? %>
+    <div class="row">
+        <div class="span6 white-box cta">
             <%= button_to 'Save wish list', plugin_signup_path, class: 'btn btn-medium btn-inverse', form_class: 'save-button' %>
 
             &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com" target="_parent">Wishlistt</a>
             <br>
             <%= link_to 'Clear list', '#', class: 'clear-list' %>
-        <% end %>
+        </div>
     </div>
-</div>
+
+<% end %>

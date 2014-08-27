@@ -1,8 +1,8 @@
 $width: 350px;
-
+$bgColor: whitesmoke;
 body {
   width: $width;
-  background-color: whitesmoke;
+  background-color: $bgColor;
   overflow: hidden;
 }
 
@@ -88,6 +88,40 @@ body {
 
 .center-text {
   text-align: center;
+}
+
+.plugin-index {
+  .choose-list-header {
+    color: grey;
+  }
+
+  .lists li {
+    width: 350px;
+    padding: 9px;
+    margin-left: -35px;
+
+    color: black;
+    background-color: $bgColor;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    &.active {
+      color: white;
+      background-color: black;
+    }
+  }
+
+  .new-list {
+    cursor: pointer;
+
+    color: grey;
+
+    font-size: 15px;
+    font-weight: bold;
+  }
 }
 
 .plugin-signin, .plugin-signup {

@@ -6,6 +6,10 @@ $ ->
     else
       console.log 'Failed to remove cookie'
 
+  $('.lists li')
+    .on('mouseover', -> $(this).addClass 'active')
+    .on('mouseout', -> $(this).removeClass 'active')
+
   window.onmessage = (e) ->
     wish = e.data
     wishes = $.cookie 'wishes'

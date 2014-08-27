@@ -1,5 +1,9 @@
 <div class="header">
-    <h4><%= title %></h4>
+    <% if signed_in?  %>
+        <h4><%= current_user.name %></h4>
+    <% else %>
+        <h4>Your wish list</h4>
+    <% end %>
 
     <% if signed_in? %>
         <%= link_to "Sign out", plugin_signout_path, class: 'sign-out' %>
