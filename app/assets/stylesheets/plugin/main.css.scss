@@ -1,9 +1,13 @@
 $width: 350px;
 $bgColor: whitesmoke;
+
 body {
   width: $width;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   background-color: $bgColor;
-  overflow: hidden;
 }
 
 .header {
