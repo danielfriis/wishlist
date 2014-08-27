@@ -10,7 +10,19 @@
 
             </ul>
 
-            <div class="new-list">New wish list</div>
+            <div class="new-list">
+                <div class="white-box create-list" class="create-list">
+	                <%= form_for([current_user, @list]) do |f| %>
+	                    <%= f.text_field :name, placeholder: 'Create new list...', class: 'input-medium name' %>
+	                    <%= f.submit 'Add', class: 'btn add' %>
+                        <a class="btn cancel">Cancel</a>
+	                <% end %>
+                </div>
+
+                <div class="show-create-list">
+                    New wish list
+                </div>
+            </div>
         <% else %>
             <ul class="wishes">
                 <% @wishes.each do |wish| %>

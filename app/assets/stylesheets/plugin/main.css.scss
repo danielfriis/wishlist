@@ -121,6 +121,20 @@ body {
 
     font-size: 15px;
     font-weight: bold;
+
+    .create-list {
+      display: none;
+
+      .name {
+        height: 15px;
+        padding: 6px 4px;
+      }
+
+      .add, .cancel {
+        font-weight: normal;
+        margin-top: -10px;
+      }
+    }
   }
 }
 

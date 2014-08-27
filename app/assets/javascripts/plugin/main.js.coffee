@@ -10,6 +10,10 @@ $ ->
     .on('mouseover', -> $(this).addClass 'active')
     .on('mouseout', -> $(this).removeClass 'active')
 
+  $('.new-list').on 'click', '.show-create-list, .cancel', ->
+    $('.new-list .show-create-list').toggle()
+    $('.new-list .create-list').toggle()
+
   window.onmessage = (e) ->
     wish = e.data
     wishes = $.cookie 'wishes'
