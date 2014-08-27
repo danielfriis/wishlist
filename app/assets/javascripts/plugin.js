@@ -11,19 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
-//= require jquery.purr
-//= require best_in_place
-//= require bootstrap-modal
-//= require bootstrap-dropdown
-//= require bootstrap-transition
-//= require bootstrap-tab
-//= require bootstrap-tooltip
-//= require bootstrap-alert
-//= require bootstrap-button
-//= require bootstrap-collapse
-//= require bootstrap-carousel
-//= require typeahead.bundle.min
-//= require handlebars-v1.3.0
-//= require_directory ./application
+//= require jquery.cookie
+//= require_directory ./plugin
+
+$.cookie.json = true

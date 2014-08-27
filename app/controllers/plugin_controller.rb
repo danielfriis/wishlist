@@ -10,7 +10,8 @@ class PluginController < ApplicationController
   end
 
   def index
-    render 'index'
+    @wishes = ActiveSupport::JSON.decode cookies[:wishes]
+    @wishes ||= []
   end
 
   def signin

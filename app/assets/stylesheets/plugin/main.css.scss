@@ -30,15 +30,21 @@ body {
 .container {
   position: absolute;
   margin: 0;
+  padding: 10px;
   top: 100px;
   left: 0;
   width: 100%;
 
-  img[data-picture] {
-    position: absolute;
-    width: 60px;
+  .wishes {
+    list-style-type: none;
+    padding: 0;
+
+    img {
+      position: absolute;
+      width: 60px;
+    }
+    p { margin-left: 65px; }
   }
-  .info { margin-left: 65px; }
 }
 
 .debug_dump {

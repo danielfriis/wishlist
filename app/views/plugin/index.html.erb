@@ -2,15 +2,21 @@
     Davs
     <%= link_to "Sign out", plugin_signout_path %>
 <% else %>
-    <img data-picture>
-    <div class="info">
-        <p data-title></p>
-        <p data-price></p>
-    </div>
-    <hr>
+    <ul class="wishes">
+        <% @wishes.each do |wish| %>
+            <li>
+                <%= image_tag wish['picture'] %>
+                <%= content_tag :p, wish['title'] %>
+                <%= content_tag :p, wish['price'] %>
+            </li>
+            <hr>
+        <% end %>
+    </ul>
 
-    <%= button_to 'Save wish list', plugin_signin_path %>
+    <%= button_to 'Save wish list', plugin_signup_path %>
 
-    <%= link_to "Sign up", plugin_signup_path %>
-    <%= link_to "Login", plugin_signin_path %>
+    <%= link_to 'Sign up', plugin_signup_path %>
+    <%= link_to 'Login', plugin_signin_path %>
+    <br>
+    <%= link_to 'Clear list', '#', class: 'clear-list' %>
 <% end %>
