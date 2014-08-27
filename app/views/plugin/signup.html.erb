@@ -2,7 +2,37 @@
 
 <div class="row">
     <%= link_to "Back", plugin_index_path %>
-    <div class="span6 offset3 white-box">
-        <%= render 'shared/signup', url: { controller: 'plugin', action: 'signup_create' } %>
+    <div class="span6 white-box">
+        <h1>Sign up</h1>
+        <%= form_for @user, url: { controller: 'plugin', action: 'signup_create' } do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <p>Save list by sugning in with facebook</p>
+            <span class="spacer center">
+                <a href="auth/facebook" class="btn btn-facebook btn-large">
+                    <i class="icon-facebook icon-large"></i><span> Sign in with Facebook</span>
+                </a>
+            </span>
+
+            <p>or use your name and e-mail</p>
+            <%= f.text_field :name, placeholder: 'Name' %>
+
+            <%= f.text_field :email, placeholder: 'E-mail' %>
+
+            <%= f.label :gender, class: "radio" do %>
+	            <%= f.radio_button :gender, "Female" %>
+	            Female
+            <% end %>
+
+            <%= f.label :gender, class: "radio" do %>
+	            <%= f.radio_button :gender, "Male" %>
+	            Male
+            <% end %>
+
+
+            <%= f.submit "Save wish list", class: "btn btn-large btn-primary" %>
+        <% end %>
+
+            &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com">Wishlistt</a>
     </div>
 </div>

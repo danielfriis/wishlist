@@ -1,0 +1,28 @@
+// Default 940px grid
+// -------------------------
+$gridColumns: 12;
+$gridColumnWidth: 50px;
+$gridGutterWidth: 10px;
+$gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1));
+
+$gridColumnWidth1200: 60px;
+$gridGutterWidth1200: 20px;
+$gridColumnWidth768: 60px;
+$gridGutterWidth768: 20px;
+
+// Fluid grid
+// -------------------------
+$fluidGridColumnWidth: 6.382978723%;
+$fluidGridGutterWidth: 2.127659574%;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700);
+
+$sansFontFamily: 'Open Sans', Helvetica, sans-serif;
+$linkColor: #47a599;
+$btnPrimaryBackground: #47a599;
+$btnPrimaryBackgroundHighlight: #47a599;
+
+@import "bootstrap";
+@import "font-awesome";
+@import "flat-ui/flat-ui";
+//@import "bootstrap-responsive";

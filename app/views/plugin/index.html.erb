@@ -1,22 +1,25 @@
-<% if signed_in? %>
-    Davs
-    <%= link_to "Sign out", plugin_signout_path %>
-<% else %>
-    <ul class="wishes">
-        <% @wishes.each do |wish| %>
-            <li>
-                <%= image_tag wish['picture'] %>
-                <%= content_tag :p, wish['title'] %>
-                <%= content_tag :p, wish['price'] %>
-            </li>
-            <hr>
+<div class="row">
+    <div class="span6 white-box">
+        <% if signed_in? %>
+            Davs
+            <%= link_to "Sign out", plugin_signout_path %>
+        <% else %>
+            <ul class="wishes">
+                <% @wishes.each do |wish| %>
+                    <li>
+                        <%= image_tag wish['picture'] %>
+                        <%= content_tag :p, wish['title'] %>
+                        <%= content_tag :p, wish['price'] %>
+                    </li>
+                    <hr>
+                <% end %>
+            </ul>
+
+            <%= button_to 'Save wish list', plugin_signup_path, class: 'btn btn-medium btn-inverse' %>
+
+            &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com">Wishlistt</a>
+            <br>
+            <%= link_to 'Clear list', '#', class: 'clear-list' %>
         <% end %>
-    </ul>
-
-    <%= button_to 'Save wish list', plugin_signup_path %>
-
-    <%= link_to 'Sign up', plugin_signup_path %>
-    <%= link_to 'Sign in', plugin_signin_path %>
-    <br>
-    <%= link_to 'Clear list', '#', class: 'clear-list' %>
-<% end %>
+    </div>
+</div>
