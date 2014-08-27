@@ -22,6 +22,16 @@ body {
   h4 {
     margin: 20px 0 0 10px;
   }
+
+  .sign-out {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    color: white;
+    font-size: 12px;
+
+    &:link { text-decoration: none }
+  }
 }
 
 .footer {
@@ -38,19 +48,58 @@ body {
   position: absolute;
   margin: 0;
   padding: 10px;
-  top: 100px;
+  top: 75px;
   left: 0;
   width: 100%;
 
   .wishes {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 
     img {
       position: absolute;
       width: 60px;
     }
-    p { margin-left: 65px; }
+    p {
+      margin-left: 75px;
+
+      &.title {
+        position: relative;
+        top: 5px;
+
+        font-size: 20px;
+      }
+
+      &.from {
+        margin-top: 13px;
+      }
+    }
+  }
+}
+
+.cta {
+  text-align: center;
+
+  .save-button {
+    margin-bottom: 10px;
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.plugin-signin, .plugin-signup {
+  .btn-facebook {
+    width: 228px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    input[type="text"], input[type="password"] {
+      width: 250px;
+    }
   }
 }
 

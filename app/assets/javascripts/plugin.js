@@ -11,8 +11,22 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require jquery.cookie
+//= require bootstrap-modal
+//= require bootstrap-dropdown
+//= require bootstrap-transition
+//= require bootstrap-tab
+//= require bootstrap-tooltip
+//= require bootstrap-alert
+//= require bootstrap-button
+//= require bootstrap-collapse
+//= require bootstrap-carousel
+
+//= require ./application/flatui-radio
+//= require ./application/flatui-checkbox
+
 //= require_directory ./plugin
 
 $.cookie.json = true

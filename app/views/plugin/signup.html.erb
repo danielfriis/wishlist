@@ -1,16 +1,22 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, 'Save wish list') %>
 
-<div class="row">
-    <%= link_to "Back", plugin_index_path %>
+<div class="row plugin-signup">
     <div class="span6 white-box">
-        <h1>Sign up</h1>
+        <%= link_to "< Back", plugin_index_path %>
+        <h3>Save wish list</h3>
+        <hr>
+    </div>
+</div>
+
+<div class="row plugin-signup">
+    <div class="span6 white-box center-text">
         <%= form_for @user, url: { controller: 'plugin', action: 'signup_create' } do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
-            <p>Save list by sugning in with facebook</p>
+            <p>Save list by signing in with facebook</p>
             <span class="spacer center">
                 <a href="auth/facebook" class="btn btn-facebook btn-large">
-                    <i class="icon-facebook icon-large"></i><span> Sign in with Facebook</span>
+                    <i class="icon-facebook icon-large"></i><span> Save with Facebook</span>
                 </a>
             </span>
 
@@ -29,10 +35,9 @@
 	            Male
             <% end %>
 
-
-            <%= f.submit "Save wish list", class: "btn btn-large btn-primary" %>
+            <%= f.submit "Save wish list", class: 'btn btn-medium btn-inverse' %>
         <% end %>
 
-            &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com">Wishlistt</a>
+        &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com" target="_parent">Wishlistt</a>
     </div>
 </div>

@@ -1,8 +1,8 @@
 // Default 940px grid
 // -------------------------
-$gridColumns: 12;
+$gridColumns: 6;
 $gridColumnWidth: 50px;
-$gridGutterWidth: 10px;
+$gridGutterWidth: 6px;
 $gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1));
 
 $gridColumnWidth1200: 60px;
@@ -18,7 +18,7 @@ $fluidGridGutterWidth: 2.127659574%;
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700);
 
 $sansFontFamily: 'Open Sans', Helvetica, sans-serif;
-$linkColor: #47a599;
+$linkColor: gray;
 $btnPrimaryBackground: #47a599;
 $btnPrimaryBackgroundHighlight: #47a599;
 
@@ -26,3 +26,33 @@ $btnPrimaryBackgroundHighlight: #47a599;
 @import "font-awesome";
 @import "flat-ui/flat-ui";
 //@import "bootstrap-responsive";
+
+
+// facebook button
+.btn-facebook:link {
+  text-decoration: none;
+}
+
+.btn-facebook {
+  background-color: #2b4b90;
+  i {
+    line-height: 0.5em !important;
+  }
+}
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active,
+.btn-facebook.active,
+.btn-facebook.disabled,
+.btn-facebook[disabled] {
+  color: #ffffff;
+  background-color: #133783;
+}
+.btn-facebook:active,
+.btn-facebook.active {
+  background-color: #0d2456 \9;
+}
+
+a:link {
+  text-decoration: underline;
+}
