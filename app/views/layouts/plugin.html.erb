@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><%= full_title(yield(:title)) %></title>
+        <title><%= full_title yield(:title) %></title>
         <meta name="keywords" content="<%= meta_keywords %>" />
         <meta name="description" property="og:description" content="<%= meta_description %>" />
         <meta name="image" property="og:image" content="<%= 'http://www.wishlistt.com' + asset_path('share-logo.png') %>" />
@@ -14,12 +14,14 @@
     </head>
 
     <body>
-        <%= render 'header', title: 'Your wish list' %>
+        <%= render 'plugin/header', title: 'Your Wish List' %>
+
         <div class="container">
             <%= yield %>
         </div>
+
         <%= debug(params) if Rails.env.development? %>
-        <%= render 'footer' %>
+        <%= render 'plugin/footer' %>
     </body>
     </div>
   </body>

@@ -2,6 +2,18 @@ Wishlist::Application.routes.draw do
 
   use_link_thumbnailer
 
+  namespace :plugin do
+    match '/', to: 'lists#index'
+    resources :lists, only: [:index]
+    resources :sessions, only: [:new, :destroy]
+    resources :users, only: [:new, :create]
+
+    match '/script', to: 'script#get'
+    match '/signin', to: 'sessions#new'
+    match '/signout', to: 'sessions#destroy'
+    match '/signup', to: 'users#new'
+  end
+
   namespace :admin do
     resources :users, :items, :wishes, :comments
     match '/lptester', to: 'items#lptester'
@@ -20,13 +32,6 @@ Wishlist::Application.routes.draw do
   resources :vendors, only: [:index, :new, :create]
   resources :vendors, path: "v" , except: [:index, :new, :create]
   resources :password_resets
-
-  resources :plugin, only: [:index]
-  match '/plugin/script', to: 'plugin#script'
-  match '/plugin/signin', to: 'plugin#signin'
-  match '/plugin/signout', to: 'plugin#signout'
-  match '/plugin/signup', to: 'plugin#signup'
-  match '/plugin/signup_create', to: 'plugin#signup_create', via: :post
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
