@@ -3,7 +3,8 @@ require 'uri'
 module PluginHelper
 
   def domain_of_url(url)
-    URI.parse(url).host
+    encoded_url = URI.encode(url.to_s)
+    URI.parse(encoded_url).host
   end
 
   def create_user(user)
