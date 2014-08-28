@@ -3,6 +3,7 @@ class Plugin::UsersController < ApplicationController
   layout 'plugin'
 
   include UsersHelper
+  include PluginHelper
 
   def new
     session[:return_to] = plugin_path
