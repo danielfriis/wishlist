@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="span6 white-box cta">
+        <%= content_tag :h4, @list.name %>
+        <ul class="wishes"></ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6 white-box cta">
+        <%= link_to 'Go to wish list', url_for([current_user, @list]),
+          { target: '_blank',
+            class: 'btn btn-medium btn-inverse',
+            form_class: 'save-button' } %>
+    </div>
+</div>

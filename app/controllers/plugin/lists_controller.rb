@@ -5,4 +5,8 @@ class Plugin::ListsController < PluginController
     @list = List.new
   end
 
+  def show
+    @list = List.find params[:id]
+  end
+
 end

@@ -10,7 +10,7 @@
 
 <div class="row plugin-signup">
     <div class="span6 white-box center-text">
-        <%= form_for(@user) do |f| %>
+        <%= form_for(@user, url: { controller: 'plugin/users', action: 'create' }) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
             <p>Save list by signing in with facebook</p>
@@ -26,14 +26,20 @@
             <%= f.text_field :email, placeholder: 'E-mail' %>
 
             <%= f.label :gender, class: "radio" do %>
-	            <%= f.radio_button :gender, "Female" %>
-	            Female
+                <%= f.radio_button :gender, "Female" %>
+                Female
             <% end %>
 
             <%= f.label :gender, class: "radio" do %>
-	            <%= f.radio_button :gender, "Male" %>
-	            Male
+                <%= f.radio_button :gender, "Male" %>
+                Male
             <% end %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+
+            <%= f.label :password_confirmation, "Confirm password" %>
+            <%= f.password_field :password_confirmation %>
 
             <%= f.submit "Save wish list", class: 'btn btn-medium btn-inverse' %>
         <% end %>
