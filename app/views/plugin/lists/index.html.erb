@@ -1,7 +1,12 @@
 <div class="row plugin-index">
     <div class="span6 white-box">
         <% if signed_in? %>
-            <h5 class="choose-list-header">Choose wish list&hellip;</h5>
+            <div class="wishes-top <%= 'signed-in' if signed_in? %>">
+                <ul class="wishes"></ul>
+                <span class="wishes-text"></span>
+                (<%= link_to 'clear', '#', class: 'clear-list' %>)
+            </div>
+            <h5 class="choose-list-header">Choose wish list to add item&hellip;</h5>
 
             <ul class="lists">
                 <% current_user.lists.each do |list| %>
@@ -24,16 +29,7 @@
                 </div>
             </div>
         <% else %>
-            <ul class="wishes">
-                <% @wishes.each do |wish| %>
-                    <li>
-                        <%= image_tag wish['picture'], size: '60x60' %>
-                        <%= content_tag :p, wish['title'], class: 'title' %>
-                        <p class="from">from <strong><%= domain_of_url wish['link'] %></strong></p>
-                    </li>
-                    <hr>
-                <% end %>
-            </ul>
+            <ul class="wishes"></ul>
         <% end %>
     </div>
 </div>
