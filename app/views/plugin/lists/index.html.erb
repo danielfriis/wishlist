@@ -10,7 +10,7 @@
 
             <ul class="lists">
                 <% current_user.lists.each do |list| %>
-                    <li><%= list.name %></li>
+                    <%= link_to content_tag(:li, list.name), plugin_list_path(list) %>
                 <% end %>
 
             </ul>

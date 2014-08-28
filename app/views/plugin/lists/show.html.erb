@@ -1,7 +1,17 @@
 <div class="row">
-    <div class="span6 white-box cta">
-        <%= content_tag :h4, @list.name %>
-        <ul class="wishes"></ul>
+    <div class="span6 white-box">
+        <%= link_to "< Back", plugin_path %>
+        <%= content_tag :h3, @list.name %>
+        <ul>
+            <% @list.wishes.each do |wish| %>
+                <li>
+                    <img alt="" height="60" src="<%= wish.item.image %>" width="60">
+                    <p class="title"><%= wish.title %></p>
+                    <p class="from">from <strong><%= wish.item.link %></strong></p>
+                </li>
+            <hr/>
+            <% end %>
+        </ul>
     </div>
 </div>
 
@@ -9,7 +19,6 @@
     <div class="span6 white-box cta">
         <%= link_to 'Go to wish list', url_for([current_user, @list]),
           { target: '_blank',
-            class: 'btn btn-medium btn-inverse',
-            form_class: 'save-button' } %>
+            class: 'btn btn-medium btn-inverse' } %>
     </div>
 </div>
