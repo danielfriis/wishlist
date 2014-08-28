@@ -1,6 +1,4 @@
-class Plugin::SessionsController < ApplicationController
-
-  layout 'plugin'
+class Plugin::SessionsController < PluginController
 
   def new
     session[:return_to] = plugin_path

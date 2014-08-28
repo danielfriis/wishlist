@@ -1,6 +1,8 @@
-class Plugin::ScriptController < ApplicationController
+class Plugin::PluginController < ApplicationController
 
-  def get
+  layout 'plugin'
+
+  def script
     plugin_dir = Rails.root + 'public/plugin'
     versions = Dir[File.join plugin_dir, '/*.js']
     latest = versions.sort().last

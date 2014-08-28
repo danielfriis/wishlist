@@ -1,7 +1,6 @@
-class Plugin::UsersController < ApplicationController
+class Plugin::UsersController < PluginController
 
   include UsersHelper
-  layout 'plugin'
 
   def new
     session[:return_to] = plugin_path
