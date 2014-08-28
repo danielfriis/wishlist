@@ -28,6 +28,8 @@ $ ->
     if isSignedIn and wishes.length > 1
         $('.wishes').hide()
         $('.wishes-text').text "Adding #{wishes.length} wishes"
+    else
+        $('.clear-list').hide()
 
     for wish in wishes
         matches = wish.link.match(/^https?\:\/\/(www.)?([^\/?#:]+)/i);
