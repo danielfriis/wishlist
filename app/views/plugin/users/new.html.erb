@@ -10,7 +10,7 @@
 
 <div class="row plugin-signup">
     <div class="span6 white-box center-text">
-        <%= form_for @user, url: { controller: 'plugin', action: 'signup_create' } do |f| %>
+        <%= form_for(@user) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
             <p>Save list by signing in with facebook</p>
