@@ -29,7 +29,7 @@
                     <li>
                         <%= image_tag wish['picture'], size: '60x60' %>
                         <%= content_tag :p, wish['title'], class: 'title' %>
-                        <p class="from">from <strong><%= wish['price'] %></strong></p>
+                        <p class="from">from <strong><%= domain_of_url wish['link'] %></strong></p>
                     </li>
                     <hr>
                 <% end %>

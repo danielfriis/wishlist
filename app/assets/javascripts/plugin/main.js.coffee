@@ -35,10 +35,14 @@ $ ->
       $.cookie 'wishes', [wish]
       console.log 'Cookie created'
 
+    # extract domain
+    matches = wish.link.match(/^https?\:\/\/(www.)?([^\/?#:]+)/i);
+    domain = matches and matches[2]
     $('.wishes').append """
-      <li>
-        <img src="#{wish.picture}">
-        <p>#{wish.title}</p>
-        <p>#{wish.price}</p>
-      </li>
+        <li>
+            <img alt="Whale" height="60" src="#{wish.picture}" width="60">
+            <p class="title">#{wish.title}</p>
+            <p class="from">from <strong>#{domain}</strong></p>
+        </li>
+        <hr/>
     """
