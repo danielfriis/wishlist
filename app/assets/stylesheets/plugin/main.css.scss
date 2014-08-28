@@ -79,6 +79,18 @@ body {
         margin-top: 13px;
       }
     }
+
+    .remove-item {
+      // TODO: not push next item down
+      text-align: right;
+
+      color: grey;
+
+      cursor: pointer;
+      font-family: Arial;
+      font-weight: regular;
+      font-size: 13px;
+    }
   }
 }
 
