@@ -4,7 +4,7 @@ Wishlist::Application.routes.draw do
 
   namespace :plugin do
     match '/', to: 'lists#index'
-    resources :lists, only: [:index, :show]
+    resources :lists, only: [:index, :show, :update]
     resources :sessions, only: [:new, :destroy]
     resources :users, only: [:new, :create]
 

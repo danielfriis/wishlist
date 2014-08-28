@@ -11,18 +11,9 @@ class Plugin::UsersController < PluginController
     @user = User.new(params[:user])
 
     if create_user @user
-      wishes = ActiveSupport::JSON.decode(cookies[:wishes]).map do |w|
-        item = Item.create!(
-          title: w['title'],
-          image: w['picture'],
-          link:  w['link'],
-          price: w['price'].to_i
-        )
-
-        Wish.create! title: item.title, item_id: item.id
-      end
-
       @list = @user.lists.first
+      wishes = save_wishes_from_cookie
+
       @list.wishes << wishes
       cookies.delete :wishes
 
