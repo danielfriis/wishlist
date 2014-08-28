@@ -41,7 +41,7 @@
         <div class="span6 white-box cta">
             <%= button_to 'Save wish list', plugin_signup_path, class: 'btn btn-medium btn-inverse', form_class: 'save-button' %>
 
-            &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com" target="_parent">Wishlistt</a>
+            &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <%= link_to 'Wishlistt', 'http://www.wishlistt.com', target: '_blank' %>
             <br>
             <%= link_to 'Clear list', '#', class: 'clear-list' %>
         </div>
