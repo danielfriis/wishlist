@@ -11,9 +11,9 @@
 <div class="row plugin-signin">
     <div class="span6 white-box center-text">
         <span class="spacer center">
-            <a href="auth/facebook" class="btn btn-facebook btn-large">
+            <%= link_to '/auth/facebook', class: 'btn btn-facebook btn-large' do %>
                 <i class="icon-facebook icon-large"></i><span> Sign in with Facebook</span>
-            </a>
+            <% end %>
         </span>
 
         <div>or use your username and password</div>
