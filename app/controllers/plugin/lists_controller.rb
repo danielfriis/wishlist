@@ -1,6 +1,8 @@
-class Plugin::ListsController < PluginController
+class Plugin::ListsController < ApplicationController
 
   include PluginHelper
+
+  layout 'plugin'
 
   def index
     @wishes = ActiveSupport::JSON.decode cookies[:wishes] || []

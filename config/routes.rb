@@ -8,7 +8,7 @@ Wishlist::Application.routes.draw do
     resources :sessions, only: [:new, :destroy]
     resources :users, only: [:new, :create]
 
-    match '/script', to: 'plugin#script'
+    match '/script', to: 'script#get'
     match '/signin', to: 'sessions#new'
     match '/signout', to: 'sessions#destroy'
     match '/signup', to: 'users#new'

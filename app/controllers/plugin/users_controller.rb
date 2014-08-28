@@ -1,4 +1,6 @@
-class Plugin::UsersController < PluginController
+class Plugin::UsersController < ApplicationController
+
+  layout 'plugin'
 
   include UsersHelper
 
