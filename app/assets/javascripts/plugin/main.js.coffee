@@ -37,7 +37,7 @@ $ ->
 
         $('.wishes').append """
             <li>
-                <img alt="Whale" height="60" src="#{wish.picture}" width="60">
+                <img alt="" height="60" src="#{wish.picture}" width="60">
                 <p class="title">#{wish.title}</p>
                 <p class="from">from <strong>#{domain}</strong></p>
             </li>
