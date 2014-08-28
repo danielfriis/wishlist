@@ -2,12 +2,12 @@
     <div class="span6 white-box">
         <%= link_to "< Back", plugin_path %>
         <%= content_tag :h3, @list.name %>
-        <ul>
+        <ul class="wishes-list">
             <% @list.wishes.each do |wish| %>
                 <li>
                     <img alt="" height="60" src="<%= wish.item.image %>" width="60">
                     <p class="title"><%= wish.title %></p>
-                    <p class="from">from <strong><%= wish.item.link %></strong></p>
+                    <p class="from">from <strong><%= domain_of_url wish.item.link %></strong></p>
                 </li>
             <hr/>
             <% end %>
