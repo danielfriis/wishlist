@@ -74,7 +74,7 @@ $ ->
       $('.wishes').append """
         <li>
           <div class="remove-item" data-title="#{wish.title}">x</div>
-          <img alt="" height="60" src="#{wish.picture}" width="60">
+          <img alt="" height="60" src="#{wish.image}" width="60">
           <p class="title">#{wish.title}</p>
           <p class="from">from <strong>#{domain}</strong></p>
         </li>
