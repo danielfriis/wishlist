@@ -33,8 +33,6 @@ body {
     right: 10px;
     color: white;
     font-size: 12px;
-
-    &:link { text-decoration: none }
   }
 }
 
@@ -66,7 +64,7 @@ body {
       width: 60px;
     }
     p {
-      margin-left: 75px;
+      margin: 0 10px 0 75px;
 
       &.title {
         position: relative;
@@ -81,15 +79,17 @@ body {
     }
 
     .remove-item {
-      // TODO: not push next item down
+      float: right;
+
       text-align: right;
 
       color: grey;
 
       cursor: pointer;
+
       font-family: Arial;
       font-weight: regular;
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 }

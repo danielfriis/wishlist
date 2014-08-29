@@ -2,7 +2,7 @@
 
 <div class="row plugin-signup">
     <div class="span6 white-box">
-        <%= link_to "< Back", plugin_path %>
+        <%= link_to "< Back", plugin_path, class: 'underline-link' %>
         <h3>Save wish list</h3>
         <hr>
     </div>
@@ -44,6 +44,6 @@
             <%= f.submit "Save wish list", class: 'btn btn-medium btn-inverse' %>
         <% end %>
 
-        &hellip; or <%= link_to 'sign in', plugin_signin_path %> to <a href="http://www.wishlistt.com" target="_parent">Wishlistt</a>
+        &hellip; or <%= link_to 'sign in', plugin_signin_path, class: 'underline-link' %> to <a href="http://www.wishlistt.com" target="_parent">Wishlistt</a>
     </div>
 </div>

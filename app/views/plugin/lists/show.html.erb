@@ -1,6 +1,6 @@
 <div class="row">
     <div class="span6 white-box">
-        <%= link_to "< Back", plugin_path %>
+        <%= link_to "< Back", plugin_path, class: 'underline-link' %>
         <%= content_tag :h3, @list.name %>
         <ul class="wishes-list">
             <% @list.wishes.each do |wish| %>

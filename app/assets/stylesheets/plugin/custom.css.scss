@@ -29,10 +29,6 @@ $btnPrimaryBackgroundHighlight: #47a599;
 
 
 // facebook button
-.btn-facebook:link {
-  text-decoration: none;
-}
-
 .btn-facebook {
   background-color: #2b4b90;
   i {
@@ -53,6 +49,8 @@ $btnPrimaryBackgroundHighlight: #47a599;
   background-color: #0d2456 \9;
 }
 
-a:link {
-  text-decoration: underline;
+.underline-link {
+  &:link {
+    text-decoration: underline;
+  }
 }
