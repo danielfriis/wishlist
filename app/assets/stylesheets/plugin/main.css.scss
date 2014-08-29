@@ -166,3 +166,11 @@ body {
     }
   }
 }
+
+
+#error_explanation {
+  ul {
+    text-align: left;
+    li { list-style-type: none }
+  }
+}
