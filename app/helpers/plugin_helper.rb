@@ -21,7 +21,7 @@ module PluginHelper
 
       item = Item.find_or_create_by_link!(w[:link]) do |c|
         c.assign_attributes(w)
-        c.price = w[:price].to_money unless w[:price].blank?
+        c.price = Money.parse(w[:price]) unless w[:price].blank?
         c.vendor_id = Vendor.custom_find_or_create(w[:link])
       end
 
