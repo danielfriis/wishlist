@@ -1,5 +1,5 @@
 $ ->
-
+  $.cookie.json = yes
   $.cookie.defaults =
     path: '/'
     expires: 365
@@ -86,10 +86,11 @@ $ ->
   colors = null
 
   window.onmessage = (e) ->
-    colors = e.data.colors
+    data = JSON.parse e.data
+    colors = data.colors
     $('.bg-color').css 'backgroundColor', colors.background
     $('.fg-color').css 'color', colors.foreground
-    wish = e.data.wish
+    wish = data.wish
     wishes = getWishes()
 
     titles = wishes.map (wish) -> wish.title
