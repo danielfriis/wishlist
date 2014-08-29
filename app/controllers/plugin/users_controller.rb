@@ -19,7 +19,7 @@ class Plugin::UsersController < ApplicationController
 
       redirect_to plugin_list_path(@list)
     else
-      render 'new'
+      render :new
     end
   end
 

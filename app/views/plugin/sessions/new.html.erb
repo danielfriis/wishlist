@@ -10,6 +10,11 @@
 
 <div class="row plugin-signin">
     <div class="span6 white-box center-text">
+
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
         <span class="spacer center">
             <%= link_to '/auth/facebook', class: 'btn btn-facebook btn-large' do %>
                 <i class="icon-facebook icon-large"></i><span> Sign in with Facebook</span>
@@ -18,7 +23,7 @@
 
         <div>or use your username and password</div>
 
-        <%= form_for :session, url: sessions_path do |f| %>
+        <%= form_for :session, url: { controller: 'plugin/sessions', action: 'create' } do |f| %>
 
             <%= f.text_field :email, placeholder: 'E-mail' %>
 
