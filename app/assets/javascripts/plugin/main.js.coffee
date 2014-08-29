@@ -54,8 +54,16 @@ $ ->
     clearWishes -> window.location.reload()
 
   $('.lists li')
-    .on('mouseover', -> $(this).addClass 'active')
-    .on('mouseout', -> $(this).removeClass 'active')
+    .on('mouseover', ->
+        return if not colors?
+        $(this).css backgroundColor: colors.background
+        $(this).css color: colors.foreground
+    )
+    .on('mouseout', ->
+        return if not colors?
+        $(this).css backgroundColor: 'initial'
+        $(this).css color: 'initial'
+    )
 
   $('.new-list').on 'click', '.show-create-list, .cancel', ->
     $('.new-list .show-create-list').toggle()
@@ -91,9 +99,12 @@ $ ->
 
     console.log 'Rendered wishes'
 
-
+  colors = null
   window.onmessage = (e) ->
-    wish = e.data
+    colors = e.data.colors
+    $('.bg-color').css 'backgroundColor', colors.background
+    $('.fg-color').css 'color', colors.foreground
+    wish = e.data.wish
     wishes = getWishes()
 
     console.log "Message: #{wish.title}"

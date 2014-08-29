@@ -1,11 +1,9 @@
-<div class="header">
-    <% if signed_in?  %>
-        <h4><%= current_user.name %></h4>
-    <% else %>
-        <h4>Your Wish List</h4>
-    <% end %>
+<div class="header bg-color fg-color">
+    <h4 class="fg-color">
+        <%= signed_in? ? current_user.name : 'Your Wish List' %>
+    </h4>
 
     <% if signed_in? %>
-        <%= link_to "Sign out", plugin_signout_path, class: 'sign-out' %>
+        <%= link_to "Sign out", plugin_signout_path, class: 'sign-out fg-color' %>
     <% end %>
 </div>
