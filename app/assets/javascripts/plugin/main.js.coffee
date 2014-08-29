@@ -4,24 +4,15 @@ $ ->
     path: '/'
     expires: 365
 
-  # cookieSettings =
-  #   path: '/'
-  #   domain: 'localhost'
-
   getWishes = -> $.cookie('wishes') || []
-
-  console.log getWishes()
 
   persistWishes = (wishes, cb) ->
     if $.cookie 'wishes', wishes
-      console.log 'Saved wishes'
       if cb?
         cb()
       else
         true
     else
-      console.log 'Failed to save wishes:'
-      console.log wishes
       false
 
   addListener = ->
@@ -32,21 +23,16 @@ $ ->
       for wish in getWishes()
         unless wish.title is title
           wishes.push wish
-        else
-          console.log "removed: #{title}"
 
       persistWishes wishes, renderWishes
 
   clearWishes = (cb) ->
     if $.removeCookie 'wishes'
-    # if persistWishes []
-      console.log 'Removed wishes'
       if cb?
         cb()
       else
         true
     else
-      console.log 'Failed to clear wishes'
       false
 
 
@@ -97,9 +83,8 @@ $ ->
 
     addListener()
 
-    console.log 'Rendered wishes'
-
   colors = null
+
   window.onmessage = (e) ->
     colors = e.data.colors
     $('.bg-color').css 'backgroundColor', colors.background
@@ -107,11 +92,8 @@ $ ->
     wish = e.data.wish
     wishes = getWishes()
 
-    console.log "Message: #{wish.title}"
-
     titles = wishes.map (wish) -> wish.title
     unless wish.title in titles
       wishes.push wish
-      console.log "Added: #{wish.title}"
 
     persistWishes wishes, renderWishes
