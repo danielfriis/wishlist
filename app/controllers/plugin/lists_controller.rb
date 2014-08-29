@@ -12,7 +12,10 @@ class Plugin::ListsController < ApplicationController
   def create
     @list = current_user.lists.build(params[:list])
     if @list.save
-      flash[:success] = "List created!"
+      wishes = save_wishes_from_cookie
+      @list.wishes << wishes
+      cookies.delete :wishes
+
       redirect_to plugin_list_path(@list)
     else
       redirect_to current_user
@@ -30,5 +33,4 @@ class Plugin::ListsController < ApplicationController
     cookies.delete :wishes
     redirect_to plugin_list_path(@list)
   end
-
 end
