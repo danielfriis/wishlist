@@ -37,7 +37,7 @@ body {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 10px;
 
@@ -165,9 +165,4 @@ body {
       width: 250px;
     }
   }
-}
-
-.debug_dump {
-  position: absolute;
-  bottom: 0;
 }
