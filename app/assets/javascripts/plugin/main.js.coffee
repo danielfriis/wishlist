@@ -1,8 +1,57 @@
 $ ->
 
-  $('.clear-list').click (e) ->
+  $.cookie.defaults =
+    path: '/'
+    expires: 365
+
+  # cookieSettings =
+  #   path: '/'
+  #   domain: 'localhost'
+
+  getWishes = -> $.cookie('wishes') || []
+
+  console.log getWishes()
+
+  persistWishes = (wishes, cb) ->
+    if $.cookie 'wishes', wishes
+      console.log 'Saved wishes'
+      if cb?
+        cb()
+      else
+        true
+    else
+      console.log 'Failed to save wishes:'
+      console.log wishes
+      false
+
+  addListener = ->
+    $('.remove-item').click (e) ->
+      title = $(e.target).data 'title'
+      wishes = []
+
+      for wish in getWishes()
+        unless wish.title is title
+          wishes.push wish
+        else
+          console.log "removed: #{title}"
+
+      persistWishes wishes, renderWishes
+
+  clearWishes = (cb) ->
     if $.removeCookie 'wishes'
-      window.location.reload()
+    # if persistWishes []
+      console.log 'Removed wishes'
+      if cb?
+        cb()
+      else
+        true
+    else
+      console.log 'Failed to clear wishes'
+      false
+
+
+  $('.clear-list').click (e) ->
+    clearWishes -> window.location.reload()
 
   $('.lists li')
     .on('mouseover', -> $(this).addClass 'active')
@@ -12,7 +61,8 @@ $ ->
     $('.new-list .show-create-list').toggle()
     $('.new-list .create-list').toggle()
 
-  renderWishes = (wishes) ->
+  renderWishes = ->
+    wishes = getWishes()
     $('.wishes').html ''
 
     # extract domain
@@ -37,32 +87,20 @@ $ ->
         <hr/>
       """
 
-    $('.remove-item').click (e) ->
-      title = $(e.target).data 'title'
-      console.log title
-      wishes = []
+    addListener()
 
-      for wish in $.cookie('wishes')
-        unless wish.title is title
-          wishes.push wish
-        else
-          console.log "removed: #{title}"
-      $.cookie 'wishes', wishes
-
-      renderWishes wishes
+    console.log 'Rendered wishes'
 
 
   window.onmessage = (e) ->
     wish = e.data
-    wishes = ($.cookie 'wishes') || []
+    wishes = getWishes()
 
-    if wishes.length > 0
-      titles = wishes.map (wish) -> wish.title
-      unless wish.title in titles
-        wishes.push wish
-        $.cookie 'wishes', wishes
-    else
+    console.log "Message: #{wish.title}"
+
+    titles = wishes.map (wish) -> wish.title
+    unless wish.title in titles
       wishes.push wish
-      $.cookie 'wishes', [wish]
+      console.log "Added: #{wish.title}"
 
-    renderWishes wishes
+    persistWishes wishes, renderWishes

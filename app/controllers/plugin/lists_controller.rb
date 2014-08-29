@@ -5,16 +5,14 @@ class Plugin::ListsController < ApplicationController
   layout 'plugin'
 
   def index
-    @wishes = ActiveSupport::JSON.decode cookies[:wishes] || []
+    @wishes = get_wishes
     @list = List.new
   end
 
   def create
     @list = current_user.lists.build(params[:list])
     if @list.save
-      wishes = save_wishes_from_cookie
-      @list.wishes << wishes
-      cookies.delete :wishes
+      save_wishes_to_list @list
 
       redirect_to plugin_list_path(@list)
     else
@@ -28,9 +26,8 @@ class Plugin::ListsController < ApplicationController
 
   def update
     @list = List.find params[:id]
-    wishes = save_wishes_from_cookie
-    @list.wishes << wishes
-    cookies.delete :wishes
+    save_wishes_to_list @list
+
     redirect_to plugin_list_path(@list)
   end
 end

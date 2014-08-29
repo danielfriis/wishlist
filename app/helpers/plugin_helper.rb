@@ -7,8 +7,16 @@ module PluginHelper
     URI.parse(encoded_url).host
   end
 
-  def save_wishes_from_cookie
-    ActiveSupport::JSON.decode(cookies[:wishes]).map do |w|
+  def remove_wishes_cookie
+    cookies.delete :wishes, path: '/'
+  end
+
+  def get_wishes
+    ActiveSupport::JSON.decode(cookies[:wishes]) || []
+  end
+
+  def save_wishes_to_list(list)
+    wishes = get_wishes.map do |w|
       item = Item.create!(
                           title: w['title'],
                           image: w['picture'],
@@ -18,6 +26,11 @@ module PluginHelper
 
       Wish.create! title: item.title, item_id: item.id
     end
+
+    list.wishes << wishes
+    remove_wishes_cookie
+
+    wishes
   end
 
 end

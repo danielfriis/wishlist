@@ -15,10 +15,7 @@ class Plugin::UsersController < ApplicationController
 
     if create_user @user
       @list = @user.lists.first
-      wishes = save_wishes_from_cookie
-
-      @list.wishes << wishes
-      cookies.delete :wishes
+      save_wishes_to_list @list
 
       redirect_to plugin_list_path(@list)
     else
