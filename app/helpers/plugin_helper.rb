@@ -17,14 +17,15 @@ module PluginHelper
 
   def save_wishes_to_list(list)
     wishes = get_wishes.map do |w|
-      item = Item.create!(
-                          title: w['title'],
-                          image: w['picture'],
-                          link:  w['link'],
-                          price: w['price'].to_i
-                          )
+      w.symbolize_keys!
 
-      Wish.create! title: item.title, item_id: item.id
+      item = Item.find_or_create_by_link!(w[:link]) do |c|
+        c.assign_attributes(w)
+        c.price = w[:price].to_money unless w[:price].blank?
+        c.vendor_id = Vendor.custom_find_or_create(w[:link])
+      end
+
+      Wish.create! title: item.title, list_id: list.id, item_id: item.id
     end
 
     list.wishes << wishes
