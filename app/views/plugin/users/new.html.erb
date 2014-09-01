@@ -1,0 +1,49 @@
+<% provide(:title, 'Save wish list') %>
+
+<div class="row plugin-signup">
+    <div class="span6 white-box">
+        <%= link_to "< Back", plugin_path, class: 'underline-link' %>
+        <h3>Save wish list</h3>
+        <hr>
+    </div>
+</div>
+
+<div class="row plugin-signup">
+    <div class="span6 white-box center-text">
+        <%= form_for(@user, url: { controller: 'plugin/users', action: 'create' }) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <p>Save list by signing in with facebook</p>
+            <span class="spacer center">
+                <a href="auth/facebook" class="btn btn-facebook btn-large">
+                    <i class="icon-facebook icon-large"></i><span> Save with Facebook</span>
+                </a>
+            </span>
+
+            <p>or use your name and e-mail</p>
+            <%= f.text_field :name, placeholder: 'Name' %>
+
+            <%= f.text_field :email, placeholder: 'E-mail' %>
+
+            <%= f.label :gender, class: "radio" do %>
+                <%= f.radio_button :gender, "Female" %>
+                Female
+            <% end %>
+
+            <%= f.label :gender, class: "radio" do %>
+                <%= f.radio_button :gender, "Male" %>
+                Male
+            <% end %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+
+            <%= f.label :password_confirmation, "Confirm password" %>
+            <%= f.password_field :password_confirmation %>
+
+            <%= f.submit "Save wish list", class: 'btn btn-medium fg-color bg-color' %>
+        <% end %>
+
+        &hellip; or <%= link_to 'sign in', plugin_signin_path, class: 'underline-link' %> to <a href="http://www.wishlistt.com" target="_parent">Wishlistt</a>
+    </div>
+</div>

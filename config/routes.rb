@@ -2,6 +2,18 @@ Wishlist::Application.routes.draw do
 
   use_link_thumbnailer
 
+  namespace :plugin do
+    match '/', to: 'lists#index'
+    resources :lists
+    resources :sessions
+    resources :users
+
+    match '/script', to: 'script#get'
+    match '/signin', to: 'sessions#new'
+    match '/signout', to: 'sessions#destroy'
+    match '/signup', to: 'users#new'
+  end
+
   namespace :admin do
     resources :users, :items, :wishes, :comments
     match '/lptester', to: 'items#lptester'

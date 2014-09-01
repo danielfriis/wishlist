@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.cookie
+//
 //= require jquery.purr
 //= require best_in_place
 //= require bootstrap-modal
@@ -27,3 +29,7 @@
 //= require typeahead.bundle.min
 //= require handlebars-v1.3.0
 //= require_directory ./application
+
+//= require_directory ./plugin
+
+$.cookie.json = true

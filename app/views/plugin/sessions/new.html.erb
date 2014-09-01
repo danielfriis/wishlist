@@ -1,0 +1,42 @@
+<% provide(:title, "Sign in") %>
+
+<div class="row plugin-signin">
+    <div class="span6 white-box">
+        <%= link_to "< Back", plugin_path, class: 'underline-link' %>
+        <h3>Sign in</h3>
+        <hr>
+    </div>
+</div>
+
+<div class="row plugin-signin">
+    <div class="span6 white-box center-text">
+
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
+        <span class="spacer center">
+            <%= link_to '/auth/facebook', class: 'btn btn-facebook btn-large' do %>
+                <i class="icon-facebook icon-large"></i><span> Sign in with Facebook</span>
+            <% end %>
+        </span>
+
+        <div>or use your username and password</div>
+
+        <%= form_for :session, url: { controller: 'plugin/sessions', action: 'create' } do |f| %>
+
+            <%= f.text_field :email, placeholder: 'E-mail' %>
+
+            <%= f.password_field :password, placeholder: 'Password' %>
+            <div>
+                <%= f.submit "Sign in", class: 'btn btn-medium fg-color bg-color' %>
+            </div>
+        <% end %>
+
+        <hr>
+
+        <p>
+            <%= link_to "New user?", plugin_signup_path %>
+        </p>
+    </div>
+</div>

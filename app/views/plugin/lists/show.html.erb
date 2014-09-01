@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="span6 white-box">
+        <%= link_to "< Back", plugin_path, class: 'underline-link' %>
+        <%= content_tag :h3, @list.name %>
+        <ul class="wishes-list">
+            <% @list.wishes.each do |wish| %>
+                <li>
+                    <img alt="" height="60" src="<%= wish.item.image %>" width="60">
+                    <p class="title"><%= wish.title %></p>
+                    <p class="from">from <strong><%= domain_of_url wish.item.link %></strong></p>
+                </li>
+            <hr/>
+            <% end %>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6 white-box cta">
+        <%= link_to 'Go to wish list', url_for([current_user, @list]),
+          { target: '_blank',
+            class: 'btn btn-medium fg-color bg-color' } %>
+    </div>
+</div>

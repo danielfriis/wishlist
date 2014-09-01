@@ -15,7 +15,8 @@ doc/
 .project
 .DS_Store
 .idea
+.sass-cache
+.tern-port
 
 # Ignore environment variables
-
 /config/local_env.yml
