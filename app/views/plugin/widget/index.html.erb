@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wishlistt Plugin Widget</title>
+        <meta name="keywords" content="<%= meta_keywords %>" />
+        <meta name="description" property="og:description" content="<%= meta_description %>" />
+        <meta name="image" property="og:image" content="<%= 'http://www.wishlistt.com' + asset_path('share-logo.png') %>" />
+        <meta name="image" property="og:image" content="<%= meta_image %>" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <style type="text/css">
+         body {
+           overflow: hidden;
+
+           margin: 2px;
+           padding: 0;
+
+           font-weight: bold;
+           font-family: Arial, Helvetica, sans-serif;
+
+           cursor: pointer;
+         }
+
+         img {
+           display: inline;
+           margin: 0;
+           width: 50px;
+           height: 50px;
+         }
+
+         .label {
+           position: absolute;
+           top: 18px;
+           left: 63px;
+
+           font-size: 17px;
+         }
+        </style>
+
+        <%= javascript_include_tag "plugin/widget" %>
+        <%= csrf_meta_tags %>
+    </head>
+
+    <body>
+        <div class="content">
+            <div class="image">
+                <img src="" width="50" height="50"/>
+            </div>
+
+            <div class="label">Add to wish list</div>
+        </div>
+    </body>
+</html>

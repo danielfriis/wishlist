@@ -9,6 +9,7 @@ Wishlist::Application.routes.draw do
     resources :users
 
     match '/script', to: 'script#get'
+    match '/widget', to: 'widget#index'
     match '/signin', to: 'sessions#new'
     match '/signout', to: 'sessions#destroy'
     match '/signup', to: 'users#new'

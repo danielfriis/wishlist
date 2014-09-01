@@ -30,6 +30,6 @@
 //= require handlebars-v1.3.0
 //= require_directory ./application
 
-//= require_directory ./plugin
+//= require plugin/main
 
 $.cookie.json = true
