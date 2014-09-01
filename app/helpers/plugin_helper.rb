@@ -1,4 +1,5 @@
 require 'uri'
+require 'json'
 
 module PluginHelper
 
@@ -12,7 +13,7 @@ module PluginHelper
   end
 
   def get_wishes
-    ActiveSupport::JSON.decode(cookies[:wishes]) || []
+    JSON.parse(cookies[:wishes] || '{}')
   end
 
   def save_wishes_to_list(list)
