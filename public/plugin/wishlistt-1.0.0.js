@@ -2014,10 +2014,8 @@ define("zepto", (function (global) {
   define('Config',['zepto'], function($) {
     var Config;
     Config = (function() {
-      Config.prototype.REQUIRED = ['selectors'];
-
       function Config() {
-        var CONFIG, background, colors, error, foreground, opt, placement, scriptElement, side, top, _i, _j, _len, _len1, _ref, _ref1;
+        var CONFIG, background, colors, error, foreground, placement, scriptElement, side, top, _base, _base1, _base2, _base3, _base4;
         this.errors = [];
         scriptElement = $('script[data-wishlistt]');
         try {
@@ -2027,21 +2025,6 @@ define("zepto", (function (global) {
           this.errors.push('failed to parse config JSON:');
           this.errors.push(error);
           return;
-        }
-        _ref = this.REQUIRED;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          opt = _ref[_i];
-          if (!CONFIG[opt]) {
-            this.errors.push("" + opt + " not set in config");
-            return;
-          }
-        }
-        _ref1 = ['title', 'image', 'price'];
-        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-          opt = _ref1[_j];
-          if (!CONFIG['selectors'][opt]) {
-            this.errors.push("" + opt + " selector not set in config");
-          }
         }
         placement = {
           side: 'right',
@@ -2075,8 +2058,23 @@ define("zepto", (function (global) {
             colors.background = background;
           }
         }
-        this.selectorType = CONFIG.selectorType || 'css';
-        this.selectors = CONFIG.selectors;
+        this.selectorType = CONFIG.selectorType || 'og';
+        this.selectors = CONFIG.selectors || {};
+        if ((_base = this.selectors).price == null) {
+          _base.price = 'meta[itemprop="price"]';
+        }
+        if ((_base1 = this.selectors).currency == null) {
+          _base1.currency = 'meta[itemprop="priceCurrency"]';
+        }
+        if ((_base2 = this.selectors).image == null) {
+          _base2.image = 'meta[property="og:image"]';
+        }
+        if ((_base3 = this.selectors).title == null) {
+          _base3.title = 'meta[property="og:title"]';
+        }
+        if ((_base4 = this.selectors).link == null) {
+          _base4.link = 'meta[property="og:url"]';
+        }
         this.placement = placement;
         this.colors = colors;
       }
@@ -2183,7 +2181,7 @@ define("zepto", (function (global) {
   java, location, Components, FileUtils */
 
 define('text',['module'], function (module) {
-
+    
 
     var text, fs, Cc, Ci, xpcIsWindows,
         progIds = ['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP.4.0'],
@@ -2771,7 +2769,7 @@ define("zeptoFxMethods", function(){});
 (function() {
   require(['zepto', 'Config', 'urlResolve', 'detect', 'text!view/widget.html', 'text!view/iframe.html', 'zeptoFx', 'zeptoFxMethods'], function($, Config, urlResolve, detect, widgetTemplate, iframeTemplate) {
     return $(function() {
-      var err, iframeBackground, iframeContainer, iframeElement, iframeWrapper, isProductPage, showPlugin, values, widgetElement, _i, _len, _ref;
+      var err, iframeBackground, iframeContainer, iframeElement, iframeWrapper, isProductPage, showPlugin, values, widgetElement, _i, _len, _ref, _ref1;
       if (detect.os.phone || detect.os.wp) {
         return;
       }
@@ -2787,16 +2785,24 @@ define("zeptoFxMethods", function(){});
         }
         return;
       }
-      isProductPage = $(Config.selectors.title).length > 0 && $(Config.selectors.image).length > 0;
-      if (!isProductPage) {
-        return;
-      }
-      values = {
+      values = Config.selectorType === 'css' ? {
         title: $(Config.selectors.title).text(),
         price: "" + ($(Config.selectors.currency).text() || '') + " " + ($(Config.selectors.price).text()),
         image: $(Config.selectors.image).attr('src'),
-        link: document.URL
-      };
+        link: $(Config.selectors.link).text()
+      } : (_ref1 = Config.selectorType) === 'opengraph' || _ref1 === 'og' ? {
+        title: $(Config.selectors.title).attr('content'),
+        price: "" + ($(Config.selectors.currency).attr('content') || '') + " " + ($(Config.selectors.price).attr('content')),
+        image: $(Config.selectors.image).attr('content'),
+        link: $(Config.selectors.link).attr('content')
+      } : void 0;
+      if (values.link.length === 0 || (values.link == null)) {
+        values.link = document.URL;
+      }
+      isProductPage = values.title && values.image;
+      if (!isProductPage) {
+        return;
+      }
       if (!values.image.match('https?://')) {
         values.image = urlResolve(values.image, document.URL);
       }
