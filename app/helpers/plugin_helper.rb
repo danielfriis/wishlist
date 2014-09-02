@@ -20,6 +20,8 @@ module PluginHelper
     wishes = get_wishes.map do |w|
       w.symbolize_keys!
 
+      w[:remote_image_url] = w[:image]
+
       item = Item.find_or_create_by_link!(w[:link]) do |c|
         c.assign_attributes(w)
         c.price = Money.parse(w[:price]) unless w[:price].blank?
