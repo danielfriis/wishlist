@@ -18,7 +18,7 @@ gem 'fastimage'
 gem 'addressable'
 gem 'link_thumbnailer'
 gem "ruby-readability", :require => 'readability'
-gem 'money-rails'
+gem 'money-rails', '0.8.1'
 gem "google_currency"
 gem 'ruby-progressbar'
 gem 'delayed_job_active_record'
