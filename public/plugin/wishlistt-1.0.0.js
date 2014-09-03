@@ -2796,7 +2796,7 @@ define("zeptoFxMethods", function(){});
         image: $(Config.selectors.image).attr('content'),
         link: $(Config.selectors.link).attr('content')
       } : void 0;
-      if (values.link.length === 0 || (values.link == null)) {
+      if ((values.link == null) || values.link.length === 0) {
         values.link = document.URL;
       }
       isProductPage = values.title && values.image;
