@@ -67,7 +67,7 @@ module Wishlist
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.initialize_on_precompile = false
 
-    config.assets.precompile += [ 'bookmarklet/js/bookmarklet.js', 'bookmarklet/wishlistt_tagger.js', 'bookmarklet/bookmarklet-frame.css', 'plugin/widget.js', 'plugin.css' ] 
+    config.assets.precompile += [ 'bookmarklet/js/bookmarklet.js', 'bookmarklet/wishlistt_tagger.js', 'bookmarklet/bookmarklet-frame.css', 'plugin/widget.js', 'plugin.css', 'plugin.js' ] 
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
