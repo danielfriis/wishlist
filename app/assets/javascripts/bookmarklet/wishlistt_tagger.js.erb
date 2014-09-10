@@ -2,7 +2,7 @@
 
 if(/^(www\.)?wishlistt\.com$/.test(location.hostname)) return alert("Drag this button to your bookmarks bar.\nThen you can add things to your wish list from any site around the web. Go give it a try!");
 
-	var host = 'www.wishlistt.com', prefix = 'wishlistt-bookmarklet-tagger-',
+	var host = 'localhost:3000', prefix = 'wishlistt-bookmarklet-tagger-',
   iframe  = {obj:null, id:prefix+'iframe', win: null, url:'http://'+host+'/bookmarklet'},
 	marker  = {obj:null, id:prefix+'marker'}, // image marker
 	factory = document.createElement('div'),
@@ -124,7 +124,7 @@ function onMessage(args){
 	// always create new iframe
 	iframe.obj = elem(iframe.id);
 	if(!iframe.obj) {
-		factory.innerHTML = '<iframe id="'+iframe.id+'" allowtransparency="true" data-media="Song" style="display:none;position:fixed;top:10px;right:10px;border:1px solid #4c515c;z-index:100001;margin:0;background:#eff1f7;width:289px;height:372px"></iframe>';
+		factory.innerHTML = '<iframe id="'+iframe.id+'" allowtransparency="true" data-media="Song" style="display:none;position:fixed;top:10px;right:10px;border:1px solid #4c515c;z-index:100001;margin:0;background:#eff1f7;width:289px;height:372px;max-height:95%;"></iframe>';
 		iframe.obj = factory.lastChild;
 		body.insertBefore(iframe.obj, body.firstChild);
 		iframe.win = iframe.obj.contentWindow || iframe.obj;
