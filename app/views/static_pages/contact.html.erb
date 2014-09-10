@@ -8,16 +8,30 @@
   <div class="span9">
   	<div class="spacer"></div>
   	<address>
-		  <strong>Wishlistt</strong><br>
-		  a part of Friis Consult<br>
-		  <abbr title="Company Number">CVR:</abbr> 31953855
+		  <strong>Wishlistt IVS</strong><br>
+		  <abbr title="Company Number">CVR:</abbr> 35843019
 		</address>
-		<!-- BEGIN Podio web form -->
-		<script src="https://podio.com/webforms/5094420/398732.js"></script>
-		<script type="text/javascript">
-		  _podioWebForm.render("398732")
-		</script>
-		<!-- END Podio web form -->
+		
+		<%= form_for @message, url: contact_support_path do |f| %>
+
+			<%= f.label :subject %>
+			<%= f.text_field :subject %>
+
+			<%= f.label :casetype %>
+			<%= f.select :casetype, [['Possible problem', 'problem'], ['Feedback', 'feedback'], ['Business Inquiries', 'business'], ['Advertising', 'advertising']] %>
+
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "john@doe.com" %>
+    
+      <%= f.label :body, "Message" %>
+      <%= f.text_area :body %>
+
+		  <%= f.submit "Send", class: "btn btn-primary" %>
+
+		<% end %>
 
   </div>
   <aside class="pull-right span3">

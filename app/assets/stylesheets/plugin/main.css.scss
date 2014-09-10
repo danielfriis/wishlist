@@ -1,5 +1,5 @@
 $width: 350px;
-$bgColor: whitesmoke;
+$bgColor: white;
 
 body {
   width: $width;
@@ -111,6 +111,10 @@ body {
 .plugin-index {
   .choose-list-header {
     color: grey;
+  }
+
+  .lists a:hover, .lists a:focus, .lists a:active {
+    text-decoration: none;
   }
 
   .lists li {

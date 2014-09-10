@@ -53,4 +53,11 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "[Wishlistt] Password reset"
   end
 
+  def contact_support(message)
+    @message = message
+
+    mail from: "#{@message.name} <#{@message.email}>", to: 'friis+rr1edy6amqvrxwyp8drc@boards.trello.com', subject: "#{@message.subject} ##{@message.casetype}"
+
+  end
+
 end
