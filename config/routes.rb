@@ -55,6 +55,9 @@ Wishlist::Application.routes.draw do
   match '/search_suggestion', to:'items#search_suggestion'
   match 'contact_support', to: 'mailing#contact_support'
 
+  match '/:id/update_password', to: 'users#update_password', as: 'update_password'
+  match '/:id/update_notifications', to: 'users#update_notifications', as: 'update_notifications'
+
   resources :users, only: [:index, :new, :create]
   resources :users, path: "" , except: [:index, :new, :create] do
     resources :comments, :defaults => { :commentable => 'user' }

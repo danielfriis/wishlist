@@ -1,0 +1,15 @@
+<ul class="nav nav-list update_user_nav">
+	<li class="nav-header">
+			<%= image_tag avatar(@user, :small), alt: @user.name, class: "gravatar gravatar-small img-rounded" %> <%= @user.name %>
+		
+	</li>
+	<li <% if current_page?(controller: 'users', action: 'edit') %>class="active"<% end %>>
+		<%= link_to "Basic information", edit_user_path %>
+	</li>
+  <li <% if current_page?(controller: 'users', action: 'update_password') %>class="active"<% end %>>
+		<%= link_to "Password", update_password_path(@user) %>
+	</li>
+  <li <% if current_page?(controller: 'users', action: 'update_notifications') %>class="active"<% end %>>
+		<%= link_to "Notifications", update_notifications_path(@user) %>
+	</li>
+</ul>

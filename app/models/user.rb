@@ -20,7 +20,7 @@
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :name, :email, :avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification
+  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification
   has_secure_password
   has_many :lists, dependent: :destroy
   has_many :wishes, through: :lists

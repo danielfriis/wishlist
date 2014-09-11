@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :following, :followers]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :find_user, only: [:show, :edit, :update, :following, :followers]
+  before_filter :find_user, only: [:show, :edit, :update_password, :update_notifications, :update, :following, :followers]
   include Analyzable
   include UsersHelper
 
@@ -33,6 +33,15 @@ class UsersController < ApplicationController
   end
 
   def edit
+
+  end
+
+  def update_password
+    render template: 'users/edit'
+  end
+
+  def update_notifications
+    render template: 'users/edit'
   end
 
   def update

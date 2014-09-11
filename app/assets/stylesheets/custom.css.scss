@@ -55,6 +55,11 @@ body {
   }
 }
 
+// FIX RADIO and CONTROLS
+.controls > .radio:first-child > span.icons, .controls > .checkbox:first-child > span.icons {
+  margin-top: 5px;
+}
+
 /* BOOTSTRAP STYLING FOR FILE UPLOAD */
 
 .btn-file, .btn-file:hover {
@@ -87,7 +92,32 @@ body {
   border: 2px solid #bdc3c7;
 }
 
+.edit_user_pic.btn-file {
+  margin-left: 20px;
+  height: 80px;
+  width: 80px;
+  border: 2px solid #bdc3c7;
+}
+
 /* END BOOTSTRAP STYLING FOR FILE UPLOAD*/
+
+// Navlist
+.update_user_nav.nav-list > li > a, .update_user_nav.nav-list > li.nav-header {
+  border-bottom: 1px solid lightgrey;
+}
+.update_user_nav.nav-list > li > a {
+  color: gray;
+}
+.update_user_nav.nav-list > li.nav-header {
+  font-size: 14px;
+}
+.update_user_nav.nav-list > li.active > a {
+  color: white;
+  text-shadow: none;
+}
+.update_user_nav.nav-list > li > a, .update_user_nav.nav-list .nav-header {
+  padding: 8px 12px;
+}
 
 /* START TYPEAHEAD */
 
