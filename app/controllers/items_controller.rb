@@ -45,6 +45,7 @@ class ItemsController < ApplicationController
 		respond_to do |format|
 	    if @item.save
 	    	if params[:item][:via] == "bookmarklet"
+	    		@item.update_price
 	    		tracker.track(@user.id, "Created an item with bookmarklet")
 	    		tracker.increment(@user.id, {'Items created' => 1})
 	    		format.json { render json: @item }

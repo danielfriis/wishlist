@@ -38,6 +38,13 @@ class Item < ActiveRecord::Base
 
   is_impressionable
 
+  def update_price
+    self.price = LinkPreviewParser.price(self.link).to_money
+    self.save
+  end
+
+  handle_asynchronously :update_price, :priority => 10
+
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     where("upper(items.title) like upper(?)", "%#{query}%")

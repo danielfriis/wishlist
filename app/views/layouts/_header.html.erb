@@ -11,6 +11,11 @@
       </a>
             
       <div class="nav-collapse collapse">
+        <ul class="nav pull-left visible-desktop">
+          <li>
+            <%= link_to "Find Inspiration", inspiration_path %>
+          </li>
+        </ul>
         <ul class="nav pull-right">
           <li class="hidden-desktop">
             <a href="<%= user_path(current_user) %>"><%= first_name current_user.name %><%= image_tag avatar(current_user, :small), alt: current_user.name, class: "gravatar gravatar-small img-rounded" %></a>
@@ -35,7 +40,7 @@
           </li>
           <li>
             <%= form_tag(search_path, :method => "get", id: "navbar-search",class: "navbar-search pull-left") do %>
-              <%= text_field_tag :search, params[:search], class: "span3", placeholder: "Search" %>
+              <%= text_field_tag :search, params[:search], class: "span3", placeholder: "Search for products, people or shops" %>
             <% end %>
           </li>
           <li class="visible-desktop">
