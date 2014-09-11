@@ -17,8 +17,9 @@
 
   <body <% if mobile_device? %>class="touch-device"<% end %>>
     <% if mobile_device? %>
-    <div class="scroll-container">      
-      <div class="scroll-body"> <% end %>
+      <div class="scroll-container">      
+        <div class="scroll-body"> 
+    <% end %>
         <%= render 'layouts/header' %>  
         <%= render 'layouts/jumbotron' if current_page?('/') && !signed_in? %>
         <div class="container spacer hidden-phone"></div>
@@ -30,13 +31,14 @@
           <%= debug(params) if Rails.env.development? %>
         </div>
         <%= render 'shared/add_wish' if signed_in? %>
-        <%= render 'layouts/signin_modal' if !signed_in? %>
         <%= render 'layouts/footer' %>
         <%= render 'layouts/google_analytics' if Rails.env.production? %>
         <%= render 'layouts/skimlinks' unless Rails.env.development? %>
         <%= render 'layouts/uservoice' unless mobile_device? %>
       <% if mobile_device? %>
-      </div>
-    </div><% end %>
+          </div>
+        </div>
+      <% end %>
+      <%= render 'layouts/signin_modal' if !signed_in? %>
   </body>
 </html>
