@@ -8,11 +8,15 @@
   <div class="span8">
     <div class="white-box item-big">
       <div class="image-container">
-        <%= render 'wishes/wishlistt_it_form', item: @item %>
+        <%= render 'wishes/wishlistt_it_form', item: @item unless mobile_device? %>
         <em class="mark"></em>
         <%= image_tag @item.image_url.to_s %>
       </div>
     </div>
+    <% if mobile_device? %>
+      <div class="spacer"></div>
+      <%= render 'wishes/wishlistt_it_form', item: @item %>
+    <% end %>
     <div class="spacer"></div>
     <%= render 'comments/comments', item: @item unless @item.comments.count == 0 && !signed_in? %>
     <%= render 'comments/form' if signed_in? && !mobile_device? %>
