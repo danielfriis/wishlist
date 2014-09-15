@@ -4,12 +4,11 @@
     <img src="<%= root_url %>assets/default_images/vendor.png" class="gravatar gravatar-large img-rounded">
   </a>
 
-  <h1><%= link_to vendor.name, vendor, class: "no-color" %></h1>
+  <h1><%= link_to vendor.name, vendor, class: "no-color" %></h1><%= render partial: 'users/follow_form', locals: {:subject => vendor} if signed_in? %>
   <span>
     <i class="icon-globe"></i> <%= link_to vendor.url, vendor.url, class: "muted", target: "_blank" %> 
   </span>
   <span>
-    <%= render partial: 'users/follow_form', locals: {:subject => vendor} if signed_in? %>
     <%= render partial: 'users/follow_stats', locals: {:subject => vendor} %>
   </span>
 

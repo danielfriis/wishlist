@@ -20,7 +20,7 @@
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification
+  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website
   has_secure_password
   has_many :lists, dependent: :destroy
   has_many :wishes, through: :lists
@@ -41,6 +41,13 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
   before_update :check_password
+
+  validates :bio, length: { maximum: 160 }
+  validates :twitter, length: { maximum: 15 }
+  validates :instagram, length: { maximum: 30 }
+  validates :pinterest, length: { maximum: 15 }
+
+  before_save :clean_twitter_instagram_pinterest
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -139,5 +146,11 @@ class User < ActiveRecord::Base
       self.errors[:password] << "Password is too short (minimum is 6 characters)" unless is_ok
 
       is_ok # The callback returns a Boolean value indicating success; if it fails, the save is blocked
+    end
+
+    def clean_twitter_instagram_pinterest
+      self.twitter = self.twitter.gsub(/[^0-9A-Za-z_]/, '') unless self.twitter.blank?
+      self.instagram = self.instagram.gsub(/[^0-9A-Za-z_]/, '') unless self.instagram.blank?
+      self.pinterest = self.pinterest.gsub(/[^0-9A-Za-z_]/, '') unless self.pinterest.blank?
     end
 end

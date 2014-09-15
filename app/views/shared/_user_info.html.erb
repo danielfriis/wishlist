@@ -4,18 +4,41 @@
     <%= image_tag avatar(user, :large), alt: user.name, class: "gravatar gravatar-large img-rounded" %>
   </a>
 
-  <h1><%= link_to user.name, user, class: "no-color" %></h1>
-  <span>
+  <h1><%= link_to user.name, user, class: "no-color" %></h1><%= render partial: 'users/follow_form', locals: {:subject => user} if signed_in? %>
+  <span class="user-socials muted">
     <% if user.location? %>
-      <i class="icon-map-marker"></i> <%= user.location %> 
-    <% end %> 
-    <% if user.gender? %> 
-      <i class="icon-user"></i> <%= user.gender %>
+      <span><i class="icon-map-marker"></i> <%= user.location %> </span>
+    <% end %>
+    <% if user.website? %> 
+      <span>
+        <%= link_to user.website, target: "_blank" do %>
+        <i class="icon-globe"></i> <%= user.website.gsub("http://", '').gsub("https://", '').gsub("www.", '') %>
+        <% end %>
+      </span>
+    <% end %>
+    <% if user.twitter? %> 
+      <span>
+        <%= link_to "http://www.twitter.com/" + user.twitter, target: "_blank" do %>
+          <i class="icon-twitter"></i> <%= user.twitter %></span>
+        <% end %>
+    <% end %>
+    <% if user.instagram? %> 
+      <span>
+        <%= link_to "http://www.instagram.com/" + user.instagram, target: "_blank" do %>
+          <i class="icon-instagram"></i> <%= user.instagram %>
+        <% end %>
+      </span>
+    <% end %>
+    <% if user.pinterest? %> 
+      <span>
+        <%= link_to "http://www.pinterest.com/" + user.pinterest, target: "_blank" do %>
+          <i class="icon-pinterest"></i> <%= user.pinterest %>
+        <% end %>
+      </span>
     <% end %>
   </span>
-  <span>
-    <%= render partial: 'users/follow_form', locals: {:subject => user} if signed_in? %>
-    <%= render partial: 'users/follow_stats', locals: {:subject => user} %>
+  <span class="user-bio">
+    <%= user.bio %>
   </span>
 
 <!-- <a href="#" class="btn">Follow</a> -->

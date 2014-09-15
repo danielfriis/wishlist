@@ -1,8 +1,10 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <!-- BASIC INFO -->
-<% if current_page?(controller: 'users', action: 'edit') || f.object.new_record? %>
+<% if @updated == "basics" || current_page?(controller: 'users', action: 'edit') || f.object.new_record? %>
 	<h2>Basic information</h2>
+
+	<%= hidden_field_tag 'updated', 'basics' %>
 
 	<div class="control-group">
 		<%= f.label :name, class: "control-label" %>
@@ -52,34 +54,85 @@
 				<% end %>
 		</div>
 	</div>
+
+	<!-- SOCIALS -->
+	<% unless f.object.new_record? %>
+		<div class="control-group">
+			<%= f.label :location, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :location %>
+			</div>	
+		</div>
+
+		<div class="control-group">
+			<%= f.label :website, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :website %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :twitter, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :twitter %>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<%= f.label :instagram, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :instagram %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :pinterest, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :pinterest %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.label :bio, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_area :bio, rows: 4 %>
+			</div>
+		</div>
+
+	<% end %>
 <% end %>
 
 <!-- NOTIFICATIONS -->
-<% if current_page?(controller: 'users', action: 'update_notifications') %>
+<% if @updated == 'notifications' || current_page?(controller: 'users', action: 'update_notifications') %>
 
 	<h2>Notifications</h2>
+
+	<%= hidden_field_tag 'updated', 'notifications' %>
 		
-		<div class="control-group">
-			<p class="control-label">Email me when...</p>
+	<div class="control-group">
+		<p class="control-label">Email me when...</p>
 
-			<div class="controls">
-				<%= f.label :follower_notification, class: "checkbox" do %>
-					<%= f.check_box :follower_notification %>
-					someone follows me
-				<% end %>
+		<div class="controls">
+			<%= f.label :follower_notification, class: "checkbox" do %>
+				<%= f.check_box :follower_notification %>
+				someone follows me
+			<% end %>
 
-				<%= f.label :comment_notification, class: "checkbox" do %>
-					<%= f.check_box :comment_notification %>
-					someone comments on my wish
-				<% end %>
-			</div>
+			<%= f.label :comment_notification, class: "checkbox" do %>
+				<%= f.check_box :comment_notification %>
+				someone comments on my wish
+			<% end %>
 		</div>
+	</div>
 
 <% end %>
 
 <!-- PASSWORD -->
-<% if current_page?(controller: 'users', action: 'update_password') || f.object.new_record? %>
+<% if @updated == 'password' || current_page?(controller: 'users', action: 'update_password') || f.object.new_record? %>
 	<h2>Password</h2>
+
+	<%= hidden_field_tag 'updated', 'password' %>
+
 	<% unless f.object.new_record? %>
 		<p>Leave this blank unless you want to change your password.</p>
 		<% end %>

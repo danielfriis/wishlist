@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140716155834) do
+ActiveRecord::Schema.define(:version => 20140911184647) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -132,6 +132,11 @@ ActiveRecord::Schema.define(:version => 20140716155834) do
     t.boolean  "comment_notification",   :default => true
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "twitter"
+    t.string   "instagram"
+    t.string   "website"
+    t.text     "bio"
+    t.string   "pinterest"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

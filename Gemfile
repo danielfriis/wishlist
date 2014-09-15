@@ -49,7 +49,7 @@ group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.2.3'
-  gem 'font-awesome-sass-rails'
+  gem 'font-awesome-rails', '~> 3.2.0.0'
 end
 
 gem 'jquery-rails', '2.0.2'

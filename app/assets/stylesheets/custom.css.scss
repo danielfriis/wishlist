@@ -60,6 +60,10 @@ body {
   margin-top: 5px;
 }
 
+.form-horizontal .control-group::before, .form-horizontal .field_with_errors::before, .form-horizontal .control-group::after, .form-horizontal .field_with_errors::after {
+  display: none;
+}
+
 /* BOOTSTRAP STYLING FOR FILE UPLOAD */
 
 .btn-file, .btn-file:hover {
@@ -112,7 +116,8 @@ body {
   font-size: 14px;
 }
 .update_user_nav.nav-list > li.active > a {
-  color: white;
+  color: #444444;
+  background-color: lightgrey;
   text-shadow: none;
 }
 .update_user_nav.nav-list > li > a, .update_user_nav.nav-list .nav-header {
@@ -490,6 +495,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33323232', e
   }
 }
 
+.white-box.wb-nopadding {
+  padding: 0;
+}
+
 
 
 
@@ -799,27 +808,38 @@ footer {
 
 
 .user_info {
+  margin-bottom: 15px;
   form {
     margin-bottom: 0;
   }
-  margin-bottom: 15px;
-      span {
+  .row {
+    position: relative;
+  }
+  span {
       display: block;
       margin-bottom: 5px;
-      line-height: 1;
+      line-height: 1.2em;
       color: #777777;
     }
-      h1 {
-      font-size: 1.6em;
-      line-height: 1em;
+  h1 {
+      display: inline-block;
+      font-size: 2em;
+      line-height: 1.1em;
       text-align: left;
       letter-spacing: -1px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       margin-top: 0px;
+      margin-right: 10px;
     }
 }
 
+.user-socials span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .follow_form {
+  vertical-align: top;
   margin-right: 10px;
 }
 
@@ -1294,8 +1314,8 @@ input {
 }
 
 .gravatar-large {
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
 }
 
 aside {
@@ -1329,6 +1349,9 @@ aside {
 .stats {
   // overflow: auto;
   margin-top: 0px;
+  position: absolute;
+  bottom: 0;
+  right:0;
   display: inline-block;
   vertical-align: bottom;
   a {
@@ -1336,8 +1359,8 @@ aside {
     padding: 0 10px;
     border-left: 1px solid $grayLighter;
     color: gray;
-    font-size: 12px;
-    line-height: 15px;
+    // font-size: 12px;
+    // line-height: 15px;
     &:first-child {
       padding-left: 0;
       border: 0;
