@@ -10,7 +10,7 @@
 #  image          :string(255)
 #  gender         :string(255)
 #  vendor_id      :integer
-#  via            :string(255)
+#  via            :string(255)      default("default")
 #  price_cents    :integer
 #  price_currency :string(255)
 #

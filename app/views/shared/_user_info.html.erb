@@ -19,20 +19,28 @@
     <% if user.twitter? %> 
       <span>
         <%= link_to "http://www.twitter.com/" + user.twitter, target: "_blank" do %>
-          <i class="icon-twitter"></i> <%= user.twitter %></span>
+          <i class="icon-twitter"></i>
         <% end %>
+      </span>
     <% end %>
     <% if user.instagram? %> 
       <span>
         <%= link_to "http://www.instagram.com/" + user.instagram, target: "_blank" do %>
-          <i class="icon-instagram"></i> <%= user.instagram %>
+          <i class="icon-instagram"></i>
         <% end %>
       </span>
     <% end %>
     <% if user.pinterest? %> 
       <span>
         <%= link_to "http://www.pinterest.com/" + user.pinterest, target: "_blank" do %>
-          <i class="icon-pinterest"></i> <%= user.pinterest %>
+          <i class="icon-pinterest"></i>
+        <% end %>
+      </span>
+    <% end %>
+    <% if user.facebook? %> 
+      <span>
+        <%= link_to "http://www.facebook.com/" + user.facebook, target: "_blank" do %>
+          <i class="icon-facebook"></i>
         <% end %>
       </span>
     <% end %>

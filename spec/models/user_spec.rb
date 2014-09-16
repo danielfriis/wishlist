@@ -2,19 +2,28 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  age             :integer
-#  location        :string(255)
-#  avatar          :string(255)
-#  gender          :string(255)
-#  slug            :string(255)
-#  admin           :boolean          default(FALSE)
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  email                  :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  password_digest        :string(255)
+#  remember_token         :string(255)
+#  age                    :integer
+#  location               :string(255)
+#  avatar                 :string(255)
+#  gender                 :string(255)
+#  slug                   :string(255)
+#  admin                  :boolean          default(FALSE)
+#  follower_notification  :boolean          default(TRUE)
+#  comment_notification   :boolean          default(TRUE)
+#  password_reset_token   :string(255)
+#  password_reset_sent_at :datetime
+#  twitter                :string(255)
+#  instagram              :string(255)
+#  website                :string(255)
+#  bio                    :text
+#  pinterest              :string(255)
 #
 
 require 'spec_helper'

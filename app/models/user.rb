@@ -2,25 +2,34 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  age             :integer
-#  location        :string(255)
-#  avatar          :string(255)
-#  gender          :string(255)
-#  slug            :string(255)
-#  admin           :boolean          default(FALSE)
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  email                  :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  password_digest        :string(255)
+#  remember_token         :string(255)
+#  age                    :integer
+#  location               :string(255)
+#  avatar                 :string(255)
+#  gender                 :string(255)
+#  slug                   :string(255)
+#  admin                  :boolean          default(FALSE)
+#  follower_notification  :boolean          default(TRUE)
+#  comment_notification   :boolean          default(TRUE)
+#  password_reset_token   :string(255)
+#  password_reset_sent_at :datetime
+#  twitter                :string(255)
+#  instagram              :string(255)
+#  website                :string(255)
+#  bio                    :text
+#  pinterest              :string(255)
 #
 
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website
+  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website, :facebook
   has_secure_password
   has_many :lists, dependent: :destroy
   has_many :wishes, through: :lists
@@ -47,7 +56,7 @@ class User < ActiveRecord::Base
   validates :instagram, length: { maximum: 30 }
   validates :pinterest, length: { maximum: 15 }
 
-  before_save :clean_twitter_instagram_pinterest
+  before_save :clean_socials
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -148,9 +157,10 @@ class User < ActiveRecord::Base
       is_ok # The callback returns a Boolean value indicating success; if it fails, the save is blocked
     end
 
-    def clean_twitter_instagram_pinterest
+    def clean_socials
       self.twitter = self.twitter.gsub(/[^0-9A-Za-z_]/, '') unless self.twitter.blank?
       self.instagram = self.instagram.gsub(/[^0-9A-Za-z_]/, '') unless self.instagram.blank?
       self.pinterest = self.pinterest.gsub(/[^0-9A-Za-z_]/, '') unless self.pinterest.blank?
+      self.facebook = self.facebook.gsub(/[^0-9A-Za-z.]/, '') unless self.facebook.blank?
     end
 end
