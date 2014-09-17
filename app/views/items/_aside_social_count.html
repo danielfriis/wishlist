@@ -7,7 +7,7 @@
           <%= link_to @item.lists.last.user.name, user_path(@item.lists.last.user) %> 
           
           <% if @item.wishes.count > 1 %> 
-            and <a href="#wishers" rel="tooltip" class="tooltip-toggle" data-html="true" data-toggle="modal" data-title="<% @item.wishes.each do |w| %><%= w.list.user.name %><br/><% end %>"><%= pluralize(@item.wishes.count - 1, 'other') %></a>
+            and <a href="#wishers" rel="tooltip" class="tooltip-toggle" data-html="true" data-toggle="modal" data-title="<% @item.wishes[1..-1].each do |w| %><%= w.list.user.name %><br/><% end %>"><%= pluralize(@item.wishes.count - 1, 'other') %></a>
           <% end %>
           wishes this.
         <% else %>
