@@ -1319,10 +1319,22 @@ input {
   margin-top: 20px;
 }
 
+.thumb {
+  height: 45px;
+  width: 45px;
+}
+
 .timestamp {
   color: $grayLight;
   font-size: 11px;
   display: block;
+  float: right;
+}
+.small_price {
+  color: $grayLight;
+  font-size: 11px;
+  display: block;
+  float: left;
 }
 
 .gravatar {

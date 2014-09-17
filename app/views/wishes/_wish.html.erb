@@ -13,10 +13,11 @@
 		  		<% end %>
 		  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
 		  	<% end %>
+		  	<span class="small_price"><%= exchanged_price(wish.item) %> from <%= link_to wish.item.vendor.name, wish.item.vendor.url, target: "_blank", class: "muted" %></span>
 		  	<span class="timestamp">
 			    Added <%= time_ago_in_words(wish.created_at) %> ago.		  
 			    <% if current_user?(wish.list.user) %>
-			    <%= link_to "Remove", wish, method: :delete, class: "muted",
+			    <%= link_to "Delete", wish, method: :delete, class: "muted",
 			                                data: { confirm: "You sure?" },
 			                                title: wish.item.title,
 			                                remote: true %>
