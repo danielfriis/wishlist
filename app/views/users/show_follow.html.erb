@@ -2,9 +2,10 @@
 <div class="row">
   <div class="span12 user_info">
     <div class="row">
-      <div class="span8">
+      <div class="span9">
         <%= render partial: 'shared/user_info', locals: {:user => @user} %>
       </div>
+      <%= render partial: 'users/follow_stats', locals: {:subject => @user} %>
     </div>
   </div>
 </div>
