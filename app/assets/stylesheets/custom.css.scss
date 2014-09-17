@@ -297,6 +297,33 @@ input.typeahead.tt-query{ /* This is optional */
 
 // END
 
+// POPOVER ACTIVITIES / NOTICIFICATIONS
+
+#activities_popover {
+  cursor: pointer;
+}
+
+.popover-content {
+  padding: 0;
+  font-size: 13px;
+  .gravatar {
+    margin-right: 0;
+  }
+  .media {
+    margin-top: 0;
+  }
+  .activity {
+    padding: 10px 5px;
+    border-bottom: 1px solid lightgrey;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      background-color: #FCFCFC;
+    }
+  }
+}
+
 .modal-footer {
   border-top: 0px solid #ddd;
   background-color: white;
@@ -817,8 +844,8 @@ footer {
   }
   span {
       display: block;
-      margin-bottom: 5px;
-      line-height: 1.2em;
+      margin-bottom: 2px;
+      line-height: 1.4em;
       color: #777777;
     }
   h1 {

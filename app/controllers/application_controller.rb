@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 	  raise ActionController::RoutingError.new('Not Found')
 	end
 
+  def track_activity(trackable, action = params[:action])
+    current_user.activities.create! action: action, trackable: trackable
+  end
+
   private
     def mobile_device?
       request.user_agent =~ /Mobile|webOS/

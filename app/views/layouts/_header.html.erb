@@ -15,6 +15,11 @@
           <li>
             <%= link_to "Find Inspiration", inspiration_path %>
           </li>
+          <li>
+            <%= form_tag(search_path, :method => "get", id: "navbar-search",class: "navbar-search pull-left") do %>
+              <%= text_field_tag :search, params[:search], class: "span3", placeholder: "Search for products, people or shops" %>
+            <% end %>
+          </li>
         </ul>
         <ul class="nav pull-right">
           <li class="hidden-desktop">
@@ -38,10 +43,10 @@
           <li class="visible-desktop">
             <%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish" } %>
           </li>
-          <li>
-            <%= form_tag(search_path, :method => "get", id: "navbar-search",class: "navbar-search pull-left") do %>
-              <%= text_field_tag :search, params[:search], class: "span3", placeholder: "Search for products, people or shops" %>
-            <% end %>
+          <li class="visible-desktop">
+            <a data-url="/header_index" id="activities_popover" data-toggle="popover" data-placement="bottom" data-content="Fetching" data-trigger="click" data-html=true>
+              <i class="fa fa-bell"></i>
+            </a>
           </li>
           <li class="visible-desktop">
             <a href="<%= user_path(current_user) %>">

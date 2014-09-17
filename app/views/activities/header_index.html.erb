@@ -1,0 +1,3 @@
+<% @activities.each do |activity| %>
+	<%= ActivityPresenter.new(activity, self).render_activity if activity.trackable %>
+<% end %>

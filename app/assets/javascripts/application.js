@@ -20,6 +20,7 @@
 //= require bootstrap-transition
 //= require bootstrap-tab
 //= require bootstrap-tooltip
+//= require bootstrap-popover
 //= require bootstrap-alert
 //= require bootstrap-button
 //= require bootstrap-collapse

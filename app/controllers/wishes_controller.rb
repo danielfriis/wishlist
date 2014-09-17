@@ -19,6 +19,7 @@ class WishesController < ApplicationController
   def create
     @item = Item.find_by_id(params[:wish][:item_id])
     @wish = Wish.create!(title: @item.title, item_id: params[:wish][:item_id], list_id: params[:wish][:list_id])
+    track_activity @wish
     tracker.track(current_user.id, 'Added a wish')
     tracker.increment(current_user.id, {'Wishes added' => 1})
     respond_to do |format|

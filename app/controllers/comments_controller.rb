@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
       if @commentable.class.name == "Wish" && @commentable.list.user.comment_notification?
         UserMailer.delay.new_comment(current_user.id, @commentable.list.user.id, @commentable.id, @comment.id)
       end
+      track_activity @comment
       redirect_to @commentable, notice: "Comment created."
     else
       redirect_to @commentable

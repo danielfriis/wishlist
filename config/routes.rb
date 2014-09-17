@@ -1,5 +1,9 @@
 Wishlist::Application.routes.draw do
 
+  resources :activities
+  match '/header_index', to: 'activities#header_index'
+
+
   use_link_thumbnailer
 
   namespace :plugin do

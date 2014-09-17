@@ -5,7 +5,8 @@ class RelationshipsController < ApplicationController
   def create
     subject_class = params[:relationship][:followed_type].classify.constantize
     @subject = subject_class.find(params[:relationship][:followed_id])
-    current_user.relationships.create!(followed_id: @subject.id, followed_type: @subject.class.name)
+    relationship = current_user.relationships.create!(followed_id: @subject.id, followed_type: @subject.class.name)
+    track_activity relationship
     tracker.track(current_user.id, "Followed another #{@subject.class.name}")
     if @subject.class.name == "User" && @subject.follower_notification?
       UserMailer.delay.new_follower(current_user.id, @subject.id)

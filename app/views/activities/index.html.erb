@@ -1,0 +1,19 @@
+<% provide(:title, "Activity") %>
+<div class="row">
+	<div class="span12">
+		<h1>Activity</h1>
+		<div class="spacer hidden-phone"></div>
+	</div>
+	<div class="span8">
+		<div class="white-box">
+			<% @activities.each do |activity| %>
+				<%= ActivityPresenter.new(activity, self).render_activity if activity.trackable %>
+			<% end %>
+			<%= will_paginate @activities %>
+		</div>
+	</div>
+	<aside class="span4">
+		<%= render 'shared/aside_users' %>
+		<%= render 'shared/aside_vendors' %>
+	</aside>
+</div>
