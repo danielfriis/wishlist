@@ -1324,6 +1324,18 @@ input {
   width: 45px;
 }
 
+.user_list_wish {
+  .timestamp, .close {
+    display: none;
+  }
+}
+
+.user_list_wish:hover {
+  .timestamp, .close {
+    display: block;
+  }
+}
+
 .timestamp {
   color: $grayLight;
   font-size: 11px;
