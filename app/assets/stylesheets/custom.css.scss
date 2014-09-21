@@ -20,7 +20,7 @@ $fluidGridGutterWidth: 2.127659574%;
 $sansFontFamily: 'Open Sans', Helvetica, sans-serif;
 $linkColor: #47a599;
 $btnPrimaryBackground: #47a599;
-$btnPrimaryBackgroundHighlight: #47a599;
+$btnPrimaryBackgroundHighlight: #53b5a8;
 $verylightgray: #e8e8e8;
 
 @import "bootstrap";
@@ -91,8 +91,8 @@ body {
 }
 
 .list-add-wish .btn-file {
-  height: 120px;
-  width: 120px;
+  height: 115px;
+  width: 20%;
   margin-bottom: 0;
   border: 2px solid #bdc3c7;
 }
@@ -261,6 +261,17 @@ ul#admissions {
   margin-bottom: 0;
 }
 
+.navbar .nav > li > a.btn {
+  padding: 4px 10px;
+  margin-right: 8px;
+  color: white;
+  text-shadow: none;
+}
+
+.navbar .nav > li > a.btn-primary:hover, .navbar .nav > li > a.btn-primary:focus {
+  background-color: $btnPrimaryBackgroundHighlight;
+}
+
 .navbar-search {
   input#search {
     padding: 4px;
@@ -317,6 +328,10 @@ ul#admissions {
 // END
 
 // POPOVER ACTIVITIES / NOTICIFICATIONS
+
+.popover {
+  position: fixed;
+}
 
 #activities_popover {
   cursor: pointer;
@@ -1261,7 +1276,7 @@ input {
 
 .list-add-wish #new_item {
   #note, #item_link, #item_title {
-    width: 75%;
+    width: 70%;
   }
   .checkbox {
     width: 70%;
@@ -1360,7 +1375,7 @@ input {
   }
 }
 
-.user_list_wish:hover {
+.dragndrop .user_list_wish:hover {
   .timestamp, .close {
     display: block;
   }

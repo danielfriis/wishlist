@@ -26,7 +26,6 @@
             <span><i class="fa fa-clock-o"></i> Updated <%= time_ago_in_words(@list.updated_at) %> ago</span>
           </p>
         </div>
-        <%= render 'shared/quick_wish' %>
         <ul class="wishes <% if current_user?(@list.user) %>dragndrop<% end %> unstyled" id="list_<%= @list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= @list.id %>">
           <% if @list.items.any? %>
             <%= render @wishes, size: "large" %>

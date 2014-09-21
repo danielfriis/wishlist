@@ -20,7 +20,11 @@
 
       <%= text_field_tag :note, nil, placeholder: "Optional: Short comment (E.g. Love it in blue!)" %>
 
-      <%= hidden_field_tag :list_id, @list.id %>
+      <% if @list %>
+        <%= hidden_field_tag :list_id, @list.id %>
+      <% else %>
+        <%= select_tag :list_id, options_for_select(current_user.lists.all.collect{ |u| [u.name, u.id] }) %>
+      <% end %>
 
       <label class="checkbox">
         <span class="icons">
@@ -31,7 +35,7 @@
         <%= check_box :wish, "hide", {}, "true", "false" %>
       </label>
 
-      <%= f.hidden_field :gender, value: @user.gender %>
+      <%= f.hidden_field :gender, value: current_user.gender %>
 
       <%= f.hidden_field :via %>
 

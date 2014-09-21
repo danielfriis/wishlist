@@ -41,7 +41,9 @@
             <%= link_to "Sign out", signout_path, method: "delete" %>
           </li>
           <li class="visible-desktop">
-            <%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish" } %>
+            <%= link_to new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish", class: "btn btn-primary" } do %>
+              <i class="fa fa-plus"></i>
+            <% end %>
           </li>
           <li class="visible-desktop">
             <a data-url="/header_index" id="activities_popover" data-toggle="popover" data-placement="bottom" data-content="Fetching" data-trigger="click" data-html=true>

@@ -17,8 +17,8 @@
 			<%= f.label :subject %>
 			<%= f.text_field :subject %>
 
-			<%= f.label :casetype %>
-			<%= f.select :casetype, [['Possible problem', 'problem'], ['Feedback', 'feedback'], ['Business Inquiries', 'business'], ['Advertising', 'advertising']] %>
+			<%= f.label :casetype, "Typ of case" %>
+			<%= f.select :casetype, [['Please select a case type', 'no-select'], ['Possible problem', 'problem'], ['Feedback', 'feedback'], ['Business Inquiries', 'business'], ['Advertising', 'advertising'], ['Other', 'other']] %>
 
 			<%= f.label :name %>
 			<%= f.text_field :name %>

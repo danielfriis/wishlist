@@ -1,40 +1,52 @@
 $('.best_in_place').best_in_place();
-$(document).on('click', '#manual_wish', function() { 
-  $('#linkpreview').hide();
-  $('#item_fields').show();
-  $('#imgPreview').hide();
-  $('#item_via').val("no_link");
+$(document).on('click', '#btn-to-modal-secondary-body', function() {
+  $('#modal-default-body').hide();
+  $('#modal-secondary-body').show();
+  $('#btn-to-modal-secondary-body').hide();
+  $('#btn-to-modal-default-body').show();
 });
-
-$(document).on('click', '#urlb', function() {
-  $("#urlb").addClass("disabled").removeClass("btn-primary");
-  $("#modal-default-body").hide().after('<div id="loading" class="center"><div class="spacer"></div><%= image_tag("ajax-loader.gif") %><div class="spacer"></div><p>Grabbing information for you</p><p class="muted">Please be patient. This may take up to 30 seconds</p><div class="spacer"></div></div>');
-  $('#manual_wish').hide();
+$(document).on('click', '#btn-to-modal-default-body', function() {
+  $('#modal-default-body').show();
+  $('#modal-secondary-body').hide();
+  $('#btn-to-modal-secondary-body').show();
+  $('#btn-to-modal-default-body').hide();
 });
+// $(document).on('click', '#manual_wish', function() { 
+//   $('#linkpreview').hide();
+//   $('#item_fields').show();
+//   $('#imgPreview').hide();
+//   $('#item_via').val("no_link");
+// });
 
-$(document).on('click', '#manual_wish_back', function() { 
-  $('#linkpreview').show();
-  $('#item_fields').hide();
+// $(document).on('click', '#urlb', function() {
+//   $("#urlb").addClass("disabled").removeClass("btn-primary");
+//   $("#modal-default-body").hide().after('<div id="loading" class="center"><div class="spacer"></div><%= image_tag("ajax-loader.gif") %><div class="spacer"></div><p>Grabbing information for you</p><p class="muted">Please be patient. This may take up to 30 seconds</p><div class="spacer"></div></div>');
+//   $('#manual_wish').hide();
+// });
 
-  // Reset
-  $("#modal-default-body").show();
-  $("#imgPreview").show();
-  $("#loading").remove();
-  $('#item_via').val("");
-  $("#item_remote_image_url").val("");
-  $("#item_link").val("");
-  $("#item_title").val("");
+// $(document).on('click', '#manual_wish_back', function() { 
+//   $('#linkpreview').show();
+//   $('#item_fields').hide();
 
-  $('#imgPreview').show();
-  $('label[for="item_image"]').show();
-  $("#item_image").show();
-  $('label[for="item_remote_image_url"]').show();
-  $("#item_remote_image_url").show();
-  $('label[for="item_link"]').show();
-  $("#item_link").show();
-});
+//   // Reset
+//   $("#modal-default-body").show();
+//   $("#imgPreview").show();
+//   $("#loading").remove();
+//   $('#item_via').val("");
+//   $("#item_remote_image_url").val("");
+//   $("#item_link").val("");
+//   $("#item_title").val("");
 
-$(document).on('click', '#commit', function() {
-  $("#commit").addClass("disabled");
-  $("#commit").removeClass("btn-primary");
-});
+//   $('#imgPreview').show();
+//   $('label[for="item_image"]').show();
+//   $("#item_image").show();
+//   $('label[for="item_remote_image_url"]').show();
+//   $("#item_remote_image_url").show();
+//   $('label[for="item_link"]').show();
+//   $("#item_link").show();
+// });
+
+// $(document).on('click', '#commit', function() {
+//   $("#commit").addClass("disabled");
+//   $("#commit").removeClass("btn-primary");
+// });
