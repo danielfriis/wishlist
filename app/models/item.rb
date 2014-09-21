@@ -83,6 +83,7 @@ class Item < ActiveRecord::Base
       followed_vendors_wishes = "SELECT item_id FROM wishes WHERE item_id IN (#{followed_vendors_items})"
       with_pictures
         .where("(id IN (#{followed_user_wishes})) OR (id IN (#{followed_vendors_wishes}))", user_id: current_user.id, false: false)
+        .no_hidden_wishes
         .order("created_at desc")
   end
 
@@ -100,7 +101,8 @@ class Item < ActiveRecord::Base
   end
 
   def self.no_hidden_wishes
-    not_hidden = "SELECT item_id FROM wishes WHERE hide = :false"
+    not_private_list = "SELECT id FROM lists WHERE private = :false"
+    not_hidden = "SELECT item_id FROM wishes WHERE (hide = :false AND list_id IN (#{not_private_list}))"
     where("items.id IN (#{not_hidden})", false: false)
   end
 

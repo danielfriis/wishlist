@@ -21,6 +21,7 @@ $sansFontFamily: 'Open Sans', Helvetica, sans-serif;
 $linkColor: #47a599;
 $btnPrimaryBackground: #47a599;
 $btnPrimaryBackgroundHighlight: #47a599;
+$verylightgray: #e8e8e8;
 
 @import "bootstrap";
 @import "font-awesome";
@@ -136,6 +137,28 @@ input.typeahead.tt-query{ /* This is optional */
     width: 300px !important;
 }
 
+.list_typeahead img {
+  height: 80px;
+  width: 80px;
+}
+
+.invite_typeahead {
+  padding: 5px;
+  border-bottom: 1px solid $verylightgray;
+}
+
+ul#admissions {
+  li {
+    display: block;
+    clear: both;
+    padding: 5px 0;
+    border-bottom: 1px solid $verylightgray;
+  }
+  li:first-child {
+      border-top: 1px solid $verylightgray !important;
+    }
+}
+
 .tt-dropdown-menu {
   position: absolute;
   top: 100%;
@@ -155,10 +178,6 @@ input.typeahead.tt-query{ /* This is optional */
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
-  img {
-    height: 80px;
-    width: 80px;
-  }
   .list_typeahead {
     padding: 6px 8px;
     min-height: 80px;
@@ -251,7 +270,7 @@ input.typeahead.tt-query{ /* This is optional */
     transition: width 1s;
   }
   input#search:focus {
-    width: 260px;
+    // width: 260px;
     border: 1px solid #47a599;
   }
 }
@@ -268,10 +287,10 @@ input.typeahead.tt-query{ /* This is optional */
   cursor: pointer;
 }
 
-.modal {
-  position: absolute;
-  top: 10%;
-}
+// .modal {
+//   position: absolute;
+//   top: 10%;
+// }
 
 .ellipsis {
   white-space: nowrap;
@@ -291,7 +310,7 @@ input.typeahead.tt-query{ /* This is optional */
   }
   .modal-body {
     max-height: 40em;
-    overflow-y: auto;
+    overflow-y: visible;
   }
 }
 
@@ -1176,7 +1195,8 @@ input {
   background: white url('project-bottom.png') repeat-x bottom left;
   h4 {
     margin: 0 0 0px 0;
-    font-weight: normal;
+    font-weight: 600;
+    font-size: 15px;
     a {
       color: inherit;
       text-decoration: inherit;
@@ -1212,6 +1232,21 @@ input {
     top: 0;
     right:0;
   }
+}
+
+.user_list_large .user_list_title {
+  padding: 10px;
+}
+
+.list_meta {
+  span {
+    margin-left: 15px;
+  }
+}
+
+.edit_list_btn {
+  z-index: 100;
+  position: relative;
 }
 
 .user_list_wishes {
@@ -1319,11 +1354,6 @@ input {
   margin-top: 20px;
 }
 
-.thumb {
-  height: 45px;
-  width: 45px;
-}
-
 .user_list_wish {
   .timestamp, .close {
     display: none;
@@ -1340,7 +1370,15 @@ input {
   color: $grayLight;
   font-size: 11px;
   display: block;
-  float: right;
+}
+.user_list_wish {
+  .thumb {
+    height: 45px;
+    width: 45px;
+  }
+  .timestamp {
+    float: right;
+  }
 }
 .small_price {
   color: $grayLight;
@@ -1452,9 +1490,9 @@ aside {
   // border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998', endColorstr='#ff133783', GradientType=0);
   // filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  i {
-    line-height: 0.5em !important;
-  }
+  // i {
+  //   line-height: 0.5em !important;
+  // }
 }
 
 .btn-facebook:hover,

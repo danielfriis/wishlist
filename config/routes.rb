@@ -1,5 +1,8 @@
 Wishlist::Application.routes.draw do
 
+  resources :admissions
+
+
   resources :activities
   match '/header_index', to: 'activities#header_index'
 
@@ -56,8 +59,10 @@ Wishlist::Application.routes.draw do
   match '/bookmarklet', to: 'items#bookmarklet'
   match '/inspiration', to: 'items#inspiration'
   match '/search',  to: 'static_pages#search'
-  match '/search_suggestion', to:'items#search_suggestion'
   match 'contact_support', to: 'mailing#contact_support'
+
+  match '/search_suggestion', to:'items#search_suggestion'
+  match '/invite_suggestion', to:'users#invite_suggestion'
 
   match '/:id/update_password', to: 'users#update_password', as: 'update_password'
   match '/:id/update_notifications', to: 'users#update_notifications', as: 'update_notifications'

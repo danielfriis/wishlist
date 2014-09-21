@@ -24,6 +24,7 @@
 #  website                :string(255)
 #  bio                    :text
 #  pinterest              :string(255)
+#  facebook               :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -38,6 +39,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_many :activities
+  has_many :admissions
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed, source_type: 'User'

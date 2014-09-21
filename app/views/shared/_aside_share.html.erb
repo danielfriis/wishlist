@@ -1,14 +1,20 @@
 <div class="share">
   <h3>Share</h3>
-  <ul class="inline muted">
-		<li>
-			<a href="#">
-				<i class="icon-link"></i> <input type="url" readonly onClick="this.select();" value="wishlistt.com<%= request.fullpath %>">
-			</a>
-		</li>
+  <ul class="muted fa-ul">
+  	<% unless @list.private? %>
+			<li>
+				<a href="#">
+					<i class="fa-li fa fa-link"></i> <input type="url" readonly onClick="this.select();" value="wishlistt.com<%= request.fullpath %>">
+				</a>
+			</li>
+		<% end %>
 		<li>
 			<a href="#share_list" role="button" data-toggle="modal">
-				<i class="icon-envelope"></i> Send with e-mail
+				<% if @list.private? %>
+					<i class="fa-li fa fa-share"></i> Invite people
+				<% else %>
+					<i class="fa-li fa fa-envelope"></i> Send with e-mail
+				<% end %>
 			</a>
 		</li>
 		<!-- <li>
@@ -25,19 +31,45 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="share_list">Share list</h3>
   </div>
-  <%= form_for @message, :url => user_list_share_path(@user, @list) do |f| %>
-	  <div class="modal-body">    
 
-      <%= f.label :email %>
-      <%= f.text_field :email, placeholder: "john@doe.com" %>
-    
-      <%= f.label :body, "Message" %>
-      <%= f.text_area :body, value: "Hi, this is my wish list :)", placeholder: "Message" %>
+  <% if @list.private? %>
+		<%= form_for @list.admissions.new, remote: true do |f| %>
+			<div class="modal-body">
+				<p>You set this list to 'private'. Nobody except the people you invited to the list is able to see it. Invite people to the list below.</p>
+      	<%= text_field_tag :invite_to_secret, params[:search], :data => {:provide => "typeahead"}, autocomplete: :off, placeholder: "Type a name or email." %>
+      	<%= f.hidden_field :accessible_id %>
+      	<%= f.hidden_field :accessible_type %>
+      	<%= f.hidden_field :user_id %>
+      	<%= f.submit "Add", style: "display:none;" %>
+      	<ul class="unstyled" id="admissions">
+      		<h5>Who can see your list?</h5>
+      		<%= render 'admissions/admission_user', user: @list.user, admission: nil %>
+      		<% @list.admissions.each do |admission| %>
+      			<%if admission.user %>
+			    		<%= render 'admissions/admission_user', user: admission.user, admission: admission %>
+			    	<% end %>
+			    <% end %>
+      	</ul>
+      </div>
+      <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		  </div>
+    <% end %>
+	<% else %>
+	  <%= form_for @message, :url => user_list_share_path(@user, @list) do |f| %>
+		  <div class="modal-body">    
 
-  	</div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			  <%= f.submit "Send", class: "btn btn-primary" %>
-			<% end %>
-	  </div>
+	      <%= f.label :email %>
+	      <%= f.text_field :email, placeholder: "john@doe.com" %>
+	    
+	      <%= f.label :body, "Message" %>
+	      <%= f.text_area :body, value: "Hi, this is my wish list :)", placeholder: "Message" %>
+
+	  	</div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<%= f.submit "Send", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+	<% end %>
 </div>

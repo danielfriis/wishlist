@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def show
-    @lists = @user.lists
+    @lists = @user.lists.allowed(current_user)
     @wishes = @user.wishes.rank(:row_order)
     @list = current_user.lists.build if signed_in?
   end
@@ -53,6 +53,11 @@ class UsersController < ApplicationController
       @updated = params[:updated]
       render 'edit'
     end
+  end
+
+  def invite_suggestion
+    results = User.search(params[:query]).most_followers
+    render json: results.to_json
   end
 
   def following

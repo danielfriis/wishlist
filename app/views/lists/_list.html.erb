@@ -1,7 +1,7 @@
 <% if current_page?(user_path(@user)) %> 
 <!-- Profile lists -->
 	<div class="span6">
-		<div class="white-box user_list">
+		<div class="white-box user_list <% if list.private %>private_list<% end %>">
 			
 				<% if current_user?(list.user) %>
 				  <%= link_to "&times;".html_safe, [current_user, list], class: "close", method: :delete,
@@ -12,7 +12,10 @@
 			
 				<div class="user_list_title">
 					<h3><%= link_to list.name, user_list_path(@user, list) %></h3>
-					<p class="muted" id="wishes_count"><%= pluralize(list.wishes.count, "wish") %></p>
+					<p class="muted" id="wishes_count">
+						<% if list.private %><a href="#" class="muted tooltip-toggle" rel="tooltip" data-toggle="tooltip" data-title="This list is private"><i class="fa fa-lock"></i></a><% end %>
+						<%= pluralize(list.wishes.count, "wish") %>
+					</p>
 				</div>
 
 			<ul class="user_list_wishes <% if current_user?(list.user) %>dragndrop<% end %> unstyled hidden-phone" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
@@ -20,7 +23,7 @@
 				<!-- List wishes -->
 				<% if list.wishes.any? %>
 					<% list.wishes.includes(:item).rank(:row_order).each do |wish| %>
-						<%= render partial: 'wishes/wish', locals: {wish: wish} %>
+						<%= render partial: 'wishes/wish', locals: {wish: wish, size: "small"} %>
 					<% end %>
 				<% end %>
 				<%= render partial: 'shared/list_wo_wish', locals: {list: list} %>

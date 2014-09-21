@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140916084715) do
+ActiveRecord::Schema.define(:version => 20140919131030) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(:version => 20140916084715) do
 
   add_index "activities", ["trackable_id"], :name => "index_activities_on_trackable_id"
   add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
+
+  create_table "admissions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "accessible_id"
+    t.string   "accessible_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "admissions", ["accessible_id"], :name => "index_admissions_on_accessible_id"
+  add_index "admissions", ["user_id"], :name => "index_admissions_on_user_id"
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -101,8 +112,10 @@ ActiveRecord::Schema.define(:version => 20140916084715) do
   create_table "lists", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "private",     :default => false
+    t.text     "description"
   end
 
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"

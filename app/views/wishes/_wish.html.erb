@@ -1,29 +1,33 @@
-<li class="media user_list<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>_large<% end %>_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
-		<a class="thumb pull-left" href="<%= wish_path(wish) %>">
-			<%= image_tag wish.item.image_url(:thumb).to_s, class: "img-rounded" %>
-		</a>
-		<div class="media-body">
+<li class="media user_list<% if size == "large" %>_large<% end %>_wish" id="wish_<%= wish.id %>" data-item-id="<%= wish.id %>">
+	<a class="thumb pull-left" href="<%= wish_path(wish) %>">
+		<%= image_tag wish.item.image_url(:thumb).to_s, class: "img-rounded" %>
+	</a>
+	<div class="media-body">
 		<% if current_user?(wish.list.user) %>
-			    	<%= link_to "×", wish, method: :delete, class: "muted close",
+			<%= link_to "×", wish, method: :delete, class: "muted close",
 			                                data: { confirm: "You sure?" },
 			                                title: wish.item.title,
 			                                remote: true %>
-			  	<% end %>
-		  	<h4 class="media-heading ellipsis">
-		  		<%= link_to wish.title, wish %>
-		  	</h4>
-		  	<%= render partial: 'reservations/reserve_form', locals: {wish: wish} if signed_in? && !current_user?(wish.list.user) && current_page?(url_for(:controller => 'lists', :action => 'show')) %>
-		  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>
-		  		<% if wish.item.price.present? %>
-		  			<div><%= exchanged_price(wish.item) %><% if wish.item.vendor.present? %> from <strong><%= link_to wish.item.vendor.name, wish.item.link, class: "shop-link muted" %></strong> <% end %></div>
-		  		<% end %>
-		  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
-		  	<% end %>
-		  	<% if wish.item.price %>
-		  		<span class="small_price"><%= exchanged_price(wish.item) %> from <%= link_to wish.item.vendor.name, wish.item.vendor.url, target: "_blank", class: "muted" %></span>
-		  	<% end %>
-		  	<span class="timestamp">
-			    <%= time_ago_in_words(wish.created_at).capitalize %> ago
-		 		 </span>
-		</div>
+		<% end %>
+  	<h4 class="media-heading ellipsis">
+  		<%= link_to wish.title, wish %>
+  	</h4>
+	  <%= render partial: 'reservations/reserve_form', locals: {wish: wish} if signed_in? && !current_user?(wish.list.user) && current_page?(url_for(:controller => 'lists', :action => 'show')) %>
+  	<% if current_page?(url_for(:controller => 'lists', :action => 'show')) %>
+  		<% if wish.item.price.present? %>
+  			<div><%= exchanged_price(wish.item) %><% if wish.item.vendor.present? %> from <strong><%= link_to wish.item.vendor.name, wish.item.link, class: "shop-link muted" %></strong> <% end %></div>
+  		<% end %>
+  		<%= best_in_place_if current_user?(wish.list.user), wish, :note, nil: "Click to add a note" %>
+  	<% end %>
+  	<% if size == "small" %>
+      <span class="small_price">
+    		<% if wish.item.price %>
+    			<%= exchanged_price(wish.item) %> from <%= link_to wish.item.vendor.name, wish.item.vendor.url, target: "_blank", class: "muted" %>
+    		<% end %>
+    	</span>
+    <% end %>
+  	<span class="timestamp">
+	    <%= time_ago_in_words(wish.created_at).capitalize %> ago
+ 		</span>
+	</div>
 </li>

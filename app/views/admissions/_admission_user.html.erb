@@ -1,0 +1,9 @@
+<li id="<%= admission.id if admission %>"><%= image_tag avatar(user, :medium), alt: user.name, class: 'gravatar gravatar-medium img-rounded' %> <strong><%= user.name %></strong> <br/>
+	<% if user == @list.user %>
+		This is you
+	<% else %>
+		Invited by you
+		<%= link_to '- Remove', admission,
+                    class: "muted", method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+	<% end %>
+</li>

@@ -1,0 +1,46 @@
+jQuery(function(){
+	$('.best_in_place').best_in_place();
+	$(':checkbox').checkbox();
+	$(':radio').radio();
+});
+
+$(document).ready(function(){
+
+	var invite_to_secret = $("#invite_to_secret");
+
+	var database = {
+		url: '/invite_suggestion?query=%QUERY',
+		wildcard: '%QUERY',
+	}
+
+	var search_source = new Bloodhound({
+		datumTokenizer: function(d) {
+			return Bloodhound.tokenizers.whitespace(d.val);
+		},
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: database
+	});
+
+	search_source.initialize();
+
+	invite_to_secret.typeahead({
+		minLength: 2
+	},
+	{
+		name: 'search_source',
+		displayKey: 'name',
+		source: search_source.ttAdapter(),
+		templates: {
+			suggestion: Handlebars.compile('<div class="invite_typeahead">' +
+				'<img src="{{avatar.small.url}}" class="gravatar gravatar-small img-rounded" />' +
+					'{{name}}' +
+				'</div>')
+		}
+	});
+
+	invite_to_secret.on('typeahead:selected', function(evt, user) {
+		console.log(user);
+		$('#admission_user_id').val(user.id);
+		$('#new_admission').submit();
+	});
+});

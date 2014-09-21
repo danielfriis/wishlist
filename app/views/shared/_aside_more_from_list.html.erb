@@ -2,7 +2,7 @@
 	<h3>More from <%= link_to @wish.list.name, [@wish.list.user, @wish.list] %></h3>
   <ul class="user_list user_list_wishes unstyled">
     <% @wish.list.wishes.includes(:item).rank(:row_order).each do |wish| %>
-      <%= render partial: 'wish', locals: {wish: wish} %>
+      <%= render partial: 'wish', locals: {wish: wish, size: "small"} %>
     <% end %>
   </ul>
 </div>

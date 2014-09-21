@@ -24,6 +24,7 @@
 #  website                :string(255)
 #  bio                    :text
 #  pinterest              :string(255)
+#  facebook               :string(255)
 #
 
 require 'spec_helper'
