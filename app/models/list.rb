@@ -26,8 +26,12 @@ class List < ActiveRecord::Base
   validates :user_id, presence: true
 
   def self.allowed(current_user)
-    allowed_users = "SELECT user_id FROM admissions WHERE (accessible_type = 'List')"
-  	where("private = :false OR (private = :true AND :current_user IN (#{allowed_users})) OR (private = :true AND :current_user IN (user_id))", current_user: current_user.id, false: false, true: true)
+    if current_user
+      allowed_users = "SELECT user_id FROM admissions WHERE (accessible_type = 'List')"
+    	where("private = :false OR (private = :true AND :current_user IN (#{allowed_users})) OR (private = :true AND :current_user IN (user_id))", current_user: current_user.id, false: false, true: true)
+    else
+      where("private = :false", false: false)
+    end
   end
 
 end
