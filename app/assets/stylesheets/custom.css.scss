@@ -129,9 +129,13 @@ body {
 
 .twitter-typeahead{
      width: 100%;
+     input[type="text"] {
+      margin-bottom: 5px;
+     }
 }
 .tt-dropdown-menu{
     width: 100%;
+    padding-bottom: 5px !important;
 }
 input.typeahead.tt-query{ /* This is optional */
     width: 300px !important;
@@ -1274,7 +1278,7 @@ input {
   }
 }
 
-.list-add-wish #new_item {
+#new_item .list-add-wish {
   #note, #item_link, #item_title {
     width: 70%;
   }

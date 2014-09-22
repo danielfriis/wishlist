@@ -97,12 +97,33 @@ $(document).ready(function(){
 
 	search_source.initialize();
 
-	searchfield.on('input', function(e) {
-    $('#new_item .item_fields').hide();
+	function reset() {
+		searchfield.show();
+		$("#new_item").find("input[type='submit']").hide();
+		$("#btn-to-modal-secondary").show();
+		$("#start-over").hide();
+		$('#new_item .item_fields').hide();
     $('input#item_image').show();
     $('#item-display-image').removeClass("image-cycler");
     $('#item_link').prop('readonly', false);
     $('#item-display-image').css("background-image", "url(<%= asset_path('choose-image.png') %>)");
+	};
+
+	$("#start-over").on('click', function(){
+		reset();
+	});
+
+	$(document).on('click', '#btn-to-modal-secondary', function() {
+	  $('#modal-default').hide();
+	  $('#modal-secondary').show();
+	});
+
+	$(document).on('click', '#btn-to-modal-default', function() {
+	  $('#modal-default').show();
+	  $('#modal-secondary').hide();
+	});
+
+	searchfield.on('input', function(e) {
     if (ValidUrl(searchfield.val())) {
     		search_source.clear();
         search_source.remote = linkpreview; // Next choose the desired alternate data source
@@ -126,7 +147,7 @@ $(document).ready(function(){
 	    suggestion: Handlebars.compile('<div class="media list_typeahead">' + 
 	    	'<img src="{{image}}" id="selected-img" class="img-rounded thumb pull-left" id="item_{{id}}" />' +
 		    	'<div class="media-body">' + 
-		    		'<h4 class="media-heading">{{title}}</h4>' +
+		    		'<h4 class="media-heading ellipsis">{{title}}</h4>' +
 		    		'<div><strong>{{vendor}}</strong></div>' +
 		    		'<div>{{price}}</div>' +
 		    	'</div>' + 
@@ -148,7 +169,11 @@ $(document).ready(function(){
 	searchfield.on('typeahead:selected', function(evt, item) {
 		console.log(item);
 		console.log(item.images);
-		$("#new_item > .item_fields").show();
+		searchfield.hide();
+		$("#new_item").find("input[type='submit']").show();
+		$("#btn-to-modal-secondary").hide();
+		$("#start-over").show();
+		$("#new_item").find(".item_fields").show();
     $('#item_title').val(item.title).focus();
     $('#item_remote_image_url').val(item.image);
     if (item.image) {

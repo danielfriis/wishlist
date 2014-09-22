@@ -4,28 +4,27 @@
     <h3 id="make_wish">Make a wish</h3>
   </div>
 
-  <div id="modal-default-body" class="modal-body">
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <%= render 'shared/quick_wish' %>
-    <div class="spacer"></div>
+  <div id="modal-default">
+      <%= render 'shared/quick_wish' %>
   </div>
-  <div id="modal-secondary-body" class="modal-body" style="display:none;">
-    <div class="spacer"></div>
-    <div class="spacer"></div>
 
-    <div class="text-center">
-      <p>Drag this button to your bookmarks bar and press it whenever you find something on a webshop that you like.</p>
-      <a href="javascript:(function()%7Bvar%20script=document.createElement('SCRIPT');script.src='<%= request.protocol %><%= request.host_with_port %>/assets/bookmarklet/wishlistt_tagger.js?r='+Math.random()*99999999;document.body.appendChild(script);%7D)()" class="btn btn-success">Wishlistt it</a>
+  <div id="modal-secondary"  style="display:none;">
+    <div id="modal-secondary-body" class="modal-body">
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+      <div class="text-center">
+        <p>Drag this button to your bookmarks bar and press it whenever you find something on a webshop that you like.</p>
+        <a href="javascript:(function()%7Bvar%20script=document.createElement('SCRIPT');script.src='<%= request.protocol %><%= request.host_with_port %>/assets/bookmarklet/wishlistt_tagger.js?r='+Math.random()*99999999;document.body.appendChild(script);%7D)()" class="btn btn-success">Wishlistt it</a>
+      </div>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
     </div>
-
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-  </div>
-  <div id="modal-default-footer" class="modal-footer">
-    <a class="muted pull-left" href="#" id="btn-to-modal-secondary-body">Use the <strong>Wishlistt it</strong> button</a>
-    <a class="muted pull-left" href="#" id="btn-to-modal-default-body" style="display:none;">Back</a>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <!-- <a href="#" id="urlb" role="button" class="btn btn-primary">Add wish</a> -->
+    <div id="modal-default-footer" class="modal-footer">
+      <a class="muted pull-left" href="#" id="btn-to-modal-default">Back</a>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <!-- <a href="#" id="urlb" role="button" class="btn btn-primary">Add wish</a> -->
+    </div>
   </div>
 </div>
