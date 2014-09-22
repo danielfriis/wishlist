@@ -21,7 +21,7 @@
   	<% end %>
   	<% if size == "small" %>
       <span class="small_price">
-    		<% if wish.item.price %>
+    		<% if wish.item.price && wish.item.vendor %>
     			<%= exchanged_price(wish.item) %> from <%= link_to wish.item.vendor.name, wish.item.vendor.url, target: "_blank", class: "muted" %>
     		<% end %>
     	</span>
