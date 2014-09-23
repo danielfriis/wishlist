@@ -277,7 +277,7 @@ ul#admissions {
 }
 
 .navbar-search {
-  input#search, .span4.tt-hint {
+  input#search, .span6.tt-hint {
     padding: 4px;
     margin: 0;
     border: 1px solid lightgrey;
@@ -701,6 +701,7 @@ footer {
   h3 {
     font-size: 1em;
     line-height: 1.3em;
+    margin-bottom: 0;
   }
   p {
     position: absolute;

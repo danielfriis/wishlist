@@ -17,7 +17,7 @@
           </li>
           <li>
             <%= form_tag(search_path, :method => "get", id: "navbar-search",class: "navbar-search pull-left") do %>
-              <%= text_field_tag :search, params[:search], class: "span4", placeholder: "Search for products, people or shops", autocomplete: :off %>
+              <%= text_field_tag :search, params[:search], class: "span6", placeholder: "Search for products, people or shops", autocomplete: :off %>
             <% end %>
           </li>
         </ul>
