@@ -11,6 +11,7 @@
 #
 
 class Vendor < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   attr_accessible :name, :url
 
   has_many :items, dependent: :destroy
@@ -51,6 +52,10 @@ class Vendor < ActiveRecord::Base
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     where("upper(vendors.name) like upper(?)", "%#{query}%") 
+  end
+
+  def base_uri
+    vendor_path(self)
   end
 
   def self.most_followers

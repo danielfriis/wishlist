@@ -55,9 +55,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def invite_suggestion
-    results = User.search(params[:query]).most_followers
-    render json: results.to_json
+  def user_suggestion
+    # handled by search_suggestion.rb middleware
+    # results = User.search(params[:query]).most_followers
+    # render json: results.to_json
   end
 
   def following

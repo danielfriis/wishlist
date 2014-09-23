@@ -1,0 +1,116 @@
+$(document).ready(function(){
+	var navsearch = $("#navbar-search").find("#search");
+
+	$(document).on({
+    ajaxStart: function() { $("#new_item").addClass("loading");    },
+    ajaxStop: function() { $("#new_item").removeClass("loading"); }    
+	});
+
+	var items_source = {
+  	url: '/item_suggestion?query=%QUERY',
+  	wildcard: '%QUERY',
+	};
+	var users_source = {
+		url: '/user_suggestion?query=%QUERY',
+		wildcard: '%QUERY',
+		filter: function(data) {
+			return $.map(data, function(user) {
+				var image = ""
+				if (user.avatar.small.url) {
+					image = user.avatar.small.url
+				} else {
+					image = '/assets/default_images/gift.png'
+				};
+				return {
+					name: user.name,
+					image: image,
+					base_uri: user.base_uri
+				}
+			})
+		}
+	};
+	var vendors_source = {
+		url: '/vendor_suggestion?query=%QUERY',
+		wildcard: '%QUERY',
+	};
+
+	var items = new Bloodhound({
+		datumTokenizer: function(d) {
+			return Bloodhound.tokenizers.whitespace(d.val);
+		},
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: items_source
+	});
+	var users = new Bloodhound({
+		datumTokenizer: function(d) {
+			return Bloodhound.tokenizers.whitespace(d.val);
+		},
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: users_source
+	});
+	var vendors = new Bloodhound({
+		datumTokenizer: function(d) {
+			return Bloodhound.tokenizers.whitespace(d.val);
+		},
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: vendors_source
+	});
+
+	items.initialize();
+	users.initialize();
+	vendors.initialize();
+
+	navsearch.typeahead({
+			highlight: true,
+			minLength: 2
+		},
+		{
+			name: 'items_source',
+			displayKey: 'title',
+			source: items.ttAdapter(),
+			templates: {
+				header: '<h5>Products</h5>',
+				suggestion: Handlebars.compile('<div class="navbar-typeahead-suggestion">' +
+					'<img src="{{image.thumb.url}}" class="gravatar gravatar-small img-rounded" />' +
+						'<p class="ellipsis">{{title}}</p>' +
+					'</div>')
+			}
+		},
+		{
+			name: 'users_source',
+			displayKey: 'name',
+			source: users.ttAdapter(),
+			templates: {
+				header: '<h5>People</h5>',
+				suggestion: Handlebars.compile('<div class="navbar-typeahead-suggestion">' +
+					'<img src="{{image}}" class="gravatar gravatar-small img-rounded" />' +
+						'<p class="ellipsis">{{name}}</p>' +
+					'</div>')
+			}
+		},
+		{
+			name: 'vendors_source',
+			displayKey: 'name',
+			source: vendors.ttAdapter(),
+			templates: {
+				header: '<h5>Shops</h5>',
+				suggestion: Handlebars.compile('<div class="navbar-typeahead-suggestion">' +
+					'<img src="/assets/default_images/vendor.png" class="gravatar gravatar-small img-rounded" />' +
+						'<p class="ellipsis">{{name}}</p>' +
+					'</div>')
+			}
+		}
+	);
+
+	navsearch.on('typeahead:selected', function(evt, item) { 
+		window.location.href = item.base_uri;
+	});
+
+	navsearch.keypress(function(e) {
+		if(e.which == 13){
+				$("#navbar-search").submit();
+			}
+	});
+
+
+});

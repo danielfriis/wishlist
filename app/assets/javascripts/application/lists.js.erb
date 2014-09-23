@@ -31,11 +31,11 @@ $(document).ready(function(){
   };
   $(document).on({
     ajaxStart: function() { $("#new_item").addClass("loading");    },
-     ajaxStop: function() { $("#new_item").removeClass("loading"); }    
-});
+    ajaxStop: function() { $("#new_item").removeClass("loading"); }    
+	});
 
   var database = {
-	  	url: '/search_suggestion?query=%QUERY',
+	  	url: '/item_suggestion?query=%QUERY',
 	  	wildcard: '%QUERY',
 	  	filter: function(data) {
 		    return $.map(data, function(product) {
@@ -56,7 +56,7 @@ $(document).ready(function(){
 		    	}; 
 		    });
 		  }
-		}
+		};
 
 	var linkpreview = {
 	  	url: '/linkpreview?url=%QUERY',
@@ -75,7 +75,7 @@ $(document).ready(function(){
 		    	}; 
 		    });
 		  }
-		}
+		};
 
 	var search_source = new Bloodhound({
 	  datumTokenizer: function(d) {
@@ -159,7 +159,7 @@ $(document).ready(function(){
 			$("#start-over").show();
 			$("#new_item").find(".item_fields").show();
 			$('#item_title').val(sval).focus();
-			$("#item_via").val("no-link");
+			$("#item_via").val("no_link");
     }
 	});
 

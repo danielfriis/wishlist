@@ -16,6 +16,7 @@
 #
 
 class Item < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   attr_accessible :link, :title, :image, :remote_image_url, :gender, :vendor_id, :via, :price
 
   belongs_to :vendor
@@ -48,6 +49,10 @@ class Item < ActiveRecord::Base
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     where("upper(items.title) like upper(?)", "%#{query}%")
+  end
+
+  def base_uri
+    item_path(self)
   end
 
   def self.sort(general, gender, current_user)

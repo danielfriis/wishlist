@@ -28,6 +28,7 @@
 #
 
 class User < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   mount_uploader :avatar, AvatarUploader
 
   attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website, :facebook
@@ -136,6 +137,10 @@ class User < ActiveRecord::Base
     .select('users.*, count(relationships.followed_id) as relationships_count')
     .group('users.id')
     .order('relationships_count desc, users.created_at desc')
+  end
+
+  def base_uri
+    user_path(self)
   end
 
   def send_password_reset

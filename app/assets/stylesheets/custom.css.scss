@@ -277,7 +277,7 @@ ul#admissions {
 }
 
 .navbar-search {
-  input#search {
+  input#search, .span4.tt-hint {
     padding: 4px;
     margin: 0;
     border: 1px solid lightgrey;
@@ -287,6 +287,19 @@ ul#admissions {
   input#search:focus {
     // width: 260px;
     border: 1px solid #47a599;
+  }
+  .tt-dropdown-menu h5 {
+    margin: 0 0 0 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $verylightgray;
+  }
+  .tt-dropdown-menu > div {
+    div.navbar-typeahead-suggestion {
+      padding: 5px;
+    }
+    p {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -319,7 +332,7 @@ ul#admissions {
   max-height: none !important;
 }
 
-@media all and (min-height: 40em) {
+@media all and (min-height: 4em) {
   .modal {
     position: fixed;
   }

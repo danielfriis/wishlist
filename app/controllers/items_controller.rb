@@ -68,7 +68,7 @@ class ItemsController < ApplicationController
 		redirect_to :back
 	end
 
-	def search_suggestion
+	def item_suggestion
 		# Handled by middleware items.rb
 		# render json: Item.search(params[:query]).popular.to_json(include: :vendor)
 	end
