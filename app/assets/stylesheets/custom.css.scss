@@ -288,6 +288,10 @@ ul#admissions {
     // width: 260px;
     border: 1px solid #47a599;
   }
+  &.loading #search {
+    background: url(ajax-loader.gif) no-repeat;
+    background-position: right 7px center;
+  }
   .tt-dropdown-menu h5 {
     margin: 0 0 0 5px;
     padding-bottom: 5px;

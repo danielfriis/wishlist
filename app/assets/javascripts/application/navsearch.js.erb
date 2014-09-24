@@ -2,8 +2,8 @@ $(document).ready(function(){
 	var navsearch = $("#navbar-search").find("#search");
 
 	$(document).on({
-    ajaxStart: function() { $("#new_item").addClass("loading");    },
-    ajaxStop: function() { $("#new_item").removeClass("loading"); }    
+    ajaxStart: function() { $("#navbar-search").addClass("loading");    },
+    ajaxStop: function() { $("#navbar-search").removeClass("loading"); }    
 	});
 
 	var items_source = {
