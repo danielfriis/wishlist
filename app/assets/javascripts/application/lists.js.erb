@@ -29,7 +29,7 @@ $(document).ready(function(){
     val = val.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     return val;
   };
-  $(document).on({
+  $("#new_item").on({
     ajaxStart: function() { $("#new_item").addClass("loading");    },
     ajaxStop: function() { $("#new_item").removeClass("loading"); }    
 	});
