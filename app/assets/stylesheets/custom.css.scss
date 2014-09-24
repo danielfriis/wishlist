@@ -288,10 +288,6 @@ ul#admissions {
     // width: 260px;
     border: 1px solid #47a599;
   }
-  &.loading #search {
-    background: url(ajax-loader.gif) no-repeat;
-    background-position: right 7px center;
-  }
   .tt-dropdown-menu h5 {
     margin: 0 0 0 5px;
     padding-bottom: 5px;
@@ -305,6 +301,11 @@ ul#admissions {
       margin-bottom: 0;
     }
   }
+}
+
+.navbar-search.loading #search {
+  background: url(ajax-loader.gif) no-repeat;
+  background-position: right 7px center;
 }
 
 .form-search {
@@ -1297,16 +1298,17 @@ input {
   }
 }
 
+#new_item.loading #search {
+  background: url(ajax-loader.gif) no-repeat;
+  background-position: right 7px center;
+}
+
 #new_item .list-add-wish {
   #note, #item_link, #item_title {
     width: 70%;
   }
   .checkbox {
     width: 70%;
-  }
-  &.loading #search {
-    background: url(ajax-loader.gif) no-repeat;
-    background-position: right 7px center;
   }
 }
 

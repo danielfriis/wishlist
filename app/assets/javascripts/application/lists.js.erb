@@ -29,10 +29,10 @@ $(document).ready(function(){
     val = val.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     return val;
   };
-  $("#new_item").on({
-    ajaxStart: function() { $("#new_item").addClass("loading");    },
-    ajaxStop: function() { $("#new_item").removeClass("loading"); }    
-	});
+ //  $("#new_item").on({
+ //    ajaxStart: function() { $(this).addClass("loading");    },
+ //    ajaxStop: function() { $(this).removeClass("loading"); }    
+	// });
 
   var database = {
 	  	url: '/item_suggestion?query=%QUERY',
@@ -55,7 +55,11 @@ $(document).ready(function(){
 		    		price: price
 		    	}; 
 		    });
-		  }
+		  },
+  		ajax: {
+                beforeSend: function(){ $("#new_item").addClass("loading"); },
+                complete: function(){ $("#new_item").removeClass("loading"); }
+            }
 		};
 
 	var linkpreview = {
@@ -74,7 +78,11 @@ $(document).ready(function(){
 		    		price: product.price,
 		    	}; 
 		    });
-		  }
+		  },
+		  ajax: {
+                beforeSend: function(){ $("#new_item").addClass("loading"); },
+                complete: function(){ $("#new_item").removeClass("loading"); }
+            }
 		};
 
 	var search_source = new Bloodhound({

@@ -1,14 +1,18 @@
 $(document).ready(function(){
 	var navsearch = $("#navbar-search").find("#search");
 
-	$("#navbar-search").on({
-    ajaxStart: function() { $("#navbar-search").addClass("loading");},
-    ajaxStop: function() { $("#navbar-search").removeClass("loading"); }    
-	});
+	// $("#navbar-search").on({
+ //    ajaxStart: function() { $(this).addClass("loading");},
+ //    ajaxStop: function() { $(this).removeClass("loading"); }    
+	// });
 
 	var items_source = {
   	url: '/item_suggestion?query=%QUERY',
   	wildcard: '%QUERY',
+  	ajax: {
+                beforeSend: function(){ $("#navbar-search").addClass("loading"); },
+                complete: function(){ $("#navbar-search").removeClass("loading"); }
+            }
 	};
 	var users_source = {
 		url: '/user_suggestion?query=%QUERY',
@@ -27,11 +31,19 @@ $(document).ready(function(){
 					base_uri: user.base_uri
 				}
 			})
-		}
+		},
+		ajax: {
+                beforeSend: function(){ $("#navbar-search").addClass("loading"); },
+                complete: function(){ $("#navbar-search").removeClass("loading"); }
+            }
 	};
 	var vendors_source = {
 		url: '/vendor_suggestion?query=%QUERY',
 		wildcard: '%QUERY',
+		ajax: {
+                beforeSend: function(){ $("#navbar-search").addClass("loading"); },
+                complete: function(){ $("#navbar-search").removeClass("loading"); }
+            }
 	};
 
 	var items = new Bloodhound({
