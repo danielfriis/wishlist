@@ -137,6 +137,10 @@ GEM
       thor (~> 0.14)
     json (1.7.7)
     jwt (1.0.0)
+    koala (1.10.1)
+      addressable
+      faraday
+      multi_json
     link_thumbnailer (1.0.9)
       hashie (>= 1.2.0)
       json (~> 1.7.6)
@@ -304,6 +308,7 @@ DEPENDENCIES
   impressionist
   jquery-cookie-rails
   jquery-rails (= 2.0.2)
+  koala
   link_thumbnailer
   mini_magick
   mixpanel-ruby

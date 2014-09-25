@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
     user = create! do |user|
       user.name = auth['info']['name']
       user.email = auth['info']['email']
-      user.remote_avatar_url = auth['info']['image'].split("=")[0] << "=large"
+      user.remote_avatar_url = auth['info']['image']
       user.gender = auth['extra']['raw_info']['gender'].titleize
       user.location = auth['info']['location']
       user.password = generated_password
