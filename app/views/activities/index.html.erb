@@ -6,9 +6,11 @@
 	</div>
 	<div class="span8">
 		<div class="white-box">
+
 			<% @activities.each do |activity| %>
 				<%= ActivityPresenter.new(activity, self).render_activity if activity.trackable %>
 			<% end %>
+
 			<%= will_paginate @activities %>
 		</div>
 	</div>

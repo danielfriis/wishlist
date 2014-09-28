@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
       user.password = generated_password
       user.password_confirmation = generated_password
     end
+    user.lists.create!(name: "My Wish List")
     UserMailer.delay.signup_confirmation(user.id, generated_password)
     user.delay.subscribe_email
     return user

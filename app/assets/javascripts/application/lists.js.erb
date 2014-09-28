@@ -157,7 +157,7 @@ $(document).ready(function(){
 	});
 
 	searchfield.keypress(function(e) {
-    if(e.which == 13) {
+    if(e.which == 13 && search_source.remote.url == database.url) {
     	e.preventDefault();
     	sval = searchfield.val();
     	searchfield.typeahead('close').hide();
@@ -168,6 +168,9 @@ $(document).ready(function(){
 			$("#new_item").find(".item_fields").show();
 			$('#item_title').val(sval).focus();
 			$("#item_via").val("no_link");
+    } else if(e.which == 13) {
+    	e.preventDefault();
+    	return
     }
 	});
 
