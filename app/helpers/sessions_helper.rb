@@ -4,6 +4,9 @@ module SessionsHelper
 
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
+    if user.fb_auth
+      cookies[:remember_token] = { value: user.remember_token, expires: user.fb_auth.oauth_expires_at }
+    end
     self.current_user = user
     tracker.track(user.id, 'Sign in')
     tracker.increment(user.id, {'Logins' => 1})
@@ -26,9 +29,15 @@ module SessionsHelper
   end
 
   def signed_in_user
-    unless signed_in?
+    if !signed_in?
       store_location
       redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+
+  def deauthorized?
+    if session[:deauthorized] == "true"
+      return true
     end
   end
 

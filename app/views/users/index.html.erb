@@ -7,7 +7,7 @@
 </div>
 
 <div class="row">
-	<div class="span9">
+	<div class="span8">
 		<div>
 			<%= form_tag(users_path, :method => "get", id: "search-form", class: "form-search form-inline") do %>
 				<%= text_field_tag :search, params[:search], class: "span6", placeholder: "Search for friends" %>
@@ -27,7 +27,7 @@
 
 		<%= will_paginate @users, page_links: false %>
 	</div>
-	<aside class="pull-right span3">
+	<aside class="pull-right span4">
 		<% if current_user.admin? %>
 			<div class="admin">
 			  <h3>Admin-info</h3>
@@ -36,7 +36,8 @@
 			  </span>
 			</div>
 		<% end %>
-		
-		<%= render 'shared/aside_facebook' %>
+		<% if current_user && current_user.fb_auth %>
+			<%= render 'shared/aside_follow_fb_friends', users: current_user.fb_friends_on_halusta.first(20) %>
+		<% end %>
 	</aside>
 </div>

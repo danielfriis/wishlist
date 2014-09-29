@@ -1,10 +1,11 @@
 <% subject ||= @subject %>
+<% size ||= "default" %>
 <% unless current_user?(subject) %>
-	<div id="follow_form_<%= subject.class.name %>_<%= subject.id %>" class="follow_form inline-block">
+	<div class="follow_form_<%= subject.class.name %>_<%= subject.id %> follow_form follow_form_<%= size %> inline-block">
 	  <% if current_user.following?(subject) %>
-	    <%= render partial: 'users/unfollow', locals: {:subject => subject} %>
+	    <%= render partial: 'users/unfollow', locals: {:subject => subject, size: size} %>
 	  <% else %>
-	    <%= render partial: 'users/follow', locals: {:subject => subject} %>
+	    <%= render partial: 'users/follow', locals: {:subject => subject, size: size} %>
 	  <% end %>
 	</div>
 <% end %>

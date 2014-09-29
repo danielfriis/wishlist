@@ -23,7 +23,11 @@ class SessionsController < ApplicationController
      # Create a new user or add an auth to existing user, depending on
      # whether there is already a user signed in.
       @auth = Authorization.create_with_omniauth(auth, current_user)
+    else
+      @auth.renew_token(auth)
+      @auth.user.update_fb_friends
     end
+
     # Log the authorizing user in.
     sign_in @auth.user
     if @auth.user.new_record? && cookies[:mp_distinct_id]

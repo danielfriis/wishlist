@@ -1,0 +1,19 @@
+<% unless users.blank? %>
+	<div class="aside_users">
+	  <h3>Friends already on Halusta</h3>
+	  <ul class="unstyled">
+	    <% users.each do |user| %>
+	    	<li class="aside_search_result">
+	      		<%= link_to(user) do %>
+	      			<div class="block pull-left">
+	      				<%= image_tag avatar(user, :small), alt: user.name, class: "gravatar gravatar-small img-rounded" %>
+							</div>
+							<div class="block block-content ellipsis">
+	      				<%= truncate(user.name) %> <%= render partial: 'users/follow_form', locals: {subject: user, size: "small"} %>
+	      			</div>
+	      		<% end %>
+	    	</li>
+	    <% end %>
+	  </ul>	
+	</div>
+<% end %>

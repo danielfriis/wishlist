@@ -51,6 +51,8 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  serialize :fb_friends
+
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
   before_update :check_password
@@ -96,6 +98,27 @@ class User < ActiveRecord::Base
     first_name = name.split(" ").first
     last_name = name.split(" ").last unless name.split(" ").first == name.split(" ").last
     gb.lists.subscribe({:id => ENV["MAILCHIMP_LIST_ID"], :email => {:email => email}, :merge_vars => {:FNAME => first_name, :LNAME => last_name}, :double_optin => false})
+  end
+
+  def fb_auth
+    @fb_auth ||= authorizations.find_by_provider("facebook")
+  end
+
+  def fb_connect
+    @fb_connect ||= Koala::Facebook::API.new(fb_auth.oauth_token)
+    block_given? ? yield(@fb_connect) : @fb_connect
+  rescue Koala::Facebook::APIError => e
+    logger.info e.to_s
+    nil
+  end
+
+  def update_fb_friends
+    self.fb_friends = fb_connect{ |fb| fb.get_connection("me", "friends") }.map{ |friend| friend["id"] }
+    self.save
+  end
+
+  def fb_friends_on_halusta
+    Authorization.where(uid:fb_friends).map{ |a| a.user unless self.following?(a.user) }
   end
 
   def to_param

@@ -1,3 +1,3 @@
-$("#follow_form_<%= @subject.class.name %>_<%= @subject.id %>").html("<%= escape_javascript(render(partial: 'users/follow', locals: {:subject => @subject})) %>");
-$("#followers_<%= @subject.class.name %>_<%= @subject.id %>").html('<%= @subject.followers.count %>');
+$(".follow_form_<%= @subject.class.name %>_<%= @subject.id %>").html("<%= escape_javascript(render(partial: 'users/follow', locals: {:subject => @subject})) %>");
+$(".followers_<%= @subject.class.name %>_<%= @subject.id %>").html('<%= @subject.followers.count %>');
 $(".reserve_form").hide();

@@ -4,7 +4,7 @@
     <%= image_tag avatar(user, :large), alt: user.name, class: "gravatar gravatar-large img-rounded" %>
   </a>
 
-  <h1><%= link_to user.name, user, class: "no-color" %></h1><%= render partial: 'users/follow_form', locals: {:subject => user} if signed_in? %>
+  <h1><%= link_to user.name, user, class: "no-color ellipsis" %></h1><%= render partial: 'users/follow_form', locals: {:subject => user} if signed_in? %>
   <span class="user-socials muted">
     <% if user.location? %>
       <span><i class="fa fa-map-marker"></i> <%= user.location %> </span>
