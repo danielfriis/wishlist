@@ -1,23 +1,27 @@
 <% provide(:title, 'About Us') %>
 <div class="row">
-	<div class="span12">
-		<h1>About Wishlistt</h1>
+	<div class="spacer"></div>
+	<div class="span12 text-center">
+		<h1>Collect, organize and share your wish list.</h1>
+		<h2>Welcome to the universe of Halusta</h2>
 	</div>
+	<div class="spacer"></div>
 </div>
 <div class="row">
-  <div class="span9">
-		<h3>Organize and Share Your Wish List</h3>
-		<p>
-		  What do you wish? Wishlistt is a site to collect the things you wish from around the Web. Whether you are creating a wish list for friends and family prior to a birthday, or a wish list for your wedding, Wishlistt helps you to stay organized, find inspiration and share your wishes. 
-		</p>
-		<p>Crafted by hand in <strong>Copenhagen, Denmark</strong>. Wishlistt started as a side project, and is now changing the way people share wishes.</p>
+  <div class="span10 offset1">
+		<p>Make a wish when you see a shooting star, blow out the candles on your birthday cake, toss a coin into a wishing well – or make a wish on Halusta and share your wishes with friends, family and the whole universe of Halusta for your wishes to come true!</p>
+
+		<p>Halusta makes you able to collect, organize and share your wish lists. Easily keep track of products you wish for by adding wishes to your lists using the “Halusta it” button, when you see something you like anywhere on the web, and simply share your wish lists with friends and family for your birthday, anniversary or Christmas.</p>
+
+		<p>At the same time, Halusta is also a social universe, where you go to get inspired! Browse the “Find inspiration” tabs to find inspiring products for your wardrobe, house, gadget collection, bookshelf or backpack or follow your friends, favorite bloggers, preferred stores and other exiting Halusta wishers.</p>
+
+		<p>Halusta was founded in Copenhagen in 2013 and is now changing the way people share wishes</p>
   </div>
-  <aside class="pull-right span3">
-    <%= render 'shared/aside_hq' %>
-    <%= render 'shared/aside_facebook' %>
-  </aside>
-  <div class="span9 about-boxes">
-  	<h2>How it works</h2>
+</div>
+<div class="row">
+	<div class="spacer"></div>
+	<div class="span8 offset2 about-boxes">
+  	<h2 class="text-center">How it works</h2>
 		<span class="text-left">
 			<div class="about-imgs pull-left">
 				<%= image_tag 'about-collect.gif', class: "animated" %>
@@ -26,6 +30,7 @@
 			<h2>Collect</h2>
 			<p>Easily add products to your wishlist from around the web with the Wishlistt button.</p>
 	 	</span>
+	 	<div class="spacer"></div>
 	 	<span class="text-right">
 			<div class="about-imgs pull-right">
 				<%= image_tag 'about-organize.gif', class: "animated" %>
@@ -34,6 +39,7 @@
 			<h2>Organize</h2>
 			<p>Wishlistt allows you to easily arrange and sort wishes across all your wishlists.</p>
 	 	</span>
+	 	<div class="spacer"></div>
 		<span class="text-left">
 			<div class="about-imgs pull-left">
 				<%= image_tag 'about-share.gif', class: "animated" %>
@@ -43,6 +49,11 @@
 			<p>With one click you can e-mail your wishlist to friends and family or export it to PDF.</p>
 	 	</span>
 	</div>
-
-
+</div>
+<div class="row">
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="span12">
+		<%= render 'shared/wide_facebook' %>
+	</div>
 </div>

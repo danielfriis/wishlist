@@ -1,6 +1,6 @@
 <ul class="nav nav-list update_user_nav">
 	<li class="nav-header">
-			<%= image_tag avatar(@user, :small), alt: @user.name, class: "gravatar gravatar-small img-rounded" %> <%= @user.name %>
+			<%= image_tag avatar(@user, :small), alt: @user.name, class: "gravatar gravatar-small img-rounded" %> <%= @user.name.split(" ").first %>
 		
 	</li>
 	<li <% if current_page?(controller: 'users', action: 'edit') %>class="active"<% end %>>

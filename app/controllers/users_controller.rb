@@ -26,9 +26,9 @@ class UsersController < ApplicationController
 
   def index
     if params[:search]
-      @users = User.search(params[:search]).most_followers.paginate(page: params[:page], per_page: 10)
+      @users = User.search(params[:search]).top_wishers.paginate(page: params[:page], per_page: 10)
     else
-      @users = User.most_followers.paginate(page: params[:page], per_page: 10)
+      @users = User.top_wishers.paginate(page: params[:page], per_page: 10)
     end
   end
 

@@ -163,6 +163,15 @@ class User < ActiveRecord::Base
     .order('relationships_count desc, users.created_at desc')
   end
 
+  def self.top_wishers
+    joins("left join lists on lists.user_id = users.id")
+    .joins("left join wishes on wishes.list_id = lists.id")
+    .joins("left join relationships on relationships.followed_id = users.id AND relationships.followed_type = 'User'")
+    .select('users.*, (count(relationships.followed_id) + count(wishes.id)) as top_count')
+    .group('users.id')
+    .order('top_count desc, users.created_at desc')
+  end
+
   def base_uri
     user_path(self)
   end

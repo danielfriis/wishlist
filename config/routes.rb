@@ -2,10 +2,9 @@ Wishlist::Application.routes.draw do
 
   resources :admissions
 
-
   resources :activities
-  match '/header_index', to: 'activities#header_index'
 
+  match '/header_index', to: 'activities#header_index'
 
   use_link_thumbnailer
 
@@ -21,6 +20,8 @@ Wishlist::Application.routes.draw do
     match '/signout', to: 'sessions#destroy'
     match '/signup', to: 'users#new'
   end
+
+  match '/bookmarklet', to: 'items#bookmarklet'
 
   namespace :admin do
     resources :users, :items, :wishes, :comments
@@ -56,7 +57,6 @@ Wishlist::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy'
   match '/terms',   to: 'static_pages#terms'
   match '/linkpreview', to: 'items#linkpreview'
-  match '/bookmarklet', to: 'items#bookmarklet'
   match '/inspiration', to: 'items#inspiration'
   match '/search',  to: 'static_pages#search'
   match 'contact_support', to: 'mailing#contact_support'

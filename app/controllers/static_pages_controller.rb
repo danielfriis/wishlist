@@ -19,6 +19,7 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+    "https://api.instagram.com/v1/users/455299030/media/recent/?client_id=cf2d0800cf214129b55db2917be2ef03"
   end
 
   def contact
