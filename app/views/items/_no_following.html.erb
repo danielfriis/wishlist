@@ -5,3 +5,13 @@
 	<%= link_to "Find Friends", users_path, class: "btn" %> <%= link_to "Find Vendors", vendors_path, class: "btn" %>
 </div>
 <div class="spacer"></div>
+<div class="spacer"></div>
+<% if current_user && current_user.fb_auth %>
+	<div class="span6 offset3 text-center">
+		<div class="row">
+			<div class="span4 offset1">
+				<%= render 'shared/aside_follow_fb_friends', users: current_user.fb_friends_on_halusta.first(10) %>
+			</div>
+		</div>
+	</div>
+<% end %>
