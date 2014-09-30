@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   mount_uploader :avatar, AvatarUploader
 
+  serialize(:fb_friends, Array)
+
   attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website, :facebook
   has_secure_password
   has_many :lists, dependent: :destroy
@@ -50,8 +52,6 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-
-  serialize(:fb_friends, Array)
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   end
 
   def fb_friends_on_halusta
-    Authorization.where(uid:fb_friends).map{ |a| a.user unless self.following?(a.user) }
+    Authorization.where(uid:fb_friends).map{ |a| a.user unless self.following?(a.user) }.reject!(&:blank?)
   end
 
   def to_param
