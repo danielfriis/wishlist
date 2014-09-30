@@ -3,8 +3,8 @@
    html: { method: :delete }, remote: true) do |f| %>
   
    <% unless mobile_device? %>
-  	<%= f.submit "Wishlistt'd", class: "btn btn-large" %>
+  	<%= f.submit "Saved", class: "btn btn-large" %>
   <% else %>
-  	<p class="muted price"><strong><%= f.submit "Wishlistt'd", class: "" %></strong></p>
+  	<p class="muted price"><strong><%= f.submit "Saved", class: "" %></strong></p>
   <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 <% if @message.body.empty? %>
-	<%= @list.user.name %> used Wishlistt to share their wish list with you!
+	<%= @list.user.name %> used Halusta to share their wish list with you!
 	<%= link_to "Click here to view the wish list", user_list_url(@list.user, @list) %>
 <% else %>
 	From <%= @list.user.name %>:
