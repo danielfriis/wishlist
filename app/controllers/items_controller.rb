@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
 	    		tracker.increment(@user.id, {'Items created' => 1})
 	    		format.json { render json: @item }
 	    	else
-		    	flash[:success] = "Product added to Wishlistt"
+		    	flash[:success] = "Product added to Halusta"
 		    	flash.keep[:success]
 		    	format.html { redirect_to :back }
 		    	format.js { render :js => "window.location.replace('#{user_list_path(current_user, @list)}')" }
