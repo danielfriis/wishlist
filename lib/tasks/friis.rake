@@ -4,6 +4,12 @@ task :subscribe_mailchimp => :environment do
  end
 end
 
+task :sign_out_all => :environment do
+	User.find_each do |user|
+		cookies.delete(:remember_token)
+	end
+end
+
 task :send_survey => :environment do
  User.find_each do |user|
  	UserMailer.delay.survey(user.id)

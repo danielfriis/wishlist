@@ -68,7 +68,7 @@ Wishlist::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.middleware.use ExceptionNotifier,
-    sender_address: 'noreply@wishlistt.com',
+    sender_address: 'noreply@halusta.com',
     exception_recipients: 'friis+vltemjyvfagwaddl8tdx@boards.trello.com'
 
 end

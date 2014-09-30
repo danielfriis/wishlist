@@ -3,9 +3,9 @@ module SessionsHelper
   include Analyzable
 
   def sign_in(user)
-    cookies.permanent[:remember_token] = user.remember_token
+    cookies.permanent[:remember_token_new] = user.remember_token
     if user.fb_auth
-      cookies[:remember_token] = { value: user.remember_token, expires: user.fb_auth.oauth_expires_at }
+      cookies[:remember_token_new] = { value: user.remember_token, expires: user.fb_auth.oauth_expires_at }
     end
     self.current_user = user
     tracker.track(user.id, 'Sign in')
@@ -21,7 +21,7 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+    @current_user ||= User.find_by_remember_token(cookies[:remember_token_new])
   end
 
   def current_user?(user)
@@ -43,7 +43,7 @@ module SessionsHelper
 
   def sign_out
     self.current_user = nil
-    cookies.delete(:remember_token)
+    cookies.delete(:remember_token_new)
   end
 
   def redirect_back_or(default)
