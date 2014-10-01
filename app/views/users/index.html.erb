@@ -36,7 +36,7 @@
 			  </span>
 			</div>
 		<% end %>
-		<% if current_user && current_user.fb_auth %>
+		<% if current_user && current_user.fb_auth && current_user.fb_friends_on_halusta %>
 			<%= render 'shared/aside_follow_fb_friends', users: current_user.fb_friends_on_halusta.first(20) %>
 		<% end %>
 	</aside>

@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   end
 
   def fb_friends_on_halusta
-    Authorization.where(uid:fb_friends).map{ |a| a.user unless self.following?(a.user) }.reject!(&:blank?)
+    Authorization.where(uid:self.fb_friends).map{ |a| a.user unless self.following?(a.user) }.reject(&:blank?)
   end
 
   def to_param
