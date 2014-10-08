@@ -13,6 +13,7 @@
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= render 'layouts/shim' %>
+    <%= render 'layouts/google_analytics' if Rails.env.production? %>
   </head>
 
   <body <% if mobile_device? %>class="touch-device"<% end %>>
@@ -32,7 +33,6 @@
         </div>
         <%= render 'shared/add_wish' if signed_in? %>
         <%= render 'layouts/footer' %>
-        <%= render 'layouts/google_analytics' if Rails.env.production? %>
         <%= render 'layouts/skimlinks' unless Rails.env.development? %>
         <%= render 'layouts/uservoice' unless mobile_device? %>
       <% if mobile_device? %>
