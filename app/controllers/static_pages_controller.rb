@@ -44,6 +44,15 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def sitemap
+    @static_paths = [inspiration_url, about_url, contact_url]
+    @items = Item.popular
+    @users = User.top_wishers
+    respond_to do |format|
+      format.xml
+    end
+  end
+
 private
   def sort_general
     %w[recent popular following].include?(params[:sort]) ? params[:sort] : "popular"

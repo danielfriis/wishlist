@@ -50,6 +50,7 @@ Wishlist::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
 
   root to: 'static_pages#home'
+  get "sitemap.xml", to: "static_pages#sitemap", defaults: { format: "xml" }
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
