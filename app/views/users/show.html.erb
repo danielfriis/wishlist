@@ -17,7 +17,7 @@
       <!-- TODO: RENDER NO_LISTS -->
     <% end %>
     <% if current_user?(@user) %>
-      <div class="span6">
+      <div class="span4">
         <div class="white-box" id="new_list_link">
           <%= link_to("New wish list", new_user_list_path(current_user, @list), class: "muted", id: "new_list_link", remote: true) if current_user?(@user)  %>
         </div>

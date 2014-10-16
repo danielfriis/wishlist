@@ -1,0 +1,51 @@
+<% if current_page?(user_path(@user)) %> 
+<!-- Profile lists -->
+	<div class="span6">
+		<div class="white-box user_list <% if list.private %>private_list<% end %>">
+			
+				<% if current_user?(list.user) %>
+				  <%= link_to "&times;".html_safe, [current_user, list], class: "close", method: :delete,
+				                                data: { confirm: "You sure?" },
+				                                title: list.name %>
+				<% end %>
+			
+			
+				<div class="user_list_title">
+					<h3><%= link_to list.name, user_list_path(@user, list) %></h3>
+					<p class="muted" id="wishes_count">
+						<% if list.private %><a href="#" class="muted tooltip-toggle" rel="tooltip" data-toggle="tooltip" data-title="This list is private"><i class="fa fa-lock"></i></a><% end %>
+						<%= pluralize(list.wishes.count, "wish") %>
+					</p>
+				</div>
+
+			<ul class="user_list_wishes <% if current_user?(list.user) %>dragndrop<% end %> unstyled hidden-phone" id="wishes_<%= list.id %>" data-update-url="<%= sort_wishes_url %>" data-list-id="<%= list.id %>">
+
+				<!-- List wishes -->
+				<% if list.wishes.any? %>
+					<% list.wishes.includes(:item).rank(:row_order).each do |wish| %>
+						<%= render partial: 'wishes/wish', locals: {wish: wish, size: "small"} %>
+					<% end %>
+				<% end %>
+				<%= render partial: 'shared/list_wo_wish', locals: {list: list} %>
+			</ul>
+			<% if current_user?(list.user) %>
+				<%= link_to "Add wish", new_item_path, {remote: true, 'data-toggle' => 'modal', 'data-target' => "#make_wish", id: "add_wish", class: "user_list_add_wish"} %>
+			<% end %>
+		</div>
+	</div>
+<% else %>
+<!-- Aside sidebar lists -->
+	<li class="aside_user_list_wish">
+		<div class="block pull-left">
+			<%= image_tag(list.wishes.last.item.image_url(:thumb).to_s, class: "img-rounded") if list.wishes.last %>
+		</div>
+	  <div class="block block-content">
+	  	<span class="content">
+	  		<span><%= link_to list.name, user_list_path(@user, list) %></span>
+			  <span class="timestamp">
+			    Updated <%= time_ago_in_words(list.updated_at) %> ago.			        
+			  </span>
+	  	</span>
+	  </div>
+	</li>
+<% end %>

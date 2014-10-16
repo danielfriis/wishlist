@@ -1172,10 +1172,31 @@ input {
   margin: 0 auto;
 }
 
+ /* profile USER SHOW */
 
+ .row-of-3 {
+  width: 100%;
+ }
 
+ .item-in-row {
+  display: inline-block;
+  width: 32%;
+ }
 
- /* profile */
+ .item-list {
+  height: 415px;
+  .image-container {
+    background-color: white;
+    height: 370px;
+  }
+  .mark p {
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      font-style: normal;
+      text-align: left;
+    }
+}
 
 .wishes {
   list-style: none;

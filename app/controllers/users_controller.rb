@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def show
     @lists = @user.lists.allowed(current_user)
-    @wishes = @user.wishes.rank(:row_order)
     @list = current_user.lists.build if signed_in?
   end
 
