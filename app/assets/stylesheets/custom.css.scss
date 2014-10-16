@@ -1176,13 +1176,14 @@ input {
 
  .row-of-3 {
   width: 100%;
+  padding-top:4px;
  }
 
  .item-in-row {
   display: inline-block;
-  width: 31.7%;
+  width: 32.45%;
   img {
-    max-width: 95px;
+    max-width: 90px;
   }
  }
 
