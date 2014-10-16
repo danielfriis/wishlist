@@ -10,8 +10,8 @@
 		<h3 class="ellipsis"><%= truncate(item.title, length: 53) %>
 		<% if item.price.present? && mobile_device? %><span class="muted price"><br><%= exchanged_price(item) %></span><% end %></h3>
 		<% if item.vendor %><span class="muted">from <%= link_to item.vendor.name, item.vendor %></span><% end %>
-		<% if item.price.present? && !mobile_device? %><p class="muted price"><%= exchanged_price(item) %></p><% end %>
+		<% if item.price.present? && !mobile_device? %><p class="muted price item-meta"><%= exchanged_price(item) %></p><% end %>
 		<%= render 'wishes/wishlistt_it_form', item: item if mobile_device? %>
-		<p class="muted social-count"><i class="fa fa-heart"></i> <%= item.wishes.count %><% if signed_in? && current_user.admin? %> <i class="fa fa-star"></i> <%= item.popularity_score %><% end %></p>
+		<p class="muted social-count item-meta"><i class="fa fa-heart"></i> <%= item.wishes.count %><% if signed_in? && current_user.admin? %> <i class="fa fa-star"></i> <%= item.popularity_score %><% end %></p>
 	</div>
 </div>

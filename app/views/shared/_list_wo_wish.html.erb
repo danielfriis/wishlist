@@ -1,10 +1,10 @@
 <li class="no-wish center" <% if list.wishes.any? %>style="display:none"<% end %>>
 	<% if current_user?(@user) %>
 		<%= image_tag('default_images/thumb_gift.png', size: "60x60") %>
-		<h3>A list without a wish is no wish list!</h3>
-		<p>Begin collecting your wishes by clicking the 'Add wish' button. It's super easy!</p>
+		<h3 class="muted">A list without a wish is no wish list!</h3>
+		<p>Begin collecting your wishes by clicking the green 'make a wish' button in the navbar. It's super easy!</p>
 	<% else %>
 		<%= image_tag('default_images/thumb_gift.png', size: "60x60") %>
-		<h3>This list has no wishes yet</h3>
+		<h3 class="muted">This list has no wishes yet</h3>
 	<% end %>
 </li>

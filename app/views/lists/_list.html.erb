@@ -8,7 +8,11 @@
 					<em class="mark visible-desktop">
 						<p class="muted"><%= list.description %></p>
 					</em>
-					<%= image_tag wishes[0].item.image_url(:medium).to_s %>
+					<% if wishes[0] %>
+						<%= image_tag wishes[0].item.image_url(:medium).to_s %>
+					<% else  %>
+						<%= render partial: 'shared/list_wo_wish', locals: {list: list} %>
+					<% end %>
 					<div class="row-of-3">
 						<% wishes.limit(3).offset(1).each do |wish| %>
 							<div class="item-in-row">
