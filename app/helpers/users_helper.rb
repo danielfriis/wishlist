@@ -1,4 +1,5 @@
 module UsersHelper
+  include Analyzable
 
   def admin?(user)
     user.email == "daniel.friis@gmail.com"
@@ -13,7 +14,7 @@ module UsersHelper
       sign_in user
       flash[:success] = "Thanks for signing up!"
 
-      tracker.alias(user.id, cookies[:mp_distinct_id]) if cookies[:mp_distinct_id]
+      tracker.alias(user.id, cookies[:mp_distinct_id].split("%22")[3]) if cookies[:mp_distinct_id]
       tracker.people_set(user.id, {
                            '$name' => user.name,
                            '$email' => user.email,

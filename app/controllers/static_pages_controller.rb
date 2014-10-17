@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   helper_method :sort_general, :sort_gender
+  include Analyzable
 
   def home
     redirect_to inspiration_path if signed_in?
