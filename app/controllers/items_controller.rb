@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 	  else
 	  	mp_id = JSON.parse(cookies[:mp_distinct_id])["distinct_id"] if cookies[:mp_distinct_id]
 	  end
-	  tracker.track(mp_id, 'Visits item page', { item: @item.title, item_id: @item.id })
+	  tracker.track(mp_id, 'Visits item page', { item: @item.title, item_id: @item.id }) if mp_id
 	end
 
 	def new

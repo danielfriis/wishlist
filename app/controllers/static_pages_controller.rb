@@ -5,7 +5,9 @@ class StaticPagesController < ApplicationController
   def home
     redirect_to inspiration_path if signed_in?
     @items = Item.sort(sort_general, sort_gender, current_user).page(params[:page]).per_page(9)
-    tracker.track(JSON.parse(cookies[:mp_distinct_id])["distinct_id"], 'Visits landing page') if cookies[:mp_distinct_id]
+    if cookies[:mp_distinct_id] && !signed_in?
+      tracker.track(JSON.parse(cookies[:mp_distinct_id])["distinct_id"], 'Visits landing page')
+    end
     # if params[:sort] == "recent"
     #   @items = Item.recent.page(params[:page]).per_page(9)
     # elsif params[:sort] == "popular"
