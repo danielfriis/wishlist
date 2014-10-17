@@ -2,6 +2,16 @@ module SessionsHelper
 
   include Analyzable
 
+  def mp_id
+    if signed_in?
+      current_user.id
+    elsif cookies[:mp_distinct_id]
+      JSON.parse(cookies[:mp_distinct_id])["distinct_id"]
+    else
+      nil
+    end
+  end
+
   def sign_in(user)
     cookies.permanent[:remember_token_new] = user.remember_token
     if user.fb_auth

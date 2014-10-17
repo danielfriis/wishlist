@@ -14,11 +14,6 @@ class ItemsController < ApplicationController
 		@commentable = @item
 	  @comments = @commentable.comments
 	  @comment = Comment.new
-	  if signed_in?
-	  	mp_id = current_user.id
-	  else
-	  	mp_id = JSON.parse(cookies[:mp_distinct_id])["distinct_id"] if cookies[:mp_distinct_id]
-	  end
 	  tracker.track(mp_id, 'Visits item page', { item: @item.title, item_id: @item.id }) if mp_id
 	end
 
@@ -87,6 +82,7 @@ class ItemsController < ApplicationController
 
 	def inspiration
 		@items = Item.sort(sort_general, sort_gender, current_user).page(params[:page]).per_page(9)
+		tracker.track(mp_id, 'Visits inspiration page', {page: params[:page]}) if mp_id
 	end
 
 	def linkpreview
