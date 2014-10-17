@@ -14,6 +14,12 @@ class ItemsController < ApplicationController
 		@commentable = @item
 	  @comments = @commentable.comments
 	  @comment = Comment.new
+	  if signed_in?
+	  	mp_id = current_user.id
+	  else
+	  	mp_id = cookies[:mp_distinct_id].split("%22")[3] if cookies[:mp_distinct_id]
+	  end
+	  tracker.track(mp_id, 'Visits item page', {"item": @item.title, "item_id": @item.id})
 	end
 
 	def new
