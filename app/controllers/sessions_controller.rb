@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     # Log the authorizing user in.
     sign_in @auth.user
     if @auth.user.new_record? && cookies[:mp_distinct_id]
-      tracker.alias(@auth.user.id, cookies[:mp_distinct_id].split("%22")[3])
+      tracker.alias(@auth.user.id, JSON.parse(cookies[:mp_distinct_id])["distinct_id"])
       tracker.people_set(@auth.user.id, {
             '$name' => @auth.user.name,
             '$email' => @auth.user.email,
