@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def home
     redirect_to inspiration_path if signed_in?
     @items = Item.sort(sort_general, sort_gender, current_user).page(params[:page]).per_page(9)
-
+    tracker.track(cookies[:mp_distinct_id].split("%22")[3], 'Visits landing page') if cookies[:mp_distinct_id]
     # if params[:sort] == "recent"
     #   @items = Item.recent.page(params[:page]).per_page(9)
     # elsif params[:sort] == "popular"
@@ -20,7 +20,11 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-    "https://api.instagram.com/v1/users/455299030/media/recent/?client_id=cf2d0800cf214129b55db2917be2ef03"
+    if signed_in?
+      tracker.track(current_user.id, 'Visits about')
+    else
+      tracker.track(cookies[:mp_distinct_id].split("%22")[3], 'Visits about') if cookies[:mp_distinct_id]
+    end
   end
 
   def contact
