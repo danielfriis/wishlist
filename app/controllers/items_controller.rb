@@ -82,7 +82,7 @@ class ItemsController < ApplicationController
 
 	def inspiration
 		@items = Item.sort(sort_general, sort_gender, current_user).page(params[:page]).per_page(9)
-		tracker.track(mp_id, 'Visits inspiration page', {page: params[:page]}) if mp_id
+		tracker.track(mp_id, 'Visits inspiration page', { page: params[:page], sort: params[:sort] }) if mp_id
 	end
 
 	def linkpreview
