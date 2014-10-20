@@ -15,6 +15,7 @@ class ListsController < ApplicationController
     @wishes = @list.wishes.rank(:row_order)
     @lists = @user.lists
     @message = Message.new
+    tracker.track(mp_id, 'Visits list page', { list: @list.name, list_id: @list.id }) if mp_id
   end
 
   def new
