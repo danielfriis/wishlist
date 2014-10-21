@@ -17,7 +17,7 @@ jQuery ->
   if $('.scroll-container').size() > 0
     $(".scroll-container").on 'scroll', ->
       more_posts_url = $('.pagination .next_page a').attr('href')
-      if more_posts_url && $(".scroll-container").scrollTop() > $(".inspiration").height() - $(".inspiration").height() - 80
+      if more_posts_url && $(".scroll-container").scrollTop() > $(".inspiration").height() - $(".scroll-container").height() - 80
         $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
         $.getScript more_posts_url
       return
