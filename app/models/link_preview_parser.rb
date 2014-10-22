@@ -103,7 +103,7 @@ class LinkPreviewParser
     # doc = Nokogiri::HTML(open(url))
 
     # Get arrary of iso_codes and symbols
-    currencies_regex = Regexp.union(Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.compact.reject!{ |c| c.empty? } << "|kr.")
+    currencies_regex = Regexp.union(Money::Currency.table.collect{|k,h| [h[:iso_code],h[:symbol],h[:alternate_symbols]]}.flatten.compact.reject!{ |c| c.empty? } << "kr.")
     # Construct regex
     price_regex = /(?<=\p{Z}|^)((#{currencies_regex})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_regex}))?(?=\p{Z}|$)/m
 
