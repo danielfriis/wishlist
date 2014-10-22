@@ -27,10 +27,22 @@ class List < ActiveRecord::Base
 
   def self.allowed(current_user)
     if current_user
-      allowed_users = "SELECT user_id FROM admissions WHERE (accessible_type = 'List')"
-    	where("private = :false OR (private = :true AND :current_user IN (#{allowed_users})) OR (private = :true AND :current_user IN (user_id))", current_user: current_user.id, false: false, true: true)
+     #  allowed_users = "SELECT user_id FROM admissions WHERE (accessible_type = 'List' AND accessible_id IN (:admissions_list))"
+    	# where("private = :false OR (private = :true AND :current_user IN (#{allowed_users})) OR (private = :true AND :current_user IN (user_id))", current_user: current_user.id, admissions_list: self.all.collect{|l| l.id}, false: false, true: true)
+      lists = scoped.collect{|l| l if l.allowed_access(current_user) || l.private == false }
+      lists.count > 1 ? lists.reject!(&:nil?) : lists
     else
       where("private = :false", false: false)
+    end
+  end
+
+  def allowed_access(current_user)
+    if self.user == current_user
+      true
+    elsif self.admissions.where(user_id: current_user.id).present?
+      true
+    else
+      false
     end
   end
 
