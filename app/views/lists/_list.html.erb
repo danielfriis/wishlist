@@ -23,6 +23,7 @@
 				</a>
 			</div>
 			<h3 class="ellipsis"><%= truncate(list.name, length: 53) %></h3>
+			<% if list.private %><a href="#" class="muted tooltip-toggle" rel="tooltip" data-toggle="tooltip" data-title="This list is private"><i class="fa fa-lock"></i></a><% end %>
 			<span class="muted"><%= pluralize(list.wishes.count, 'wish') %></span>
 		</div>
 	</div>
