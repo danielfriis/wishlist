@@ -34,7 +34,7 @@ class UserMailer < ActionMailer::Base
     @invited_user = User.find(invited_user_id)
     @list = List.find(list_id)
 
-    mail to: @invited_user.email, subject: "#{@current_user.name} just invited you to see their private list"
+    mail to: @invited_user.email, subject: "#{@current_user.name} just invited you to see #{@current_user.gender == 'Male' ? 'his' : 'her'} private list"
   end
 
   def survey(user_id)

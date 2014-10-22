@@ -12,8 +12,10 @@ class LinkPreviewParser
     # page_info[:images] = (page_info[:images] + home_made(url)).uniq
     # Removed readability gem parsing because it is slow.
 
+    ua = "Mozilla/5.0 (compatible; Halustabot/1.0; +http://www.halusta.com/about)"
+
     url = Addressable::URI.parse(url).normalize.to_s
-    doc = Nokogiri::HTML(open(url))
+    doc = Nokogiri::HTML(open(url, "User-Agent" => ua ))
 
     page_info = {}
     page_info[:title] = doc.at_css("title").text.strip.gsub(/\r\n|\r|\n/, '')
@@ -27,8 +29,9 @@ class LinkPreviewParser
 
   def self.images(url, doc=nil)
     if doc == nil
+      ua = "Mozilla/5.0 (compatible; Halustabot/1.0; +http://www.halusta.com/about)"
       url = Addressable::URI.parse(url).normalize.to_s
-      doc = Nokogiri::HTML(open(url))
+      doc = Nokogiri::HTML(open(url, "User-Agent" => ua ).read)
     end
 
     page_info = {}
@@ -93,8 +96,9 @@ class LinkPreviewParser
 
   def self.price(url, doc=nil)
     if doc == nil
+      ua = "Mozilla/5.0 (compatible; Halustabot/1.0; +http://www.halusta.com/about)"
       url = Addressable::URI.parse(url).normalize.to_s
-      doc = Nokogiri::HTML(open(url))
+      doc = Nokogiri::HTML(open(url, "User-Agent" => ua ).read)
     end
     # Normalize URI
     # url = Addressable::URI.parse(url).normalize.to_s
