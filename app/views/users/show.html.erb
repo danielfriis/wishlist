@@ -9,6 +9,14 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="span12 user-list-controls">
+    <div class="hidden-phone btn-group sort_gender pull-right">
+      <%= link_to "<i class='fa fa-folder'></i>".html_safe, {view: "lists"}, class: (params[:view] != 'organize' ? 'btn active' : "btn") %>
+      <%= link_to "<i class='fa fa-list'></i>".html_safe, {view: "organize"}, class: (params[:view] == 'organize' ? 'btn active' : "btn") %>
+    </div>
+  </div>
+</div>
 <div class="show_user" >
   <div class="row js-masonry" data-masonry-options='{ "itemSelector": ".span6", "transitionDuration": "0.1s" }'>
     <% if @user.lists.any? %>
