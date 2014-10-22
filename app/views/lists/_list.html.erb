@@ -9,7 +9,7 @@
 						<p class="muted"><%= list.description %></p>
 					</em>
 					<% if wishes[0] %>
-						<%= image_tag wishes[0].item.image_url.to_s %>
+						<%= image_tag wishes[0].item.image_url(:medium).to_s %>
 					<% else  %>
 						<%= render partial: 'shared/list_wo_wish', locals: {list: list} %>
 					<% end %>
