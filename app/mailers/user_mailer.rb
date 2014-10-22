@@ -29,6 +29,14 @@ class UserMailer < ActionMailer::Base
     mail to: @followed_user.email, subject: "#{@current_user.name} commented on your wish"
   end
 
+  def invited_to_private_list(current_user_id, invited_user_id, list_id)
+    @current_user = User.find(current_user_id)
+    @invited_user = User.find(invited_user_id)
+    @list = List.find(list_id)
+
+    mail to: @invited_user.email, subject: "#{@current_user.name} just invited you to see their private list"
+  end
+
   def survey(user_id)
     @user = User.find(user_id)
 

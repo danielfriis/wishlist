@@ -1,0 +1,14 @@
+Hi <%= @invited_user.name %>,
+
+
+<%= @current_user.name %> just invited you to see <% if @current_user.gender == "Male" %> his <% end %><% if @current_user.gender == "Female" %> her <% end %> private list: <%= @list.name %>.
+
+See it here: <%= user_list_url(@current_user, @list) %>
+
+
+All the best,
+
+The team behind Halusta.com
+
+-------------
+Don't want to receive these kind of messages again? Click <%= edit_user_url(@invited_user) %>.

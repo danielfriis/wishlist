@@ -1,0 +1,13 @@
+<p>Hi <%= @invited_user.name %>,</p>
+
+<br>
+
+<p><%= @current_user.name %> just invited you to see <% if @current_user.gender == "Male" %> his <% end %><% if @current_user.gender == "Female" %> her <% end %> private list: <%= link_to @list.name, user_list_url(@current_user, @list), {style: 'color: #222222;font-weight:600;text-decoration: none;'} %>.</p>
+
+<br>
+<p>All the best, </p>
+
+<p>The team behind <%= link_to "Halusta.com", "http://www.Halusta.com", {style: 'color: #222222;font-weight:600;text-decoration: none;'} %>.</p>
+
+<p style="color:#808080">-------------</p>
+<p style="color:#808080"><small>Don't want to receive these kind of messages again? Click <%= link_to "here", edit_user_url(@invited_user), {style: 'color: #222222;text-decoration: none;'} %> to change your settings.</small></p>
