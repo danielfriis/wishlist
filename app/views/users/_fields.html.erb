@@ -38,6 +38,15 @@
 		</div>
 	<% end %>
 
+	<div class="control-group field-birthdate">
+		<%= f.label :birthdate, class: "control-label" %>
+
+		<div class="controls">
+			<%= f.date_select :birthdate, :order => [:month, :day, :year], start_year: 1905, prompt: { day: 'Select day', month: 'Select month', year: 'Select year' } %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
 	<div class="control-group">
 
 		<%= f.label :gender, class: "control-label" %>

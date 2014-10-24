@@ -25,6 +25,8 @@
 #  bio                    :text
 #  pinterest              :string(255)
 #  facebook               :string(255)
+#  fb_friends             :text
+#  birthdate              :date
 #
 
 class User < ActiveRecord::Base
@@ -33,7 +35,7 @@ class User < ActiveRecord::Base
 
   serialize(:fb_friends, Array)
 
-  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website, :facebook
+  attr_accessible :name, :email, :avatar, :remove_avatar, :password, :password_confirmation, :gender, :follower_notification, :comment_notification, :twitter, :instagram, :pinterest, :bio, :location, :website, :facebook, :birthdate
   has_secure_password
   has_many :lists, dependent: :destroy
   has_many :wishes, through: :lists
@@ -65,6 +67,7 @@ class User < ActiveRecord::Base
   before_save :clean_socials
 
   validates :name, presence: true, length: { maximum: 50 }
+  validates :birthdate, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
@@ -84,6 +87,7 @@ class User < ActiveRecord::Base
       user.remote_avatar_url = auth['info']['image']
       user.gender = auth['extra']['raw_info']['gender'].titleize
       user.location = auth['info']['location']
+      user.birthdate = Date.strptime(auth['extra']['raw_info']['birthday'],"%m/%d/%Y")
       user.password = generated_password
       user.password_confirmation = generated_password
     end

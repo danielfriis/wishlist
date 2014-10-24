@@ -23,6 +23,21 @@ $btnPrimaryBackground: #47a599;
 $btnPrimaryBackgroundHighlight: #53b5a8;
 $verylightgray: #e8e8e8;
 
+$warningBackground: #fcf8e3;
+$warningBorder: darken(adjust-hue($warningBackground, -10%), 20%);
+
+$errorBackground: #f2dede;
+$errorBorder: darken(adjust-hue($errorBackground, -10%), 20%);
+
+$successBackground: #dff0d8;
+$successBorder: darken(adjust-hue($successBackground, -10%), 20%);
+
+$infoBackground: #d9edf7;
+$infoBorder: darken(adjust-hue($infoBackground, -10%), 20%);
+
+$textColor: #444444;
+
+
 @import "bootstrap";
 @import "font-awesome";
 @import "flat-ui/flat-ui";
@@ -106,6 +121,16 @@ body {
 
 /* END BOOTSTRAP STYLING FOR FILE UPLOAD*/
 
+
+// FORMS
+
+.input-small {
+  padding: 2px !important;
+}
+
+// END - FORMS
+
+
 // Navlist
 .update_user_nav.nav-list > li > a, .update_user_nav.nav-list > li.nav-header {
   border-bottom: 1px solid lightgrey;
@@ -124,6 +149,27 @@ body {
 .update_user_nav.nav-list > li > a, .update_user_nav.nav-list .nav-header {
   padding: 8px 12px;
 }
+
+// END NAVLIST
+
+// ALERTS
+
+.alert-warning a {
+  color: darken($warningText, 20%);
+}
+.alert-error a {
+  color: darken($errorText, 20%);
+}
+.alert-info a {
+  color: darken($infoText, 20%);
+}
+.alert-success a {
+  color: darken($successText, 20%);
+}
+
+// END - ALERTS
+
+
 
 /* START TYPEAHEAD */
 
@@ -238,6 +284,9 @@ ul#admissions {
   }
 }
 
+
+// NAV
+
 .navbar-inner {
   min-height: 40px;
   padding-left: 20px;
@@ -320,6 +369,23 @@ ul#admissions {
   cursor: pointer;
 }
 
+// END - NAV
+
+
+// FORMS
+
+.field-birthdate {
+  select {
+    float: left;
+    width: 25%;
+    min-width: 120px;
+    margin-right: 5px;
+  }
+}
+
+// END - FORMS
+
+
 // .modal {
 //   position: absolute;
 //   top: 10%;
@@ -355,11 +421,11 @@ ul#admissions {
   position: fixed;
 }
 
-#activities_popover {
+#toggle-activities-popover {
   cursor: pointer;
 }
 
-.popover-content {
+.nav .popover-content {
   padding: 0;
   font-size: 13px;
   .gravatar {
@@ -377,6 +443,15 @@ ul#admissions {
     &:hover {
       background-color: #FCFCFC;
     }
+  }
+}
+
+.alert .popover {
+  color: $textColor;
+
+  .popover-content a {
+    color: darken($textColor, 30%);
+    font-weight: 600;
   }
 }
 

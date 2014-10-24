@@ -25,10 +25,10 @@ class SessionsController < ApplicationController
       @auth = Authorization.create_with_omniauth(auth, current_user)
     else
       @auth.renew_token(auth)
-      @auth.user.update_fb_friends
     end
 
     # Log the authorizing user in.
+    @auth.user.update_fb_friends
     sign_in @auth.user
     if @auth.user.new_record? && cookies[:mp_distinct_id]
       tracker.alias(@auth.user.id, JSON.parse(cookies[:mp_distinct_id])["distinct_id"])

@@ -25,7 +25,12 @@
         <div class="container spacer hidden-phone"></div>
         <div class="container">
           <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
+            <div class="alert alert-<%= key %>"><button type="button" class="close" data-dismiss="alert">&times;</button><%= value %></div>
+          <% end %>
+          <% if current_user && current_user.birthdate.blank? %>
+            <div class="alert alert-warning">
+              Please update your birthday. You can do it now by visiting your <%= link_to "settings", edit_user_path(current_user) %> page. <a href="#" class="popover-toggle" data-toggle="popover" data-placement="bottom" data-content="Providing your birthday helps make sure you get the right Halusta experience for your age. Also, it helps us to stay 100% <a href='http://www.coppa.org'>COPPA</a> complient." title="" data-original-title="" data-html=true>Learn why.</a>
+            </div>
           <% end %>
           <%= yield %>
           <%= debug(params) if Rails.env.development? %>

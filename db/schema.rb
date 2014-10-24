@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140929130450) do
+ActiveRecord::Schema.define(:version => 20141023131742) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20140929130450) do
     t.string   "pinterest"
     t.string   "facebook"
     t.text     "fb_friends"
+    t.date     "birthdate"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

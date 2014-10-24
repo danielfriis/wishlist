@@ -25,6 +25,8 @@
 #  bio                    :text
 #  pinterest              :string(255)
 #  facebook               :string(255)
+#  fb_friends             :text
+#  birthdate              :date
 #
 
 require 'spec_helper'
