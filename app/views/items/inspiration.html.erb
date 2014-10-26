@@ -3,7 +3,8 @@
 		<ul class="nav nav-pills sort_general pull-left">
 		  <% if signed_in? %><li><%= sortable_general "following" %></li><% end %>
 			<li><%= sortable_general "popular" %></li>
-		  <li><%= sortable_general "recent" %></li>		  
+		  <li><%= sortable_occation "By Occasion" %></li>
+		  <li><%= sortable_general "recent" %></li>
 		</ul>
 		<div class="hidden-phone btn-group sort_gender pull-right">
 			<%= sortable_gender "all" %>

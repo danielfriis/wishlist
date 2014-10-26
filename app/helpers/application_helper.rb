@@ -46,6 +46,26 @@ module ApplicationHelper
     link_to title, {:sort => column, :gender => sort_gender}, {:class => css_class}
   end
 
+  def sortable_occation(text)
+    unless ["popular", "recent", "following"].include? params[:sort]
+      css_class = "active"
+      text = params[:sort]
+    end
+    content_tag(:li, nil, class: "dropdown") do
+      link_to("#", data: {toggle: "dropdown"}, class: "dropdown-toggle #{css_class}") do
+        (text.titleize + " " + content_tag(:i, nil, class: "fa fa-chevron-down")).html_safe
+      end +
+      content_tag(:ul, nil, class: "dropdown-menu") do
+        ["birthday", "christmas"].collect do |o|
+          content_tag(:li) do
+            link_to o.titleize, {:sort => o, :gender => sort_gender}
+          end
+        end.join.html_safe
+      end
+
+    end
+  end
+
   def sortable_gender(gender, title = nil)
     title ||= gender.titleize
     if params[:gender] == nil && gender == "all"

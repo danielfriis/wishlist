@@ -68,9 +68,25 @@ class Item < ActiveRecord::Base
       recent
     elsif general == "following"
       following(current_user)
+    elsif general == "christmas"
+      occation(['christmas', 'jul'])
+    elsif general == "birthday"
+      occation([URI.decode('f%C3%B8dselsdag'), 'birthday'])
     else
       popular
     end
+  end
+
+  def self.occation(query)
+    if query.kind_of?(Array)
+      query = query.join("%') OR upper(lists.name) like upper('%")
+    else
+      query
+    end
+    lists = "SELECT lists.id from lists WHERE upper(lists.name) like upper('%#{query}%')"
+    wishes = "SELECT item_id from wishes WHERE list_id IN (#{lists})"
+    where("items.id IN (#{wishes})")
+      .popular
   end
 
   def self.recent
