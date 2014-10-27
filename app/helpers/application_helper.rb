@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def sortable_occation(text)
-    unless ["popular", "recent", "following"].include? params[:sort]
+    unless [nil, "popular", "recent", "following"].include? params[:sort]
       css_class = "active"
       text = params[:sort]
     end
