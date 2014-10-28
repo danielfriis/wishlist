@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :destroy]
-  before_filter :correct_user,   only: :destroy
+  before_filter :correct_user,   only: [:update, :destroy]
   before_filter :allowed_user, only: [:show]
   include Analyzable
 
