@@ -1,6 +1,6 @@
 class WishesController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :update, :destroy]
-  before_filter :correct_user,   only: :destroy
+  before_filter :correct_user,   only: [:destroy, :update]
   include Analyzable
 
   def show

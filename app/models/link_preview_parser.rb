@@ -73,14 +73,15 @@ class LinkPreviewParser
 
     page_info[:images].each do |images|
         # begin # ignores error with asos.com
-        images_and_sizes[images] = FastImage.size(images) rescue nil
+        images_and_sizes[images] = FastImage.size(images) rescue [0, 0]
+        images_and_sizes[images] = images_and_sizes[images] == nil ? [130, 50] : images_and_sizes[images]
         # rescue URI::InvalidComponentError
         #     next
         # end
     end
 
     images_and_sizes.delete_if do |images, size| 
-        if size && size.any?{ |i| i > 130 } && size.all?{ |i| i > 50 }
+        if size && size.any?{ |i| i >= 130 } && size.all?{ |i| i >= 50 }
             false
         else
             true
@@ -127,6 +128,7 @@ class LinkPreviewParser
       # Retract prices based on classes containing "price" and a regex
       # "translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" is to makes nokogiri case in-sentive. Replaces "."
       prices = doc.at('body').xpath("//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+
       # prices = doc.at('body').xpath("//*[translate(@class,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
       prices = prices.map{|i| i unless i.match(currencies_regex).nil? }.compact unless prices.nil?
 
