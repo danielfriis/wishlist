@@ -140,6 +140,7 @@ $(document).ready(function(){
     $('#item-display-image').removeClass("image-cycler");
     $('#item_link').prop('readonly', false);
     $('#item-display-image').css("background-image", "url(<%= asset_path('choose-image.png') %>)");
+    $('.image-cycler-cover').hide();
 	};
 
 	$("#start-over").on('click', function(){
@@ -189,6 +190,7 @@ $(document).ready(function(){
     	$('#item-display-image').css("background-image", "url(" + item.image + ")");
 	    $('#item-display-image').attr('data-images', JSON.stringify(item.images));
 	    $('#item-display-image').addClass("image-cycler");
+	    $('.image-cycler-cover').show();
     } else {
     	$('#item_via').val('no_link');
     }

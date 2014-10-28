@@ -9,6 +9,7 @@
       <div class="item_fields" style="display:none;">
 
         <span id="item-display-image" class="btn btn-default btn-large btn-file pull-right" style="background-image:url(<%= asset_path('choose-image.png') %>);" data-images="" >
+          <div style="display:none;" class="image-cycler-cover"></div>
           <%= f.file_field :image, onchange: "readURL(this);" %>
         </span>
 
