@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   has_many :activities
   has_many :admissions
 
+  has_many :likes
+
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed, source_type: 'User'
   has_many :followed_vendors, through: :relationships, source: :followed, source_type: 'Vendor'
@@ -145,6 +147,10 @@ class User < ActiveRecord::Base
 
   def following?(other_user)
     relationships.find_by_followed_id_and_followed_type(other_user.id, other_user.class.name)
+  end
+
+  def like?(item)
+    likes.find_by_item_id(item.id)
   end
 
   # def follow!(other_user)

@@ -1,0 +1,9 @@
+<% if current_user %>
+	<% if current_user.like?(@item) %>
+		<%= render 'likes/unlike' %>
+	<% else %>
+		<%= render 'likes/like' %>
+	<% end %>
+<% else %>
+	<i class="fa-li fa fa-thumbs-o-up"></i> <%= pluralize(@item.likes.count, "like") %>
+<% end %>

@@ -1,5 +1,8 @@
 Wishlist::Application.routes.draw do
 
+  resources :likes
+
+
   resources :admissions
 
   resources :activities
