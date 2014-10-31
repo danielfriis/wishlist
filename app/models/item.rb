@@ -70,9 +70,9 @@ class Item < ActiveRecord::Base
     elsif general == "following"
       following(current_user)
     elsif general == "christmas"
-      occation(['christmas', 'jul'])
+      occation(['christmas', 'jul', URI.decode('jule%C3%B8nsker')])
     elsif general == "birthday"
-      occation([URI.decode('f%C3%B8dselsdag'), 'birthday'])
+      occation([URI.decode('f%C3%B8dselsdag'), 'birthday', URI.decode('f%C3%B8dselsdags%C3%B8nsker')])
     else
       popular
     end
