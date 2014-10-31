@@ -1,7 +1,7 @@
 <%= form_for(current_user.likes.build(item_id: @item.id), remote: true) do |f| %>
   <%= f.hidden_field :item_id %>
 
-  <i class="fa-li fa fa-thumbs-o-up"></i>
+  <%= render 'items/like_icon', item: @item %>
   <%= link_to_submit do %>
   	<%= pluralize(@item.likes.count, "like") %>
   <% end %>

@@ -13,8 +13,8 @@
 		<% if item.price.present? && !mobile_device? %><p class="muted price item-meta"><%= exchanged_price(item) %></p><% end %>
 		<%= render 'wishes/wishlistt_it_form', item: item if mobile_device? %>
 		<p class="muted social-count item-meta">
-			<%= render 'items/wish_icon', item: item %> <%= item.wishes.count %>
-			<%= render 'items/like_icon', item: item %> <%= item.likes.count %>
+			<%= render 'items/wish_icon', item: item %><%= item.wishes.count %>&nbsp;
+			<%= render 'items/like_icon', item: item %><%= item.likes.count %>
 			<% if signed_in? && current_user.admin? %> <i class="fa fa-star"></i> <%= item.popularity_score %><% end %></p>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 <%= form_for(current_user.likes.find_by_item_id(@item.id), html: { method: :delete }, remote: true) do |f| %>
-  <i class="fa-li fa fa-thumbs-up"></i>
+  <%= render 'items/like_icon', item: @item %>
   <%= link_to_submit do %>
   	<%= pluralize(@item.likes.count, "like") %>
   <% end %>

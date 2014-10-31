@@ -1,6 +1,6 @@
 <div class="social-count">
 <hr>
-	<ul class="fa-ul">
+	<ul class="unstyled">
       <li>
         <%= render 'items/wish_icon', item: @item %>
         <% if @item.lists.any? && @item.lists.last.user.present? %>
@@ -15,9 +15,9 @@
         <% end %>
       </li>
       <li><%= render 'likes/like_form' %></li>
-      <li><i class="fa-li fa fa-eye"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
+      <li><i class="fa-fw fa fa-eye"></i> <%= pluralize(@item.impressionist_count(:filter=>:ip_address), 'view') %></li>
       <% if signed_in? && current_user.admin? %>
-        <li><i class="fa-li fa fa-star"></i> Popularity score: <%= @item.popularity_score %></li>
+        <li><i class="fa-fw fa fa-star"></i> Popularity score: <%= @item.popularity_score %></li>
       <% end %>
     </ul>
 </div>

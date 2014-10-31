@@ -20,9 +20,9 @@ class Rack::Attack
   # Throttle all requests by IP (60rpm)
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle('req/ip', :limit => 600, :period => 5.minutes) do |req|
-    req.ip
-  end
+  # throttle('req/ip', :limit => 600, :period => 5.minutes) do |req|
+  #   req.ip
+  # end
 
 
   ### Blacklisting ###
