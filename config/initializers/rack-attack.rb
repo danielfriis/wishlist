@@ -39,13 +39,21 @@ class Rack::Attack
     # Requests are blocked if the return value is truthy
     '62.210.142.7' == req.ip
   end
+  blacklist('block 62.210.122.209') do |req|
+    # Requests are blocked if the return value is truthy
+    '62.210.122.209' == req.ip
+  end
   blacklist('block 188.143.232.111') do |req|
     # Requests are blocked if the return value is truthy
     '188.143.232.111' == req.ip
   end
-  blacklist('block 62.210.122.209') do |req|
+  blacklist('block 37.59.32.148') do |req|
     # Requests are blocked if the return value is truthy
-    '62.210.122.209' == req.ip
+    '37.59.32.148' == req.ip
+  end
+  blacklist('block 94.23.251.211') do |req|
+    # Requests are blocked if the return value is truthy
+    '94.23.251.211' == req.ip
   end
 
 	# Block logins from a bad user agent
