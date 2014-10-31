@@ -90,5 +90,7 @@ module Wishlist
     
     config.middleware.insert_before 0, "SearchSuggestions"
 
+    config.middleware.use Rack::Attack
+
   end
 end

@@ -196,6 +196,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.4.5)
+    rack-attack (4.2.0)
+      rack
     rack-cache (1.2)
       rack (>= 0.4)
     rack-cors (0.2.9)
@@ -317,6 +319,7 @@ DEPENDENCIES
   nokogiri
   omniauth-facebook
   pg (= 0.12.2)
+  rack-attack
   rack-cors
   rack-mini-profiler
   rails (= 3.2.11)

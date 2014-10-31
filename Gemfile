@@ -26,6 +26,7 @@ gem 'mixpanel-ruby'
 gem 'exception_notification', '~> 3.0.0'
 gem 'gibbon'
 gem 'koala'
+gem 'rack-attack'
 
 
 group :development, :test do
