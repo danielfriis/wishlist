@@ -153,6 +153,10 @@ class User < ActiveRecord::Base
     likes.find_by_item_id(item.id)
   end
 
+  def wishing?(item)
+    items.find_by_id(item.id)
+  end
+
   # def follow!(other_user)
   #   relationships.create!(followed_id: other_user.id)
   # end

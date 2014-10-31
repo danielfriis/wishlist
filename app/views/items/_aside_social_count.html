@@ -2,7 +2,7 @@
 <hr>
 	<ul class="fa-ul">
       <li>
-        <i class="fa-li fa fa-heart-o"></i> 
+        <%= render 'items/wish_icon', item: @item %>
         <% if @item.lists.any? && @item.lists.last.user.present? %>
           <%= link_to @item.lists.first.user.name, user_path(@item.lists.first.user) %> 
           
