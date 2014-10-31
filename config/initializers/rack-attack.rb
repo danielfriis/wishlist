@@ -27,19 +27,19 @@ class Rack::Attack
 
   ### Blacklisting ###
   # Block requests from 1.2.3.4
-	Rack::Attack.blacklist('block 62.210.167.213') do |req|
+	blacklist('block 62.210.167.213') do |req|
 	  # Requests are blocked if the return value is truthy
 	  '62.210.167.213' == req.ip
 	end
-  Rack::Attack.blacklist('block 62.210.91.168') do |req|
+  blacklist('block 62.210.91.168') do |req|
     # Requests are blocked if the return value is truthy
     '62.210.91.168' == req.ip
   end
-  Rack::Attack.blacklist('block 62.210.142.7') do |req|
+  blacklist('block 62.210.142.7') do |req|
     # Requests are blocked if the return value is truthy
     '62.210.142.7' == req.ip
   end
-  Rack::Attack.blacklist('block 188.143.232.111') do |req|
+  blacklist('block 188.143.232.111') do |req|
     # Requests are blocked if the return value is truthy
     '188.143.232.111' == req.ip
   end
