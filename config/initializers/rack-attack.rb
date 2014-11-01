@@ -26,7 +26,6 @@ class Rack::Attack
 
 
   ### Blacklisting ###
-  # Block requests from 1.2.3.4
 	blacklist('block 62.210.167.213') do |req|
 	  # Requests are blocked if the return value is truthy
 	  '62.210.167.213' == req.ip
@@ -42,6 +41,10 @@ class Rack::Attack
   blacklist('block 62.210.122.209') do |req|
     # Requests are blocked if the return value is truthy
     '62.210.122.209' == req.ip
+  end
+  blacklist('block 62.210.78.209') do |req|
+    # Requests are blocked if the return value is truthy
+    '62.210.78.209' == req.ip
   end
   blacklist('block 188.143.232.111') do |req|
     # Requests are blocked if the return value is truthy

@@ -66,7 +66,7 @@
 <!-- Aside sidebar lists -->
 	<li class="aside_user_list_wish">
 		<div class="block pull-left">
-			<%= image_tag(list.wishes.last.item.image_url(:thumb).to_s, class: "img-rounded") if list.wishes.last %>
+			<%= image_tag(list.wishes.last.item.image_url(:thumb).to_s, class: "img-rounded") if list.wishes.last && list.wishes.last.item  %>
 		</div>
 	  <div class="block block-content">
 	  	<span class="content">

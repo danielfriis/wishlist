@@ -13,6 +13,7 @@ class LinkPreviewParser
     # Removed readability gem parsing because it is slow.
 
     ua = "Mozilla/5.0 (compatible; Halustabot/1.0; +http://www.halusta.com/about)"
+    loc = "da-DK"
 
     url = Addressable::URI.parse(url).normalize.to_s
     doc = Nokogiri::HTML(open(url, "User-Agent" => ua ))
@@ -98,8 +99,9 @@ class LinkPreviewParser
   def self.price(url, doc=nil)
     if doc == nil
       ua = "Mozilla/5.0 (compatible; Halustabot/1.0; +http://www.halusta.com/about)"
+      loc = "da"
       url = Addressable::URI.parse(url).normalize.to_s
-      doc = Nokogiri::HTML(open(url, "User-Agent" => ua ).read)
+      doc = Nokogiri::HTML(open(url, "User-Agent" => ua, "Accept-Language" => loc ).read)
     end
     # Normalize URI
     # url = Addressable::URI.parse(url).normalize.to_s
@@ -113,7 +115,8 @@ class LinkPreviewParser
     price_regex = /(?<=\p{Z}|^)((#{currencies_regex})(\p{Z})?)?(([1-9]{1}(\d{1,2})?((\.)?\d{3})*(\,\d{2})?)|([1-9]{1}(\d{1,2})?((\,)?\d{3})*(\.\d{2})?))((\p{Z})?(#{currencies_regex}))?(?=\p{Z}|$)/m
 
     # Retract price based on meta data
-    itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| [i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0], i[:content]] }.flatten.uniq.compact
+    # itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| [i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0], i[:content]] }.flatten.uniq.compact
+    itemprop_price = doc.at('body').xpath("//*[@itemprop='price']").map{|i| i.inner_text.strip.gsub(/[[:space:]]/,"") }.flatten.uniq.compact
     itemprop_price = (itemprop_price.kind_of?(Array) ? itemprop_price[0] : itemprop_price)
 
     # itemprop_curr_pre = doc.at('body').xpath("//*[@itemprop='currency']")
@@ -127,13 +130,15 @@ class LinkPreviewParser
     else
       # Retract prices based on classes containing "price" and a regex
       # "translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" is to makes nokogiri case in-sentive. Replaces "."
-      prices = doc.at('body').xpath("//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
+      prices = doc.at('body').xpath(".//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/[[:space:]]/,"").match(price_regex).to_a[0] }.compact
 
       # prices = doc.at('body').xpath("//*[translate(@class,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')='price']").map{|i| i.inner_text.strip.gsub(/\s+|\t|\r|\n/," ").match(price_regex).to_a[0] }.compact
       prices = prices.map{|i| i unless i.match(currencies_regex).nil? }.compact unless prices.nil?
 
       # This is to exclude the 'basket'
-      header_tag = doc.at('body').xpath("//html/header").map{|i| i.inner_text.strip.gsub(/\t|\r|\n/," ").match(price_regex).to_a[0] }
+      # header_tag = doc.at('body').xpath(".//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/[[:space:]]/,"").match(price_regex).to_a[0] }.compact
+      header_tag = doc.at('body').xpath(".//header//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/[[:space:]]/,"").match(price_regex).to_a[0] }.compact
+      header_tag + doc.at('body').xpath(".//*[contains(@class,'header')]//*[@*[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'price')]]").map{|i| i.inner_text.strip.gsub(/[[:space:]]/,"").match(price_regex).to_a[0] }.compact
 
       # Get the first price which is not in the header tag
       price = (prices - header_tag)[0]
