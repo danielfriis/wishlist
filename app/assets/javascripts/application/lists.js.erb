@@ -157,6 +157,10 @@ $(document).ready(function(){
 	  $('#modal-secondary').hide();
 	});
 
+	$(document).on('click', "input[type='submit']", function() {
+		$(this).addClass('disabled');
+	});
+
 	searchfield.keypress(function(e) {
     if(e.which == 13 && search_source.remote.url == database.url) {
     	e.preventDefault();
