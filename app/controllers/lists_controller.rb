@@ -13,7 +13,7 @@ class ListsController < ApplicationController
 
   def show
     @wishes = @list.wishes.rank(:row_order)
-    @lists = @user.lists.allowed(current_user)
+    @lists = @user.lists.allowed_for(current_user)
     @message = Message.new
     tracker.track(mp_id, 'Visits list page', { list: @list.name, list_id: @list.id }) if mp_id
   end
