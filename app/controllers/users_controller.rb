@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def show
-    @lists = @user.lists.allowed(current_user)
+    @lists = @user.lists.allowed_for(current_user)
     @list = current_user.lists.build if signed_in?
     tracker.track(mp_id, 'Visits user profile', { user: @user.name, user_id: @user.id }) if mp_id
   end
