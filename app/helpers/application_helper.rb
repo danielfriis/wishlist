@@ -14,11 +14,13 @@ module ApplicationHelper
     link_to_function (block_given? ? capture(&block) : args[0]), "$(this).closest('form').submit()", args.extract_options!
   end
 
-  def avatar(user, size)
-  	if user.avatar_url("#{size}").nil?
-  		"#{root_url}assets/default_images/#{size.to_s}_#{user.gender.downcase}.png"
-  	else
-  		user.avatar_url("#{size}")
+  def avatar(subject, size)
+  	if subject.avatar_url("#{size}").nil? && subject.class.to_s == "User"
+  		"#{root_url}assets/default_images/#{size.to_s}_#{subject.gender.downcase}.png"
+  	elsif subject.avatar_url("#{size}").nil? && subject.class.to_s == "Vendor"
+      "#{root_url}assets/default_images/vendor.png"
+    else
+  		subject.avatar_url("#{size}")
   	end
   end
 

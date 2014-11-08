@@ -5,7 +5,7 @@
   </a>
 
   <h1><%= link_to vendor.name, vendor, class: "no-color" %></h1>
-  <% if current_user && @vendor.allowed_access?(current_user) %>
+  <% if current_user && vendor.allowed_access?(current_user) %>
   	<%= link_to "Edit", edit_vendor_path(vendor), class: "btn btn-default btn-edit-vendor" %>
   <% end %>
   <%= render partial: 'users/follow_form', locals: {:subject => vendor} if signed_in? %>
