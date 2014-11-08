@@ -1,6 +1,7 @@
 class VendorsController < ApplicationController
 	helper_method :sort_general, :sort_gender
-	before_filter :find_vendor, only: [:show, :edit, :update, :destroy]
+	before_filter :find_vendor, only: [:show, :edit, :update, :destroy, :edit_admins]
+	before_filter :correct_user, only: [:edit, :update]
 
 	def new
 		Vendor.new
@@ -22,6 +23,23 @@ class VendorsController < ApplicationController
     end
   end
 
+  def edit
+  	
+  end
+
+  def edit_admins
+  	@admissions = @vendor.admissions
+  end
+
+  def update
+  	if @vendor.update_attributes(params[:vendor])
+  		flash[:success] = "Profile updated"
+  		redirect_to edit_vendor_path(@vendor)
+  	else
+  		render 'edit'
+  	end
+  end
+
 	private
 
 		def sort_general
@@ -34,6 +52,11 @@ class VendorsController < ApplicationController
 
 	  def find_vendor
       @vendor = Vendor.find_by_slug!(params[:id])
+    end
+
+    def correct_user
+    	@user = @vendor.admissions.find_by_user_id(current_user.id)
+    	redirect_to(@vendor) unless @user
     end
 
 end

@@ -69,6 +69,8 @@ Wishlist::Application.routes.draw do
   match '/user_suggestion', to:'users#invite_suggestion'
   match '/vendor_suggestion', to:'vendors#invite_suggestion'
 
+  match 'v/:id/edit_admins', to: 'vendors#edit_admins', as: 'edit_admins'
+
   match '/:id/update_password', to: 'users#update_password', as: 'update_password'
   match '/:id/update_notifications', to: 'users#update_notifications', as: 'update_notifications'
 

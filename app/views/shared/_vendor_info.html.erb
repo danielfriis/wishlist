@@ -1,12 +1,48 @@
 <% vendor ||= @vendor %>
 
   <a href="<%= vendor_path(vendor) %>">
-    <img src="<%= root_url %>assets/default_images/vendor.png" class="gravatar gravatar-large img-rounded">
+    <%= image_tag avatar(vendor, :large), alt: vendor.name, class: "gravatar gravatar-large img-rounded" %>
   </a>
 
-  <h1><%= link_to vendor.name, vendor, class: "no-color" %></h1><%= render partial: 'users/follow_form', locals: {:subject => vendor} if signed_in? %>
-  <span>
-    <i class="fa fa-globe"></i> <%= link_to vendor.url, vendor.url, class: "muted", target: "_blank" %> 
+  <h1><%= link_to vendor.name, vendor, class: "no-color" %></h1>
+  <% if current_user && @vendor.allowed_access?(current_user) %>
+  	<%= link_to "Edit", edit_vendor_path(vendor), class: "btn btn-default btn-edit-vendor" %>
+  <% end %>
+  <%= render partial: 'users/follow_form', locals: {:subject => vendor} if signed_in? %>
+  
+  <span class="user-socials muted">  
+     <span><i class="fa fa-globe"></i> <%= link_to vendor.url, vendor.url, class: "muted", target: "_blank" %> </span>
+    <% if vendor.twitter? %> 
+      <span>
+        <%= link_to "http://www.twitter.com/" + vendor.twitter, target: "_blank" do %>
+          <i class="fa fa-twitter"></i>
+        <% end %>
+      </span>
+    <% end %>
+    <% if vendor.instagram? %> 
+      <span>
+        <%= link_to "http://www.instagram.com/" + vendor.instagram, target: "_blank" do %>
+          <i class="fa fa-instagram"></i>
+        <% end %>
+      </span>
+    <% end %>
+    <% if vendor.pinterest? %> 
+      <span>
+        <%= link_to "http://www.pinterest.com/" + vendor.pinterest, target: "_blank" do %>
+          <i class="fa fa-pinterest"></i>
+        <% end %>
+      </span>
+    <% end %>
+    <% if vendor.facebook? %> 
+      <span>
+        <%= link_to "http://www.facebook.com/" + vendor.facebook, target: "_blank" do %>
+          <i class="fa fa-facebook"></i>
+        <% end %>
+      </span>
+    <% end %>
+  </span>
+  <span class="user-bio">
+    <%= vendor.bio %>
   </span>
 
 <!-- <a href="#" class="btn">Follow</a> -->

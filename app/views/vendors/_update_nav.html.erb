@@ -1,0 +1,11 @@
+<ul class="nav nav-list update_user_nav">
+	<li class="nav-header">
+		<%= link_to @vendor.name, @vendor %>
+	</li>
+	<li <% if current_page?(controller: 'vendors', action: 'edit') %>class="active"<% end %>>
+		<%= link_to "Basic information", edit_vendor_path(@vendor) %>
+	</li>
+  <li <% if current_page?(controller: 'vendors', action: 'edit_admins') %>class="active"<% end %>>
+		<%= link_to "Manage admins", edit_admins_path(@vendor) %>
+	</li>
+</ul>

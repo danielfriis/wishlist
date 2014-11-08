@@ -1,0 +1,42 @@
+<% provide(:title, "Edit vendor") %> 
+
+<div class="row">
+  <div class="span12">
+    <h1 class="edit_profile">Manage admins</h1>
+    <hr>
+  </div>
+</div>
+<div class="row">
+	<div class="span3 white-box wb-nopadding">
+		<%= render 'update_nav' %>
+	</div>
+  <div class="span9">
+    <h2>Invite admins</h2>
+    <p>Invite people to administer this vendor by searching below.</p>
+    <%= form_for @vendor.admissions.new do |f| %>
+      <%= text_field_tag :invite_to_secret, params[:search], :data => {:provide => "typeahead"}, autocomplete: :off, placeholder: "Type a name." %>
+      <%= f.hidden_field :accessible_id %>
+      <%= f.hidden_field :accessible_type %>
+      <%= f.hidden_field :user_id %>
+      <%= f.submit "Add", style: "display:none;" %>
+    <% end %>
+    <hr>
+    <h2>Current admins</h2>
+    <div class="row" id="admissions">
+      <% @admissions.each do |a| %>
+        <% if a.user %>
+          <div class="span4" id="<%= a.id if a %>">
+            <%= image_tag avatar(a.user, :medium), alt: a.user.name, class: "gravatar gravatar-medium img-rounded" %>
+            <strong><%= a.user.name %></strong><br>
+            <% if a.user == current_user %>
+              This is you.
+            <% else %>
+              <%= link_to 'Remove admin', a,
+                      class: "muted", method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<% provide(:title, "Edit vendor") %> 
+
+<div class="row">
+  <div class="span12">
+    <h1 class="edit_profile">Update your profile</h1>
+    <hr>
+  </div>
+</div>
+<div class="row">
+	<div class="span3 white-box wb-nopadding">
+		<%= render 'update_nav' %>
+	</div>
+  <div class="span9">
+    <%= form_for @vendor, html: {class: "form-horizontal"} do |f| %>
+      <%= render 'fields', f: f %>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.submit "Save changes", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

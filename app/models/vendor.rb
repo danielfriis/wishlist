@@ -8,11 +8,19 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  slug       :string(255)
+#  bio        :text
+#  twitter    :string(255)
+#  instagram  :string(255)
+#  pinterest  :string(255)
+#  facebook   :string(255)
+#  avatar     :string(255)
 #
 
 class Vendor < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :name, :url
+  mount_uploader :avatar, AvatarUploader
+
+  attr_accessible :name, :url, :avatar, :remove_avatar, :bio, :twitter, :instagram, :pinterest, :facebook
 
   has_many :items, dependent: :destroy
   has_many :wishes, through: :items
@@ -20,8 +28,15 @@ class Vendor < ActiveRecord::Base
   has_many :relationships, as: :followed
   has_many :followers, through: :relationships, source: :follower
 
+  has_many :admissions, as: :accessible
+
   validates :slug, uniqueness: true, presence: true
   validates :name, presence: true
+
+  validates :bio, length: { maximum: 160 }
+  validates :twitter, length: { maximum: 15 }
+  validates :instagram, length: { maximum: 30 }
+  validates :pinterest, length: { maximum: 15 }
 
 	before_validation :create_unique_slug
 
@@ -63,6 +78,15 @@ class Vendor < ActiveRecord::Base
     .select('vendors.*, count(relationships.followed_id) as relationships_count')
     .group('vendors.id')
     .order('relationships_count desc, vendors.created_at desc')
+  end
+
+  def allow_access(user)
+    self.admissions.create!(user_id: user.id)
+  end
+
+  def allowed_access?(user = nil)
+    user = user.nil? ? current_user : user
+    self.admissions.find_by_user_id(user).present?
   end
 
 end

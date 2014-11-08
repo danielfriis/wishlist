@@ -12,7 +12,7 @@ class AdmissionsController < ApplicationController
 			UserMailer.delay.invited_to_private_list(current_user.id, @admission.user.id, @list.id)
 		end
 		respond_with do |format|
-      format.html { redirect_to @admission }
+      format.html { redirect_to :back }
       format.js
     end
 	end

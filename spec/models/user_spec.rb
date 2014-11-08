@@ -34,14 +34,15 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com", 
-                     password: "foobar", password_confirmation: "foobar")
+    @user = FactoryGirl.create(:user)
   end
 
   subject { @user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:gender) }
+  it { should respond_to(:birthdate) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -88,13 +89,12 @@ describe User do
   end
 
   describe "when email address is already taken" do
-    before do
+    it "should no be valid" do
       user_with_same_email = @user.dup
       user_with_same_email.email = @user.email.upcase
       user_with_same_email.save
+      user_with_same_email.should_not be_valid
     end
-
-    it { should_not be_valid }
   end
 
   describe "when password is not present" do

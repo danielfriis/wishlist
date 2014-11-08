@@ -1,0 +1,64 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<!-- BASIC INFO -->
+	<h2>Basic information</h2>
+
+	<div class="control-group">
+		<%= f.label :name, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :name %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :avatar, "Choose a profile picture", class: "control-label" %>
+		<div class="controls edit_user_pic btn btn-default btn-large btn-file" style="background-image:url(<% if @vendor.avatar.present? %><%= @vendor.avatar_url %><% else %><%= asset_path('choose-image.png') %><% end %>);">
+			<%= f.file_field :avatar, onchange: "readURL(this);" %>
+		</div>
+	</div>
+
+	<% unless f.object.new_record? || current_user.avatar.blank? %> 
+		<div class="control-group">
+			<div class="controls">
+				<%= f.label :remove_avatar, class: "checkbox" do %>
+					<%= f.check_box :remove_avatar %> 
+					Remove profile picture
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="control-group">
+		<%= f.label :twitter, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :twitter %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :instagram, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :instagram %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :pinterest, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :pinterest %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :facebook, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_field :facebook %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :bio, class: "control-label" %>
+		<div class="controls">
+			<%= f.text_area :bio, rows: 4 %>
+		</div>
+	</div>
