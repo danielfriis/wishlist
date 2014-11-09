@@ -17,6 +17,9 @@
 	Male
 <% end %>
 
+<%= f.label :birthdate %>
+<%= f.date_select :birthdate, :order => [:month, :day, :year], start_year: 1950, prompt: { day: 'Select day', month: 'Select month', year: 'Select year' } %>
+
 <%= f.label :email %>
 <%= f.text_field :email %>
 

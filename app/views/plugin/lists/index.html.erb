@@ -1,50 +1,49 @@
 <div class="row plugin-index">
-    <div class="span6 white-box">
-        <% if signed_in? %>
-            <div class="wishes-top <%= 'signed-in' if signed_in? %>">
-                <ul class="wishes"></ul>
-                <span class="wishes-text"></span>
-                <%= link_to 'clear', '#', class: 'clear-list' %>
-            </div>
-            <h5 class="choose-list-header">Choose wish list to add item&hellip;</h5>
+  <div class="span6 white-box">
+    <% if signed_in? %>
+      <div class="wishes-top <%= 'signed-in' if signed_in? %>">
+        <ul class="wishes"></ul>
+        <span class="wishes-text"></span>
+        <%= link_to 'clear', '#', class: 'clear-list' %>
+      </div>
+      <h5 class="choose-list-header">Choose wish list:</h5>
 
-            <ul class="lists">
-                <% current_user.lists.each do |list| %>
-                    <%= link_to content_tag(:li, list.name), plugin_list_path(list), method: :put %>
-                <% end %>
-
-            </ul>
-
-            <div class="new-list">
-                <div class="white-box create-list" class="create-list">
-                    <%= form_for([current_user, @list], url: { controller: 'plugin/lists', action: 'create' }) do |f| %>
-	                    <%= f.text_field :name,
-                      placeholder: 'Create new list...',
-                      class: 'input-medium name' %>
-	                    <%= f.submit 'Add', class: 'btn add' %>
-                        <a class="btn cancel">Cancel</a>
-	                <% end %>
-                </div>
-
-                <div class="show-create-list">
-                    New wish list
-                </div>
-            </div>
-        <% else %>
-            <ul class="wishes"></ul>
+      <ul class="lists">
+        <% current_user.lists.each do |list| %>
+          <%= link_to content_tag(:li, list.name), plugin_list_path(list), method: :put %>
         <% end %>
-    </div>
+      </ul>
+
+      <div class="new-list">
+        <div class="white-box create-list" class="create-list">
+          <%= form_for([current_user, @list], url: { controller: 'plugin/lists', action: 'create' }) do |f| %>
+            <%= f.text_field :name,
+            placeholder: 'Create new list...',
+            class: 'input-medium name' %>
+            <%= f.submit 'Add', class: 'btn add' %>
+              <a class="btn cancel">Cancel</a>
+          <% end %>
+        </div>
+
+        <div class="show-create-list">
+            New wish list
+        </div>
+      </div>
+    <% else %>
+        <ul class="wishes"></ul>
+    <% end %>
+  </div>
 </div>
 
 <% if not signed_in? %>
-    <div class="row">
-        <div class="span6 white-box cta">
-            <%= button_to 'Save wish list', plugin_signup_path, class: 'btn btn-medium fg-color bg-color', form_class: 'save-button' %>
+  <div class="row">
+    <div class="span6 white-box cta">
+      <%= button_to 'Save wish list', plugin_signup_path, class: 'btn btn-medium fg-color bg-color', form_class: 'save-button' %>
 
-            &hellip; or <%= link_to 'sign in', plugin_signin_path, class: 'underline-link' %> to <%= link_to 'Wishlistt', 'http://www.wishlistt.com', target: '_blank', class: 'underline-link' %>
-            <br>
-            <%= link_to 'Clear list', '#', class: 'clear-list' %>
-        </div>
+      &hellip; or <%= link_to 'sign in', plugin_signin_path, class: 'underline-link' %> to <%= link_to 'Halusta', 'http://www.halusta.com', target: '_blank', class: 'underline-link' %>
+      <br>
+      <%= link_to 'Clear list', '#', class: 'clear-list' %>
     </div>
+  </div>
 
 <% end %>

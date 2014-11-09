@@ -56,11 +56,18 @@ $ ->
     $('.new-list .create-list').toggle()
 
   renderWishes = ->
-    wishes = getWishes()
+    isSignedIn = $('.wishes-top.signed-in').length > 0
+
+    # Daniel did this. Before it was just: wishes = getWishes()
+    if isSignedIn
+      wishes = []
+      $('.clear-list').hide()
+    else
+      wishes = getWishes()
+
     $('.wishes').html ''
 
     # extract domain
-    isSignedIn = $('.wishes-top.signed-in').length > 0
     if isSignedIn and wishes.length > 1
       $('.wishes').hide()
       $('.wishes-text').text "Adding #{wishes.length} wishes"
@@ -91,7 +98,13 @@ $ ->
     $('.bg-color').css 'backgroundColor', colors.background
     $('.fg-color').css 'color', colors.foreground
     wish = data.wish
-    wishes = getWishes()
+
+    # Daniel did this. Before it was just: wishes = getWishes()
+    isSignedIn = $('.wishes-top.signed-in').length > 0
+    if isSignedIn
+      wishes = []
+    else
+      wishes = getWishes()
 
     titles = wishes.map (wish) -> wish.title
     unless wish.title in titles
